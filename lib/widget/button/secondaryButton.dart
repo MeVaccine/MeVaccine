@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 
-class PrimaryButton extends StatelessWidget {
+class SecondaryButton extends StatelessWidget {
   final String text;
   final Function onPressed;
   final bool isLoading;
-  PrimaryButton(
+  SecondaryButton(
       {required this.text, required this.onPressed, this.isLoading = false});
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class PrimaryButton extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(color: white),
+          style: TextStyle(color: primary01),
         ),
       ),
     );
@@ -36,8 +36,9 @@ class PrimaryButton extends StatelessWidget {
 
   BoxDecoration _buildBoxDecoration(BuildContext context) {
     return BoxDecoration(
-      color: primary01,
-      borderRadius: kBorderRadiusXS
+      color: white,
+      borderRadius: kBorderRadiusXS,
+      border: Border.all(color: primary01)
     );
   }
 }
