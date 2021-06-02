@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widget/Logo/Logo_LoginScreen.dart';
+import '../config/color.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -9,6 +10,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             LogoImage(),
+            Text('Login',style: TextStyle(color:primary01),)
           ],
         ),
       ),
