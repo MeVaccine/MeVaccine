@@ -1,0 +1,1 @@
+enum AuthTextFormType{nationId,phoneNumber}
