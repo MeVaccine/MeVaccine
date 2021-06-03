@@ -20,7 +20,11 @@ class AuthTextForm extends StatefulWidget {
 
 class _AuthTextFormState extends State<AuthTextForm> {
   bool isNation() {
-    return (widget.label == "Nation ID");
+    return (widget.type == AuthTextFormType.nationId);
+  }
+
+  bool isPhoneNumber() {
+    return (widget.type == AuthTextFormType.phoneNumber);
   }
 
   @override
@@ -43,7 +47,12 @@ class _AuthTextFormState extends State<AuthTextForm> {
                   Icons.account_box,
                   size: kSizeS * 1.25,
                 )
-              : const Icon(Icons.phone, size: kSizeS * 1.2)),
+              : isPhoneNumber()
+                  ? const Icon(
+                      Icons.phone,
+                      size: kSizeS * 1.25,
+                    )
+                  : const Icon(Icons.credit_card, size: kSizeS * 1.2)),
     );
   }
 }
