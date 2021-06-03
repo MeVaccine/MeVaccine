@@ -1,1 +1,1 @@
-enum AuthTextFormType{nationId,phoneNumber}
+enum AuthTextFormType{nationId,phoneNumber,laserID}

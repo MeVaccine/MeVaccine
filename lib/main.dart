@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import './screen/register_Screen.dart';
 
 import 'config/color.dart';
 import './screen/Login_screen.dart';
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
           primaryColor: primary01,
         ),
         home: LoginScreen(),
+        routes: {
+          RegisterScreen.routeName: (ctx) => RegisterScreen(),
+        },
     );
   }
 }
