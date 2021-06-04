@@ -3,6 +3,8 @@ import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/model/authType.dart';
 import '../auth/authTextFormField.dart';
 import '../button/primaryButton.dart';
+import '../../screen/register_detail_screen.dart';
+import '../text/mainText.dart';
 
 class RegisterForm extends StatefulWidget {
   @override
@@ -24,8 +26,10 @@ class _RegisterFormState extends State<RegisterForm> {
         key: _formKey,
         child: Column(
           children: [
+            MainText('Register'),
+            kSizedBoxVerticalS,
             AuthTextForm(
-              label: 'Nation ID',
+              label: 'National ID',
               textEditingController: _nationID,
               type: AuthTextFormType.nationId,
             ),
@@ -37,7 +41,9 @@ class _RegisterFormState extends State<RegisterForm> {
             ),
             kSizedBoxVerticalL,
             PrimaryButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed( RegisterDetailScreen.routeName);
+              },
               text: 'Register',
             ),
           ],

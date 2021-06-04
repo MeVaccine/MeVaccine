@@ -8,22 +8,29 @@ class RegisterScreen extends StatelessWidget {
   static const routeName = '/register';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: IconThemeData(color: black),
-      ),
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: kSizeXS, horizontal: kSizeM),
-        width: double.infinity,
-        height: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              LogoRegister(),
-              RegisterForm(),
-            ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          shadowColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          iconTheme: IconThemeData(color: black),
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(vertical: kSizeXS, horizontal: kSizeM),
+          width: double.infinity,
+          height: double.infinity,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                LogoRegister(),
+                RegisterForm(),
+              ],
+            ),
           ),
         ),
       ),

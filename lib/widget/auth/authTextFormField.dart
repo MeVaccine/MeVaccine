@@ -3,6 +3,8 @@ import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/model/authType.dart';
 import '../../config/constants.dart';
 import '../auth/authTextFormField.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+
 
 class AuthTextForm extends StatefulWidget {
   final key;
@@ -27,6 +29,10 @@ class _AuthTextFormState extends State<AuthTextForm> {
     return (widget.type == AuthTextFormType.phoneNumber);
   }
 
+  bool isLaser() {
+    return (widget.type == AuthTextFormType.laserID);
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -38,6 +44,10 @@ class _AuthTextFormState extends State<AuthTextForm> {
         return null;
       },
       controller: widget.textEditingController,
+      inputFormatters: [
+        isNation()?
+        MaskedInputFormatter('#-####-#####-##-#'):MaskedInputFormatter('###-###-####'),
+      ],
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
           hintText: widget.label,
@@ -46,13 +56,21 @@ class _AuthTextFormState extends State<AuthTextForm> {
               ? const Icon(
                   Icons.account_box,
                   size: kSizeS * 1.25,
+                  color: primary01,
                 )
               : isPhoneNumber()
                   ? const Icon(
                       Icons.phone,
                       size: kSizeS * 1.25,
+                      color: primary01,
                     )
-                  : const Icon(Icons.credit_card, size: kSizeS * 1.2)),
+                  : isLaser()
+                      ? const Icon(
+                          Icons.credit_card,
+                          size: kSizeS * 1.2,
+                          color: primary01,
+                        )
+                      : null),
     );
   }
 }
