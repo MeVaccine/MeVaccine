@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/model/textType.dart';
 import '../widget/Logo/logo_verification.dart';
 import '../widget/text/mainText.dart';
 import '../widget/auth/verificationTextFormField.dart';
@@ -25,7 +26,7 @@ class VerificationScreen extends StatelessWidget {
             children: [
               LogoVerification(),
               kSizedBoxL,
-              MainText('Verification Code'),
+              MainText('Verification Code',text_type.regular),
               kSizedBoxM,
               VerificationTextFormField('Code'),
               kSizedBoxL,

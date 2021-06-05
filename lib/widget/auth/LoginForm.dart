@@ -5,6 +5,7 @@ import '../button/secondaryButton.dart';
 import '../button/primaryButton.dart';
 import '../../model/authType.dart';
 import '../../screen/register_Screen.dart';
+import '../../screen/verification_screen.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -48,7 +49,9 @@ class _LoginFormState extends State<LoginForm> {
             PrimaryButton(
               text: 'Log in',
               onPressed: () {
-                if (validate()) {}
+                if (validate()) {
+                  Navigator.of(context).pushNamed(VerificationScreen.routeName);
+                }
               },
             ),
             kSizedBoxVerticalS,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/model/authType.dart';
+import 'package:mevaccine/model/textType.dart';
 import '../auth/authTextFormField.dart';
 import '../button/primaryButton.dart';
 import '../../screen/register_detail_screen.dart';
@@ -26,7 +27,7 @@ class _RegisterFormState extends State<RegisterForm> {
         key: _formKey,
         child: Column(
           children: [
-            MainText('Register'),
+            MainText('Register',text_type.bold),
             kSizedBoxVerticalS,
             AuthTextForm(
               label: 'National ID',

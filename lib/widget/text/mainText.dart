@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../config/color.dart';
 import '../../config/constants.dart';
+import '../../model/textType.dart';
 
 class MainText extends StatelessWidget {
   final String text;
-  MainText(this.text);
+  final text_type type;
+  MainText(this.text, this.type);
+  bool isBold() {
+    return (type == text_type.bold);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -12,7 +18,7 @@ class MainText extends StatelessWidget {
       style: TextStyle(
           color: primary01,
           fontSize: kFontSizeHeadline4,
-          fontWeight: FontWeight.bold,
+          fontWeight: isBold() ? FontWeight.bold : null,
           fontFamily: 'Prompt'),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import '../../model/authType.dart';
@@ -29,7 +30,7 @@ class RegisterTextForm extends StatelessWidget {
             ),
             hintText: label,
             hintStyle: TextStyle(color: isActive() ? netural01 : netural03),
-            suffixIcon: isCalendar() ? const Icon(Icons.calendar_today) : null),
+            suffixIcon: isCalendar() ? const Icon(FontAwesomeIcons.calendarAlt,size: kSizeS*1.2,color: primary01,) : null),
       ),
     );
   }

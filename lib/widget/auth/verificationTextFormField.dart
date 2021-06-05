@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 
 class VerificationTextFormField extends StatelessWidget {
@@ -11,7 +13,7 @@ class VerificationTextFormField extends StatelessWidget {
       child: TextFormField(
         decoration: InputDecoration(
           hintText: label,
-          prefixIcon: const Icon(Icons.vpn_key)
+          prefixIcon: const Icon(FontAwesomeIcons.key,color: primary01,size: kSizeS*1.2,)
         ),
       ),
     );

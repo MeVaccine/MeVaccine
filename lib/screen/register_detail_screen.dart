@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/model/authType.dart';
+import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 import '../config/color.dart';
@@ -36,11 +37,11 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                   shadowColor: Colors.transparent,
                   iconTheme: const IconThemeData(color: Colors.black),
                 ),
-                MainText('Register'),
+                MainText('Register',text_type.bold),
                 kSizedBoxVerticalS,
                 LogoMedkit(),
                 kSizedBoxVerticalS,
-                MainText('Personal Information'),
+                MainText('Personal Information',text_type.regular),
                 RegisterTextForm(
                   label: 'MR',
                   type: RegsiterTextFormType.nothing,
@@ -66,7 +67,7 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                     label: 'Phone Number',
                     type: RegsiterTextFormType.nothing,
                     active: RegisterActiveType.enable),
-                MainText('Address'),
+                MainText('Address',text_type.regular),
                 RegisterTextForm(
                   label: 'Province',
                   type: RegsiterTextFormType.nothing,

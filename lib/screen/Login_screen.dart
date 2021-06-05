@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mevaccine/model/textType.dart';
 import '../widget/Logo/Logo_LoginScreen.dart';
 import '../widget/auth/LoginForm.dart';
 import '../config/color.dart';
@@ -23,7 +24,7 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   LogoImage(),
-                  MainText('Login'),
+                  MainText('Login',text_type.bold),
                   LoginForm(),
                 ],
               ),
