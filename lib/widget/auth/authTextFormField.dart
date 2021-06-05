@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/model/authType.dart';
 import '../../config/constants.dart';
-import '../auth/authTextFormField.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
-
 
 class AuthTextForm extends StatefulWidget {
   final key;
@@ -45,8 +44,9 @@ class _AuthTextFormState extends State<AuthTextForm> {
       },
       controller: widget.textEditingController,
       inputFormatters: [
-        isNation()?
-        MaskedInputFormatter('#-####-#####-##-#'):MaskedInputFormatter('###-###-####'),
+        isNation()
+            ? MaskedInputFormatter('#-####-#####-##-#')
+            : MaskedInputFormatter('###-###-####'),
       ],
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
@@ -54,8 +54,8 @@ class _AuthTextFormState extends State<AuthTextForm> {
           hintStyle: const TextStyle(color: netural01),
           prefixIcon: isNation()
               ? const Icon(
-                  Icons.account_box,
-                  size: kSizeS * 1.25,
+                  FontAwesomeIcons.addressCard,
+                  size: kSizeS * 1.2,
                   color: primary01,
                 )
               : isPhoneNumber()
@@ -66,7 +66,7 @@ class _AuthTextFormState extends State<AuthTextForm> {
                     )
                   : isLaser()
                       ? const Icon(
-                          Icons.credit_card,
+                          FontAwesomeIcons.creditCard,
                           size: kSizeS * 1.2,
                           color: primary01,
                         )
