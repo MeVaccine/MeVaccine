@@ -10,18 +10,16 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).requestFocus(new FocusNode());
+        FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
         appBar: AppBar(
-          shadowColor: Colors.transparent,
-          foregroundColor: Colors.transparent,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          iconTheme: IconThemeData(color: black),
+          iconTheme: const IconThemeData(color: primary01),
         ),
         body: Container(
-          padding: EdgeInsets.symmetric(vertical: kSizeXS, horizontal: kSizeM),
+          padding: const EdgeInsets.symmetric(vertical: kSizeXS, horizontal: kSizeM),
           width: double.infinity,
           height: double.infinity,
           child: SingleChildScrollView(

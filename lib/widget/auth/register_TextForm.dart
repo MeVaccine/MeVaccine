@@ -20,16 +20,16 @@ class RegisterTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: kSizeS, vertical: kSizeS),
+      margin: const EdgeInsets.symmetric(horizontal: kSizeS, vertical: kSizeS),
       child: TextFormField(
         enabled: isActive() ? true : false,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
+            contentPadding: const EdgeInsets.symmetric(
               horizontal: kSizeM,
             ),
             hintText: label,
             hintStyle: TextStyle(color: isActive() ? netural01 : netural03),
-            suffixIcon: isCalendar() ? Icon(Icons.calendar_today) : null),
+            suffixIcon: isCalendar() ? const Icon(Icons.calendar_today) : null),
       ),
     );
   }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mevaccine/screen/register_detail_screen.dart';
+
 import 'package:provider/provider.dart';
 import './screen/register_Screen.dart';
+import './screen/register_detail_screen.dart';
+import './screen/verification_screen.dart';
 
 import 'config/color.dart';
 import './screen/Login_screen.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
       routes: {
         RegisterScreen.routeName: (ctx) => RegisterScreen(),
         RegisterDetailScreen.routeName: (ctx) => RegisterDetailScreen(),
+        VerificationScreen.routeName:(ctx)=> VerificationScreen(),
+
       },
     );
   }

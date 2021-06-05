@@ -24,11 +24,11 @@ class SecondaryButton extends StatelessWidget {
     return InkWell(
       onTap: ()=> onPressed(),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: kSizeS, horizontal: kSizeM),
+        padding: const EdgeInsets.symmetric(vertical: kSizeS, horizontal: kSizeM),
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(color: primary01),
+          style: const TextStyle(color: primary01),
         ),
       ),
     );
