@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/model/authType.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
+import 'package:searchable_dropdown/searchable_dropdown.dart';
 import '../config/color.dart';
+import '../widget/button/primaryButton.dart';
 import '../config/constants.dart';
 import '../widget/Logo/logo-medkit.dart';
-import '../widget/form/customDropDown.dart';
-import '../widget/auth/authTextFormField.dart';
 import '../widget/auth/register_TextForm.dart';
 
 class RegisterDetailScreen extends StatefulWidget {
@@ -16,24 +16,17 @@ class RegisterDetailScreen extends StatefulWidget {
 }
 
 class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
-  final _firstName = TextEditingController();
-
-  final _lastName = TextEditingController();
-
-  final _dateOfBirth = TextEditingController();
-
-  final _phoneNumber = TextEditingController();
-
-  final _province = TextEditingController();
-
+  List<String> data = ['one', 'two', 'three', 'four'];
+  String selectedValue = "";
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).requestFocus(new FocusNode());
+        FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
         body: Container(
+          padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -41,7 +34,7 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                   backgroundColor: Colors.transparent,
                   foregroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
-                  iconTheme: IconThemeData(color: Colors.black),
+                  iconTheme: const IconThemeData(color: Colors.black),
                 ),
                 MainText('Register'),
                 kSizedBoxVerticalS,
@@ -78,7 +71,33 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                   label: 'Province',
                   type: RegsiterTextFormType.nothing,
                   active: RegisterActiveType.enable,
-                )
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: kSizeS, vertical: kSizeM),
+                  child: SearchableDropdown(
+                    items: data.map((e) {
+                      return DropdownMenuItem<dynamic>(
+                        child: Text(e),
+                      );
+                    }).toList(),
+                    hint: 'Selected',
+                    isCaseSensitiveSearch: true,
+                    searchHint: const Text('Select your hospital'),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedValue = value;
+                      });
+                    },
+                    isExpanded: true,
+                  ),
+                ),
+                PrimaryButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/verification');
+                  },
+                  text: 'Done',
+                ),
               ],
             ),
           ),

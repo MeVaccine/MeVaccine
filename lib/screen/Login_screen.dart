@@ -10,11 +10,11 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).requestFocus(new FocusNode());
+        FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.symmetric(vertical: kSizeM, horizontal: kSizeM),
+          padding: const EdgeInsets.symmetric(vertical: kSizeM, horizontal: kSizeM),
           width: double.infinity,
           height: double.infinity,
           child: SingleChildScrollView(

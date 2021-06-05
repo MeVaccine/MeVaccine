@@ -42,7 +42,7 @@ class _RegisterFormState extends State<RegisterForm> {
             kSizedBoxVerticalL,
             PrimaryButton(
               onPressed: () {
-                Navigator.of(context).pushReplacementNamed( RegisterDetailScreen.routeName);
+                Navigator.of(context).pushNamed( RegisterDetailScreen.routeName);
               },
               text: 'Register',
             ),
