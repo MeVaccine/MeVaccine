@@ -31,17 +31,19 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                // ตอนแรกมีปัญหา app bar อนู่ใน scaffold เลื่อนแล้ว appbar บัง เลยทำเป็น widget ตัวหนึ่งไปเลย
                 AppBar(
                   backgroundColor: Colors.transparent,
                   foregroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
                   iconTheme: const IconThemeData(color: Colors.black),
                 ),
-                MainText('Register',text_type.bold),
+                // ข้างล่างนี้กห็ ฟอร์ม ต่างๆ
+                MainText('Register', text_type.bold,kFontSizeHeadline4,primary01),
                 kSizedBoxVerticalS,
                 LogoMedkit(),
                 kSizedBoxVerticalS,
-                MainText('Personal Information',text_type.regular),
+                MainText('Personal Information', text_type.regular,kFontSizeHeadline4,primary01),
                 RegisterTextForm(
                   label: 'MR',
                   type: RegsiterTextFormType.nothing,
@@ -67,16 +69,17 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                     label: 'Phone Number',
                     type: RegsiterTextFormType.nothing,
                     active: RegisterActiveType.enable),
-                MainText('Address',text_type.regular),
+                MainText('Address', text_type.regular,kFontSizeHeadline4,primary01),
                 RegisterTextForm(
                   label: 'Province',
                   type: RegsiterTextFormType.nothing,
                   active: RegisterActiveType.enable,
                 ),
+                //SerachAbleDropDown  ยังไม่ได้ทำ searchFN
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: kSizeS, vertical: kSizeM),
-                  child: SearchableDropdown(
+                  child: SearchableDropdown.single(
                     items: data.map((e) {
                       return DropdownMenuItem<dynamic>(
                         child: Text(e),

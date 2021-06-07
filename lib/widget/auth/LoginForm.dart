@@ -20,12 +20,13 @@ class _LoginFormState extends State<LoginForm> {
   Future<void> login(BuildContext context) async {}
 
   @override
+  // อันนี้ไม่รู้มีไว้ทำไมแต่เอาไว้ก่อนเผื่อได้ใช้
   void dispose() {
     _nationID.dispose();
     _phoneNumber.dispose();
     super.dispose();
   }
-
+  //เช็คว่า Form ถูกตามที่เราต้องการไหม ส่วน เช๋ค validate ต่างๆ จะอยู่ใน AuthTextForm
   bool validate() {
     return _formKey.currentState!.validate();
   }
@@ -39,6 +40,7 @@ class _LoginFormState extends State<LoginForm> {
             AuthTextForm(
               textEditingController: _nationID,
               label: 'Nation ID',
+              //AuthTextForm Type เป็น enum แค่แบ่งแยกประเภทเฉยๆ เอาไว้เช็คได้ สามารถไปสร้างได้ใน model/authType
               type: AuthTextFormType.nationId,
             ),
             AuthTextForm(
@@ -49,11 +51,14 @@ class _LoginFormState extends State<LoginForm> {
             PrimaryButton(
               text: 'Log in',
               onPressed: () {
+                //พอเราเพิ่ม if validate เข้าไปมันก็จะเช็คว่า Form นี้ถูกตามที่ต้องการหรือยัง ตอนนี้มีแค้เช็ค User พิมยัง หรือยังไม่พิม
                 if (validate()) {
+                  //เราใช้ pushNmaed เพราะว่าต่องการกลับไปหน้าก่อนได้
                   Navigator.of(context).pushNamed(VerificationScreen.routeName);
                 }
               },
             ),
+            //kSizeBoxVerticalS ก็คือ SizedBox ใน ขนาดเล็กไปดู ใน config ได้
             kSizedBoxVerticalS,
             SecondaryButton(
               text: 'Register',

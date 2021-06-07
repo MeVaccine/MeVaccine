@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import './screen/register_Screen.dart';
 import './screen/register_detail_screen.dart';
 import './screen/verification_screen.dart';
+import './screen/landing_screen.dart';
 
 import 'config/color.dart';
 import './screen/Login_screen.dart';
@@ -26,11 +27,14 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Prompt',
         primaryColor: primary01,
       ),
+      //หน้าแรกสุด
       home: LoginScreen(),
+      // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
       routes: {
         RegisterScreen.routeName: (ctx) => RegisterScreen(),
         RegisterDetailScreen.routeName: (ctx) => RegisterDetailScreen(),
         VerificationScreen.routeName:(ctx)=> VerificationScreen(),
+        LandingScreen.routeName:(ctx)=> LandingScreen(),
 
       },
     );
