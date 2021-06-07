@@ -10,12 +10,14 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        //อธิบาย ในหน้า loginไปละ
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          // สี icon appbar
           iconTheme: const IconThemeData(color: primary01),
         ),
         body: Container(

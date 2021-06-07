@@ -20,6 +20,7 @@ class AuthTextForm extends StatefulWidget {
 }
 
 class _AuthTextFormState extends State<AuthTextForm> {
+  //เช็ค type enum ต่างๆ
   bool isNation() {
     return (widget.type == AuthTextFormType.nationId);
   }
@@ -36,6 +37,7 @@ class _AuthTextFormState extends State<AuthTextForm> {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: (val) {
+        //เช็ค Validate 
         if (val!.isEmpty) {
           return '${widget.label} is required';
         }
