@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 
-class PrimaryButton extends StatelessWidget {
+class SmallButton extends StatelessWidget {
   final String text;
   final Function onPressed;
   final bool isLoading;
   final Color color;
   final double width;
   final double height;
-  PrimaryButton(
+  SmallButton(
       {required this.text, required this.onPressed, this.isLoading = false,this.color=primary01,this.width=double.infinity,this.height=kSizeS});
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class PrimaryButton extends StatelessWidget {
     return InkWell(
       onTap: ()=> onPressed(),
       child: Padding(
-        padding: const EdgeInsets.symmetric( vertical: kSizeS,horizontal: kSizeM),
+        padding: const EdgeInsets.symmetric( vertical: kSizeXS,horizontal: kSizeM),
         child: Text(
           text,
           textAlign: TextAlign.center,
