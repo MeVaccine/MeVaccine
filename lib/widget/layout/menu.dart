@@ -4,6 +4,7 @@ import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import '../button/menus_navigator.dart';
+import '../../screen/appointment/step1_screen.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -19,20 +20,22 @@ class Menu extends StatelessWidget {
           kSizedBoxVerticalXS,
           MenuNavigator(
             text: 'Appointment',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(Step1.routeName);
+            },
           ),
           kSizedBoxS,
-           MenuNavigator(
+          MenuNavigator(
             text: 'History of Vacation',
             onPressed: () {},
           ),
           kSizedBoxM,
-           MenuNavigator(
+          MenuNavigator(
             text: 'Person',
             onPressed: () {},
           ),
           kSizedBoxM,
-           MenuNavigator(
+          MenuNavigator(
             text: 'Symptom assessment Form',
             onPressed: () {},
           ),

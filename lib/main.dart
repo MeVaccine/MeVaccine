@@ -6,6 +6,7 @@ import './screen/register_Screen.dart';
 import './screen/register_detail_screen.dart';
 import './screen/verification_screen.dart';
 import './screen/landing_screen.dart';
+import './screen/appointment/step1_screen.dart';
 
 import 'config/color.dart';
 import './screen/Login_screen.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
       routes: {
+        Step1.routeName:(ctx)=>Step1(),
         RegisterScreen.routeName: (ctx) => RegisterScreen(),
         RegisterDetailScreen.routeName: (ctx) => RegisterDetailScreen(),
         VerificationScreen.routeName:(ctx)=> VerificationScreen(),
