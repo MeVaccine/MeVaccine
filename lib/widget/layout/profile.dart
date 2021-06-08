@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import '../../config/color.dart';
 import '../../config/constants.dart';
 import '../text/mainText.dart';
@@ -30,7 +30,7 @@ class Profile extends StatelessWidget {
           ),
         ]),
         IconButton(
-          icon: const Icon(FontAwesomeIcons.cog,color: accent02,),
+          icon: const Icon(FeatherIcons.settings,color: accent02,),
           onPressed: () {},
         )
       ],

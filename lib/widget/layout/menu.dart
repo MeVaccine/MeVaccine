@@ -16,12 +16,12 @@ class Menu extends StatelessWidget {
             child: MainText(
                 'Menus', text_type.regular, kFontSizeHeadline4, primary01),
           ),
-          kSizedBoxVerticalM,
+          kSizedBoxVerticalXS,
           MenuNavigator(
             text: 'Appointment',
             onPressed: () {},
           ),
-          kSizedBoxM,
+          kSizedBoxS,
            MenuNavigator(
             text: 'History of Vacation',
             onPressed: () {},
