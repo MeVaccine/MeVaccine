@@ -7,8 +7,13 @@ import '../auth/authTextFormField.dart';
 import '../button/primaryButton.dart';
 import '../../screen/register_detail_screen.dart';
 import '../text/mainText.dart';
+import '../../model/authType.dart';
+import '../../screen/AddPerson/AddPersonRegister_screen.dart';
 
 class RegisterForm extends StatefulWidget {
+  final String text;
+  final RegisterType type;
+  RegisterForm(this.text, this.type);
   @override
   State<RegisterForm> createState() => _RegisterFormState();
 }
@@ -20,6 +25,9 @@ class _RegisterFormState extends State<RegisterForm> {
   bool validate() {
     return _formKey.currentState!.validate();
   }
+  bool isRegister(){
+    return (widget.type==RegisterType.register);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +36,8 @@ class _RegisterFormState extends State<RegisterForm> {
         key: _formKey,
         child: Column(
           children: [
-            MainText('Register',text_type.bold,kFontSizeHeadline4,primary01),
+            MainText(
+                widget.text, text_type.bold, kFontSizeHeadline4, primary01),
             kSizedBoxVerticalS,
             AuthTextForm(
               label: 'National ID',
@@ -44,7 +53,7 @@ class _RegisterFormState extends State<RegisterForm> {
             kSizedBoxVerticalL,
             PrimaryButton(
               onPressed: () {
-                Navigator.of(context).pushNamed( RegisterDetailScreen.routeName);
+                Navigator.of(context).pushReplacementNamed(isRegister() ?RegisterDetailScreen.routeName:AddPersonRegister.routeName);
               },
               text: 'Register',
             ),

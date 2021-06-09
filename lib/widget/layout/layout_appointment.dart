@@ -46,7 +46,7 @@ class LayoutAppointment extends StatelessWidget {
               Column(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     child: SizedBox(
                       height: 100.0,
                       width: 100,
@@ -54,7 +54,7 @@ class LayoutAppointment extends StatelessWidget {
                         children: <Widget>[
                           Center(
                             child: Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: white,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(50),
@@ -73,7 +73,7 @@ class LayoutAppointment extends StatelessWidget {
                           Center(
                               child: Text(
                             step,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: primary01, fontSize: kFontSizeHeadline4),
                           )),
                         ],

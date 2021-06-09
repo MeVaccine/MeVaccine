@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/model/textType.dart';
-import '../widget/Logo/logo_verification.dart';
-import '../widget/text/mainText.dart';
-import '../widget/auth/verificationTextFormField.dart';
-import '../widget/button/primaryButton.dart';
-import '../screen/landing_screen.dart';
-
-class VerificationScreen extends StatelessWidget {
-  static const routeName = '/verification';
+import 'package:mevaccine/widget/Logo/logo_verification.dart';
+import 'package:mevaccine/widget/auth/verificationTextFormField.dart';
+import 'package:mevaccine/widget/button/primaryButton.dart';
+import 'package:mevaccine/widget/text/mainText.dart';
+import '../person_screen.dart';
+class VerificationAddPerson extends StatelessWidget {
+  static const routeName = '/verificationAddPerson';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +43,7 @@ class VerificationScreen extends StatelessWidget {
               kSizedBoxM,
               PrimaryButton(
                 text: 'Done',
-                onPressed: () {Navigator.of(context).pushNamed(LandingScreen.routeName);},
+                onPressed: () {Navigator.of(context).pushReplacementNamed(PersonScreen.routeName);},
               ),
             ],
           ),

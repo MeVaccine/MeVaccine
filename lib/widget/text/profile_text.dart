@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../config/constants.dart';
 
 class ProfileText extends StatelessWidget {
   final String text;

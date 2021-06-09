@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
-import 'package:mevaccine/widget/text/mainText.dart';
+import '../../widget/Logo/empty_person.dart';
 import '../../widget/layout/profile_card.dart';
 import '../../widget/layout/layout_appointment.dart';
 
@@ -22,11 +22,7 @@ class Step1 extends StatelessWidget {
         kSizedBoxVerticalS,
         ProfileCard(),
         Center(
-          child: SizedBox(
-            width: double.infinity,
-            height: kSizeXXL * 1.4,
-            child: Image.asset('assets/images/person_empty.png'),
-          ),
+          child: EmptyPerson(),
         ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: kSizeS),

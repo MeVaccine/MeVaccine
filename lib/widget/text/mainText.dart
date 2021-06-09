@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../config/color.dart';
-import '../../config/constants.dart';
 import '../../model/textType.dart';
 
 class MainText extends StatelessWidget {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
-import '../config/constants.dart';
-import '../widget/Logo/logo_register.dart';
-import '../widget/auth/register-Form.dart';
-import '../model/authType.dart';
+import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/widget/Logo/logo_register.dart';
+import 'package:mevaccine/widget/auth/register-Form.dart';
+import '../../model/authType.dart';
 
-class RegisterScreen extends StatelessWidget {
-  static const routeName = '/register';
+class AddPerson extends StatelessWidget {
+  static const routeName = '/addPerson';
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class RegisterScreen extends StatelessWidget {
             child: Column(
               children: [
                 LogoRegister(),
-                RegisterForm('Register',RegisterType.register),
+                RegisterForm('Add a Person',RegisterType.addPerson),
               ],
             ),
           ),
