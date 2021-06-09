@@ -5,6 +5,7 @@ import '../screen/AddPerson/addPerson_screen.dart';
 import '../widget/Logo/empty_person.dart';
 import '../widget/person/card_layout_person.dart';
 import '../widget/layout/background_color.dart';
+import '../screen/landing_screen.dart';
 
 class PersonScreen extends StatelessWidget {
   static const routeName = '/person';
@@ -52,20 +53,35 @@ class PersonScreen extends StatelessWidget {
                   ]),
             ),
           ),
-          AppBar(
-            //สีตามพื้นหลัง
-            backgroundColor: Colors.transparent,
-            // `ไม้มีเงา
-            elevation: 0,
-            // สี icon appbar
-            iconTheme: const IconThemeData(color: white),
+          // AppBar(
+          //   //สีตามพื้นหลัง
+          //   backgroundColor: Colors.transparent,
+          //   // `ไม้มีเงา
+          //   elevation: 0,
+          //   // สี icon appbar
+
+          //   iconTheme: const IconThemeData(color: white),
+          // ),
+          Positioned(
+            top: 50,
+            left: 10,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context, LandingScreen.routeName);
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: white,
+                size: kSizeM,
+              ),
+            ),
           ),
           Positioned(
             top: 720,
             left: 290,
             child: FloatingActionButton(
               onPressed: () {
-                Navigator.of(context).pushReplacementNamed(AddPerson.routeName);
+                Navigator.of(context).pushNamed(AddPerson.routeName);
               },
               backgroundColor: primary01,
               child: Icon(

@@ -10,6 +10,7 @@ import './screen/person_screen.dart';
 import './screen/AddPerson/addPerson_screen.dart';
 import './screen/AddPerson/AddPersonRegister_screen.dart';
 import './screen/AddPerson/verification_addperson.dart';
+import './screen/historyVaccinate_screen.dart';
 
 import 'config/color.dart';
 import './screen/Login_screen.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
       routes: {
+        HistoryVaccinateScreen.routeName:(ctx)=>HistoryVaccinateScreen(),
         VerificationAddPerson.routeName:(ctx)=>VerificationAddPerson(),
         AddPersonRegister.routeName:(ctx)=>AddPersonRegister(),
         Step1.routeName: (ctx) => Step1(),
