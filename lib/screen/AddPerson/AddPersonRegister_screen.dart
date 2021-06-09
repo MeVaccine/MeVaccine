@@ -100,7 +100,7 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
                 ),
                 PrimaryButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacementNamed(VerificationAddPerson.routeName);
+                    Navigator.of(context).pushNamed(VerificationAddPerson.routeName);
                   },
                   text: 'Done', 
                 ),

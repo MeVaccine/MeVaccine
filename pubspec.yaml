@@ -70,6 +70,7 @@ flutter:
     - assets/images/logo-otp.png
     - assets/images/user-profile.png
     - assets/images/person_empty.png
+    - assets/images/logo-history.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

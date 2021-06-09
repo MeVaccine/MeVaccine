@@ -6,6 +6,7 @@ import 'package:mevaccine/widget/text/mainText.dart';
 import '../button/menus_navigator.dart';
 import '../../screen/appointment/step1_screen.dart';
 import '../../screen/person_screen.dart';
+import '../../screen/historyVaccinate_screen.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -28,7 +29,9 @@ class Menu extends StatelessWidget {
           kSizedBoxS,
           MenuNavigator(
             text: 'History of Vacation',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(HistoryVaccinateScreen.routeName);
+            },
           ),
           kSizedBoxS,
           MenuNavigator(

@@ -7,6 +7,7 @@ import 'package:mevaccine/widget/auth/verificationTextFormField.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import '../person_screen.dart';
+
 class VerificationAddPerson extends StatelessWidget {
   static const routeName = '/verificationAddPerson';
   @override
@@ -29,13 +30,14 @@ class VerificationAddPerson extends StatelessWidget {
             children: [
               LogoVerification(),
               kSizedBoxL,
-              MainText('Verification Code', text_type.regular,kFontSizeHeadline4,primary01),
+              MainText('Verification Code', text_type.regular,
+                  kFontSizeHeadline4, primary01),
               kSizedBoxM,
               VerificationTextFormField('Code'),
               kSizedBoxS,
               const Text('Enter the code we sent to your number at'),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal:kSizeS*1.3),
+                  padding: const EdgeInsets.symmetric(horizontal: kSizeS * 1.3),
                   alignment: Alignment.centerLeft,
                   child: const Text(
                     'xxx-xxx-xxxx',
@@ -43,7 +45,10 @@ class VerificationAddPerson extends StatelessWidget {
               kSizedBoxM,
               PrimaryButton(
                 text: 'Done',
-                onPressed: () {Navigator.of(context).pushReplacementNamed(PersonScreen.routeName);},
+                onPressed: () {
+                  Navigator.of(context)
+                      .popUntil(ModalRoute.withName(PersonScreen.routeName));
+                },
               ),
             ],
           ),
