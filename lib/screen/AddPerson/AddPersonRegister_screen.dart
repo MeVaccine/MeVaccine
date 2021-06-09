@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:mevaccine/config/color.dart';
+import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/model/authType.dart';
 import 'package:mevaccine/model/textType.dart';
+import 'package:mevaccine/widget/Logo/logo-medkit.dart';
+import 'package:mevaccine/widget/auth/register_TextForm.dart';
+import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
-import '../config/color.dart';
-import '../widget/button/primaryButton.dart';
-import '../config/constants.dart';
-import '../widget/Logo/logo-medkit.dart';
-import '../widget/auth/register_TextForm.dart';
-import '../screen/verification_screen.dart';
+import '../person_screen.dart';
+import '../AddPerson/verification_addperson.dart';
 
-class RegisterDetailScreen extends StatefulWidget {
-  static const routeName = '/register-detail';
+class AddPersonRegister extends StatefulWidget {
+  static const routeName = '/addperson-register';
 
   @override
-  State<RegisterDetailScreen> createState() => _RegisterDetailScreenState();
+  State<AddPersonRegister> createState() => _AddPersonRegisterState();
 }
 
-class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
+class _AddPersonRegisterState extends State<AddPersonRegister> {
   List<String> data = ['one', 'two', 'three', 'four'];
   String selectedValue = "";
   @override
@@ -99,9 +100,9 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                 ),
                 PrimaryButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed(VerificationScreen.routeName);
+                    Navigator.of(context).pushReplacementNamed(VerificationAddPerson.routeName);
                   },
-                  text: 'Done',
+                  text: 'Done', 
                 ),
               ],
             ),

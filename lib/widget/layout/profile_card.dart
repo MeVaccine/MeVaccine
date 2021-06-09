@@ -23,7 +23,7 @@ class ProfileCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundImage: AssetImage(
                 'assets/images/user-profile.png',
               ),

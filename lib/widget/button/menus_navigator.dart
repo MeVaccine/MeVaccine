@@ -13,7 +13,6 @@ class MenuNavigator extends StatelessWidget {
       type: MaterialType.transparency,
       child: Ink(
         width: double.infinity,
-        decoration: _buildBoxDecoration(context),
         child: _buildContent(context),
       ),
     );
@@ -24,10 +23,10 @@ class MenuNavigator extends StatelessWidget {
       onTap: () => onPressed(),
       child: Card(
         elevation: 10,
-        shadowColor: const Color(0xFF7090B0).withOpacity(0.5),
+        shadowColor: const Color(0xFF7090B0).withOpacity(0.2),
         child: Padding(
-          padding:
-              const EdgeInsets.symmetric(vertical: kSizeS*1.1, horizontal: kSizeM),
+          padding: const EdgeInsets.symmetric(
+              vertical: kSizeS * 1.1, horizontal: kSizeM),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(
@@ -42,19 +41,6 @@ class MenuNavigator extends StatelessWidget {
           ]),
         ),
       ),
-    );
-  }
-
-  BoxDecoration _buildBoxDecoration(BuildContext context) {
-    return const BoxDecoration(
-      color: white,
-      borderRadius: kBorderRadiusM,
-      boxShadow: [
-        BoxShadow(
-          blurRadius: 20,
-          offset: Offset(5, 150),
-        ),
-      ],
     );
   }
 }
