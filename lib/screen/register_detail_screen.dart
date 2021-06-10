@@ -28,7 +28,7 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
       },
       child: Scaffold(
         body: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(30),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -70,7 +70,8 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                     label: 'Phone Number',
                     type: RegsiterTextFormType.nothing,
                     active: RegisterActiveType.enable),
-                MainText('Address', text_type.regular,kFontSizeHeadline4,primary01),
+                    kSizedBoxVerticalM,
+                MainText('Address', text_type.bold,kFontSizeHeadline4,primary01),
                 RegisterTextForm(
                   label: 'Province',
                   type: RegsiterTextFormType.nothing,
@@ -79,7 +80,7 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                 //SerachAbleDropDown  ยังไม่ได้ทำ searchFN
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: kSizeS, vertical: kSizeM),
+                      horizontal: kSizeS, vertical: kSizeS),
                   child: SearchableDropdown.single(
                     items: data.map((e) {
                       return DropdownMenuItem<dynamic>(
@@ -97,6 +98,7 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                     isExpanded: true,
                   ),
                 ),
+                kSizedBoxVerticalM,
                 PrimaryButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed(VerificationScreen.routeName);

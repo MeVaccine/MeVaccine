@@ -5,6 +5,7 @@ import '../../config/constants.dart';
 import '../text/mainText.dart';
 import '../text/profile_text.dart';
 import '../../model/textType.dart'; 
+import '../../screen/Setting/setting_screen.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -31,7 +32,10 @@ class Profile extends StatelessWidget {
         ]),
         IconButton(
           icon: const Icon(FeatherIcons.settings,color: accent02,),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(SettingScreen.routeName);
+
+          },
         )
       ],
     );
