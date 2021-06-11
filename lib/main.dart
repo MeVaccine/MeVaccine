@@ -12,8 +12,9 @@ import './screen/AddPerson/AddPersonRegister_screen.dart';
 import './screen/AddPerson/verification_addperson.dart';
 import './screen/historyVaccinate_screen.dart';
 import './screen/Setting/setting_screen.dart';
-import './screen/Setting/number_setting_screen.dart';
+import './screen/Setting/hospital_setting_screen.dart';
 import 'config/color.dart';
+import './screen/Setting/number_setting_screen.dart';
 import './screen/Login_screen.dart';
 
 void main() {
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
       routes: {
         NumberSettingScreen.routeName:(ctx)=>NumberSettingScreen(),
+        HospitalSettingScreen.routeName:(ctx)=>HospitalSettingScreen(),
         SettingScreen.routeName:(ctx)=>SettingScreen(),
         HistoryVaccinateScreen.routeName:(ctx)=>HistoryVaccinateScreen(),
         VerificationAddPerson.routeName:(ctx)=>VerificationAddPerson(),

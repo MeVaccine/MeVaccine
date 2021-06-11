@@ -6,14 +6,14 @@ import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 import '../../model/textType.dart';
 
-class NumberSettingForm extends StatefulWidget {
+class HospitalSetting extends StatefulWidget {
   final String text;
-  NumberSettingForm(this.text);
+  HospitalSetting(this.text);
   @override
-  State<NumberSettingForm> createState() => _NumberSettingFormState();
+  State<HospitalSetting> createState() => _HospitalSettingState();
 }
 
-class _NumberSettingFormState extends State<NumberSettingForm> {
+class _HospitalSettingState extends State<HospitalSetting> {
   List<String> data = ['one', 'two', 'three', 'four'];
   String selectedValue = "";
   final _formKey = GlobalKey<FormState>();
@@ -69,9 +69,7 @@ class _NumberSettingFormState extends State<NumberSettingForm> {
             ),
             kSizedBoxVerticalS,
             PrimaryButton(
-              onPressed: () {
-               
-              },
+              onPressed: () {},
               text: 'Update',
             ),
           ],

@@ -5,8 +5,9 @@ import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
-import '../../widget/setting/button_setting.dart';
-import '../../screen/Setting/number_setting_screen.dart';
+import '../../widget/option/button_setting.dart';
+import '../../screen/Setting/hospital_setting_screen.dart';
+import './number_setting_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   static const routeName = '/setting';
@@ -32,7 +33,9 @@ class SettingScreen extends StatelessWidget {
                 FontAwesomeIcons.solidHospital,
                 color: primary01,
               ),
-              onPressed: () {},
+              onPressed: () {
+                 Navigator.of(context).pushNamed(HospitalSettingScreen.routeName);
+              },
               text: 'Set Hospital',
             ),
             ButtonSetting(
@@ -41,7 +44,7 @@ class SettingScreen extends StatelessWidget {
                 color: primary01,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed(NumberSettingScreen.routeName);
+               Navigator.of(context).pushNamed(NumberSettingScreen.routeName);
               },
               text: 'Change Number',
             ),
