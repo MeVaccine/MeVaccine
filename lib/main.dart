@@ -7,6 +7,8 @@ import './screen/verification_screen.dart';
 import './screen/landing_screen.dart';
 import './screen/appointment/step1_screen.dart';
 import './screen/appointment/step2_screen.dart';
+import './screen/appointment/step3_screen.dart';
+import './screen/appointment/step4_screen.dart';
 import './screen/person_screen.dart';
 import './screen/AddPerson/addPerson_screen.dart';
 import './screen/AddPerson/AddPersonRegister_screen.dart';
@@ -52,6 +54,8 @@ class MyApp extends StatelessWidget {
         LandingScreen.routeName: (ctx) => LandingScreen(),
         PersonScreen.routeName: (ctx) => PersonScreen(),
         Step2.routeName: (ctx) => Step2(),
+        Step3.routeName: (ctx) => Step3(),
+        Step4.routeName: (ctx) => Step4(),
       },
     );
   }
