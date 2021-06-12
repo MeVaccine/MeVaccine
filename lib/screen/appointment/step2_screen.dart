@@ -5,10 +5,9 @@ import 'package:mevaccine/widget/button/smallButton.dart';
 import '../../widget/Logo/empty_person.dart';
 import '../../widget/layout/profile_card.dart';
 import '../../widget/layout/layout_appointment.dart';
-import '../appointment/step2_screen.dart';
 
-class Step1 extends StatelessWidget {
-  static const routeName = '/step1';
+class Step2 extends StatelessWidget {
+  static const routeName = '/step2';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +29,7 @@ class Step1 extends StatelessWidget {
           child: Align(
             alignment: Alignment.topRight,
             child: SmallButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(Step2.routeName);
-              },
+              onPressed: () {},
               text: 'Next',
               color: accent02,
               width: 120,

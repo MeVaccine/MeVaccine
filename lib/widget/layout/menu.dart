@@ -12,6 +12,7 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: kSizeXXL * 1.5,
       child: Column(
         children: [
           Container(
@@ -19,28 +20,28 @@ class Menu extends StatelessWidget {
             child: MainText(
                 'Menus', text_type.regular, kFontSizeHeadline4, primary01),
           ),
-          kSizedBoxVerticalM,
+          kSizedBoxVerticalS,
           MenuNavigator(
             text: 'Appointment',
             onPressed: () {
               Navigator.of(context).pushNamed(Step1.routeName);
             },
           ),
-          kSizedBoxS,
+          kSizedBoxXXS,
           MenuNavigator(
             text: 'History of Vacation',
             onPressed: () {
               Navigator.of(context).pushNamed(HistoryVaccinateScreen.routeName);
             },
           ),
-          kSizedBoxS,
+          kSizedBoxXXS,
           MenuNavigator(
             text: 'Person',
             onPressed: () {
               Navigator.of(context).pushNamed(PersonScreen.routeName);
             },
           ),
-          kSizedBoxS,
+          kSizedBoxXXS,
           MenuNavigator(
             text: 'Symptom assessment Form',
             onPressed: () {},

@@ -13,7 +13,8 @@ class LandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: kSizeS*1.5,vertical: kSizeL),
+        padding: const EdgeInsets.symmetric(
+            horizontal: kSizeS * 1.5, vertical: kSizeL),
         height: double.infinity,
         width: double.infinity,
         child: Column(
@@ -21,7 +22,8 @@ class LandingScreen extends StatelessWidget {
           children: [
             Profile(),
             kSizedBoxS,
-            MainText('Schedule', text_type.regular,kFontSizeHeadline4,primary01),
+            MainText(
+                'Schedule', text_type.regular, kFontSizeHeadline4, primary01),
             YourAppointment(),
             Menu()
           ],
