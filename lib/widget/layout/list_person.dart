@@ -12,13 +12,25 @@ class listPerson extends StatelessWidget {
         // color: primary01,
         child: ListView(
           children: [
-            cardPersonAppoint(),
+            CardPersonAppoint(
+              text: 'Sethanant Pipatpakorn',
+            ),
             kSizedBoxVerticalS,
-            cardPersonAppoint(),
+            CardPersonAppoint(
+              text: 'Kavisara Srisuwatcharee',
+            ),
             kSizedBoxVerticalS,
-            cardPersonAppoint(),
+            CardPersonAppoint(
+              text: 'Thanakorn Aunglunchuchod',
+            ),
             kSizedBoxVerticalS,
-            cardPersonAppoint(),
+            CardPersonAppoint(
+              text: 'Sethanant Pipatpakorn',
+            ),
+            kSizedBoxVerticalS,
+            CardPersonAppoint(
+              text: 'Kavisara Srisuwatcharee',
+            ),
             kSizedBoxVerticalS,
           ],
         ));
