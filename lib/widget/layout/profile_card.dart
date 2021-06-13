@@ -17,9 +17,9 @@ class ProfileCard extends StatelessWidget {
             offset: const Offset(0, 16),
             color: const Color(0xFF7090B0).withOpacity(0.2))
       ]),
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.symmetric(
-          horizontal: kSizeS, vertical: kSizeS * 2.5),
+      margin: const EdgeInsets.all(20),
+      padding:
+          const EdgeInsets.symmetric(horizontal: kSizeS, vertical: kSizeS * 2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
