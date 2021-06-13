@@ -4,6 +4,7 @@ import '../../config/color.dart';
 import '../../config/constants.dart';
 import '../text/mainText.dart';
 import '../../model/textType.dart';
+
 class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class ProfileCard extends StatelessWidget {
       ]),
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.symmetric(
-          horizontal: kSizeS * 0.6, vertical: kSizeS * 1.5),
+          horizontal: kSizeS, vertical: kSizeS * 2.5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

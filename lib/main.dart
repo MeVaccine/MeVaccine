@@ -7,6 +7,9 @@ import './screen/register_detail_screen.dart';
 import './screen/verification_screen.dart';
 import './screen/landing_screen.dart';
 import './screen/appointment/step1_screen.dart';
+import './screen/appointment/step2_screen.dart';
+import './screen/appointment/step3_screen.dart';
+import './screen/appointment/step4_screen.dart';
 import './screen/person_screen.dart';
 import './screen/AddPerson/addPerson_screen.dart';
 import './screen/AddPerson/AddPersonRegister_screen.dart';
@@ -38,20 +41,23 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
       routes: {
-        SymptomFormScreen.routeName:(ctx)=>SymptomFormScreen(),
-        NumberSettingScreen.routeName:(ctx)=>NumberSettingScreen(),
-        HospitalSettingScreen.routeName:(ctx)=>HospitalSettingScreen(),
-        SettingScreen.routeName:(ctx)=>SettingScreen(),
-        HistoryVaccinateScreen.routeName:(ctx)=>HistoryVaccinateScreen(),
-        VerificationAddPerson.routeName:(ctx)=>VerificationAddPerson(),
-        AddPersonRegister.routeName:(ctx)=>AddPersonRegister(),
+        SymptomFormScreen.routeName: (ctx) => SymptomFormScreen(),
+        NumberSettingScreen.routeName: (ctx) => NumberSettingScreen(),
+        HospitalSettingScreen.routeName: (ctx) => HospitalSettingScreen(),
+        SettingScreen.routeName: (ctx) => SettingScreen(),
+        HistoryVaccinateScreen.routeName: (ctx) => HistoryVaccinateScreen(),
+        VerificationAddPerson.routeName: (ctx) => VerificationAddPerson(),
+        AddPersonRegister.routeName: (ctx) => AddPersonRegister(),
         Step1.routeName: (ctx) => Step1(),
-        AddPerson.routeName:(ctx) => AddPerson(),
+        AddPerson.routeName: (ctx) => AddPerson(),
         RegisterScreen.routeName: (ctx) => RegisterScreen(),
         RegisterDetailScreen.routeName: (ctx) => RegisterDetailScreen(),
         VerificationScreen.routeName: (ctx) => VerificationScreen(),
         LandingScreen.routeName: (ctx) => LandingScreen(),
         PersonScreen.routeName: (ctx) => PersonScreen(),
+        Step2.routeName: (ctx) => Step2(),
+        Step3.routeName: (ctx) => Step3(),
+        Step4.routeName: (ctx) => Step4(),
       },
     );
   }

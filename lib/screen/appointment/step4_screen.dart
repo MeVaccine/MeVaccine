@@ -5,34 +5,27 @@ import 'package:mevaccine/widget/button/smallButton.dart';
 import '../../widget/Logo/empty_person.dart';
 import '../../widget/layout/profile_card.dart';
 import '../../widget/layout/layout_appointment.dart';
-import '../appointment/step2_screen.dart';
 
-class Step1 extends StatelessWidget {
-  static const routeName = '/step1';
+class Step4 extends StatelessWidget {
+  static const routeName = '/step4';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
       children: [
         LayoutAppointment(
-          text: 'Select Person',
-          description: 'who goes to vacinate together',
-          step: '1 of 4',
+          text: 'Select vaccine',
+          description: 'for each of person including you.',
+          step: '4 of 4',
           value: 0.3,
         ),
         kSizedBoxVerticalS,
-        ProfileCard(),
-        // Center(
-        //   child: EmptyPerson(),
-        // ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: kSizeS),
           child: Align(
             alignment: Alignment.topRight,
             child: SmallButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(Step2.routeName);
-              },
+              onPressed: () {},
               text: 'Next',
               color: accent02,
               width: 120,
