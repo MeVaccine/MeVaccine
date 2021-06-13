@@ -26,7 +26,7 @@ class MenuNavigator extends StatelessWidget {
         shadowColor: const Color(0xFF7090B0).withOpacity(0.2),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-              vertical: kSizeS * 1.1, horizontal: kSizeM),
+              vertical: kSizeS * 1.3, horizontal: kSizeM),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(

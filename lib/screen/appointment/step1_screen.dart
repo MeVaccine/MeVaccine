@@ -6,6 +6,7 @@ import '../../widget/Logo/empty_person.dart';
 import '../../widget/layout/profile_card.dart';
 import '../../widget/layout/layout_appointment.dart';
 import '../appointment/step2_screen.dart';
+import '../../widget/layout/list_person.dart';
 
 class Step1 extends StatelessWidget {
   static const routeName = '/step1';
@@ -25,6 +26,8 @@ class Step1 extends StatelessWidget {
         // Center(
         //   child: EmptyPerson(),
         // ),
+        kSizedBoxVerticalS,
+        listPerson(),
         Container(
           margin: EdgeInsets.symmetric(horizontal: kSizeS),
           child: Align(
