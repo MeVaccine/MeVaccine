@@ -36,7 +36,7 @@ class _HospitalSettingState extends State<HospitalSetting> {
                     child: Text(e),
                   );
                 }).toList(),
-                hint: 'Selected',
+                hint: 'Province',
                 isCaseSensitiveSearch: true,
                 searchHint: const Text('Select your hospital'),
                 onChanged: (value) {
@@ -56,7 +56,7 @@ class _HospitalSettingState extends State<HospitalSetting> {
                     child: Text(e),
                   );
                 }).toList(),
-                hint: 'Selected',
+                hint: 'Hospital',
                 isCaseSensitiveSearch: true,
                 searchHint: const Text('Select your hospital'),
                 onChanged: (value) {
