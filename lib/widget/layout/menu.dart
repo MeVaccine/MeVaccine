@@ -7,6 +7,7 @@ import '../button/menus_navigator.dart';
 import '../../screen/appointment/step1_screen.dart';
 import '../../screen/person_screen.dart';
 import '../../screen/historyVaccinate_screen.dart';
+import '../../screen/symptom_form_screen.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -52,6 +53,7 @@ class Menu extends StatelessWidget {
           ),
         ),
       ],
+   
     );
   }
 }

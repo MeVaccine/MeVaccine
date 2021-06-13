@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import './screen/symptom_form_screen.dart';
 import './screen/register_Screen.dart';
 import './screen/register_detail_screen.dart';
 import './screen/verification_screen.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
       home: LoginScreen(),
       // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
       routes: {
+        SymptomFormScreen.routeName: (ctx) => SymptomFormScreen(),
         NumberSettingScreen.routeName: (ctx) => NumberSettingScreen(),
         HospitalSettingScreen.routeName: (ctx) => HospitalSettingScreen(),
         SettingScreen.routeName: (ctx) => SettingScreen(),
