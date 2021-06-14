@@ -6,6 +6,7 @@ import '../../widget/Logo/empty_person.dart';
 import '../../widget/layout/profile_card.dart';
 import '../../widget/layout/layout_appointment.dart';
 import '../appointment/step3_screen.dart';
+import '../../widget/layout/list_vaccine.dart';
 
 class Step2 extends StatelessWidget {
   static const routeName = '/step2';
@@ -21,6 +22,7 @@ class Step2 extends StatelessWidget {
           value: 0.3,
         ),
         kSizedBoxVerticalS,
+        ListVaccine(),
         Container(
           margin: EdgeInsets.symmetric(horizontal: kSizeS),
           child: Align(

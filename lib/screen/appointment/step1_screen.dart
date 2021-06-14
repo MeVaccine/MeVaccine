@@ -27,7 +27,7 @@ class Step1 extends StatelessWidget {
         //   child: EmptyPerson(),
         // ),
         kSizedBoxVerticalS,
-        listPerson(),
+        ListPerson(),
         Container(
           margin: EdgeInsets.symmetric(horizontal: kSizeS),
           child: Align(
