@@ -47,13 +47,14 @@ class Menu extends StatelessWidget {
               kSizedBoxXXS,
               MenuNavigator(
                 text: 'Symptom assessment Form',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(SymptomFormScreen.routeName);
+                },
               ),
             ],
           ),
         ),
       ],
-   
     );
   }
 }
