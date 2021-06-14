@@ -3,7 +3,7 @@ import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import '../person/card_person_appoint.dart';
 
-class listPerson extends StatelessWidget {
+class ListPerson extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
