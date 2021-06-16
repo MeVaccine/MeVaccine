@@ -25,7 +25,15 @@ class Step4 extends StatelessWidget {
           height: 490,
           child: Column(
             children: [
-              YourAppointment(),
+              Container(
+                width: 330,
+                child: YourAppointment(
+                    checkColor: '1',
+                    checkInfo: '',
+                    height: 0,
+                    isAppoint: '',
+                    width: 0),
+              ),
             ],
           ),
         ),

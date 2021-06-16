@@ -24,7 +24,7 @@ class LandingScreen extends StatelessWidget {
             kSizedBoxS,
             MainText(
                 'Schedule', text_type.regular, kFontSizeHeadline4, primary01),
-            YourAppointment(),
+            // YourAppointment(),
             Menu()
           ],
         ),

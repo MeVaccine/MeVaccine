@@ -1,1 +1,1 @@
-enum text_type{regular,bold}
+enum text_type { regular, bold }
