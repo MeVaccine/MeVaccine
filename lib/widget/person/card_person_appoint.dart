@@ -33,11 +33,11 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
             widget.text,
             style: const TextStyle(color: accent01),
           ),
-          value: timeDilation != 0.10,
+          value: timeDilation != 1.0,
           activeColor: const Color(0xFF6294AF),
           onChanged: (bool? value) {
             setState(() {
-              timeDilation = value! ? 1.0 : 0.10;
+              timeDilation = value! ? 1.15 : 1.0;
             });
           },
         ));
