@@ -19,6 +19,7 @@ class AddPersonRegister extends StatefulWidget {
 }
 
 class _AddPersonRegisterState extends State<AddPersonRegister> {
+  final _nothing = TextEditingController();
   List<String> data = ['one', 'two', 'three', 'four'];
   String selectedValue = "";
   @override
@@ -41,41 +42,56 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
                   iconTheme: const IconThemeData(color: Colors.black),
                 ),
                 // ข้างล่างนี้กห็ ฟอร์ม ต่างๆ
-                MainText('Register', text_type.bold,kFontSizeHeadline4,primary01),
+                MainText(
+                    'Register', text_type.bold, kFontSizeHeadline4, primary01),
                 kSizedBoxVerticalS,
                 LogoMedkit(),
                 kSizedBoxVerticalS,
-                MainText('Personal Information', text_type.regular,kFontSizeHeadline4,primary01),
+                MainText('Personal Information', text_type.regular,
+                    kFontSizeHeadline4, primary01),
                 RegisterTextForm(
                   label: 'MR',
                   type: RegsiterTextFormType.nothing,
                   active: RegisterActiveType.disable,
+                  textEditingController: _nothing,
                 ),
                 RegisterTextForm(
-                    label: 'Thanakorn',
-                    type: RegsiterTextFormType.nothing,
-                    active: RegisterActiveType.disable),
+                  label: 'Thanakorn',
+                  type: RegsiterTextFormType.nothing,
+                  active: RegisterActiveType.disable,
+                  textEditingController: _nothing,
+                ),
                 RegisterTextForm(
-                    label: 'Aungkunchuchod',
-                    type: RegsiterTextFormType.nothing,
-                    active: RegisterActiveType.disable),
+                  label: 'Aungkunchuchod',
+                  type: RegsiterTextFormType.nothing,
+                  active: RegisterActiveType.disable,
+                  textEditingController: _nothing,
+                ),
                 RegisterTextForm(
-                    label: 'Male',
-                    type: RegsiterTextFormType.nothing,
-                    active: RegisterActiveType.disable),
+                  label: 'Male',
+                  type: RegsiterTextFormType.nothing,
+                  active: RegisterActiveType.disable,
+                  textEditingController: _nothing,
+                ),
                 RegisterTextForm(
-                    label: 'Date of Birth',
-                    type: RegsiterTextFormType.calendar,
-                    active: RegisterActiveType.disable),
+                  label: 'Date of Birth',
+                  type: RegsiterTextFormType.calendar,
+                  active: RegisterActiveType.disable,
+                  textEditingController: _nothing,
+                ),
                 RegisterTextForm(
-                    label: 'Phone Number',
-                    type: RegsiterTextFormType.nothing,
-                    active: RegisterActiveType.enable),
-                MainText('Address', text_type.regular,kFontSizeHeadline4,primary01),
+                  label: 'Phone Number',
+                  type: RegsiterTextFormType.nothing,
+                  active: RegisterActiveType.enable,
+                  textEditingController: _nothing,
+                ),
+                MainText('Address', text_type.regular, kFontSizeHeadline4,
+                    primary01),
                 RegisterTextForm(
                   label: 'Province',
                   type: RegsiterTextFormType.nothing,
                   active: RegisterActiveType.enable,
+                  textEditingController: _nothing,
                 ),
                 //SerachAbleDropDown  ยังไม่ได้ทำ searchFN
                 Padding(
@@ -100,9 +116,10 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
                 ),
                 PrimaryButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed(VerificationAddPerson.routeName);
+                    Navigator.of(context)
+                        .pushNamed(VerificationAddPerson.routeName);
                   },
-                  text: 'Done', 
+                  text: 'Done',
                 ),
               ],
             ),

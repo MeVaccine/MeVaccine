@@ -8,6 +8,8 @@ import '../../model/textType.dart';
 import '../../screen/Setting/setting_screen.dart';
 
 class Profile extends StatelessWidget {
+  String name;
+  Profile({required this.name});
   @override
   Widget build(BuildContext context) {
     return Row(
