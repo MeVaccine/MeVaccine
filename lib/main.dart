@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import './screen/symptom_form_screen.dart';
 import './screen/register_Screen.dart';
@@ -20,6 +21,7 @@ import './screen/Setting/hospital_setting_screen.dart';
 import 'config/color.dart';
 import './screen/Setting/number_setting_screen.dart';
 import './screen/Login_screen.dart';
+import './provider/authenicateProvider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -31,34 +33,40 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Prompt',
-        primaryColor: primary01,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (ctx)=> AuthenicateProvider(),)
+
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: 'Prompt',
+          primaryColor: primary01,
+        ),
+        //หน้าแรกสุด
+        home: LoginScreen(),
+        // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
+        routes: {
+          SymptomFormScreen.routeName: (ctx) => SymptomFormScreen(),
+          NumberSettingScreen.routeName: (ctx) => NumberSettingScreen(),
+          HospitalSettingScreen.routeName: (ctx) => HospitalSettingScreen(),
+          SettingScreen.routeName: (ctx) => SettingScreen(),
+          HistoryVaccinateScreen.routeName: (ctx) => HistoryVaccinateScreen(),
+          VerificationAddPerson.routeName: (ctx) => VerificationAddPerson(),
+          AddPersonRegister.routeName: (ctx) => AddPersonRegister(),
+          Step1.routeName: (ctx) => Step1(),
+          AddPerson.routeName: (ctx) => AddPerson(),
+          RegisterScreen.routeName: (ctx) => RegisterScreen(),
+          RegisterDetailScreen.routeName: (ctx) => RegisterDetailScreen(),
+          VerificationScreen.routeName: (ctx) => VerificationScreen(),
+          LandingScreen.routeName: (ctx) => LandingScreen(),
+          PersonScreen.routeName: (ctx) => PersonScreen(),
+          Step2.routeName: (ctx) => Step2(),
+          Step3.routeName: (ctx) => Step3(),
+          Step4.routeName: (ctx) => Step4(),
+        },
       ),
-      //หน้าแรกสุด
-      home: LoginScreen(),
-      // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
-      routes: {
-        SymptomFormScreen.routeName: (ctx) => SymptomFormScreen(),
-        NumberSettingScreen.routeName: (ctx) => NumberSettingScreen(),
-        HospitalSettingScreen.routeName: (ctx) => HospitalSettingScreen(),
-        SettingScreen.routeName: (ctx) => SettingScreen(),
-        HistoryVaccinateScreen.routeName: (ctx) => HistoryVaccinateScreen(),
-        VerificationAddPerson.routeName: (ctx) => VerificationAddPerson(),
-        AddPersonRegister.routeName: (ctx) => AddPersonRegister(),
-        Step1.routeName: (ctx) => Step1(),
-        AddPerson.routeName: (ctx) => AddPerson(),
-        RegisterScreen.routeName: (ctx) => RegisterScreen(),
-        RegisterDetailScreen.routeName: (ctx) => RegisterDetailScreen(),
-        VerificationScreen.routeName: (ctx) => VerificationScreen(),
-        LandingScreen.routeName: (ctx) => LandingScreen(),
-        PersonScreen.routeName: (ctx) => PersonScreen(),
-        Step2.routeName: (ctx) => Step2(),
-        Step3.routeName: (ctx) => Step3(),
-        Step4.routeName: (ctx) => Step4(),
-      },
     );
   }
 }

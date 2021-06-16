@@ -1,0 +1,9 @@
+const internetException = "Please check your internet connection.";
+const generalException = "Something went wrong. Please try again later.";
+const authenticateException = "Please login.";
+const incorrectAuthException = "Your email or password is incorrect.";
+const usedEmailException = "This email is already used.";
+const notFoundException = 'Your nationalID is not found!';
+const wrongFormat = "LaserID or nationalID in wrong format";
+const notFoundNational = 'Not found in national external API';
+const otpException ="Your OTP is Expired or Wrong !!!";

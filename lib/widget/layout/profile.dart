@@ -8,6 +8,8 @@ import '../../model/textType.dart';
 import '../../screen/Setting/setting_screen.dart';
 
 class Profile extends StatelessWidget {
+  String name;
+  Profile({required this.name});
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,7 +28,7 @@ class Profile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
               MainText('Good Morning!', text_type.regular,kFontSizeHeadline4*0.8,primary01),
-              ProfileText('Kavisara', accent02,kFontSizeHeadline2),
+              ProfileText(name, accent02,kFontSizeHeadline2),
             ]),
           ),
         ]),
