@@ -20,8 +20,9 @@ class Menu extends StatelessWidget {
               'Menus', text_type.regular, kFontSizeHeadline4, primary01),
         ),
         Container(
-          height: kSizeXXL * 1.19,
+          height: kSizeXXL * 1.1,
           child: ListView(
+            padding: EdgeInsetsDirectional.only(top: 10),
             children: [
               MenuNavigator(
                 text: 'Appointment',
