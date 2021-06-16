@@ -21,10 +21,16 @@ class LandingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Profile(),
-            kSizedBoxS,
+            kSizedBoxXS,
             MainText(
                 'Schedule', text_type.regular, kFontSizeHeadline4, primary01),
-            // YourAppointment(),
+            Container(
+              height: 190,
+              child: YourAppointment(
+                checkColor: '1',
+                color: white,
+              ),
+            ),
             Menu()
           ],
         ),

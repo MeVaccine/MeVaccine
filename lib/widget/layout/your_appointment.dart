@@ -8,23 +8,13 @@ import 'iconWithText.dart';
 
 class YourAppointment extends StatelessWidget {
   final String checkColor;
-  final String checkInfo;
-  final String isAppoint;
-  final double width;
-  final double height;
-  YourAppointment(
-      {required this.checkColor,
-      required this.checkInfo,
-      required this.isAppoint,
-      required this.width,
-      required this.height});
+  final Color color;
+  YourAppointment({required this.checkColor, required this.color});
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: kSizeS),
-      width: kSizeXXL * 2,
-      height: kSizeL * 2,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(15),
       decoration: checkColor == '1'
           ? BoxDecoration(
               borderRadius: kBorderRadiusS,
@@ -55,13 +45,44 @@ class YourAppointment extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MainText('Your Appointment', text_type.regular,
-              kFontSizeHeadline4 * 0.7, white),
-          kSizedBoxXXS,
-          IconWithText(
-            icon: FeatherIcons.calendar,
-            text: '06-03-2021',
+          Text(
+            'Your Appointment',
+            style: TextStyle(
+                color: checkColor == '1' ? white : primary01,
+                fontSize: 18,
+                fontWeight: FontWeight.w600),
           ),
+          // MainText('Your Appointment', text_type.bold, kFontSizeHeadline4 * 0.8,
+          //     white),
+          kSizedBoxXS,
+          Row(
+            children: [
+              IconWithText(
+                color: color,
+                icon: FeatherIcons.calendar,
+                text: '06-03-2021',
+              ),
+              kSizedBoxHorizontalM,
+              IconWithText(
+                color: color,
+                icon: FeatherIcons.clock,
+                text: '9:00 AM',
+              ),
+            ],
+          ),
+          kSizedBoxVerticalXS,
+          Column(
+            children: [
+              IconWithText(
+                  color: color,
+                  text: 'Siriraj Piyamaharajkarun Hospital',
+                  icon: FeatherIcons.mapPin),
+              kSizedBoxVerticalXS,
+              IconWithText(
+                  color: color, text: '4 peoples', icon: FeatherIcons.user)
+            ],
+          )
+
           // MainText('There is no appointment yet ', text_type.regular,
           //     kFontSizeHeadline4 * 0.6, white)
         ],

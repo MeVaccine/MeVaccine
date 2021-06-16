@@ -27,12 +27,11 @@ class Step4 extends StatelessWidget {
             children: [
               Container(
                 width: 330,
+                height: 200,
                 child: YourAppointment(
-                    checkColor: '1',
-                    checkInfo: '',
-                    height: 0,
-                    isAppoint: '',
-                    width: 0),
+                  checkColor: '0',
+                  color: primary01,
+                ),
               ),
             ],
           ),

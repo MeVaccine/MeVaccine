@@ -4,7 +4,7 @@ import '../../config/color.dart';
 import '../../config/constants.dart';
 import '../text/mainText.dart';
 import '../text/profile_text.dart';
-import '../../model/textType.dart'; 
+import '../../model/textType.dart';
 import '../../screen/Setting/setting_screen.dart';
 
 class Profile extends StatelessWidget {
@@ -18,23 +18,25 @@ class Profile extends StatelessWidget {
             backgroundImage: AssetImage(
               'assets/images/user-profile.png',
             ),
-            radius: kSizeS * 2.5,
+            radius: kSizeS * 2,
           ),
           Container(
             padding: const EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-              MainText('Good Morning!', text_type.regular,kFontSizeHeadline4*0.8,primary01),
-              ProfileText('Kavisara', accent02,kFontSizeHeadline2),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              MainText('Good Morning!', text_type.regular,
+                  kFontSizeHeadline4 * 0.8, primary01),
+              ProfileText('Kavisara', accent02, kFontSizeHeadline2),
             ]),
           ),
         ]),
         IconButton(
-          icon: const Icon(FeatherIcons.settings,color: accent02,),
+          icon: const Icon(
+            FeatherIcons.settings,
+            color: accent02,
+          ),
           onPressed: () {
             Navigator.of(context).pushNamed(SettingScreen.routeName);
-
           },
         )
       ],
