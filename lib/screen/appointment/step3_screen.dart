@@ -52,7 +52,7 @@ class Step3 extends StatelessWidget {
               ),
               SmallButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(Step3.routeName);
+                  Navigator.of(context).pushNamed(Step4.routeName);
                 },
                 text: 'Next',
                 color: accent02,
