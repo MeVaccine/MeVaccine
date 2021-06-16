@@ -10,7 +10,12 @@ class PrimaryButton extends StatelessWidget {
   final double width;
   final double height;
   PrimaryButton(
-      {required this.text, required this.onPressed, this.isLoading = false,this.color=primary01,this.width=double.infinity,this.height=kSizeS});
+      {required this.text,
+      required this.onPressed,
+      this.isLoading = false,
+      this.color = primary01,
+      this.width = double.infinity,
+      this.height = kSizeS});
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -25,22 +30,29 @@ class PrimaryButton extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return InkWell(
-      onTap: ()=> onPressed(),
+      onTap: () => onPressed(),
       child: Padding(
-        padding: const EdgeInsets.symmetric( vertical: kSizeS,horizontal: kSizeM),
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: const TextStyle(color: white),
-        ),
+        padding:
+            const EdgeInsets.symmetric(vertical: kSizeS, horizontal: kSizeM),
+        child: isLoading
+            ? SizedBox(
+                height: 25,
+                child: FittedBox(
+                  child: CircularProgressIndicator(
+                    backgroundColor: Colors.white,
+                  ),
+                ),
+              )
+            : Text(
+                text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: white),
+              ),
       ),
     );
   }
 
   BoxDecoration _buildBoxDecoration(BuildContext context) {
-    return BoxDecoration(
-      color: color,
-      borderRadius: kBorderRadiusXS
-    );
+    return BoxDecoration(color: color, borderRadius: kBorderRadiusXS);
   }
 }

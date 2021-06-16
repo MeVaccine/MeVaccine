@@ -39,7 +39,7 @@ class _SymptomCardState extends State<SymptomCard> {
               )
             ],
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             child: Divider(),
           )

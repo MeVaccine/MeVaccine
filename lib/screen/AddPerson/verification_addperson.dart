@@ -10,6 +10,7 @@ import '../person_screen.dart';
 
 class VerificationAddPerson extends StatelessWidget {
   static const routeName = '/verificationAddPerson';
+  final _code = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +34,10 @@ class VerificationAddPerson extends StatelessWidget {
               MainText('Verification Code', text_type.regular,
                   kFontSizeHeadline4, primary01),
               kSizedBoxM,
-              VerificationTextFormField('Code'),
+              VerificationTextFormField(
+                label: 'Code',
+                textEditingController: _code,
+              ),
               kSizedBoxS,
               const Text('Enter the code we sent to your number at'),
               Container(

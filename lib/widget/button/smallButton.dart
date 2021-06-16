@@ -10,7 +10,12 @@ class SmallButton extends StatelessWidget {
   final double width;
   final double height;
   SmallButton(
-      {required this.text, required this.onPressed, this.isLoading = false,this.color=primary01,this.width=double.infinity,this.height=kSizeS});
+      {required this.text,
+      required this.onPressed,
+      this.isLoading = false,
+      this.color = primary01,
+      this.width = double.infinity,
+      this.height = kSizeS});
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -25,9 +30,10 @@ class SmallButton extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return InkWell(
-      onTap: ()=> onPressed(),
+      onTap: () => onPressed(),
       child: Padding(
-        padding: const EdgeInsets.symmetric( vertical: kSizeXS,horizontal: kSizeM),
+        padding:
+            const EdgeInsets.symmetric(vertical: kSizeXS, horizontal: kSizeXS),
         child: Text(
           text,
           textAlign: TextAlign.center,
@@ -38,9 +44,6 @@ class SmallButton extends StatelessWidget {
   }
 
   BoxDecoration _buildBoxDecoration(BuildContext context) {
-    return BoxDecoration(
-      color: color,
-      borderRadius: kBorderRadiusXS
-    );
+    return BoxDecoration(color: color, borderRadius: kBorderRadiusXS);
   }
 }

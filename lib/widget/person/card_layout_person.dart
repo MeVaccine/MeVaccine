@@ -3,6 +3,8 @@ import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 
 class CardPersonLayout extends StatelessWidget {
+  String name;
+  CardPersonLayout({required this.name });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,8 +17,8 @@ class CardPersonLayout extends StatelessWidget {
             style:
                 TextStyle(color: primary01, fontSize: kFontSizeHeadline4 * 0.7),
           ),
-          const Text(
-            'Kavisara',
+          Text(
+            name,
             style: TextStyle(color: accent02, fontSize: kFontSizeHeadline2),
           ),
           const Text(

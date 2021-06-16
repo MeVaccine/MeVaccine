@@ -5,16 +5,22 @@ import 'package:mevaccine/config/constants.dart';
 
 class VerificationTextFormField extends StatelessWidget {
   final String label;
-  VerificationTextFormField(this.label);
+  TextEditingController textEditingController;
+  VerificationTextFormField(
+      {required this.label, required this.textEditingController});
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: kSizeS),
       child: TextFormField(
+        controller: textEditingController,
         decoration: InputDecoration(
-          hintText: label,
-          prefixIcon: const Icon(FontAwesomeIcons.key,color: primary01,size: kSizeS*1.2,)
-        ),
+            hintText: label,
+            prefixIcon: const Icon(
+              FontAwesomeIcons.key,
+              color: primary01,
+              size: kSizeS * 1.2,
+            )),
       ),
     );
   }

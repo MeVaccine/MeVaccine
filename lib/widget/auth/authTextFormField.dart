@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/model/authType.dart';
 import '../../config/constants.dart';
@@ -37,7 +38,7 @@ class _AuthTextFormState extends State<AuthTextForm> {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: (val) {
-        //เช็ค Validate 
+        //เช็ค Validate
         if (val!.isEmpty) {
           return '${widget.label} is required';
         }
@@ -46,11 +47,11 @@ class _AuthTextFormState extends State<AuthTextForm> {
       },
       controller: widget.textEditingController,
       inputFormatters: [
-        isNation()
-            ? MaskedInputFormatter('#-####-#####-##-#')
-            : MaskedInputFormatter('###-###-####'),
+        if (isNation()) MaskedInputFormatter('#-####-#####-##-#'),
+        if (isPhoneNumber()) MaskedInputFormatter('###-###-####'),
+        if(isLaser()) LengthLimitingTextInputFormatter(12),
       ],
-      keyboardType: TextInputType.number,
+      keyboardType: isLaser() ? TextInputType.text : TextInputType.number,
       decoration: InputDecoration(
           hintText: widget.label,
           hintStyle: const TextStyle(color: netural01),
