@@ -23,9 +23,8 @@ class Step2 extends StatefulWidget {
 
 class _Step2State extends State<Step2> {
   List<String> data = ['one', 'two', 'three', 'four'];
-  final _nothing= TextEditingController();
-  String selectedValue = "";
   final _nothing = TextEditingController();
+  String selectedValue = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +55,7 @@ class _Step2State extends State<Step2> {
                     textEditingController: _nothing,
                     label: 'Province',
                     type: RegsiterTextFormType.nothing,
-                    active: RegisterActiveType.enable, textEditingController: _nothing,
+                    active: RegisterActiveType.enable,
                   ),
                 ),
                 //SerachAbleDropDown  ยังไม่ได้ทำ searchFN

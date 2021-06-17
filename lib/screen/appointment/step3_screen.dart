@@ -31,18 +31,10 @@ class Step3 extends StatelessWidget {
             children: [
               kSizedBoxVerticalS,
               RegisterTextForm(
-<<<<<<< HEAD
-                label: 'Select Date',
-                type: RegsiterTextFormType.calendar,
-                active: RegisterActiveType.disable,
-                textEditingController: _nothing,
-              ),
-=======
                   textEditingController: _nothing,
                   label: 'Select Date',
                   type: RegsiterTextFormType.calendar,
                   active: RegisterActiveType.disable),
->>>>>>> 9d1230f9b53b9a858bac3dce41e32e15b874c6d5
               ListTimeTable()
             ],
           ),
