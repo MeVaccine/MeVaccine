@@ -37,7 +37,7 @@ class PersonScreen extends StatelessWidget {
                                     const Color(0xFF7090B0).withOpacity(0.2)),
                           ]),
                       child: CardPersonLayout(
-                        name: authen.personal.en.firstName,
+                        name: authen.userInfo.firstname_en,
                       ),
                     ),
                   ),

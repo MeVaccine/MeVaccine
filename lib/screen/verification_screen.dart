@@ -31,6 +31,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
       });
       String otp = _otp;
       try {
+        
         await Provider.of<AuthenicateProvider>(context, listen: false)
             .verification(otp);
         setState(() {
@@ -52,43 +53,48 @@ class _VerificationScreenState extends State<VerificationScreen> {
           elevation: 0,
           iconTheme: const IconThemeData(color: primary01),
         ),
-        body: Container(
-          padding: const EdgeInsets.all(20),
-          width: double.infinity,
-          height: double.infinity,
-          // ตอนกดพิมจะได้เลื่อนหน้าจอได้่
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                LogoVerification(),
-                kSizedBoxL,
-                MainText('Verification Code', text_type.regular,
-                    kFontSizeHeadline4, primary01),
-                kSizedBoxM,
-                VerificationTextFormField(
-                  label: 'Code',
-                  textEditingController: _code,
-                ),
-                kSizedBoxS,
-                const Text('Enter the code we sent to your number at'),
-                Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: kSizeS * 1.3),
-                    alignment: Alignment.centerLeft,
-                    child: Text(authen.numberUser +
-                        " refCode OTP is :${authen.refCode}")),
-                kSizedBoxM,
-                PrimaryButton(
-                  text: 'Done',
-                  onPressed: () {
-                    print(_code.text);
-                    setState(() {
-                      _otp = _code.text;
-                    });
-                    verification();
-                  },
-                ),
-              ],
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            width: double.infinity,
+            height: double.infinity,
+            // ตอนกดพิมจะได้เลื่อนหน้าจอได้่
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  LogoVerification(),
+                  kSizedBoxL,
+                  MainText('Verification Code', text_type.regular,
+                      kFontSizeHeadline4, primary01),
+                  kSizedBoxM,
+                  VerificationTextFormField(
+                    label: 'Code',
+                    textEditingController: _code,
+                  ),
+                  kSizedBoxS,
+                  const Text('Enter the code we sent to your number at'),
+                  Container(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: kSizeS * 1.3),
+                      alignment: Alignment.centerLeft,
+                      child: Text(authen.numberUser +
+                          " refCode OTP is :${authen.refCode}")),
+                  kSizedBoxM,
+                  PrimaryButton(
+                    text: 'Done',
+                    onPressed: () {
+                      print(_code.text);
+                      setState(() {
+                        _otp = _code.text;
+                      });
+                      verification();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

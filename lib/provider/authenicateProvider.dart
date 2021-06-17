@@ -6,6 +6,60 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import '../model/httpException.dart';
 
+class UserInfo {
+  String firstname_th;
+  String firstname_en;
+  Appointment? appointment;
+  VaccineUser? vaccineUser;
+  UserInfo(
+      {required this.firstname_th,
+      required this.firstname_en,
+      required this.appointment,
+      required this.vaccineUser});
+}
+
+class Appointment {
+  String status;
+  String id;
+  DateTime date;
+  int doesNumber;
+  Location location;
+  Appointment(
+      {required this.status,
+      required this.id,
+      required this.date,
+      required this.doesNumber,
+      required this.location});
+}
+
+class Location {
+  String id;
+  String name_en;
+  String name_th;
+  int priority;
+  String province_th;
+  String province_en;
+  Location(
+      {required this.id,
+      required this.name_en,
+      required this.name_th,
+      required this.priority,
+      required this.province_en,
+      required this.province_th});
+}
+
+class VaccineUser {
+  String id;
+  String name;
+  int minAge;
+  int maxAge;
+  VaccineUser(
+      {required this.id,
+      required this.name,
+      required this.minAge,
+      required this.maxAge});
+}
+
 class Personal {
   String id;
   String laserId;
@@ -61,8 +115,8 @@ class Vaccine {
 
 class AuthenicateProvider with ChangeNotifier {
   String _number = "";
-  String _refCode="";
-  String _token="";
+  String _refCode = "";
+  String _token = "";
   List<Hospital> _hospital = [];
   Personal _personal = Personal(
       en: Information(
@@ -81,11 +135,32 @@ class AuthenicateProvider with ChangeNotifier {
           lastName: "",
           prefix: "",
           province: ""));
+  UserInfo _userInfo = UserInfo(
+    firstname_en: "",
+    firstname_th: "",
+    appointment: Appointment(
+        date: DateTime.now(),
+        doesNumber: 0,
+        id: "",
+        location: Location(
+            id: "",
+            name_en: "",
+            name_th: "",
+            priority: 0,
+            province_en: "",
+            province_th: ""),
+        status: ""),
+    vaccineUser: VaccineUser(id: "", maxAge: 0, minAge: 0, name: ""),
+  );
 
   AuthenicateProvider();
 
   bool get isAuth {
-    return token.length != 0;
+    return token.isNotEmpty;
+  }
+
+  UserInfo get userInfo {
+    return _userInfo;
   }
 
   String get token {
@@ -99,7 +174,8 @@ class AuthenicateProvider with ChangeNotifier {
   List<Hospital> get hospital {
     return _hospital;
   }
-  String get refCode{
+
+  String get refCode {
     return _refCode;
   }
 
@@ -107,26 +183,62 @@ class AuthenicateProvider with ChangeNotifier {
     return _number;
   }
 
-  // Future<void> login(String nationalID, String laserID) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   try {
-  //     final response = await Dio().post(apiEndpoint + '/auth/signin',
-  //         data: {"nationalID": nationalID, "laserID": laserID});
-  //     final token = response.data["token"];
-  //     _token = token;
-  //     notifyListeners();
-  //     prefs.setString('userToken', _token);
-  //   } on DioError catch (error) {
-  //     prefs.clear();
-  //     if (error.response == null) {
-  //       throw HttpException(internetException);
-  //     } else if (error.response!.statusCode == 401) {
-  //       throw HttpException(incorrectAuthException);
-  //     } else {
-  //       throw HttpException(generalException);
-  //     }
-  //   }
-  // }
+  Future<void> login(String nationalID, String phoneNumber) async {
+    try {
+      final response = await Dio().post(apiEndpoint + '/auth/login',
+          data: {"nationalID": nationalID, "phoneNumber": phoneNumber});
+      _refCode = response.data['refCode'];
+      _number = phoneNumber;
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+    }
+  }
+
+  Future<void> getName() async {
+    try {
+      final response = await Dio().get(apiEndpoint + '/appointment/landing',
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+      print(response.data);
+      _userInfo = UserInfo(
+          firstname_en: response.data['firstname_en'],
+          firstname_th: response.data['firstname_th'],
+          appointment: response.data['appointment']['_id'] == null
+              ? null
+              : Appointment(
+                  date:
+                      DateTime.parse(response.data['appointment']['dateTime']),
+                  doesNumber: response.data['appointment']['doesNumber'],
+                  id: response.data['appointment']['_id'],
+                  status: response.data['appointment']['status'],
+                  location: Location(
+                      id: response.data['appointment']['location']['_id'],
+                      name_en: response.data['appointment']['location']
+                          ['name_en'],
+                      name_th: response.data['appointment']['location']
+                          ['name_th'],
+                      priority: response.data['appointment']['location']
+                          ['priority'],
+                      province_en: response.data['appointment']['location']
+                          ['province_en'],
+                      province_th: response.data['appointment']['location']
+                          ['province_th'])),
+          vaccineUser: response.data['vaccine'] == null
+              ? null
+              : VaccineUser(
+                  id: response.data['vaccine']['_id'],
+                  maxAge: response.data['appointment']['maxAge'],
+                  minAge: response.data['appointment']['minAge'],
+                  name: response.data['appointment']['name']));
+      print(response.data['firstname_en']);
+      notifyListeners();
+    } on DioError catch (error) {
+      throw HttpException(getUserException);
+    }
+  }
+
   Future<void> getHospitalLocation(String province) async {
     try {
       final response = await Dio().get(apiEndpoint + '/location',
@@ -159,7 +271,6 @@ class AuthenicateProvider with ChangeNotifier {
       _hospital = tempHospital;
       notifyListeners();
     } on DioError catch (error) {
-      print(error);
       throw HttpException(generalException);
     }
   }
@@ -206,7 +317,6 @@ class AuthenicateProvider with ChangeNotifier {
       });
       _number = phoneNumber;
       _refCode = response.data['refCode'];
-      print(refCode);
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
@@ -217,22 +327,22 @@ class AuthenicateProvider with ChangeNotifier {
     }
   }
 
-
-   Future<void> verification(String otp) async {
-     final prefs = await SharedPreferences.getInstance();
+  Future<void> verification(String otp) async {
+    final prefs = await SharedPreferences.getInstance();
     try {
-      final response = await Dio().get(apiEndpoint + '/auth/verify', queryParameters: {
+      final response =
+          await Dio().get(apiEndpoint + '/auth/verify', queryParameters: {
         "otp": otp,
       });
-        final token = response.data["token"];
-        _token = token;
-         prefs.setString('userToken', _token);
+      final token = response.data["token"];
+      _token = token;
+      prefs.setString('userToken', _token);
       notifyListeners();
     } on DioError catch (error) {
-         prefs.clear();
+      prefs.clear();
       if (error.response!.statusCode == 400) {
         throw HttpException(otpException);
-      } 
+      }
     }
   }
 }

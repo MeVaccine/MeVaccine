@@ -13,6 +13,8 @@ class LandingScreen extends StatelessWidget {
   static const routeName = '/landing-screen';
   @override
   Widget build(BuildContext context) {
+    Provider.of<AuthenicateProvider>(context, listen: false)
+            .getName();
     return Consumer<AuthenicateProvider>(
       builder: (ctx, authen, child) => Scaffold(
         body: Container(
@@ -23,11 +25,19 @@ class LandingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Profile(name: authen.personal.en.firstName,),
-              kSizedBoxS,
+              Profile(
+                name: authen.userInfo.firstname_en,
+              ),
+              kSizedBoxXS,
               MainText(
                   'Schedule', text_type.regular, kFontSizeHeadline4, primary01),
-              YourAppointment(),
+              Container(
+                height: 190,
+                child: YourAppointment(
+                  checkColor: '1',
+                  color: white,
+                ),
+              ),
               Menu()
             ],
           ),

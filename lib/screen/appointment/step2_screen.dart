@@ -23,6 +23,7 @@ class Step2 extends StatefulWidget {
 
 class _Step2State extends State<Step2> {
   List<String> data = ['one', 'two', 'three', 'four'];
+  final _nothing = TextEditingController();
   String selectedValue = "";
   @override
   Widget build(BuildContext context) {
@@ -51,6 +52,7 @@ class _Step2State extends State<Step2> {
                 Container(
                   width: 300,
                   child: RegisterTextForm(
+                    textEditingController: _nothing,
                     label: 'Province',
                     type: RegsiterTextFormType.nothing,
                     active: RegisterActiveType.enable,
