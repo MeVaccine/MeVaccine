@@ -13,28 +13,32 @@ class LandingScreen extends StatelessWidget {
   static const routeName = '/landing-screen';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.symmetric(
-            horizontal: kSizeS * 1.5, vertical: kSizeL),
-        height: double.infinity,
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Profile(name: '',),
-            kSizedBoxXS,
-            MainText(
-                'Schedule', text_type.regular, kFontSizeHeadline4, primary01),
-            Container(
-              height: 190,
-              child: YourAppointment(
-                checkColor: '1',
-                color: white,
+    return Consumer<AuthenicateProvider>(
+      builder: (ctx, authen, child) => Scaffold(
+        body: Container(
+          padding: const EdgeInsets.symmetric(
+              horizontal: kSizeS * 1.5, vertical: kSizeL),
+          height: double.infinity,
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Profile(
+                name: authen.personal.en.firstName,
               ),
-            ),
-            Menu()
-          ],
+              kSizedBoxXS,
+              MainText(
+                  'Schedule', text_type.regular, kFontSizeHeadline4, primary01),
+              Container(
+                height: 190,
+                child: YourAppointment(
+                  checkColor: '1',
+                  color: white,
+                ),
+              ),
+              Menu()
+            ],
+          ),
         ),
       ),
     );
