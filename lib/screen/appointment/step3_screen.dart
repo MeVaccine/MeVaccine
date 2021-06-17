@@ -12,6 +12,7 @@ import '../appointment/step4_screen.dart';
 import 'package:mevaccine/screen/appointment/step2_screen.dart';
 
 class Step3 extends StatelessWidget {
+  final _nothing = TextEditingController();
   static const routeName = '/step3';
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class Step3 extends StatelessWidget {
             children: [
               kSizedBoxVerticalS,
               RegisterTextForm(
+                  textEditingController: _nothing,
                   label: 'Select Date',
                   type: RegsiterTextFormType.calendar,
                   active: RegisterActiveType.disable),
