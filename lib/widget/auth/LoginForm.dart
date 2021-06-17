@@ -1,7 +1,8 @@
-import 'dart:io';
+
 
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/widget/layout/errorDailog.dart';
 import 'package:provider/provider.dart';
@@ -73,6 +74,7 @@ class _LoginFormState extends State<LoginForm> {
                 type: AuthTextFormType.phoneNumber),
             kSizedBoxVerticalM,
             PrimaryButton(
+              isLoading: _isLoading,
               text: 'Log in',
               onPressed: () {
                 //พอเราเพิ่ม if validate เข้าไปมันก็จะเช็คว่า Form นี้ถูกตามที่ต้องการหรือยัง ตอนนี้มีแค้เช็ค User พิมยัง หรือยังไม่พิม

@@ -8,3 +8,4 @@ const wrongFormat = "LaserID or nationalID in wrong format";
 const notFoundNational = 'Not found in national external API';
 const otpException ="Your OTP is Expired or Wrong !!!";
 const notRegister = "National ID and/or phoneNumber is not correct or user have not register yet";
+const getUserException ="JWT token is not present or querying user that not your person";
