@@ -22,7 +22,7 @@ class LandingScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Profile(),
+            Profile(name: '',),
             kSizedBoxXS,
             MainText(
                 'Schedule', text_type.regular, kFontSizeHeadline4, primary01),

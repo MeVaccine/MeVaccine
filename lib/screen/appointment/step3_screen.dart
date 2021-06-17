@@ -13,6 +13,7 @@ import 'package:mevaccine/screen/appointment/step2_screen.dart';
 
 class Step3 extends StatelessWidget {
   static const routeName = '/step3';
+  final _nothing = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +31,11 @@ class Step3 extends StatelessWidget {
             children: [
               kSizedBoxVerticalS,
               RegisterTextForm(
-                  label: 'Select Date',
-                  type: RegsiterTextFormType.calendar,
-                  active: RegisterActiveType.disable),
+                label: 'Select Date',
+                type: RegsiterTextFormType.calendar,
+                active: RegisterActiveType.disable,
+                textEditingController: _nothing,
+              ),
               ListTimeTable()
             ],
           ),
