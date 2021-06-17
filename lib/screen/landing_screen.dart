@@ -13,6 +13,8 @@ class LandingScreen extends StatelessWidget {
   static const routeName = '/landing-screen';
   @override
   Widget build(BuildContext context) {
+    Provider.of<AuthenicateProvider>(context, listen: false)
+            .getName();
     return Consumer<AuthenicateProvider>(
       builder: (ctx, authen, child) => Scaffold(
         body: Container(
@@ -24,7 +26,7 @@ class LandingScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Profile(
-                name: authen.personal.en.firstName,
+                name: authen.userInfo.firstname_en,
               ),
               kSizedBoxXS,
               MainText(

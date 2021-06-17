@@ -28,7 +28,7 @@ class Profile extends StatelessWidget {
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
               MainText('Good Morning!', text_type.regular,
                   kFontSizeHeadline4 * 0.8, primary01),
-              ProfileText('Kavisara', accent02, kFontSizeHeadline2),
+              ProfileText(name, accent02, kFontSizeHeadline2),
             ]),
           ),
         ]),

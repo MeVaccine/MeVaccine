@@ -6,6 +6,60 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import '../model/httpException.dart';
 
+class UserInfo {
+  String firstname_th;
+  String firstname_en;
+  Appointment? appointment;
+  VaccineUser? vaccineUser;
+  UserInfo(
+      {required this.firstname_th,
+      required this.firstname_en,
+      required this.appointment,
+      required this.vaccineUser});
+}
+
+class Appointment {
+  String status;
+  String id;
+  DateTime date;
+  int doesNumber;
+  Location location;
+  Appointment(
+      {required this.status,
+      required this.id,
+      required this.date,
+      required this.doesNumber,
+      required this.location});
+}
+
+class Location {
+  String id;
+  String name_en;
+  String name_th;
+  int priority;
+  String province_th;
+  String province_en;
+  Location(
+      {required this.id,
+      required this.name_en,
+      required this.name_th,
+      required this.priority,
+      required this.province_en,
+      required this.province_th});
+}
+
+class VaccineUser {
+  String id;
+  String name;
+  int minAge;
+  int maxAge;
+  VaccineUser(
+      {required this.id,
+      required this.name,
+      required this.minAge,
+      required this.maxAge});
+}
+
 class Personal {
   String id;
   String laserId;
@@ -81,11 +135,32 @@ class AuthenicateProvider with ChangeNotifier {
           lastName: "",
           prefix: "",
           province: ""));
+  UserInfo _userInfo = UserInfo(
+    firstname_en: "",
+    firstname_th: "",
+    appointment: Appointment(
+        date: DateTime.now(),
+        doesNumber: 0,
+        id: "",
+        location: Location(
+            id: "",
+            name_en: "",
+            name_th: "",
+            priority: 0,
+            province_en: "",
+            province_th: ""),
+        status: ""),
+    vaccineUser: VaccineUser(id: "", maxAge: 0, minAge: 0, name: ""),
+  );
 
   AuthenicateProvider();
 
   bool get isAuth {
-    return token.length != 0;
+    return token.isNotEmpty;
+  }
+
+  UserInfo get userInfo {
+    return _userInfo;
   }
 
   String get token {
@@ -122,6 +197,48 @@ class AuthenicateProvider with ChangeNotifier {
     }
   }
 
+  Future<void> getName() async {
+    try {
+      final response = await Dio().get(apiEndpoint + '/appointment/landing',
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+      print(response.data);
+      _userInfo = UserInfo(
+          firstname_en: response.data['firstname_en'],
+          firstname_th: response.data['firstname_th'],
+          appointment: response.data['appointment']['_id'] == null
+              ? null
+              : Appointment(
+                  date:
+                      DateTime.parse(response.data['appointment']['dateTime']),
+                  doesNumber: response.data['appointment']['doesNumber'],
+                  id: response.data['appointment']['_id'],
+                  status: response.data['appointment']['status'],
+                  location: Location(
+                      id: response.data['appointment']['location']['_id'],
+                      name_en: response.data['appointment']['location']
+                          ['name_en'],
+                      name_th: response.data['appointment']['location']
+                          ['name_th'],
+                      priority: response.data['appointment']['location']
+                          ['priority'],
+                      province_en: response.data['appointment']['location']
+                          ['province_en'],
+                      province_th: response.data['appointment']['location']
+                          ['province_th'])),
+          vaccineUser: response.data['vaccine'] == null
+              ? null
+              : VaccineUser(
+                  id: response.data['vaccine']['_id'],
+                  maxAge: response.data['appointment']['maxAge'],
+                  minAge: response.data['appointment']['minAge'],
+                  name: response.data['appointment']['name']));
+      print(response.data['firstname_en']);
+      notifyListeners();
+    } on DioError catch (error) {
+      throw HttpException(getUserException);
+    }
+  }
+
   Future<void> getHospitalLocation(String province) async {
     try {
       final response = await Dio().get(apiEndpoint + '/location',
@@ -154,7 +271,6 @@ class AuthenicateProvider with ChangeNotifier {
       _hospital = tempHospital;
       notifyListeners();
     } on DioError catch (error) {
-      print(error);
       throw HttpException(generalException);
     }
   }
