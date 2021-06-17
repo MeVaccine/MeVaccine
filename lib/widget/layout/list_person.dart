@@ -4,7 +4,7 @@ import 'package:mevaccine/config/constants.dart';
 import '../person/card_person_appoint.dart';
 
 class ListPerson extends StatelessWidget {
-  var list = [
+  var person = [
     'Sethanant Pipatpakorn',
     'Kavisara Srisuwatcharee',
     'Thanakorn Aunglunchuchod',
@@ -19,13 +19,21 @@ class ListPerson extends StatelessWidget {
         // color: primary01,
 
         child: ListView(
-          children: [
-            for (var item in list)
-              CardPersonAppoint(
-                text: item,
-              ),
-            kSizedBoxVerticalS,
-          ],
+          children: person
+              .map(
+                (el) => CardPersonAppoint(text: el),
+              )
+              .toList(),
         ));
   }
 }
+//  list.map((el) =>
+//               Column(
+//                 children: [
+//                   CardPersonAppoint(
+//                     text: ,
+//                   ),
+//                   kSizedBoxVerticalS
+//                 ],
+//               ),
+//             ),
