@@ -4,33 +4,26 @@ import 'package:mevaccine/config/constants.dart';
 import '../person/card_person_appoint.dart';
 
 class ListPerson extends StatelessWidget {
+  var list = [
+    'Sethanant Pipatpakorn',
+    'Kavisara Srisuwatcharee',
+    'Thanakorn Aunglunchuchod',
+    'Thanaphon Sombunkaeo',
+    'Wisarut Kitticharoenphonngam'
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
         height: 300,
         width: 370,
         // color: primary01,
+
         child: ListView(
           children: [
-            CardPersonAppoint(
-              text: 'Sethanant Pipatpakorn',
-            ),
-            kSizedBoxVerticalS,
-            CardPersonAppoint(
-              text: 'Kavisara Srisuwatcharee',
-            ),
-            kSizedBoxVerticalS,
-            CardPersonAppoint(
-              text: 'Thanakorn Aunglunchuchod',
-            ),
-            kSizedBoxVerticalS,
-            CardPersonAppoint(
-              text: 'Sethanant Pipatpakorn',
-            ),
-            kSizedBoxVerticalS,
-            CardPersonAppoint(
-              text: 'Kavisara Srisuwatcharee',
-            ),
+            for (var item in list)
+              CardPersonAppoint(
+                text: item,
+              ),
             kSizedBoxVerticalS,
           ],
         ));
