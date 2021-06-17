@@ -23,8 +23,8 @@ class Step2 extends StatefulWidget {
 
 class _Step2State extends State<Step2> {
   List<String> data = ['one', 'two', 'three', 'four'];
-  String selectedValue = "";
   final _nothing = TextEditingController();
+  String selectedValue = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(

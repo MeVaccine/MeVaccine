@@ -61,8 +61,8 @@ class Vaccine {
 
 class AuthenicateProvider with ChangeNotifier {
   String _number = "";
-  String _refCode="";
-  String _token="";
+  String _refCode = "";
+  String _token = "";
   List<Hospital> _hospital = [];
   Personal _personal = Personal(
       en: Information(
@@ -99,7 +99,8 @@ class AuthenicateProvider with ChangeNotifier {
   List<Hospital> get hospital {
     return _hospital;
   }
-  String get refCode{
+
+  String get refCode {
     return _refCode;
   }
 
@@ -107,26 +108,20 @@ class AuthenicateProvider with ChangeNotifier {
     return _number;
   }
 
-  // Future<void> login(String nationalID, String laserID) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   try {
-  //     final response = await Dio().post(apiEndpoint + '/auth/signin',
-  //         data: {"nationalID": nationalID, "laserID": laserID});
-  //     final token = response.data["token"];
-  //     _token = token;
-  //     notifyListeners();
-  //     prefs.setString('userToken', _token);
-  //   } on DioError catch (error) {
-  //     prefs.clear();
-  //     if (error.response == null) {
-  //       throw HttpException(internetException);
-  //     } else if (error.response!.statusCode == 401) {
-  //       throw HttpException(incorrectAuthException);
-  //     } else {
-  //       throw HttpException(generalException);
-  //     }
-  //   }
-  // }
+  Future<void> login(String nationalID, String phoneNumber) async {
+    try {
+      final response = await Dio().post(apiEndpoint + '/auth/login',
+          data: {"nationalID": nationalID, "phoneNumber": phoneNumber});
+      _refCode = response.data['refCode'];
+      _number = phoneNumber;
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+    }
+  }
+
   Future<void> getHospitalLocation(String province) async {
     try {
       final response = await Dio().get(apiEndpoint + '/location',
@@ -206,7 +201,6 @@ class AuthenicateProvider with ChangeNotifier {
       });
       _number = phoneNumber;
       _refCode = response.data['refCode'];
-      print(refCode);
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
@@ -217,22 +211,22 @@ class AuthenicateProvider with ChangeNotifier {
     }
   }
 
-
-   Future<void> verification(String otp) async {
-     final prefs = await SharedPreferences.getInstance();
+  Future<void> verification(String otp) async {
+    final prefs = await SharedPreferences.getInstance();
     try {
-      final response = await Dio().get(apiEndpoint + '/auth/verify', queryParameters: {
+      final response =
+          await Dio().get(apiEndpoint + '/auth/verify', queryParameters: {
         "otp": otp,
       });
-        final token = response.data["token"];
-        _token = token;
-         prefs.setString('userToken', _token);
+      final token = response.data["token"];
+      _token = token;
+      prefs.setString('userToken', _token);
       notifyListeners();
     } on DioError catch (error) {
-         prefs.clear();
+      prefs.clear();
       if (error.response!.statusCode == 400) {
         throw HttpException(otpException);
-      } 
+      }
     }
   }
 }

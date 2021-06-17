@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/widget/layout/errorDailog.dart';
+import 'package:provider/provider.dart';
 import '../../widget/auth/authTextFormField.dart';
 import '../button/secondaryButton.dart';
 import '../button/primaryButton.dart';
@@ -16,8 +21,26 @@ class _LoginFormState extends State<LoginForm> {
   final _nationID = TextEditingController();
   final _phoneNumber = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
-  Future<void> login(BuildContext context) async {}
+  Future<void> login() async {
+    setState(() {
+      _isLoading = true;
+    });
+    var nationalID = _nationID.text.replaceAll("-", "");
+    var phoneNumber = _phoneNumber.text.replaceAll("-", "");
+    try {
+      await Provider.of<AuthenicateProvider>(context, listen: false)
+          .login(nationalID, phoneNumber);
+      setState(() {
+        _isLoading = false;
+      });
+      Navigator.of(context).pushNamed(VerificationScreen.routeName);
+    } on HttpException catch (error) {
+      setState(() => _isLoading = false);
+      showErrorDialog(context: context, text: error.message);
+    }
+  }
 
   @override
   // อันนี้ไม่รู้มีไว้ทำไมแต่เอาไว้ก่อนเผื่อได้ใช้
@@ -26,6 +49,7 @@ class _LoginFormState extends State<LoginForm> {
     _phoneNumber.dispose();
     super.dispose();
   }
+
   //เช็คว่า Form ถูกตามที่เราต้องการไหม ส่วน เช๋ค validate ต่างๆ จะอยู่ใน AuthTextForm
   bool validate() {
     return _formKey.currentState!.validate();
@@ -54,7 +78,7 @@ class _LoginFormState extends State<LoginForm> {
                 //พอเราเพิ่ม if validate เข้าไปมันก็จะเช็คว่า Form นี้ถูกตามที่ต้องการหรือยัง ตอนนี้มีแค้เช็ค User พิมยัง หรือยังไม่พิม
                 if (validate()) {
                   //เราใช้ pushNmaed เพราะว่าต่องการกลับไปหน้าก่อนได้
-                  Navigator.of(context).pushNamed(VerificationScreen.routeName);
+                  login();
                 }
               },
             ),
