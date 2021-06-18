@@ -3,6 +3,7 @@ import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/screen/appointment/step3_screen.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
+import 'package:mevaccine/widget/layout/list_dropdownperson.dart';
 import 'package:mevaccine/widget/layout/your_appointment.dart';
 import '../../widget/Logo/empty_person.dart';
 import '../../widget/layout/profile_card.dart';
@@ -33,6 +34,7 @@ class Step4 extends StatelessWidget {
                   color: primary01,
                 ),
               ),
+              ListDropdownperson(),
             ],
           ),
         ),

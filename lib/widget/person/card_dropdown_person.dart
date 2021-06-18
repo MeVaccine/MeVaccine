@@ -21,6 +21,13 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
             offset: const Offset(0, 16),
             color: const Color(0xFF7090B0).withOpacity(0.2))
       ]),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(
+          horizontal: kSizeS, vertical: kSizeS * 0.5),
+      child: Text(
+        'hello',
+        style: const TextStyle(color: primary01),
+      ),
     );
   }
 }
