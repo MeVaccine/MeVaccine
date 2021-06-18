@@ -10,7 +10,7 @@ class ListDropdownperson extends StatelessWidget {
       height: 300,
       width: 370,
       child: ListView(
-        children: [],
+        children: [CardDropdownPerson()],
       ),
     );
   }
