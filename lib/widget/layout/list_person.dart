@@ -29,7 +29,6 @@ class ListPerson extends StatelessWidget {
         height: 300,
         width: 370,
         // color: primary01,
-
         child: ListView(
           children: person
               .map(

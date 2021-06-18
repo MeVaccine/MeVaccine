@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
 import 'package:provider/provider.dart';
 
 import './screen/symptom_form_screen.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
           HistoryVaccinateScreen.routeName: (ctx) => HistoryVaccinateScreen(),
           VerificationAddPerson.routeName: (ctx) => VerificationAddPerson(),
           AddPersonRegister.routeName: (ctx) => AddPersonRegister(),
-          Step1.routeName: (ctx) => Step1(),
+          Step1.routeName: (ctx) => Mainstep(),
           AddPerson.routeName: (ctx) => AddPerson(),
           RegisterScreen.routeName: (ctx) => RegisterScreen(),
           RegisterDetailScreen.routeName: (ctx) => RegisterDetailScreen(),
