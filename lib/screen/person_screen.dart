@@ -2,18 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart';
 import 'package:provider/provider.dart';
 import '../screen/AddPerson/addPerson_screen.dart';
 import '../widget/Logo/empty_person.dart';
 import '../widget/person/card_layout_person.dart';
 import '../widget/layout/background_color.dart';
 import '../screen/landing_screen.dart';
+import '../widget/person/card_eachPerson.dart';
 
-class PersonScreen extends StatelessWidget {
+class PersonScreen extends StatefulWidget {
   static const routeName = '/person';
+
+  @override
+  State<PersonScreen> createState() => _PersonScreenState();
+}
+
+class _PersonScreenState extends State<PersonScreen> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthenicateProvider>(
+    Provider.of<PersonProvider>(context, listen: false).getPerson();
+    return Consumer<PersonProvider>(
         builder: (ctx, authen, child) => Scaffold(
               body: Stack(
                 children: [
@@ -37,7 +46,7 @@ class PersonScreen extends StatelessWidget {
                                     const Color(0xFF7090B0).withOpacity(0.2)),
                           ]),
                       child: CardPersonLayout(
-                        name: authen.userInfo.firstname_en,
+                        name: authen.name_en,
                       ),
                     ),
                   ),
@@ -45,19 +54,33 @@ class PersonScreen extends StatelessWidget {
                     top: 330,
                     left: 22.5,
                     child: Container(
-                      width: 345,
+                      width: 330,
                       child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Your Person ',
-                              style: TextStyle(
-                                  color: primary01,
-                                  fontSize: kFontSizeHeadline4),
-                            ),
-                            kSizedBoxS,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Your Person ',
+                            style: TextStyle(
+                                color: primary01, fontSize: kFontSizeHeadline4),
+                          ),
+                          kSizedBoxS,
+                          if (authen.isPersonEmpty)
                             EmptyPerson()
-                          ]),
+                          else
+                            SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  ...authen.person.map(
+                                    (e) => CardEachPerson(
+                                      firstname: e.firstname_en,
+                                      lastname: e.lastname_en,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                   // AppBar(

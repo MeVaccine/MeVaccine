@@ -22,6 +22,7 @@ import 'config/color.dart';
 import './screen/Setting/number_setting_screen.dart';
 import './screen/Login_screen.dart';
 import './provider/authenicateProvider.dart';
+import './provider/personProvider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -35,8 +36,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (ctx)=> AuthenicateProvider(),)
-
+        ChangeNotifierProvider(
+          create: (ctx) => AuthenicateProvider(),
+        ),
+        ChangeNotifierProxyProvider<AuthenicateProvider, PersonProvider>(
+            create: (ctx) =>
+                PersonProvider(token: '', name_en: '', name_th: ''),
+            update: (ctx, auth, prev) => PersonProvider(
+                token: auth.token,
+                name_en: auth.userInfo.firstname_en,
+                name_th: auth.userInfo.firstname_th)),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

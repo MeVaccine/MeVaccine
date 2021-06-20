@@ -24,12 +24,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
-    String _otp = "";
     Future<void> verification() async {
       setState(() {
         _isLoading = true;
       });
-      String otp = _otp;
+      String otp = _code.text;
       try {
         
         await Provider.of<AuthenicateProvider>(context, listen: false)
@@ -86,10 +85,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   PrimaryButton(
                     text: 'Done',
                     onPressed: () {
-                      print(_code.text);
-                      setState(() {
-                        _otp = _code.text;
-                      });
                       verification();
                     },
                   ),
