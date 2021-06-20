@@ -60,6 +60,28 @@ class VaccineUser {
       required this.maxAge});
 }
 
+class Person {
+  String id;
+  String prefix_en;
+  String firstname_en;
+  String lastname_en;
+  String gender_en;
+  String prefix_th;
+  String firstname_th;
+  String lastname_th;
+  String gender_th;
+  Person(
+      {required this.id,
+      required this.firstname_en,
+      required this.gender_en,
+      required this.lastname_en,
+      required this.prefix_en,
+      required this.firstname_th,
+      required this.gender_th,
+      required this.lastname_th,
+      required this.prefix_th});
+}
+
 class Personal {
   String id;
   String laserId;
@@ -116,8 +138,10 @@ class Vaccine {
 class AuthenicateProvider with ChangeNotifier {
   String _number = "";
   String _refCode = "";
+  String _refCodeAddPerson = "";
   String _token = "";
   List<Hospital> _hospital = [];
+  List<Person> _person = [];
   Personal _personal = Personal(
       en: Information(
           date_of_birth: DateTime.now(),
@@ -175,12 +199,103 @@ class AuthenicateProvider with ChangeNotifier {
     return _hospital;
   }
 
+  List<Person> get person {
+    return _person;
+  }
+
   String get refCode {
     return _refCode;
   }
 
+  String get refCodeAddPerson {
+    return _refCodeAddPerson;
+  }
+
   String get numberUser {
     return _number;
+  }
+
+  Future<void> check(String nationalID, String laserID) async {
+    try {
+      final response = await Dio().post(apiEndpoint + '/person/add/check',
+          data: {
+            "nationalID": nationalID,
+            "laserID": laserID,
+          },
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+      _number = response.data['phoneNumber'];
+
+      if (response.statusCode == 201) {
+        response.data['refCode'] == null
+            ? ''
+            : _refCodeAddPerson = response.data['refCode'];
+      }
+      if (response.statusCode == 200) {
+        response.data['id'] == null
+            ? null
+            : _personal = Personal(
+                en: Information(
+                    date_of_birth:
+                        DateTime.parse(response.data['en']['date_of_birth']),
+                    firstName: response.data['en']['firstname'],
+                    gender: response.data['en']['gender'],
+                    lastName: response.data['en']['lastname'],
+                    prefix: response.data['en']['prefix'],
+                    province: response.data['en']['province']),
+                id: response.data['id'],
+                laserId: response.data['laserID'],
+                th: Information(
+                    date_of_birth:
+                        DateTime.parse(response.data['th']['date_of_birth']),
+                    firstName: response.data['th']['firstname'],
+                    gender: response.data['th']['firstname'],
+                    lastName: response.data['th']['firstname'],
+                    prefix: response.data['th']['firstname'],
+                    province: response.data['th']['firstname']));
+      }
+      print(DateTime.parse(response.data['en']['date_of_birth']));
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 401) {
+        throw HttpException(incorrectAuthException);
+      }
+    }
+  }
+
+  Future<void> addPersonVerification(String otp) async {
+    print('Provider');
+    print(otp);
+    try {
+      final response = await Dio().get(apiEndpoint + '/person/add/verify',
+          queryParameters: {"otp": otp},
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+      print(response.data);
+      final data = response.data.toList();
+      List<Person> tempPerson = [];
+      for (int i = 0; i < data.length; i++) {
+        print(data[i]['firstname_en']);
+        tempPerson.add(Person(
+            firstname_en: data[i]['firstname_en'],
+            firstname_th: data[i]['firstname_th'],
+            gender_en: data[i]['gender_en'],
+            gender_th: data[i]['gender_th'],
+            id: data[i]['_id'],
+            lastname_en: data[i]['lastname_en'],
+            lastname_th: data[i]['lastname_th'],
+            prefix_en: data[i]['prefix_en'],
+            prefix_th: data[i]['prefix_th']));
+      }
+      _person = tempPerson;
+      print(_person);
+
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(otpException);
+      } else if (error.response!.statusCode == 401) {
+        throw HttpException(jwtException);
+      }
+    }
   }
 
   Future<void> login(String nationalID, String phoneNumber) async {
@@ -197,11 +312,37 @@ class AuthenicateProvider with ChangeNotifier {
     }
   }
 
+  Future<void> personRegister(
+      String nationalID, String laserID, String phoneNumber) async {
+    print(nationalID);
+    print(laserID);
+    print(phoneNumber);
+    try {
+      final response = await Dio().post(apiEndpoint + '/person/add/regis',
+          data: {
+            "nationalID": nationalID,
+            "laserID": laserID,
+            "phoneNumber": phoneNumber
+          },
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+      _refCode = response.data['refCode'];
+      _number = phoneNumber;
+      print('Provider Personregist');
+      print(_number);
+
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+    }
+  }
+
   Future<void> getName() async {
     try {
       final response = await Dio().get(apiEndpoint + '/appointment/landing',
           options: Options(headers: {"Authorization": "Bearer " + token}));
-      print(response.data);
+      print(response.data['firstname_en']);
       _userInfo = UserInfo(
           firstname_en: response.data['firstname_en'],
           firstname_th: response.data['firstname_th'],
@@ -232,7 +373,6 @@ class AuthenicateProvider with ChangeNotifier {
                   maxAge: response.data['appointment']['maxAge'],
                   minAge: response.data['appointment']['minAge'],
                   name: response.data['appointment']['name']));
-      print(response.data['firstname_en']);
       notifyListeners();
     } on DioError catch (error) {
       throw HttpException(getUserException);
@@ -281,7 +421,7 @@ class AuthenicateProvider with ChangeNotifier {
           queryParameters: {"nationalID": nationalID, "laserID": laserID});
       _personal = Personal(
           en: Information(
-              date_of_birth: DateTime.now(),
+              date_of_birth: DateTime.parse(response.data['en']['dateTime']),
               firstName: response.data['en']['firstname'],
               gender: response.data['en']['gender'],
               lastName: response.data['en']['lastname'],
@@ -290,7 +430,7 @@ class AuthenicateProvider with ChangeNotifier {
           id: response.data['id'],
           laserId: response.data['laserID'],
           th: Information(
-              date_of_birth: DateTime.now(),
+              date_of_birth: DateTime.parse(response.data['th']['dateTime']),
               firstName: response.data['th']['firstname'],
               gender: response.data['th']['firstname'],
               lastName: response.data['th']['firstname'],
