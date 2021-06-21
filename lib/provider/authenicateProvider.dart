@@ -140,6 +140,13 @@ class AuthenicateProvider with ChangeNotifier {
   String _refCode = "";
   String _refCodeAddPerson = "";
   String _token = "";
+  Location location = Location(
+      id: '',
+      name_en: '',
+      name_th: '',
+      priority: 0,
+      province_en: '',
+      province_th: '');
   List<Hospital> _hospital = [];
   List<Person> _person = [];
   Personal _personal = Personal(
@@ -197,6 +204,10 @@ class AuthenicateProvider with ChangeNotifier {
 
   List<Hospital> get hospital {
     return _hospital;
+  }
+
+  Location get locationUser {
+    return location;
   }
 
   List<Person> get person {
@@ -304,6 +315,50 @@ class AuthenicateProvider with ChangeNotifier {
           data: {"nationalID": nationalID, "phoneNumber": phoneNumber});
       _refCode = response.data['refCode'];
       _number = phoneNumber;
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+    }
+  }
+
+  Future<void> getLocation() async {
+    print('Hello');
+    try {
+      final response = await Dio().get(apiEndpoint + '/location/prefered',
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+      location = Location(
+          id: response.data['_id'],
+          name_en: response.data['name_en'],
+          name_th: response.data['name_th'],
+          priority: response.data['priority'],
+          province_en: response.data['province_en'],
+          province_th: response.data['province_th']);
+          print(location);
+          print(response.data['name_en']);
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+    }
+  }
+  Future<void> updateLocation(String locationID) async {
+    try {
+      final response = await Dio().patch(apiEndpoint + '/location/prefered',
+      data: {'locationId':locationID},
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+      location = Location(
+          id: response.data['_id'],
+          name_en: response.data['name_en'],
+          name_th: response.data['name_th'],
+          priority: response.data['priority'],
+          province_en: response.data['province_en'],
+          province_th: response.data['province_th']);
+          print('Update');
+          print(location);
+          print(response.data['name_en']);
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
@@ -483,6 +538,17 @@ class AuthenicateProvider with ChangeNotifier {
       if (error.response!.statusCode == 400) {
         throw HttpException(otpException);
       }
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.clear();
+      this._token = "";
+    } catch (error) {
+      // For future error handling
+      print(error);
     }
   }
 }
