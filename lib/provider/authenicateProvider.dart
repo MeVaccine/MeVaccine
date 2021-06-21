@@ -485,4 +485,15 @@ class AuthenicateProvider with ChangeNotifier {
       }
     }
   }
+
+  Future<void> logout() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.clear();
+      this._token = "";
+    } catch (error) {
+      // For future error handling
+      print(error);
+    }
+  }
 }
