@@ -7,6 +7,7 @@ class SmallButton extends StatelessWidget {
   final Function onPressed;
   final bool isLoading;
   final Color color;
+  final Color colorFont;
   final double width;
   final double height;
   SmallButton(
@@ -14,6 +15,7 @@ class SmallButton extends StatelessWidget {
       required this.onPressed,
       this.isLoading = false,
       this.color = primary01,
+      this.colorFont = white,
       this.width = double.infinity,
       this.height = kSizeS});
   @override

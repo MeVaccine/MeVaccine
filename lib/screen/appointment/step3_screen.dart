@@ -16,54 +16,55 @@ class Step3 extends StatelessWidget {
   static const routeName = '/step3';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      children: [
-        LayoutAppointment(
-          text: 'Select Date and time',
-          description: 'which you want to.',
-          step: '3 of 4',
-          value: 0.3,
-        ),
-        Container(
-          height: 490,
-          child: Column(
-            children: [
-              kSizedBoxVerticalS,
-              RegisterTextForm(
-                  textEditingController: _nothing,
-                  label: 'Select Date',
-                  type: RegsiterTextFormType.calendar,
-                  active: RegisterActiveType.disable),
-              ListTimeTable()
-            ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: kSizeS),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SmallButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(Step2.routeName);
-                },
-                text: 'Previous',
-                color: accent02,
-                width: 120,
-              ),
-              SmallButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(Step4.routeName);
-                },
-                text: 'Next',
-                color: accent02,
-                width: 120,
-              ),
-            ],
-          ),
-        ),
-      ],
-    ));
+    // return Scaffold(
+    //     body: Column(
+    //   children: [
+    //     LayoutAppointment(
+    //       text: 'Select Date and time',
+    //       description: 'which you want to.',
+    //       step: '3 of 4',
+    //       value: 0.75,
+    //     ),
+    return Container(
+      height: 490,
+      child: Column(
+        children: [
+          kSizedBoxVerticalS,
+          RegisterTextForm(
+              textEditingController: _nothing,
+              label: 'Select Date',
+              type: RegsiterTextFormType.calendar,
+              active: RegisterActiveType.disable),
+          ListTimeTable()
+        ],
+      ),
+    );
+    //     ),
+    //     Container(
+    //       margin: EdgeInsets.symmetric(horizontal: kSizeS),
+    //       child: Row(
+    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //         children: [
+    //           SmallButton(
+    //             onPressed: () {
+    //               Navigator.of(context).pushNamed(Step2.routeName);
+    //             },
+    //             text: 'Previous',
+    //             color: accent02,
+    //             width: 120,
+    //           ),
+    //           SmallButton(
+    //             onPressed: () {
+    //               Navigator.of(context).pushNamed(Step4.routeName);
+    //             },
+    //             text: 'Next',
+    //             color: accent02,
+    //             width: 120,
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ],
+    // ));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
 import 'package:provider/provider.dart';
 
 import './screen/symptom_form_screen.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
           primaryColor: primary01,
         ),
         //หน้าแรกสุด
-        home: LoginScreen(),
+        home: LandingScreen(),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
           VerificationChangeNumber.routeName:(ctx)=>VerificationChangeNumber(),
@@ -72,7 +73,7 @@ class MyApp extends StatelessWidget {
           HistoryVaccinateScreen.routeName: (ctx) => HistoryVaccinateScreen(),
           VerificationAddPerson.routeName: (ctx) => VerificationAddPerson(),
           AddPersonRegister.routeName: (ctx) => AddPersonRegister(),
-          Step1.routeName: (ctx) => Step1(),
+          Step1.routeName: (ctx) => Mainstep(),
           AddPerson.routeName: (ctx) => AddPerson(),
           RegisterScreen.routeName: (ctx) => RegisterScreen(),
           RegisterDetailScreen.routeName: (ctx) => RegisterDetailScreen(),
