@@ -5,16 +5,17 @@ import '../person/card_person_appoint.dart';
 
 class AddPerson {
   final int id;
-  final String name;
-  AddPerson({required this.id, required this.name});
+  final String fistname;
+  final String lastname;
+  AddPerson({required this.id, required this.fistname, required this.lastname});
 }
 
 class ListPerson extends StatelessWidget {
   List<AddPerson> person = [
-    AddPerson(id: 1, name: 'Sethanant Pipatpakorn'),
-    AddPerson(id: 2, name: 'Kavisara Srisuwatcharee'),
-    AddPerson(id: 3, name: 'Thanakorn Aunglunchuchod'),
-    AddPerson(id: 4, name: 'Wisarut Kitticharoenphonngam'),
+    AddPerson(id: 1, fistname: 'Sethanant', lastname: ' Pipatpakorn'),
+    AddPerson(id: 2, fistname: 'Kavisara', lastname: ' Srisuwatcharee'),
+    AddPerson(id: 3, fistname: 'Thanakorn', lastname: ' Aunglunchuchod'),
+    AddPerson(id: 4, fistname: 'Wisarut', lastname: ' Aunglunchuchod'),
   ];
   // var person = [
   //   'Sethanant Pipatpakorn',
@@ -32,7 +33,7 @@ class ListPerson extends StatelessWidget {
         child: ListView(
           children: person
               .map(
-                (el) => CardPersonAppoint(text: el.name),
+                (el) => CardPersonAppoint(text: el.fistname + el.lastname),
               )
               .toList(),
         ));

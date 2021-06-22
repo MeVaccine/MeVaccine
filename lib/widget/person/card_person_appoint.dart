@@ -35,7 +35,7 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
             style: const TextStyle(color: accent01),
           ),
           value: _checked,
-          activeColor: const Color(0xFF6294AF),
+          activeColor: accent01,
           onChanged: (bool? value) {
             setState(() {
               _checked = value!;
