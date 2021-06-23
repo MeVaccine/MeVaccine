@@ -27,4 +27,37 @@ abstract class Languages {
   // Register Screen
   String get registerHeadingLabel;
   String get laserIDInputLabel;
+  String get invalidPhoneNumberErrorMessage;
+
+  // Landing Screen
+  String get greetingMessage;
+  String get scheduleHeading;
+  String get yourAppointmentHeading;
+  String get menuHeading;
+  String get newAppointmentMenuLebel;
+  String get myAppointmentMenuLebel;
+  String get personMenuLebel;
+  String get symptomFormMenuLebel;
+
+  // My Appointments Screen
+  String get noAppointmentMessage;
+  String get myAppointmentHeading;
+
+  // Person Screen
+  String get yourPersonHeading;
+  String get personDescription;
+  String get personAppointmentsButtonLabel;
+  String get personSymptomFormButtonLabel;
+  String get addPersonHeading;
+
+  // Symptom Assessment Form Screen
+  String get symptomFormHeading;
+  String get isSymptomQuestion;
+  String get isHeadacheQuestion;
+  String get isNauseaQuestion;
+  String get isFatigueQuestion;
+  String get isChillsQuestion;
+  String get isMusclePainQuestion;
+  String get isTirednessQuestion;
+  String get isOtherQuestion;
 }
