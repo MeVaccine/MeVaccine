@@ -18,6 +18,7 @@ abstract class Languages {
   String get cancelButtonLabel;
   String get confirmButtonLabel;
   String get deleteButtonLabel;
+  String get updateButtonLabel;
   // Common Input Label
   String get nationalIDInputLabel;
   String get phoneNumberInputLabel;
@@ -90,4 +91,13 @@ abstract class Languages {
   String get selectVaccineMessage;
   String get confirmScheduleMessage;
   String numberOfPeople(int numberOfPeople);
+
+  // Settings Screen
+  String get settingsHeading;
+  String get changeLocationButtonLabel;
+  String get changePhoneNumberButtonLabel;
+  String get changeLanguageButtonLabel;
+  String get logoutButtonLabel;
+  String get changeLocationHeading;
+  String get invalidProvinceOrLocationErrorMessage;
 }
