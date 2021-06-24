@@ -12,6 +12,7 @@ class CardPersonAppoint extends StatefulWidget {
 }
 
 class _CardPersonAppointState extends State<CardPersonAppoint> {
+  bool _checked = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,11 +34,12 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
             widget.text,
             style: const TextStyle(color: accent01),
           ),
-          value: timeDilation != 1.0,
+          value: _checked,
           activeColor: const Color(0xFF6294AF),
           onChanged: (bool? value) {
             setState(() {
-              timeDilation = value! ? 1.15 : 1.0;
+              _checked = value!;
+              print(_checked);
             });
           },
         ));

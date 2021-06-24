@@ -10,7 +10,7 @@ import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/layout/errorDailog.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:provider/provider.dart';
-import '../person_screen.dart';
+import '../landing_screen.dart';
 
 class VerificationAddPerson extends StatefulWidget {
   static const routeName = '/verificationAddPerson';
@@ -39,7 +39,7 @@ class _VerificationAddPersonState extends State<VerificationAddPerson> {
           _isLoading = false;
         });
         Navigator.of(context)
-            .popUntil(ModalRoute.withName(PersonScreen.routeName));
+            .popUntil(ModalRoute.withName(LandingScreen.routeName));
       } on HttpException catch (error) {
         setState(() => _isLoading = false);
         showErrorDialog(context: context, text: error.message);

@@ -11,44 +11,45 @@ class Step1 extends StatelessWidget {
   static const routeName = '/step1';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      children: [
-        LayoutAppointment(
-          text: 'Select Person',
-          description: 'who goes to vacinate together',
-          step: '1 of 4',
-          value: 0.3,
-        ),
-        Container(
-          height: 490,
-          child: Column(
-            children: [
-              kSizedBoxVerticalS,
-              ProfileCard(),
-              // Center(
-              //   child: EmptyPerson(),
-              // ),
-              kSizedBoxVerticalS,
-              ListPerson(),
-            ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: kSizeS),
-          child: Align(
-            alignment: Alignment.topRight,
-            child: SmallButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(Step2.routeName);
-              },
-              text: 'Next',
-              color: accent02,
-              width: 120,
-            ),
-          ),
-        )
-      ],
-    ));
+    // return Scaffold(
+    //     body: Column(
+    //   children: [
+    //     LayoutAppointment(
+    //       text: 'Select Person',
+    //       description: 'who goes to vacinate together',
+    //       step: '1 of 4',
+    //       value: 0.25,
+    //     ),
+    return Container(
+      height: 490,
+      child: Column(
+        children: [
+          kSizedBoxVerticalS,
+          ProfileCard(),
+          // Center(
+          //   child: EmptyPerson(),
+          // ),
+          kSizedBoxVerticalS,
+          ListPerson(),
+        ],
+      ),
+    );
+    // ),
+    //     Container(
+    //       margin: EdgeInsets.symmetric(horizontal: kSizeS),
+    //       child: Align(
+    //         alignment: Alignment.topRight,
+    //         child: SmallButton(
+    //           onPressed: () {
+    //             Navigator.of(context).pushNamed(Step2.routeName);
+    //           },
+    //           text: 'Next',
+    //           color: accent02,
+    //           width: 120,
+    //         ),
+    //       ),
+    //     )
+    //   ],
+    // ));
   }
 }

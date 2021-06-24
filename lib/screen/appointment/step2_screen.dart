@@ -27,116 +27,114 @@ class _Step2State extends State<Step2> {
   String selectedValue = "";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SingleChildScrollView(
+    // return Scaffold(
+    //     body: SingleChildScrollView(
+    //   child: Column(
+    //     children: [
+    //       LayoutAppointment(
+    //         text: 'Select vaccine location',
+    //         description: 'which you want to go.',
+    //         step: '2 of 4',
+    //         value: 0.5,
+    //       ),
+    return Container(
+      height: 490,
       child: Column(
         children: [
-          LayoutAppointment(
-            text: 'Select vaccine location',
-            description: 'which you want to go.',
-            step: '2 of 4',
-            value: 0.3,
-          ),
+          kSizedBoxVerticalS,
+          ListVaccine(),
+          kSizedBoxVerticalM,
           Container(
-            height: 490,
-            child: Column(
-              children: [
-                kSizedBoxVerticalS,
-                ListVaccine(),
-                kSizedBoxVerticalM,
-                Container(
-                    margin: EdgeInsets.only(right: 200),
-                    child: MainText('Location', text_type.regular,
-                        kFontSizeHeadline3, primary01)),
-                kSizedBoxVerticalXXS,
-                Container(
-                  width: 300,
-                  child: RegisterTextForm(
-                    textEditingController: _nothing,
-                    label: 'Province',
-                    type: RegsiterTextFormType.nothing,
-                    active: RegisterActiveType.enable,
-                  ),
-                ),
-                //SerachAbleDropDown  ยังไม่ได้ทำ searchFN
-                Container(
-                  width: 330,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: kSizeS, vertical: kSizeS),
-                    child: SearchableDropdown.single(
-                      items: data.map((e) {
-                        return DropdownMenuItem<dynamic>(
-                          child: Text(e),
-                        );
-                      }).toList(),
-                      hint: 'Selected',
-                      isCaseSensitiveSearch: true,
-                      searchHint: const Text('Select your hospital'),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedValue = value;
-                        });
-                      },
-                      isExpanded: true,
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      FeatherIcons.alertTriangle,
-                      color: primary01,
-                      size: 16,
-                    ),
-                    kSizedBoxHorizontalXS,
-                    Container(
-                        width: 280,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('If you want to change the location.',
-                                style:
-                                    TextStyle(color: primary01, fontSize: 10)),
-                            Text(
-                                'You can be select text form that you want to go.',
-                                style:
-                                    TextStyle(color: primary01, fontSize: 10)),
-                          ],
-                        )),
-                  ],
-                ),
-                kSizedBoxVerticalM,
-              ],
+              margin: EdgeInsets.only(right: 200),
+              child: MainText('Location', text_type.regular, kFontSizeHeadline3,
+                  primary01)),
+          kSizedBoxVerticalXXS,
+          Container(
+            width: 300,
+            child: RegisterTextForm(
+              textEditingController: _nothing,
+              label: 'Province',
+              type: RegsiterTextFormType.nothing,
+              active: RegisterActiveType.enable,
             ),
           ),
+          //SerachAbleDropDown  ยังไม่ได้ทำ searchFN
           Container(
-            margin: EdgeInsets.symmetric(horizontal: kSizeS),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SmallButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(Step1.routeName);
-                  },
-                  text: 'Previous',
-                  color: accent02,
-                  width: 120,
-                ),
-                SmallButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(Step3.routeName);
-                  },
-                  text: 'Next',
-                  color: accent02,
-                  width: 120,
-                ),
-              ],
+            width: 330,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: kSizeS, vertical: kSizeS),
+              child: SearchableDropdown.single(
+                items: data.map((e) {
+                  return DropdownMenuItem<dynamic>(
+                    child: Text(e),
+                  );
+                }).toList(),
+                hint: 'Selected',
+                isCaseSensitiveSearch: true,
+                searchHint: const Text('Select your hospital'),
+                onChanged: (value) {
+                  setState(() {
+                    selectedValue = value;
+                  });
+                },
+                isExpanded: true,
+              ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                FeatherIcons.alertTriangle,
+                color: primary01,
+                size: 16,
+              ),
+              kSizedBoxHorizontalXS,
+              Container(
+                  width: 280,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('If you want to change the location.',
+                          style: TextStyle(color: primary01, fontSize: 10)),
+                      Text('You can be select text form that you want to go.',
+                          style: TextStyle(color: primary01, fontSize: 10)),
+                    ],
+                  )),
+            ],
+          ),
+          kSizedBoxVerticalM,
         ],
       ),
-    ));
+    );
+    //       ),
+    //       Container(
+    //         margin: EdgeInsets.symmetric(horizontal: kSizeS),
+    //         child: Row(
+    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //           children: [
+    //             SmallButton(
+    //               onPressed: () {
+    //                 Navigator.of(context).pushNamed(Step1.routeName);
+    //               },
+    //               text: 'Previous',
+    //               color: accent02,
+    //               width: 120,
+    //             ),
+    //             SmallButton(
+    //               onPressed: () {
+    //                 Navigator.of(context).pushNamed(Step3.routeName);
+    //               },
+    //               text: 'Next',
+    //               color: accent02,
+    //               width: 120,
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    // ));
   }
 }
