@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/provider/addPerson.dart';
+import 'package:mevaccine/widget/layout/list_person.dart';
+import 'package:provider/provider.dart';
 
 class CardDropdownPerson extends StatefulWidget {
-  CardDropdownPerson({Key? key}) : super(key: key);
-
+  final String text;
+  CardDropdownPerson({required this.text});
   @override
   _CardDropdownPersonState createState() => _CardDropdownPersonState();
 }
@@ -29,7 +32,7 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Kavisara Srisuwatcharee',
+            widget.text,
             style: const TextStyle(color: primary01),
           ),
           Icon(

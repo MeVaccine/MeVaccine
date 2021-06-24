@@ -14,25 +14,23 @@ class Step1 extends StatelessWidget {
   static const routeName = '/step1';
   @override
   Widget build(BuildContext context) {
-    Provider.of<PersonProvider>(context, listen: false).getPerson();
-    return Consumer<PersonProvider>(
-      builder: (context, authen, child) => Container(
-        height: 490,
-        child: Column(
-          children: [
-            kSizedBoxVerticalS,
-            ProfileCard(
-              text: 'Kavisara Srisuwatcharee',
-            ),
-            // Center(
-            //   child: EmptyPerson(),
-            // ),
-            // if(authen.isPersonEmpty)
-            // EmptyPerson()
-            // else
-            ListPerson(),
-          ],
-        ),
+    // Provider.of<PersonProvider>(context, listen: false).getPerson();
+    return Container(
+      height: 490,
+      child: Column(
+        children: [
+          kSizedBoxVerticalS,
+          ProfileCard(
+            text: 'Kavisara Srisuwatcharee',
+          ),
+          // Center(
+          //   child: EmptyPerson(),
+          // ),
+          // if(authen.isPersonEmpty)
+          // EmptyPerson()
+          // else
+          ListPerson(),
+        ],
       ),
     );
   }
