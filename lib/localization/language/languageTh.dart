@@ -5,27 +5,27 @@ import 'package:mevaccine/localization/language/languages.dart';
 class LanguageTH extends Languages {
   // Common Button Label
   @override
-  String get doneButtonLabel => "";
+  String get doneButtonLabel => "ยืนยัน";
   @override
-  String get okButtonLabel => "";
+  String get okButtonLabel => "โอเค";
   @override
   String get loginButtonLabel => "เข้าสู่ระบบ";
   @override
   String get registerButtonLabel => "ลงทะเบียน";
   @override
-  String get submitButtonLabel => "";
+  String get submitButtonLabel => "ยืนยัน";
   @override
-  String get nextButtonLabel => "";
+  String get nextButtonLabel => "ถัดไป";
   @override
-  String get previousButtonLabel => "";
+  String get previousButtonLabel => "ก่อนหน้า";
   @override
-  String get cancelButtonLabel => "";
+  String get cancelButtonLabel => "ยกเลิก";
   @override
-  String get confirmButtonLabel => "";
+  String get confirmButtonLabel => "ยืนยัน";
   @override
-  String get deleteButtonLabel => "";
+  String get deleteButtonLabel => "ลบ";
   @override
-  String get updateButtonLabel => "";
+  String get updateButtonLabel => "อัพเดท";
   // Common Input Label
   @override
   String get nationalIDInputLabel => "เลขประจำตัวประชาชน";
@@ -39,18 +39,19 @@ class LanguageTH extends Languages {
   String get invalidNationalIDOrPhoneErrorMessage => "";
   // Verification Code Screen
   @override
-  String get verificationCodeHeadingLabel => "";
+  String get verificationCodeHeadingLabel => "รหัสยืนยัน";
   @override
-  String get verificationCodeInputLabel => "";
+  String get verificationCodeInputLabel => "รหัส OTP 6 หลัก";
   @override
-  String verificationCodeTextMessage(String phoneNumber, String refCode) => "";
+  String verificationCodeTextMessage(String phoneNumber, String refCode) =>
+      "กรอกเลข OTP 6 หลัก ที่ท่านได้รับจากเบอร์โทรศัพท์ $phoneNumber RefCode: $refCode";
   @override
   String get emptyVerificationCodeErrorMessage => "";
   // Register Screen
   @override
-  String get registerHeadingLabel => "";
+  String get registerHeadingLabel => "ลงทะเบียน";
   @override
-  String get laserIDInputLabel => "";
+  String get laserIDInputLabel => "รหัสหลังบัตรประชาชน";
   @override
   String get invalidNationalOrLaserIDErrorMessage => "";
   @override
@@ -58,119 +59,123 @@ class LanguageTH extends Languages {
 
   // Landing Screen
   @override
-  String get greetingMessage => "";
+  String get greetingMessage => "สวัสดีตอนเช้า";
   @override
-  String get scheduleHeading => "";
+  String get scheduleHeading => "นัดหมาย";
   @override
-  String get yourAppointmentHeading => "";
+  String get yourAppointmentHeading => "นัดหมายของคุณ";
   @override
-  String get menuHeading => "";
+  String get menuHeading => "เมนู";
   @override
-  String get newAppointmentMenuLebel => "";
+  String get newAppointmentMenuLebel => "จองนัดหมายฉีดวัคซีน";
   @override
-  String get myAppointmentMenuLebel => "";
+  String get myAppointmentMenuLebel => "นัดหมายของคุณ";
   @override
-  String get personMenuLebel => "";
+  String get personMenuLebel => "ผู้คนของคุณ";
   @override
-  String get symptomFormMenuLebel => "";
+  String get symptomFormMenuLebel => "แบบประเมินอาการหลังการฉีดวัคซีน";
 
   // My Appointments Screen
   @override
-  String get noAppointmentMessage => "";
+  String get noAppointmentMessage =>
+      "คุณยังไม่มีการนัดหมายเข้ารับวัคซีน คุณสามารถเพิ่มนัดหมายได้จากหน้าแรก";
   @override
-  String get myAppointmentHeading => "";
+  String get myAppointmentHeading => "นัดหมายของคุณ";
 
   // Person Screen
   @override
-  String get yourPersonHeading => "";
+  String get yourPersonHeading => "ผู้คนของคุณ";
   @override
-  String get noPersonDescription => "";
+  String get noPersonDescription =>
+      "คุณสามารถที่จะเพิ่มผู้อื่น โดยเลือกปุ่ม + ด้านล่าง เพื่อนัดหมายการรับวัคซีนในวันและเวลาเดียวกัน";
   @override
-  String get personAppointmentsButtonLabel => "";
+  String get personAppointmentsButtonLabel => "นัดหมายการรับวีคซีน";
   @override
-  String get personSymptomFormButtonLabel => "";
+  String get personSymptomFormButtonLabel => "แบบประเมินอาการหลังการฉีดวัคซีน ";
   @override
-  String get addPersonHeading => "";
+  String get addPersonHeading => "เพิ่งผู้คน";
   @override
   String get deletePersonConfirmMessage => "";
 
   // Symptom Assessment Form Screen
   @override
-  String get symptomFormHeading => "";
+  String get symptomFormHeading => "แบบประเมินอาการหลังการฉีดวัคซีน";
   @override
-  String get isSymptomQuestion => "";
+  String get isSymptomQuestion =>
+      "คุณมีอาการไม่พึงประสงค์หลังจากการฉีดวัคซีนหรือไม่";
   @override
-  String get isHeadacheQuestion => "";
+  String get isHeadacheQuestion => "ปวดศีรษะ";
   @override
-  String get isNauseaQuestion => "";
+  String get isNauseaQuestion => "คลื่นไส้ อาเจียน";
   @override
-  String get isFatigueQuestion => "";
+  String get isFatigueQuestion => "อ่อนเพลีย";
   @override
-  String get isChillsQuestion => "";
+  String get isChillsQuestion => "ไข้ หนาวสั่น";
   @override
-  String get isMusclePainQuestion => "";
+  String get isMusclePainQuestion => "ปวดเมื่อยกล้ามเนื้อ";
   @override
-  String get isTirednessQuestion => "";
+  String get isTirednessQuestion => "เหนื่อย";
   @override
-  String get isOtherQuestion => "";
+  String get isOtherQuestion => "อาการอื่น ๆ";
   @override
-  String get yesMessageLabel => "";
+  String get yesMessageLabel => "ใช่";
   @override
-  String get noMessageLabel => "";
+  String get noMessageLabel => "ไม่ใช่";
   @override
   String get emptySymptomFormErrorMessage => "";
 
   // New Appointment Step 1 Screen
   @override
-  String get selectPersonHeading => "";
+  String get selectPersonHeading => "เลือกคนที่ต้องการรับวัคซีน";
   @override
-  String get selectPersonMessage => "";
+  String get selectPersonMessage => "ใครบ้างที่ต้องการรับวัคซีนในครั้งนี้";
   // New Appointment Step 2 Screen
   @override
-  String get selectLocationHeading => "";
+  String get selectLocationHeading => "เลือกสถานที่รับวัคซีน";
   @override
-  String get selectLocationMessage => "";
+  String get selectLocationMessage => "สถานที่ที่สะดวกกับคุณ";
   @override
-  String get locationHeading => "";
+  String get locationHeading => "สถานที่รับวัคซีน";
   @override
-  String get changingLocationMessage => "";
+  String get changingLocationMessage =>
+      "คุณสามารถเปลี่ยนสถานที่ได้ โดยสามารถเลือกได้จากจังหวัดที่ต้องการ";
   // New Appointment Step 3 Screen
   @override
-  String get selectDateTimeHeading => "";
+  String get selectDateTimeHeading => "เลือกวันและเวลา";
   @override
-  String get selectDateTimeMessage => "";
+  String get selectDateTimeMessage => "วันและเวลาที่สะดวกสำหรับคุณ";
   @override
-  String get dateInputLabel => "";
+  String get dateInputLabel => "เลือกวันที่";
   @override
   String get noDateTimeErrorMessage => "";
   // New Appointment Step 4 Screen
   @override
-  String get selectVaccineHeading => "";
+  String get selectVaccineHeading => "เลือกวัคซีน";
   @override
-  String get selectVaccineMessage => "";
+  String get selectVaccineMessage => "เลือกวัคซีนที่คุณมั่นใจ";
   @override
-  String get confirmScheduleMessage => "";
+  String get confirmScheduleMessage =>
+      "คุณต้องการที่จะนัดหมายการฉีดวัคซีน ตามวันและเวลาที่ท่านได้เลือกไว้";
   @override
-  String numberOfPeople(int numberOfPeople) => "";
+  String numberOfPeople(int numberOfPeople) => "$numberOfPeople ท่าน";
 
   // Settings Screen
   @override
-  String get settingsHeading => "";
+  String get settingsHeading => "ตั้งค่า";
   @override
-  String get changeLocationButtonLabel => "";
+  String get changeLocationButtonLabel => "เปลี่ยนสถานที่ฉีดวัคซีนตั้งต้น";
   @override
-  String get changePhoneNumberButtonLabel => "";
+  String get changePhoneNumberButtonLabel => "เปลี่ยนเบอร์โทรศัพท์";
   @override
-  String get changeLanguageButtonLabel => "";
+  String get changeLanguageButtonLabel => "เปลี่ยนภาษา";
   @override
-  String get logoutButtonLabel => "";
+  String get logoutButtonLabel => "ออกจากระบบ";
   @override
-  String get changeLocationHeading => "";
+  String get changeLocationHeading => "เปลี่ยนสถานที่ฉีดวัคซีนตั้งต้น";
   @override
   String get invalidProvinceOrLocationErrorMessage => "";
   @override
-  String get changePhoneNumberHeading => "Change Phone Number";
+  String get changePhoneNumberHeading => "เปลี่ยนเบอร์โทรศัพท์";
   @override
-  String get invalidPhoneNumberErrorMessage =>
-      "Please enter a valid phone number";
+  String get invalidPhoneNumberErrorMessage => "โปรดใส่เบอร์โทรศัพท์ที่ถูกต้อง";
 }
