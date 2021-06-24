@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
           primaryColor: primary01,
         ),
         //หน้าแรกสุด
-        home: LoginScreen(),
+        home: LandingScreen(),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
           VerificationChangeNumber.routeName: (ctx) =>
