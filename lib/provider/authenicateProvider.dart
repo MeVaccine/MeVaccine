@@ -315,7 +315,6 @@ class AuthenicateProvider with ChangeNotifier {
   }
 
   Future<void> getLocation() async {
-    print('Hello');
     try {
       final response = await Dio().get(apiEndpoint + '/location/prefered',
           options: Options(headers: {"Authorization": "Bearer " + token}));

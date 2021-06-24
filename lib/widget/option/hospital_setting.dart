@@ -104,10 +104,13 @@ class _HospitalSettingState extends State<HospitalSetting> {
             .id
         : updateLocation;
 
-    print(locationID);
     try {
       await Provider.of<AuthenicateProvider>(context, listen: false)
-          .updateLocation(locationID);
+          .updateLocation(noChange
+              ? Provider.of<AuthenicateProvider>(context, listen: false)
+                  .location
+                  .id
+              : locationID);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(SettingScreen.routeName));
     } catch (error) {}
@@ -115,6 +118,7 @@ class _HospitalSettingState extends State<HospitalSetting> {
 
   bool isProvinceChange = false;
   bool isHospitalChange = false;
+  bool noChange = true;
   String selectedValue = "";
   String selectedHospital = "";
   String updateLocation = '';
@@ -157,6 +161,7 @@ class _HospitalSettingState extends State<HospitalSetting> {
                           setState(() {
                             isProvinceChange = true;
                             selectedValue = value;
+                            noChange = false;
                           });
                         },
                         isExpanded: true,
@@ -184,6 +189,7 @@ class _HospitalSettingState extends State<HospitalSetting> {
                           setState(() {
                             isHospitalChange = true;
                             selectedHospital = value;
+                            noChange = false;
                           });
                           for (int i = 0; i < authen.hospital.length; i++) {
                             if (selectedHospital ==
