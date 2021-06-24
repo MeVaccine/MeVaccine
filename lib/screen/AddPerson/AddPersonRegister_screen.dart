@@ -30,7 +30,6 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
   String hospitalID = "";
 
   Future<void> personRegist() async {
-    print(_phoneNumber.text);
     setState(() {
       _isLoading = true;
     });
@@ -38,7 +37,6 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
     try {
       await Provider.of<AuthenicateProvider>(context, listen: false)
           .personRegister(nationID, laserID, phoneNumber);
-          print('Hello');
       setState(() {
         _isLoading = false;
       });

@@ -55,9 +55,6 @@ class _RegisterFormState extends State<RegisterForm> {
         setState(() {
           _isLoading = false;
         });
-        print('regist-form');
-        print(Provider.of<AuthenicateProvider>(context, listen: false)
-                .refCodeAddPerson);
         if (Provider.of<AuthenicateProvider>(context, listen: false)
                 .refCodeAddPerson !=
             "") {
