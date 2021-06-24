@@ -28,6 +28,7 @@ import './provider/authenicateProvider.dart';
 import './provider/personProvider.dart';
 import './provider/userProvider.dart';
 import './screen/Setting/verification_changeNumber.dart';
+import './localization/locale_constant.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -57,9 +58,22 @@ class _MyAppState extends State<MyApp> {
   Locale _locale = Locale('th');
 
   void setLocale(Locale locale) {
+    print(this._locale);
     setState(() {
       _locale = locale;
     });
+    print('hi');
+    print(this._locale);
+  }
+
+  @override
+  void didChangeDependencies() async {
+    getLocale().then((locale) {
+      setState(() {
+        _locale = locale;
+      });
+    });
+    super.didChangeDependencies();
   }
 
   @override
@@ -120,15 +134,15 @@ class _MyAppState extends State<MyApp> {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        localeResolutionCallback: (locale, supportedLocales) {
-          for (var supportedLocale in supportedLocales) {
-            if (supportedLocale.languageCode == locale?.languageCode &&
-                supportedLocale.countryCode == locale?.countryCode) {
-              return supportedLocale;
-            }
-          }
-          return supportedLocales.first;
-        },
+        // localeResolutionCallback: (locale, supportedLocales) {
+        //   for (var supportedLocale in supportedLocales) {
+        //     if (supportedLocale.languageCode == locale?.languageCode &&
+        //         supportedLocale.countryCode == locale?.countryCode) {
+        //       return supportedLocale;
+        //     }
+        //   }
+        //   return supportedLocales.first;
+        // },
       ),
     );
   }
