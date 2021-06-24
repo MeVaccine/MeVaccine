@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mevaccine/localization/localizations_delegate.dart';
 import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -31,10 +33,35 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
-  runApp(MyApp());
+  runApp(MyMainApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyMainApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MyApp();
+  }
+}
+
+class MyApp extends StatefulWidget {
+  static void setLocale(BuildContext context, Locale newLocale) {
+    var state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale _locale = Locale('th');
+
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -62,10 +89,11 @@ class MyApp extends StatelessWidget {
           primaryColor: primary01,
         ),
         //หน้าแรกสุด
-        home: LandingScreen(),
+        home: LoginScreen(),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
-          VerificationChangeNumber.routeName:(ctx)=>VerificationChangeNumber(),
+          VerificationChangeNumber.routeName: (ctx) =>
+              VerificationChangeNumber(),
           SymptomFormScreen.routeName: (ctx) => SymptomFormScreen(),
           NumberSettingScreen.routeName: (ctx) => NumberSettingScreen(),
           HospitalSettingScreen.routeName: (ctx) => HospitalSettingScreen(),
@@ -83,6 +111,23 @@ class MyApp extends StatelessWidget {
           Step2.routeName: (ctx) => Step2(),
           Step3.routeName: (ctx) => Step3(),
           Step4.routeName: (ctx) => Step4(),
+        },
+        supportedLocales: [Locale('th'), Locale('en')],
+        locale: _locale,
+        localizationsDelegates: [
+          AppLocalizationsDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        localeResolutionCallback: (locale, supportedLocales) {
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale?.languageCode &&
+                supportedLocale.countryCode == locale?.countryCode) {
+              return supportedLocale;
+            }
+          }
+          return supportedLocales.first;
         },
       ),
     );

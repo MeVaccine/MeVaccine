@@ -5,7 +5,7 @@ abstract class Languages {
     return Localizations.of<Languages>(context, Languages);
   }
 
-  String get appName;
+  // String get appName;
 
   // Common Button Label
   String get doneButtonLabel;
