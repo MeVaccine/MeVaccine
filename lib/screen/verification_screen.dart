@@ -30,7 +30,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
       });
       String otp = _code.text;
       try {
-        
         await Provider.of<AuthenicateProvider>(context, listen: false)
             .verification(otp);
         setState(() {
@@ -79,8 +78,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       padding:
                           const EdgeInsets.symmetric(horizontal: kSizeS * 1.3),
                       alignment: Alignment.centerLeft,
-                      child: Text(authen.numberUser +
-                          " refCode OTP is :${authen.refCode}")),
+                      child: Text(
+                          "${authen.numberUser} refCode OTP is :${authen.refCode}")),
                   kSizedBoxM,
                   PrimaryButton(
                     text: 'Done',
