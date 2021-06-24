@@ -7,18 +7,24 @@ abstract class Languages {
 
   String get appName;
 
-  // Common Input Button Label
+  // Common Button Label
   String get doneButtonLabel;
   String get okButtonLabel;
   String get loginButtonLabel;
   String get registerButtonLabel;
+  String get submitButtonLabel;
+  String get nextButtonLabel;
+  String get previousButtonLabel;
+  String get cancelButtonLabel;
+  String get confirmButtonLabel;
+  String get deleteButtonLabel;
   // Common Input Label
   String get nationalIDInputLabel;
   String get phoneNumberInputLabel;
 
   // Login Screen
   String get loginHeadingLabel;
-  String get invalidNationalIDErrorMessage;
+  String get invalidNationalIDOrPhoneErrorMessage;
   // Verification Code Screen
   String get verificationCodeHeadingLabel;
   String get verificationCodeInputLabel;
@@ -27,7 +33,8 @@ abstract class Languages {
   // Register Screen
   String get registerHeadingLabel;
   String get laserIDInputLabel;
-  String get invalidPhoneNumberErrorMessage;
+  String get invalidNationalOrLaserIDErrorMessage;
+  String get invalidPhoneNumberOrAddressErrorMessage;
 
   // Landing Screen
   String get greetingMessage;
@@ -45,10 +52,11 @@ abstract class Languages {
 
   // Person Screen
   String get yourPersonHeading;
-  String get personDescription;
+  String get noPersonDescription;
   String get personAppointmentsButtonLabel;
   String get personSymptomFormButtonLabel;
   String get addPersonHeading;
+  String get deletePersonConfirmMessage;
 
   // Symptom Assessment Form Screen
   String get symptomFormHeading;
@@ -60,4 +68,26 @@ abstract class Languages {
   String get isMusclePainQuestion;
   String get isTirednessQuestion;
   String get isOtherQuestion;
+  String get yesMessageLabel;
+  String get noMessageLabel;
+  String get emptySymptomFormErrorMessage;
+
+  // New Appointment Step 1 Screen
+  String get selectPersonHeading;
+  String get selectPersonMessage;
+  // New Appointment Step 2 Screen
+  String get selectLocationHeading;
+  String get selectLocationMessage;
+  String get locationHeading;
+  String get changingLocationMessage;
+  // New Appointment Step 3 Screen
+  String get selectDateTimeHeading;
+  String get selectDateTimeMessage;
+  String get dateInputLabel;
+  String get noDateTimeErrorMessage;
+  // New Appointment Step 4 Screen
+  String get selectVaccineHeading;
+  String get selectVaccineMessage;
+  String get confirmScheduleMessage;
+  String numberOfPeople(int numberOfPeople);
 }
