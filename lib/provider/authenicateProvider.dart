@@ -335,8 +335,6 @@ class AuthenicateProvider with ChangeNotifier {
           priority: response.data['priority'],
           province_en: response.data['province_en'],
           province_th: response.data['province_th']);
-          print(location);
-          print(response.data['name_en']);
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
@@ -461,6 +459,7 @@ class AuthenicateProvider with ChangeNotifier {
               province_th: data[j]['province_th'],
               vaccine: temp),
         );
+      
       }
 
       _hospital = tempHospital;
