@@ -168,4 +168,9 @@ class LanguageTH extends Languages {
   String get changeLocationHeading => "";
   @override
   String get invalidProvinceOrLocationErrorMessage => "";
+  @override
+  String get changePhoneNumberHeading => "Change Phone Number";
+  @override
+  String get invalidPhoneNumberErrorMessage =>
+      "Please enter a valid phone number";
 }

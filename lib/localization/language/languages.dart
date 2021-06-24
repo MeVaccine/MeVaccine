@@ -100,4 +100,6 @@ abstract class Languages {
   String get logoutButtonLabel;
   String get changeLocationHeading;
   String get invalidProvinceOrLocationErrorMessage;
+  String get changePhoneNumberHeading;
+  String get invalidPhoneNumberErrorMessage;
 }
