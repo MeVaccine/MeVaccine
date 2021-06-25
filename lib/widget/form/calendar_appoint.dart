@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
+import 'package:intl/intl.dart';
 
 class CalendarTextfield extends StatelessWidget {
-  const CalendarTextfield({Key? key}) : super(key: key);
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +21,19 @@ class CalendarTextfield extends StatelessWidget {
             labelText: 'Select Dated'),
         onTap: () async {
           await showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime.now(),
-              lastDate: DateTime(2022));
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime(2022))
+              .then((value) {
+            if (value != null) {
+              print(value);
+              controller.text = DateFormat('dd/MM/yyyy').format(value);
+            }
+          });
         },
         showCursor: false,
+        controller: controller,
       ),
     );
   }

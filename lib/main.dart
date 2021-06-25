@@ -62,6 +62,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Prompt',
           primaryColor: primary01,
+          colorScheme: ColorScheme.light().copyWith(primary: primary01),
         ),
         //หน้าแรกสุด
         home: LandingScreen(),

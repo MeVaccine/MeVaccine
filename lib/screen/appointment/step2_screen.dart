@@ -27,16 +27,6 @@ class _Step2State extends State<Step2> {
   String selectedValue = "";
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //     body: SingleChildScrollView(
-    //   child: Column(
-    //     children: [
-    //       LayoutAppointment(
-    //         text: 'Select vaccine location',
-    //         description: 'which you want to go.',
-    //         step: '2 of 4',
-    //         value: 0.5,
-    //       ),
     return Container(
       height: 490,
       child: Column(
@@ -108,33 +98,5 @@ class _Step2State extends State<Step2> {
         ],
       ),
     );
-    //       ),
-    //       Container(
-    //         margin: EdgeInsets.symmetric(horizontal: kSizeS),
-    //         child: Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //           children: [
-    //             SmallButton(
-    //               onPressed: () {
-    //                 Navigator.of(context).pushNamed(Step1.routeName);
-    //               },
-    //               text: 'Previous',
-    //               color: accent02,
-    //               width: 120,
-    //             ),
-    //             SmallButton(
-    //               onPressed: () {
-    //                 Navigator.of(context).pushNamed(Step3.routeName);
-    //               },
-    //               text: 'Next',
-    //               color: accent02,
-    //               width: 120,
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // ));
   }
 }
