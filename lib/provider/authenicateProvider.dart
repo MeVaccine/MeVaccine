@@ -268,7 +268,6 @@ class AuthenicateProvider with ChangeNotifier {
   }
 
   Future<void> addPersonVerification(String otp) async {
-
     try {
       final response = await Dio().get(apiEndpoint + '/person/add/verify',
           queryParameters: {"otp": otp},
@@ -458,7 +457,8 @@ class AuthenicateProvider with ChangeNotifier {
           queryParameters: {"nationalID": nationalID, "laserID": laserID});
       _personal = Personal(
           en: Information(
-              date_of_birth: DateTime.parse(response.data['en']['dateTime']),
+              date_of_birth:
+                  DateTime.parse(response.data['en']['date_of_birth']),
               firstName: response.data['en']['firstname'],
               gender: response.data['en']['gender'],
               lastName: response.data['en']['lastname'],
@@ -467,7 +467,8 @@ class AuthenicateProvider with ChangeNotifier {
           id: response.data['id'],
           laserId: response.data['laserID'],
           th: Information(
-              date_of_birth: DateTime.parse(response.data['th']['dateTime']),
+              date_of_birth:
+                  DateTime.parse(response.data['th']['date_of_birth']),
               firstName: response.data['th']['firstname'],
               gender: response.data['th']['firstname'],
               lastName: response.data['th']['firstname'],
