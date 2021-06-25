@@ -54,11 +54,19 @@ class LanguageTH extends Languages {
   @override
   String get registerHeadingLabel => "ลงทะเบียน";
   @override
+  String get personalInfoHeading => "ข้อมูลส่วนตัว";
+  @override
   String get laserIDInputLabel => "รหัสหลังบัตรประชาชน";
   @override
   String get invalidNationalOrLaserIDErrorMessage => "";
   @override
   String get invalidPhoneNumberOrAddressErrorMessage => "";
+  @override
+  String get registerLocationHeading => "สถานที่รับวัคซีน";
+  @override
+  String get provinceInputLabel => "จังหวัด";
+  @override
+  String get locationInputLabel => "เลือกสถานที่";
 
   // Landing Screen
   @override

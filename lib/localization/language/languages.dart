@@ -34,9 +34,13 @@ abstract class Languages {
   String get emptyVerificationCodeErrorMessage;
   // Register Screen
   String get registerHeadingLabel;
+  String get personalInfoHeading;
   String get laserIDInputLabel;
   String get invalidNationalOrLaserIDErrorMessage;
   String get invalidPhoneNumberOrAddressErrorMessage;
+  String get registerLocationHeading;
+  String get provinceInputLabel;
+  String get locationInputLabel;
 
   // Landing Screen
   String get greetingMessage;

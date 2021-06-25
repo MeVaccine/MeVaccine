@@ -56,6 +56,8 @@ class LanguageEN extends Languages {
   @override
   String get registerHeadingLabel => "Register";
   @override
+  String get personalInfoHeading => "Personal Information";
+  @override
   String get laserIDInputLabel => "Laser ID";
   @override
   String get invalidNationalOrLaserIDErrorMessage =>
@@ -63,6 +65,12 @@ class LanguageEN extends Languages {
   @override
   String get invalidPhoneNumberOrAddressErrorMessage =>
       "Please enter a valid phone number or address";
+  @override
+  String get registerLocationHeading => "Vaccination Location";
+  @override
+  String get provinceInputLabel => "Province";
+  @override
+  String get locationInputLabel => "Location";
 
   // Landing Screen
   @override
