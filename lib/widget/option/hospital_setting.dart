@@ -96,35 +96,42 @@ class _HospitalSettingState extends State<HospitalSetting> {
     'Narathiwat',
     'buogkan'
   ];
-  String updateLocation = "";
-  Future<void> getHospital() async {
-    String province = selectedValue;
-    try {
-      await Provider.of<AuthenicateProvider>(context, listen: false)
-          .getHospitalLocation(province);
-    } catch (error) {}
-  }
 
   Future<void> updateHospital() async {
-    String locationID = updateLocation;
+    String locationID = isProvinceChange
+        ? Provider.of<AuthenicateProvider>(context, listen: false)
+            .hospital[0]
+            .id
+        : updateLocation;
 
-    print(locationID);
     try {
       await Provider.of<AuthenicateProvider>(context, listen: false)
-          .updateLocation(locationID);
+          .updateLocation(noChange
+              ? Provider.of<AuthenicateProvider>(context, listen: false)
+                  .location
+                  .id
+              : locationID);
       Navigator.of(context)
           .popUntil(ModalRoute.withName(SettingScreen.routeName));
     } catch (error) {}
   }
 
-  bool isChange = false;
-  bool isOnly = false;
+  bool isProvinceChange = false;
+  bool isHospitalChange = false;
+  bool noChange = true;
   String selectedValue = "";
   String selectedHospital = "";
+  String updateLocation = '';
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Provider.of<AuthenicateProvider>(context, listen: false).getLocation();
+    Provider.of<AuthenicateProvider>(context, listen: false)
+        .getHospitalLocation(isProvinceChange
+            ? selectedValue
+            : Provider.of<AuthenicateProvider>(context, listen: false)
+                .location
+                .province_en);
     return Consumer<AuthenicateProvider>(
         builder: (context, authen, child) => SafeArea(
               child: Form(
@@ -147,15 +154,15 @@ class _HospitalSettingState extends State<HospitalSetting> {
                         hint: 'Province',
                         isCaseSensitiveSearch: true,
                         searchHint: const Text('Select your province'),
-                        value: isChange
+                        value: isProvinceChange
                             ? selectedValue
                             : authen.location.province_en,
                         onChanged: (value) {
                           setState(() {
-                            isChange = true;
+                            isProvinceChange = true;
                             selectedValue = value;
+                            noChange = false;
                           });
-                          getHospital();
                         },
                         isExpanded: true,
                       ),
@@ -173,15 +180,16 @@ class _HospitalSettingState extends State<HospitalSetting> {
                         hint: 'Hospital',
                         isCaseSensitiveSearch: true,
                         searchHint: const Text('Select your hospital'),
-                        value: isChange
-                            ? selectedHospital
-                            : isOnly
+                        value: isProvinceChange
+                            ? authen.hospital[0].name_en
+                            : isHospitalChange
                                 ? selectedHospital
                                 : authen.location.name_en,
                         onChanged: (value) {
                           setState(() {
-                            isOnly = true;
+                            isHospitalChange = true;
                             selectedHospital = value;
+                            noChange = false;
                           });
                           for (int i = 0; i < authen.hospital.length; i++) {
                             if (selectedHospital ==
