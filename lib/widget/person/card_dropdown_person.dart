@@ -25,7 +25,7 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
             offset: const Offset(0, 16),
             color: const Color(0xFF7090B0).withOpacity(0.2))
       ]),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       padding: const EdgeInsets.symmetric(
           horizontal: kSizeM, vertical: kSizeM * 0.7),
       child: Row(

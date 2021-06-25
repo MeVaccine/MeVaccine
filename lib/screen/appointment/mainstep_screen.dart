@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/screen/landing_screen.dart';
+import 'package:mevaccine/widget/button/secondaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
+import 'package:mevaccine/widget/layout/showDialog.dart';
 import 'package:mevaccine/widget/layout/layout_appointment.dart';
 import './step1_screen.dart';
 import './step2_screen.dart';
@@ -47,6 +50,47 @@ class _MainstepState extends State<Mainstep> {
       'value': 4,
     }
   };
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+                content: Container(
+              alignment: AlignmentDirectional.center,
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      child:
+                          Text("Do you confirm schedule this appointment ? ")),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SmallButton(
+                        text: 'Cancel',
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        color: white,
+                        width: 100,
+                        colorFont: primary03,
+                        colorBorder: primary03,
+                      ),
+                      SmallButton(
+                        text: 'Confirm',
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(LandingScreen.routeName);
+                        },
+                        color: primary03,
+                        width: 100,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,10 +135,7 @@ class _MainstepState extends State<Mainstep> {
                     } else if (_currentTab == Step3.routeName) {
                       setState(() => {_currentTab = Step4.routeName});
                     } else if (_currentTab == Step4.routeName) {
-                      showDialog(
-                          context: context,
-                          builder: (ctx) =>
-                              AlertDialog(title: Text("Submit Laew Na eiei")));
+                      _showDialog();
                     }
                   },
                   text: _currentTab == Step4.routeName ? 'Submit' : 'Next',
