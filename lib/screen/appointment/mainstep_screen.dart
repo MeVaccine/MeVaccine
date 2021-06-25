@@ -32,7 +32,7 @@ class _MainstepState extends State<Mainstep> {
     final dataList = {
       Step1.routeName: {
         'text': Languages.of(context)!.selectPersonHeading,
-        'description': Languages.of(context)!.selectPersonHeading,
+        'description': Languages.of(context)!.selectPersonMessage,
         'value': 1,
       },
       Step2.routeName: {
