@@ -148,8 +148,10 @@ class LanguageTH extends Languages {
   @override
   String get locationHeading => "สถานที่รับวัคซีน";
   @override
-  String get changingLocationMessage =>
-      "คุณสามารถเปลี่ยนสถานที่ได้ โดยสามารถเลือกได้จากจังหวัดที่ต้องการ";
+  String get changingLocationMessage1 => "คุณสามารถเปลี่ยนสถานที่ได้";
+  @override
+  String get changingLocationMessage2 =>
+      "โดยสามารถเลือกได้จากจังหวัดที่ต้องการ";
   // New Appointment Step 3 Screen
   @override
   String get selectDateTimeHeading => "เลือกวันและเวลา";

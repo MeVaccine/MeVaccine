@@ -85,7 +85,8 @@ abstract class Languages {
   String get selectLocationHeading;
   String get selectLocationMessage;
   String get locationHeading;
-  String get changingLocationMessage;
+  String get changingLocationMessage1;
+  String get changingLocationMessage2;
   // New Appointment Step 3 Screen
   String get selectDateTimeHeading;
   String get selectDateTimeMessage;

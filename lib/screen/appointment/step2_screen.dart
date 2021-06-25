@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/authType.dart';
 import 'package:mevaccine/screen/appointment/step1_screen.dart';
 import 'package:mevaccine/widget/auth/register_TextForm.dart';
@@ -46,14 +47,14 @@ class _Step2State extends State<Step2> {
           kSizedBoxVerticalM,
           Container(
               margin: EdgeInsets.only(right: 200),
-              child: MainText('Location', text_type.regular, kFontSizeHeadline3,
-                  primary01)),
+              child: MainText(Languages.of(context)!.locationHeading,
+                  text_type.regular, kFontSizeHeadline3, primary01)),
           kSizedBoxVerticalXXS,
           Container(
             width: 300,
             child: RegisterTextForm(
               textEditingController: _nothing,
-              label: 'Province',
+              label: Languages.of(context)!.provinceInputLabel,
               type: RegsiterTextFormType.nothing,
               active: RegisterActiveType.enable,
             ),
@@ -96,9 +97,9 @@ class _Step2State extends State<Step2> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('If you want to change the location.',
+                      Text(Languages.of(context)!.changingLocationMessage1,
                           style: TextStyle(color: primary01, fontSize: 10)),
-                      Text('You can be select text form that you want to go.',
+                      Text(Languages.of(context)!.changingLocationMessage2,
                           style: TextStyle(color: primary01, fontSize: 10)),
                     ],
                   )),

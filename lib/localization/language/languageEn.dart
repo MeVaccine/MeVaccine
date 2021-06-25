@@ -151,8 +151,10 @@ class LanguageEN extends Languages {
   @override
   String get locationHeading => "Location";
   @override
-  String get changingLocationMessage =>
-      "If you want to change the location.\nYou can alter the province and location.";
+  String get changingLocationMessage1 => "If you want to change the location";
+  @override
+  String get changingLocationMessage2 =>
+      "You can alter the province and location.";
   // New Appointment Step 3 Screen
   @override
   String get selectDateTimeHeading => "Select Date and Time";

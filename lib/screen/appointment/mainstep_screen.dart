@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
 import 'package:mevaccine/widget/layout/layout_appointment.dart';
 import './step1_screen.dart';
@@ -25,31 +26,32 @@ class _MainstepState extends State<Mainstep> {
     Step3.routeName: Step3(),
     Step4.routeName: Step4(),
   };
-  final dataList = {
-    Step1.routeName: {
-      'text': 'Select Person',
-      'description': 'who goes to vacinate together',
-      'value': 1,
-    },
-    Step2.routeName: {
-      'text': 'Select vaccine location',
-      'description': 'which you want to go.',
-      'value': 2,
-    },
-    Step3.routeName: {
-      'text': 'Select Date and time',
-      'description': 'which you want to.',
-      'value': 3,
-    },
-    Step4.routeName: {
-      'text': 'Select vaccine',
-      'description': 'for each of person including you.',
-      'value': 4,
-    }
-  };
 
   @override
   Widget build(BuildContext context) {
+    final dataList = {
+      Step1.routeName: {
+        'text': Languages.of(context)!.selectPersonHeading,
+        'description': Languages.of(context)!.selectPersonHeading,
+        'value': 1,
+      },
+      Step2.routeName: {
+        'text': Languages.of(context)!.selectLocationHeading,
+        'description': Languages.of(context)!.selectLocationMessage,
+        'value': 2,
+      },
+      Step3.routeName: {
+        'text': Languages.of(context)!.selectDateTimeHeading,
+        'description': Languages.of(context)!.selectDateTimeMessage,
+        'value': 3,
+      },
+      Step4.routeName: {
+        'text': Languages.of(context)!.selectVaccineHeading,
+        'description': Languages.of(context)!.selectVaccineMessage,
+        'value': 4,
+      }
+    };
+
     return Scaffold(
         body: Column(
       children: [
@@ -78,7 +80,7 @@ class _MainstepState extends State<Mainstep> {
                         setState(() => {_currentTab = Step3.routeName});
                       }
                     },
-                    text: 'Previous',
+                    text: Languages.of(context)!.previousButtonLabel,
                     color: accent02,
                     width: 120,
                   ),
@@ -97,7 +99,9 @@ class _MainstepState extends State<Mainstep> {
                               AlertDialog(title: Text("Submit Laew Na eiei")));
                     }
                   },
-                  text: _currentTab == Step4.routeName ? 'Submit' : 'Next',
+                  text: _currentTab == Step4.routeName
+                      ? Languages.of(context)!.submitButtonLabel
+                      : Languages.of(context)!.nextButtonLabel,
                   color: accent02,
                   width: 120,
                 ),
