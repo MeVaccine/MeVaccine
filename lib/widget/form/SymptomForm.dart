@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import '../../model/textType.dart';
@@ -25,16 +26,20 @@ class _SymptomFormState extends State<SymptomForm> {
         child: Column(
       children: [
         kSizedBoxS,
-        MainText('Symptom Assessment Form', text_type.regular,
+        MainText(Languages.of(context)!.symptomFormHeading, text_type.regular,
             kFontSizeHeadline4 * 0.8, accent02),
         kSizedBoxS,
-        MainText('Do your have an effect for inject vacine ?',
-            text_type.regular, kFontSizeHeadline4 * 0.6, primary01),
+        MainText(Languages.of(context)!.isSymptomQuestion, text_type.regular,
+            kFontSizeHeadline4 * 0.6, primary01),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MainText(
-                'Yes', text_type.regular, kFontSizeHeadline4 * 0.8, primary01),
+              Languages.of(context)!.yesMessageLabel,
+              text_type.regular,
+              kFontSizeHeadline4 * 0.8,
+              primary01,
+            ),
             kSizedBoxHorizontalS,
             Checkbox(
                 checkColor: primary01,
@@ -46,7 +51,11 @@ class _SymptomFormState extends State<SymptomForm> {
                     })),
             kSizedBoxHorizontalM,
             MainText(
-                'No', text_type.regular, kFontSizeHeadline4 * 0.8, primary01),
+              Languages.of(context)!.noMessageLabel,
+              text_type.regular,
+              kFontSizeHeadline4 * 0.8,
+              primary01,
+            ),
             kSizedBoxHorizontalS,
             Checkbox(
                 checkColor: primary01,
@@ -67,7 +76,7 @@ class _SymptomFormState extends State<SymptomForm> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     PrimaryButton(
-                      text: 'Submit',
+                      text: Languages.of(context)!.submitButtonLabel,
                       onPressed: () {},
                       color: primary01,
                     ),
