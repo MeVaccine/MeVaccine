@@ -44,8 +44,11 @@ class LanguageEN extends Languages {
   @override
   String get verificationCodeInputLabel => "OTP Code";
   @override
-  String verificationCodeTextMessage(String phoneNumber, String refCode) =>
-      "Enter the code we sent to your number at $phoneNumber. RefCode is $refCode";
+  String get verificationCodeTextMessage =>
+      "Enter the code we sent to your number at ";
+  @override
+  String verificationCodePhoneMessage(String phoneNumber, String refCode) =>
+      "$phoneNumber. RefCode is $refCode";
   @override
   String get emptyVerificationCodeErrorMessage =>
       "Please enter a verification code";

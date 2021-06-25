@@ -43,8 +43,11 @@ class LanguageTH extends Languages {
   @override
   String get verificationCodeInputLabel => "รหัส OTP 6 หลัก";
   @override
-  String verificationCodeTextMessage(String phoneNumber, String refCode) =>
-      "กรอกเลข OTP 6 หลัก ที่ท่านได้รับจากเบอร์โทรศัพท์ $phoneNumber RefCode: $refCode";
+  String get verificationCodeTextMessage =>
+      "กรอกเลข OTP 6 หลัก ที่ท่านได้รับจากเบอร์โทรศัพท์";
+  @override
+  String verificationCodePhoneMessage(String phoneNumber, String refCode) =>
+      "$phoneNumber RefCode: $refCode";
   @override
   String get emptyVerificationCodeErrorMessage => "";
   // Register Screen

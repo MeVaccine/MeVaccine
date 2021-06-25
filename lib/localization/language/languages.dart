@@ -29,7 +29,8 @@ abstract class Languages {
   // Verification Code Screen
   String get verificationCodeHeadingLabel;
   String get verificationCodeInputLabel;
-  String verificationCodeTextMessage(String phoneNumber, String refCode);
+  String get verificationCodeTextMessage;
+  String verificationCodePhoneMessage(String phoneNumber, String refCode);
   String get emptyVerificationCodeErrorMessage;
   // Register Screen
   String get registerHeadingLabel;
