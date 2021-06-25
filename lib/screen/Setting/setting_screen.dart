@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
@@ -25,7 +26,8 @@ class SettingScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: MainText('Setting', text_type.regular, kSizeS * 1.2, primary01),
+        title: MainText(Languages.of(context)!.settingsHeading,
+            text_type.regular, kSizeS * 1.2, primary01),
         // สี icon appbar
         iconTheme: const IconThemeData(color: primary01),
       ),
@@ -45,7 +47,7 @@ class SettingScreen extends StatelessWidget {
                 Navigator.of(context)
                     .pushNamed(HospitalSettingScreen.routeName);
               },
-              text: 'Set Hospital',
+              text: Languages.of(context)!.changeLocationButtonLabel,
             ),
             ButtonSetting(
               icon: Icon(
@@ -55,7 +57,7 @@ class SettingScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed(NumberSettingScreen.routeName);
               },
-              text: 'Change Number',
+              text: Languages.of(context)!.changePhoneNumberButtonLabel,
             ),
             ButtonSetting(
               icon: Icon(
@@ -63,12 +65,12 @@ class SettingScreen extends StatelessWidget {
                 color: primary01,
               ),
               onPressed: () {},
-              text: 'Change Language',
+              text: Languages.of(context)!.changeLanguageButtonLabel,
             ),
             kSizedBoxVerticalXL,
             PrimaryButton(
               onPressed: () => _logout(context),
-              text: 'Log Out',
+              text: Languages.of(context)!.logoutButtonLabel,
               color: accent02,
               height: kSizeM,
               width: kSizeL * 4.5,
