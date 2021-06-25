@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import '../button/menus_navigator.dart';
@@ -16,8 +17,8 @@ class Menu extends StatelessWidget {
       children: [
         Container(
           alignment: Alignment.topLeft,
-          child: MainText(
-              'Menus', text_type.regular, kFontSizeHeadline4, primary01),
+          child: MainText(Languages.of(context)!.menuHeading, text_type.regular,
+              kFontSizeHeadline4, primary01),
         ),
         Container(
           height: kSizeXXL * 1.1,
@@ -25,14 +26,14 @@ class Menu extends StatelessWidget {
             padding: EdgeInsetsDirectional.only(top: 10),
             children: [
               MenuNavigator(
-                text: 'Appointment',
+                text: Languages.of(context)!.newAppointmentMenuLebel,
                 onPressed: () {
                   Navigator.of(context).pushNamed(Step1.routeName);
                 },
               ),
               kSizedBoxXXS,
               MenuNavigator(
-                text: 'History of Vacation',
+                text: Languages.of(context)!.myAppointmentMenuLebel,
                 onPressed: () {
                   Navigator.of(context)
                       .pushNamed(HistoryVaccinateScreen.routeName);
@@ -40,14 +41,14 @@ class Menu extends StatelessWidget {
               ),
               kSizedBoxXXS,
               MenuNavigator(
-                text: 'Person',
+                text: Languages.of(context)!.personMenuLebel,
                 onPressed: () {
                   Navigator.of(context).pushNamed(PersonScreen.routeName);
                 },
               ),
               kSizedBoxXXS,
               MenuNavigator(
-                text: 'Symptom assessment Form',
+                text: Languages.of(context)!.symptomFormMenuLebel,
                 onPressed: () {
                   Navigator.of(context).pushNamed(SymptomFormScreen.routeName);
                 },

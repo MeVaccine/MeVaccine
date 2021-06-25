@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/textType.dart';
 import '../text/mainText.dart';
 import 'iconWithText.dart';
@@ -46,7 +47,7 @@ class YourAppointment extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Your Appointment',
+            Languages.of(context)!.yourAppointmentHeading,
             style: TextStyle(
                 color: checkColor == '1' ? white : primary01,
                 fontSize: 18,
@@ -79,7 +80,9 @@ class YourAppointment extends StatelessWidget {
                   icon: FeatherIcons.mapPin),
               kSizedBoxVerticalXS,
               IconWithText(
-                  color: color, text: '4 peoples', icon: FeatherIcons.user)
+                  color: color,
+                  text: Languages.of(context)!.numberOfPeople(4),
+                  icon: FeatherIcons.user)
             ],
           )
 
