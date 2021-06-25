@@ -242,7 +242,8 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                                 value: e.name_en,
                               );
                             }).toList(),
-                            hint: 'Selected',
+                            hint:
+                                Text(Languages.of(context)!.locationInputLabel),
                             isCaseSensitiveSearch: true,
                             searchHint:
                                 Text(Languages.of(context)!.locationInputLabel),
