@@ -42,25 +42,25 @@ class ButtonSetting extends StatelessWidget {
                         Text(
                           text,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(color: primary01,fontSize: kFontSizeHeadline4*0.8),
+                          style: const TextStyle(
+                              color: primary01,
+                              fontSize: kFontSizeHeadline4 * 0.8),
                         ),
                       ],
                     ),
                   ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Icon(
-                          FontAwesomeIcons.angleRight,
-                          color: primary01,size: kSizeS*1.2
-                        ),
-                    )
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Icon(FontAwesomeIcons.angleRight,
+                        color: primary01, size: kSizeS * 1.2),
+                  )
                 ],
               ),
               const Padding(
                 padding: EdgeInsets.all(6),
                 child: Divider(
-                  color: black,
-                  thickness: 0.4,
+                  color: primary06,
+                  thickness: 1.5,
                 ),
               ),
             ],

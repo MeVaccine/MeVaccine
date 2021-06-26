@@ -5,7 +5,16 @@ import '../../config/constants.dart';
 import '../text/mainText.dart';
 import '../../model/textType.dart';
 
-class ProfileCard extends StatelessWidget {
+class ProfileCard extends StatefulWidget {
+  final String text;
+  ProfileCard({required this.text});
+
+  @override
+  _ProfileCardState createState() => _ProfileCardState();
+}
+
+class _ProfileCardState extends State<ProfileCard> {
+  bool _checked = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,29 +28,31 @@ class ProfileCard extends StatelessWidget {
       ]),
       margin: const EdgeInsets.all(20),
       padding:
-          const EdgeInsets.symmetric(horizontal: kSizeS, vertical: kSizeS * 2),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(children: [
-            const CircleAvatar(
+          const EdgeInsets.symmetric(horizontal: kSizeXS, vertical: kSizeS * 2),
+      child: CheckboxListTile(
+        title: Row(
+          children: [
+            CircleAvatar(
               backgroundImage: AssetImage(
                 'assets/images/user-profile.png',
               ),
               radius: kSizeS * 1.5,
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: kSizeS),
-              child: MainText('Kavisara Srisuwatcharee', text_type.regular,
-                  kFontSizeHeadline4 * 0.7, primary01),
+            kSizedBoxHorizontalXS,
+            Text(
+              widget.text,
+              style: const TextStyle(color: primary01),
             ),
-          ]),
-          IconButton(
-            icon: const Icon(FontAwesomeIcons.stop),
-            onPressed: () {},
-            color: primary01,
-          )
-        ],
+          ],
+        ),
+        value: _checked,
+        activeColor: primary01,
+        onChanged: (bool? value) {
+          setState(() {
+            _checked = value!;
+            print(_checked);
+          });
+        },
       ),
     );
   }
