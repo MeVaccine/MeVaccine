@@ -14,7 +14,7 @@ class YourAppointment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: kSizeS),
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
       decoration: checkColor == '1'
           ? BoxDecoration(
               borderRadius: kBorderRadiusS,
@@ -52,9 +52,7 @@ class YourAppointment extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.w600),
           ),
-          // MainText('Your Appointment', text_type.bold, kFontSizeHeadline4 * 0.8,
-          //     white),
-          kSizedBoxXS,
+          kSizedBoxS,
           Row(
             children: [
               IconWithText(
@@ -71,20 +69,10 @@ class YourAppointment extends StatelessWidget {
             ],
           ),
           kSizedBoxVerticalXS,
-          Column(
-            children: [
-              IconWithText(
-                  color: color,
-                  text: 'Siriraj Piyamaharajkarun Hospital',
-                  icon: FeatherIcons.mapPin),
-              kSizedBoxVerticalXS,
-              IconWithText(
-                  color: color, text: '4 peoples', icon: FeatherIcons.user)
-            ],
-          )
-
-          // MainText('There is no appointment yet ', text_type.regular,
-          //     kFontSizeHeadline4 * 0.6, white)
+          IconWithText(
+              color: color,
+              text: 'Siriraj Piyamaharajkarun Hospital',
+              icon: FeatherIcons.mapPin)
         ],
       ),
     );

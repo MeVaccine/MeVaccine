@@ -6,7 +6,7 @@ class EmptyPerson extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: kSizeXXL * 1.4,
+      height: kSizeXXL * 1.25,
       child: Image.asset('assets/images/person_empty.png'),
     );
   }

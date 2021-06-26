@@ -8,6 +8,7 @@ class SmallButton extends StatelessWidget {
   final bool isLoading;
   final Color color;
   final Color colorFont;
+  final Color colorBorder;
   final double width;
   final double height;
   SmallButton(
@@ -16,6 +17,7 @@ class SmallButton extends StatelessWidget {
       this.isLoading = false,
       this.color = primary01,
       this.colorFont = white,
+      this.colorBorder = white,
       this.width = double.infinity,
       this.height = kSizeS});
   @override
@@ -39,13 +41,16 @@ class SmallButton extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: const TextStyle(color: white),
+          style: TextStyle(color: colorFont),
         ),
       ),
     );
   }
 
   BoxDecoration _buildBoxDecoration(BuildContext context) {
-    return BoxDecoration(color: color, borderRadius: kBorderRadiusXS);
+    return BoxDecoration(
+        color: color,
+        borderRadius: kBorderRadiusXS,
+        border: Border.all(color: colorBorder));
   }
 }
