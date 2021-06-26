@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mevaccine/provider/addPerson.dart';
 import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -60,15 +61,17 @@ class MyApp extends StatelessWidget {
             update: (ctx, auth, prev) => LocationProvider(
                   token: auth.token,
                 )),
+        ChangeNotifierProvider(create: (ctx) => AddPersonProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Prompt',
           primaryColor: primary01,
+          colorScheme: ColorScheme.light().copyWith(primary: primary01),
         ),
         //หน้าแรกสุด
-        home: LoginScreen(),
+        home: LandingScreen(),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
           VerificationChangeNumber.routeName: (ctx) =>

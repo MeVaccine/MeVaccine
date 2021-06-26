@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:mevaccine/provider/addPerson.dart';
+import 'package:provider/provider.dart';
 
 class CardPersonAppoint extends StatefulWidget {
   final String text;
-  CardPersonAppoint({required this.text});
+  final int id;
+  final Function onChanged;
+  CardPersonAppoint(
+      {required this.text, required this.id, required this.onChanged});
 
   @override
   _CardPersonAppointState createState() => _CardPersonAppointState();
@@ -15,6 +20,7 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
   bool _checked = false;
   @override
   Widget build(BuildContext context) {
+    final persons = Provider.of<AddPersonProvider>(context).person;
     return Container(
         decoration: BoxDecoration(
             color: white,
@@ -35,11 +41,11 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
             style: const TextStyle(color: accent01),
           ),
           value: _checked,
-          activeColor: const Color(0xFF6294AF),
+          activeColor: accent01,
           onChanged: (bool? value) {
             setState(() {
               _checked = value!;
-              print(_checked);
+              widget.onChanged();
             });
           },
         ));
