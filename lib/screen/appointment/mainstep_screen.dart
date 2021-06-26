@@ -4,7 +4,6 @@ import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/screen/landing_screen.dart';
 import 'package:mevaccine/widget/button/secondaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
-import 'package:mevaccine/widget/layout/showDialog.dart';
 import 'package:mevaccine/widget/layout/layout_appointment.dart';
 import './step1_screen.dart';
 import './step2_screen.dart';
@@ -55,14 +54,18 @@ class _MainstepState extends State<Mainstep> {
         context: context,
         builder: (ctx) => AlertDialog(
                 content: Container(
-              alignment: AlignmentDirectional.center,
               height: 200,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                      child:
-                          Text("Do you confirm schedule this appointment ? ")),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        "Do you confirm schedule this appointment ? ",
+                        textAlign: TextAlign.center,
+                      )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
