@@ -26,6 +26,7 @@ import './provider/authenicateProvider.dart';
 import './provider/personProvider.dart';
 import './provider/userProvider.dart';
 import './screen/Setting/verification_changeNumber.dart';
+import './provider/locationProvider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -54,6 +55,11 @@ class MyApp extends StatelessWidget {
             update: (ctx, auth, prev) => UserProvider(
                   token: auth.token,
                 )),
+        ChangeNotifierProxyProvider<AuthenicateProvider, LocationProvider>(
+            create: (ctx) => LocationProvider(token: ''),
+            update: (ctx, auth, prev) => LocationProvider(
+                  token: auth.token,
+                )),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -65,7 +71,8 @@ class MyApp extends StatelessWidget {
         home: LoginScreen(),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
-          VerificationChangeNumber.routeName:(ctx)=>VerificationChangeNumber(),
+          VerificationChangeNumber.routeName: (ctx) =>
+              VerificationChangeNumber(),
           SymptomFormScreen.routeName: (ctx) => SymptomFormScreen(),
           NumberSettingScreen.routeName: (ctx) => NumberSettingScreen(),
           HospitalSettingScreen.routeName: (ctx) => HospitalSettingScreen(),

@@ -140,6 +140,12 @@ class AuthenicateProvider with ChangeNotifier {
   String _refCode = "";
   String _refCodeAddPerson = "";
   String _token = "";
+  String locationAppointment = "";
+  String tempName = "";
+  String locationAppointmentID = '';
+  String tempID = '';
+  String nameProvinceAppointment = '';
+  String tempProvince = '';
   Location location = Location(
       id: '',
       name_en: '',
@@ -183,6 +189,85 @@ class AuthenicateProvider with ChangeNotifier {
         status: ""),
     vaccineUser: VaccineUser(id: "", maxAge: 0, minAge: 0, name: ""),
   );
+  List<String> dataprovince = [
+    'Bangkok',
+    'Samut Prakan',
+    'Nonthaburi',
+    'Pathum Thani',
+    'Phra Nakhon Si Ayutthaya',
+    'Ang Thong',
+    'Loburi',
+    'Sing Buri',
+    'Chai Nat',
+    'Saraburi',
+    'Chon Buri',
+    'Rayong',
+    'Chanthaburi',
+    'Trat',
+    'Chachoengsao',
+    'Prachin Buri',
+    'Nakhon Nayok',
+    'Sa Kaeo',
+    'Nakhon Ratchasima',
+    'Buri Ram',
+    'Surin',
+    'Si Sa Ket',
+    'Ubon Ratchathani',
+    'Yasothon',
+    'Chaiyaphum',
+    'Amnat Charoen',
+    'Nong Bua Lam Phu',
+    'Khon Kaen',
+    'Udon Thani',
+    'Loei',
+    'Nong Khai',
+    'Maha Sarakham',
+    'Roi Et',
+    'Kalasin',
+    'Sakon Nakhon',
+    'Nakhon Phanom',
+    'Mukdahan',
+    'Chiang Mai',
+    'Lamphun',
+    'Lampang',
+    'Uttaradit',
+    'Phrae',
+    'Nan',
+    'Phayao',
+    'Chiang Rai',
+    'Mae Hong Son',
+    'Nakhon Sawan',
+    'Uthai Thani',
+    'Kamphaeng Phet',
+    'Tak',
+    'Sukhothai',
+    'Phitsanulok',
+    'Phichit',
+    'Phetchabun',
+    'Ratchaburi',
+    'Kanchanaburi',
+    'Suphan Buri',
+    'Nakhon Pathom',
+    'Samut Sakhon',
+    'Samut Songkhram',
+    'Phetchaburi',
+    'Prachuap Khiri Khan',
+    'Nakhon Si Thammarat',
+    'Krabi',
+    'Phangnga',
+    'Phuket',
+    'Surat Thani',
+    'Ranong',
+    'Chumphon',
+    'Songkhla',
+    'Satun',
+    'Trang',
+    'Phatthalung',
+    'Pattani',
+    'Yala',
+    'Narathiwat',
+    'buogkan'
+  ];
 
   AuthenicateProvider();
 
@@ -196,6 +281,10 @@ class AuthenicateProvider with ChangeNotifier {
 
   String get token {
     return _token;
+  }
+
+  String get nameHospitals {
+    return locationAppointment;
   }
 
   Personal get personal {
@@ -332,6 +421,48 @@ class AuthenicateProvider with ChangeNotifier {
     }
   }
 
+  Future<void> getLocationAppointment(
+      String nameHospital, String locationID, String province) async {
+    try {
+      if (locationAppointment == '') {
+        final response = await Dio().get(apiEndpoint + '/location/prefered',
+            options: Options(headers: {"Authorization": "Bearer " + token}));
+        location = Location(
+            id: response.data['_id'],
+            name_en: response.data['name_en'],
+            name_th: response.data['name_th'],
+            priority: response.data['priority'],
+            province_en: response.data['province_en'],
+            province_th: response.data['province_th']);
+        locationAppointment = response.data['name_en'];
+        locationAppointmentID = response.data['_id'];
+        nameProvinceAppointment = response.data['province_en'];
+      } else {
+        if (nameHospital == "") {
+          locationAppointment = tempName;
+        } else {
+          tempName = nameHospital;
+        }
+        if (locationID == "") {
+          locationAppointmentID = tempID;
+        } else {
+          tempID = locationID;
+        }
+        if (province == "") {
+          nameProvinceAppointment = tempProvince;
+        } else {
+          tempProvince = province;
+        }
+      }
+
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+    }
+  }
+
   Future<void> updateLocation(String locationID) async {
     try {
       final response = await Dio().patch(apiEndpoint + '/location/prefered',
@@ -375,10 +506,12 @@ class AuthenicateProvider with ChangeNotifier {
   }
 
   Future<void> getName() async {
+    locationAppointment = "";
+    locationAppointmentID = "";
+    nameProvinceAppointment = "";
     try {
       final response = await Dio().get(apiEndpoint + '/appointment/landing',
           options: Options(headers: {"Authorization": "Bearer " + token}));
-      print(response.data['firstname_en']);
       _userInfo = UserInfo(
           firstname_en: response.data['firstname_en'],
           firstname_th: response.data['firstname_th'],
@@ -409,6 +542,7 @@ class AuthenicateProvider with ChangeNotifier {
                   maxAge: response.data['appointment']['maxAge'],
                   minAge: response.data['appointment']['minAge'],
                   name: response.data['appointment']['name']));
+
       notifyListeners();
     } on DioError catch (error) {
       throw HttpException(getUserException);
