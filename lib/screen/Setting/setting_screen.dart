@@ -32,10 +32,7 @@ class _SettingScreenState extends State<SettingScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CheckLang(text: 'English'),
-                  CheckLang(
-                    text: 'Thai',
-                  ),
+                  CheckLang(),
                   kSizedBoxVerticalS,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

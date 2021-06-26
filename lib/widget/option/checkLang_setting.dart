@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mevaccine/config/color.dart';
 
-class CheckLang extends StatelessWidget {
-  final String text;
-  CheckLang({required this.text});
+class CheckLang extends StatefulWidget {
+  @override
+  _CheckLangState createState() => _CheckLangState();
+}
+
+class _CheckLangState extends State<CheckLang> {
+  bool valueEng = false;
+  bool valueThai = false;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +21,41 @@ class CheckLang extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  text,
+                  'English',
                   style: TextStyle(color: primary01),
                 ),
-                // Checkbox(value: value, onChanged: )
+                Checkbox(
+                    checkColor: primary01,
+                    activeColor: primary01,
+                    value: valueEng,
+                    onChanged: (bool? value) => setState(() {
+                          valueEng = value!;
+                          valueThai = false;
+                        }))
+              ],
+            ),
+          ),
+          Divider(
+            color: primary06,
+            thickness: 1.5,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Thai',
+                  style: TextStyle(color: primary01),
+                ),
+                Checkbox(
+                    checkColor: primary01,
+                    activeColor: primary01,
+                    value: valueThai,
+                    onChanged: (bool? value) => setState(() {
+                          valueThai = value!;
+                          valueEng = false;
+                        }))
               ],
             ),
           ),
