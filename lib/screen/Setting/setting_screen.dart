@@ -5,14 +5,63 @@ import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
+import 'package:mevaccine/widget/button/smallButton.dart';
+import 'package:mevaccine/widget/option/checkLang_setting.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:provider/provider.dart';
 import '../../widget/option/button_setting.dart';
 import '../../screen/Setting/hospital_setting_screen.dart';
 import './number_setting_screen.dart';
 
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends StatefulWidget {
   static const routeName = '/setting';
+
+  @override
+  _SettingScreenState createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
+  void _showLang() {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+                content: Container(
+              padding: EdgeInsets.all(10),
+              height: 210,
+              width: 300,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CheckLang(text: 'English'),
+                  CheckLang(
+                    text: 'Thai',
+                  ),
+                  kSizedBoxVerticalS,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SmallButton(
+                        text: 'Cancel',
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        color: white,
+                        width: 100,
+                        colorFont: primary03,
+                        colorBorder: primary03,
+                      ),
+                      SmallButton(
+                        text: 'Update',
+                        onPressed: () {},
+                        color: primary03,
+                        width: 100,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )));
+  }
 
   void _logout(BuildContext ctx) async {
     await Provider.of<AuthenicateProvider>(ctx, listen: false).logout();
@@ -25,7 +74,7 @@ class SettingScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: MainText('Setting', text_type.regular, kSizeS * 1.2, primary01),
+        title: MainText('Settings', text_type.regular, kSizeS * 1.2, primary01),
         // สี icon appbar
         iconTheme: const IconThemeData(color: primary01),
       ),
@@ -62,7 +111,9 @@ class SettingScreen extends StatelessWidget {
                 FontAwesomeIcons.language,
                 color: primary01,
               ),
-              onPressed: () {},
+              onPressed: () {
+                _showLang();
+              },
               text: 'Change Language',
             ),
             kSizedBoxVerticalXL,
