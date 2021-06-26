@@ -27,6 +27,7 @@ import './provider/authenicateProvider.dart';
 import './provider/personProvider.dart';
 import './provider/userProvider.dart';
 import './screen/Setting/verification_changeNumber.dart';
+import './provider/locationProvider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -53,6 +54,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProxyProvider<AuthenicateProvider, UserProvider>(
             create: (ctx) => UserProvider(token: ''),
             update: (ctx, auth, prev) => UserProvider(
+                  token: auth.token,
+                )),
+        ChangeNotifierProxyProvider<AuthenicateProvider, LocationProvider>(
+            create: (ctx) => LocationProvider(token: ''),
+            update: (ctx, auth, prev) => LocationProvider(
                   token: auth.token,
                 )),
         ChangeNotifierProvider(create: (ctx) => AddPersonProvider())
