@@ -3,6 +3,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 import '../appointment/step3_screen.dart';
@@ -28,33 +29,33 @@ class _Step2State extends State<Step2> {
   @override
   Widget build(BuildContext context) {
     Provider.of<AuthenicateProvider>(context, listen: false)
-        .getLocationAppointment(
-            selectedHospital, updateLocation, selectedValue);
-    Provider.of<AuthenicateProvider>(context, listen: false)
-        .getHospitalLocation(
-            Provider.of<AuthenicateProvider>(context, listen: false)
-                        .locationAppointment ==
-                    ""
-                ? Provider.of<AuthenicateProvider>(context, listen: false)
-                    .location
-                    .province_en
-                : isProvinceChange
-                    ? selectedValue
-                    : Provider.of<AuthenicateProvider>(context, listen: false)
-                        .nameProvinceAppointment);
-    return Consumer<AuthenicateProvider>(
-        builder: (context, authen, child) => Container(
+        .getPreferedLocation()
+        .then((value) {
+      Provider.of<NewAppointmentProvider>(context, listen: false)
+          .setSelectedLocation(value);
+    });
+    // Provider.of<AuthenicateProvider>(context, listen: false)
+    //     .getHospitalLocation(
+    //         Provider.of<AuthenicateProvider>(context, listen: false)
+    //                     .locationAppointment ==
+    //                 ""
+    //             ? Provider.of<AuthenicateProvider>(context, listen: false)
+    //                 .location
+    //                 .province_en
+    //             : isProvinceChange
+    //                 ? selectedValue
+    //                 : Provider.of<AuthenicateProvider>(context, listen: false)
+    //                     .nameProvinceAppointment);
+    print(Provider.of<NewAppointmentProvider>(context, listen: true)
+        .selectedLocation
+        .name_en);
+    return Consumer<NewAppointmentProvider>(
+        builder: (context, appointment, child) => Container(
               height: 490,
               child: Column(
                 children: [
                   kSizedBoxVerticalS,
-                  ListVaccine(
-                    locationID: isProvinceChange
-                        ? authen.hospital[0].id
-                        : isHospitalChange
-                            ? updateLocation
-                            : authen.locationAppointmentID,
-                  ),
+                  ListVaccine(locationID: appointment.selectedLocation.id),
                   kSizedBoxVerticalM,
                   Container(
                       margin: EdgeInsets.only(right: 200),
@@ -64,7 +65,7 @@ class _Step2State extends State<Step2> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: kSizeM, vertical: kSizeXXS),
                     child: SearchableDropdown.single(
-                      items: authen.dataprovince.map((e) {
+                      items: appointment.provinces.map((e) {
                         return DropdownMenuItem<dynamic>(
                           child: Text(e),
                           value: e,
@@ -73,73 +74,71 @@ class _Step2State extends State<Step2> {
                       hint: 'Province',
                       isCaseSensitiveSearch: true,
                       searchHint: const Text('Select your province'),
-                      value: isProvinceChange
-                          ? selectedValue
-                          : authen.nameProvinceAppointment,
+                      value: appointment.selectedLocation.province_en,
                       onChanged: (value) {
                         setState(() {
                           isProvinceChange = true;
                           selectedValue = value;
                           noChange = false;
                         });
-                        Provider.of<AuthenicateProvider>(context, listen: false)
-                            .getLocationAppointment(
-                                isHospitalChange
-                                    ? selectedHospital
-                                    : authen.hospital[0].name_en,
-                                isHospitalChange
-                                    ? updateLocation
-                                    : authen.hospital[0].id,
-                                selectedValue);
+                        // Provider.of<AuthenicateProvider>(context, listen: false)
+                        //     .getLocationAppointment(
+                        //         isHospitalChange
+                        //             ? selectedHospital
+                        //             : authen.hospital[0].name_en,
+                        //         isHospitalChange
+                        //             ? updateLocation
+                        //             : authen.hospital[0].id,
+                        //         selectedValue);
                       },
                       isExpanded: true,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: kSizeM, vertical: kSizeXXS),
-                    child: SearchableDropdown.single(
-                      items: authen.hospital.map((e) {
-                        return DropdownMenuItem<dynamic>(
-                          child: Text(e.name_en),
-                          value: e.name_en,
-                        );
-                      }).toList(),
-                      hint: 'Hospital',
-                      isCaseSensitiveSearch: true,
-                      searchHint: const Text('Select your hospital'),
-                      value: isProvinceChange
-                          ? isHospitalChange
-                              ? selectedHospital
-                              : authen.hospital[0].name_en
-                          : isHospitalChange
-                              ? selectedHospital
-                              : authen.locationAppointment,
-                      onChanged: (value) {
-                        setState(() {
-                          isHospitalChange = true;
-                          selectedHospital = value;
-                          noChange = false;
-                        });
-                        print(selectedHospital);
-                        for (int i = 0; i < authen.hospital.length; i++) {
-                          if (selectedHospital == authen.hospital[i].name_en) {
-                            setState(() {
-                              updateLocation = authen.hospital[i].id;
-                            });
-                          }
-                        }
-                        Provider.of<AuthenicateProvider>(context, listen: false)
-                            .getLocationAppointment(
-                                selectedHospital,
-                                updateLocation,
-                                selectedValue == ""
-                                    ? authen.nameProvinceAppointment
-                                    : selectedValue);
-                      },
-                      isExpanded: true,
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(
+                  //       horizontal: kSizeM, vertical: kSizeXXS),
+                  //   child: SearchableDropdown.single(
+                  //     items: authen.hospital.map((e) {
+                  //       return DropdownMenuItem<dynamic>(
+                  //         child: Text(e.name_en),
+                  //         value: e.name_en,
+                  //       );
+                  //     }).toList(),
+                  //     hint: 'Hospital',
+                  //     isCaseSensitiveSearch: true,
+                  //     searchHint: const Text('Select your hospital'),
+                  //     value: isProvinceChange
+                  //         ? isHospitalChange
+                  //             ? selectedHospital
+                  //             : authen.hospital[0].name_en
+                  //         : isHospitalChange
+                  //             ? selectedHospital
+                  //             : authen.locationAppointment,
+                  //     onChanged: (value) {
+                  //       setState(() {
+                  //         isHospitalChange = true;
+                  //         selectedHospital = value;
+                  //         noChange = false;
+                  //       });
+                  //       print(selectedHospital);
+                  //       for (int i = 0; i < authen.hospital.length; i++) {
+                  //         if (selectedHospital == authen.hospital[i].name_en) {
+                  //           setState(() {
+                  //             updateLocation = authen.hospital[i].id;
+                  //           });
+                  //         }
+                  //       }
+                  // Provider.of<AuthenicateProvider>(context, listen: false)
+                  //     .getLocationAppointment(
+                  //         selectedHospital,
+                  //         updateLocation,
+                  //         selectedValue == ""
+                  //             ? authen.nameProvinceAppointment
+                  //             : selectedValue);
+                  //     },
+                  //     isExpanded: true,
+                  //   ),
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
