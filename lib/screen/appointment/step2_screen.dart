@@ -69,11 +69,9 @@ class _Step2State extends State<Step2> {
                       value: Provider.of<NewAppointmentProvider>(ctx)
                           .selectedProvince,
                       onChanged: (value) async {
-                        Provider.of<NewAppointmentProvider>(ctx, listen: false)
-                            .setSelectedProvince(value);
                         await Provider.of<NewAppointmentProvider>(ctx,
                                 listen: false)
-                            .getLocationByProvince(false);
+                            .setSelectedProvince(value);
                       },
                       isExpanded: true,
                     ),

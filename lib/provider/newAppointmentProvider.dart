@@ -110,8 +110,9 @@ class NewAppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setSelectedProvince(String province) {
+  Future<void> setSelectedProvince(String province) async {
     selectedProvince = province;
+    await getLocationByProvince(false);
     notifyListeners();
   }
 
@@ -141,6 +142,7 @@ class NewAppointmentProvider with ChangeNotifier {
         ));
       }
       locations = locationLists;
+      selectedLocation = locations[0];
       if (notify) notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 401) {
