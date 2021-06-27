@@ -6,97 +6,15 @@ import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:provider/provider.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
-import '../../model/textType.dart';
+import '../../model/location_type.dart';
 import '../../screen/Setting/setting_screen.dart';
 
 class HospitalSetting extends StatefulWidget {
-  final String text;
-  HospitalSetting(this.text);
   @override
   State<HospitalSetting> createState() => _HospitalSettingState();
 }
 
 class _HospitalSettingState extends State<HospitalSetting> {
-  List<String> dataprovince = [
-    'Bangkok',
-    'Samut Prakan',
-    'Nonthaburi',
-    'Pathum Thani',
-    'Phra Nakhon Si Ayutthaya',
-    'Ang Thong',
-    'Loburi',
-    'Sing Buri',
-    'Chai Nat',
-    'Saraburi',
-    'Chon Buri',
-    'Rayong',
-    'Chanthaburi',
-    'Trat',
-    'Chachoengsao',
-    'Prachin Buri',
-    'Nakhon Nayok',
-    'Sa Kaeo',
-    'Nakhon Ratchasima',
-    'Buri Ram',
-    'Surin',
-    'Si Sa Ket',
-    'Ubon Ratchathani',
-    'Yasothon',
-    'Chaiyaphum',
-    'Amnat Charoen',
-    'Nong Bua Lam Phu',
-    'Khon Kaen',
-    'Udon Thani',
-    'Loei',
-    'Nong Khai',
-    'Maha Sarakham',
-    'Roi Et',
-    'Kalasin',
-    'Sakon Nakhon',
-    'Nakhon Phanom',
-    'Mukdahan',
-    'Chiang Mai',
-    'Lamphun',
-    'Lampang',
-    'Uttaradit',
-    'Phrae',
-    'Nan',
-    'Phayao',
-    'Chiang Rai',
-    'Mae Hong Son',
-    'Nakhon Sawan',
-    'Uthai Thani',
-    'Kamphaeng Phet',
-    'Tak',
-    'Sukhothai',
-    'Phitsanulok',
-    'Phichit',
-    'Phetchabun',
-    'Ratchaburi',
-    'Kanchanaburi',
-    'Suphan Buri',
-    'Nakhon Pathom',
-    'Samut Sakhon',
-    'Samut Songkhram',
-    'Phetchaburi',
-    'Prachuap Khiri Khan',
-    'Nakhon Si Thammarat',
-    'Krabi',
-    'Phangnga',
-    'Phuket',
-    'Surat Thani',
-    'Ranong',
-    'Chumphon',
-    'Songkhla',
-    'Satun',
-    'Trang',
-    'Phatthalung',
-    'Pattani',
-    'Yala',
-    'Narathiwat',
-    'buogkan'
-  ];
-
   Future<void> updateHospital() async {
     String locationID = isProvinceChange
         ? Provider.of<AuthenicateProvider>(context, listen: false)
@@ -138,14 +56,11 @@ class _HospitalSettingState extends State<HospitalSetting> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    MainText(widget.text, text_type.bold, kFontSizeHeadline4,
-                        primary01),
-                    kSizedBoxVerticalS,
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: kSizeS, vertical: kSizeS),
                       child: SearchableDropdown.single(
-                        items: dataprovince.map((e) {
+                        items: authen.dataprovince.map((e) {
                           return DropdownMenuItem<dynamic>(
                             child: Text(e),
                             value: e,
@@ -181,7 +96,9 @@ class _HospitalSettingState extends State<HospitalSetting> {
                         isCaseSensitiveSearch: true,
                         searchHint: const Text('Select your hospital'),
                         value: isProvinceChange
-                            ? authen.hospital[0].name_en
+                            ? isHospitalChange
+                                ? selectedHospital
+                                : authen.hospital[0].name_en
                             : isHospitalChange
                                 ? selectedHospital
                                 : authen.location.name_en,
@@ -207,7 +124,7 @@ class _HospitalSettingState extends State<HospitalSetting> {
                     PrimaryButton(
                       onPressed: updateHospital,
                       text: 'Update',
-                    ),
+                    )
                   ],
                 ),
               ),

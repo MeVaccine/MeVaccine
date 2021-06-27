@@ -8,7 +8,7 @@ class VaccineIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 50,
-      height: kSizeM,
+      height: kSizeS,
       child: Image.asset('assets/images/vaccine.png'),
     );
   }

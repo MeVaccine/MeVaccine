@@ -8,19 +8,27 @@ import '../../model/textType.dart';
 
 class Vaccine extends StatelessWidget {
   final String text;
-  Vaccine({required this.text});
+  final int number;
+  Vaccine({required this.text, required this.number});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 25,
-      width: 280,
-      child: Row(
-        children: [
-          VaccineIcon(),
-          MainText(text, text_type.regular, 16, primary01)
-        ],
-      ),
-    );
+        alignment: Alignment.topCenter,
+        height: 25,
+        width: 300,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                VaccineIcon(),
+                MainText(text, text_type.regular, 12, primary01),
+              ],
+            ),
+            MainText(
+                '(' + number.toString() + ')', text_type.regular, 12, primary01),
+          ],
+        ));
   }
 }

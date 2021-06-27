@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mevaccine/provider/addPerson.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mevaccine/localization/localizations_delegate.dart';
 import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
@@ -28,6 +29,7 @@ import './provider/authenicateProvider.dart';
 import './provider/personProvider.dart';
 import './provider/userProvider.dart';
 import './screen/Setting/verification_changeNumber.dart';
+import './provider/locationProvider.dart';
 import './localization/locale_constant.dart';
 
 void main() {
@@ -95,15 +97,22 @@ class _MyAppState extends State<MyApp> {
             update: (ctx, auth, prev) => UserProvider(
                   token: auth.token,
                 )),
+        ChangeNotifierProxyProvider<AuthenicateProvider, LocationProvider>(
+            create: (ctx) => LocationProvider(token: ''),
+            update: (ctx, auth, prev) => LocationProvider(
+                  token: auth.token,
+                )),
+        ChangeNotifierProvider(create: (ctx) => AddPersonProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Prompt',
           primaryColor: primary01,
+          colorScheme: ColorScheme.light().copyWith(primary: primary01),
         ),
         //หน้าแรกสุด
-        home: LoginScreen(),
+        home: LandingScreen(),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
           VerificationChangeNumber.routeName: (ctx) =>

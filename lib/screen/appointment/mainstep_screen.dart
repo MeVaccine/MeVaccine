@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
-import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/screen/landing_screen.dart';
+import 'package:mevaccine/widget/button/secondaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
 import 'package:mevaccine/widget/layout/layout_appointment.dart';
 import './step1_screen.dart';
@@ -26,6 +27,73 @@ class _MainstepState extends State<Mainstep> {
     Step3.routeName: Step3(),
     Step4.routeName: Step4(),
   };
+  final dataList = {
+    Step1.routeName: {
+      'text': 'Select Person',
+      'description': 'who goes to vacinate together',
+      'value': 1,
+    },
+    Step2.routeName: {
+      'text': 'Select vaccine location',
+      'description': 'which you want to go.',
+      'value': 2,
+    },
+    Step3.routeName: {
+      'text': 'Select Date and time',
+      'description': 'which you want to.',
+      'value': 3,
+    },
+    Step4.routeName: {
+      'text': 'Select vaccine',
+      'description': 'for each of person including you.',
+      'value': 4,
+    }
+  };
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+                content: Container(
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        "Do you confirm schedule this appointment ? ",
+                        textAlign: TextAlign.center,
+                      )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SmallButton(
+                        text: 'Cancel',
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        color: white,
+                        width: 100,
+                        colorFont: primary03,
+                        colorBorder: primary03,
+                      ),
+                      SmallButton(
+                        text: 'Confirm',
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(LandingScreen.routeName);
+                        },
+                        color: primary03,
+                        width: 100,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +121,7 @@ class _MainstepState extends State<Mainstep> {
     };
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         body: Column(
       children: [
         LayoutAppointment(
@@ -93,10 +162,7 @@ class _MainstepState extends State<Mainstep> {
                     } else if (_currentTab == Step3.routeName) {
                       setState(() => {_currentTab = Step4.routeName});
                     } else if (_currentTab == Step4.routeName) {
-                      showDialog(
-                          context: context,
-                          builder: (ctx) =>
-                              AlertDialog(title: Text("Submit Laew Na eiei")));
+                      _showDialog();
                     }
                   },
                   text: _currentTab == Step4.routeName
