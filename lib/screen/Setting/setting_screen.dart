@@ -110,7 +110,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 FontAwesomeIcons.language,
                 color: primary01,
               ),
-              onPressed: () {},
+              onPressed: () => _showLang(),
               text: 'Change Language',
             ),
             kSizedBoxVerticalXL,

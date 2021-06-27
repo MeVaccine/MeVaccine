@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:mevaccine/provider/addPerson.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mevaccine/localization/localizations_delegate.dart';
+import 'package:mevaccine/provider/changeLanguageProvider.dart';
 import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -102,7 +103,8 @@ class _MyAppState extends State<MyApp> {
             update: (ctx, auth, prev) => LocationProvider(
                   token: auth.token,
                 )),
-        ChangeNotifierProvider(create: (ctx) => AddPersonProvider())
+        ChangeNotifierProvider(create: (ctx) => AddPersonProvider()),
+        ChangeNotifierProvider(create: (ctx) => ChangeLanguageProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
