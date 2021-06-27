@@ -23,12 +23,6 @@ class Step1 extends StatelessWidget {
           ProfileCard(
             text: 'Kavisara Srisuwatcharee',
           ),
-          // Center(
-          //   child: EmptyPerson(),
-          // ),
-          // if(authen.isPersonEmpty)
-          // EmptyPerson()
-          // else
           ListPerson(),
         ],
       ),

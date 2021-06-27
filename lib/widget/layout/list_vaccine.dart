@@ -11,7 +11,8 @@ class ListVaccine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<LocationProvider>(context, listen: false).getVaccine(locationID);
+    Provider.of<LocationProvider>(context, listen: false)
+        .getVaccine(locationID);
     return Consumer<LocationProvider>(
       builder: (context, authen, child) => Container(
         decoration: BoxDecoration(
@@ -24,12 +25,11 @@ class ListVaccine extends StatelessWidget {
                   offset: const Offset(0, 16),
                   color: const Color(0xFF7090B0).withOpacity(0.2))
             ]),
-        padding: const EdgeInsets.symmetric(vertical: 5,),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         // color: primary02,
         height: 170,
-        width: 350,
+        width: 365,
         child: GridView.count(
-          
           childAspectRatio: 4,
           crossAxisCount: 2,
           padding: const EdgeInsets.symmetric(vertical: 10),
