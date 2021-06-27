@@ -3,8 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/localization/locale_constant.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/changeLanguageProvider.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
 import 'package:mevaccine/widget/option/checkLang_setting.dart';
@@ -22,7 +24,7 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  void _showLang() {
+  void _showLang(BuildContext ctx) {
     showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -50,7 +52,14 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       SmallButton(
                         text: 'Update',
-                        onPressed: () {},
+                        onPressed: () {
+                          var isSelectEng = Provider.of<ChangeLanguageProvider>(
+                            ctx,
+                            listen: false,
+                          ).isEngSelected;
+                          changeLanguage(ctx, isSelectEng ? 'en' : 'th');
+                          Navigator.of(context).pop();
+                        },
                         color: primary03,
                         width: 100,
                       ),
@@ -110,7 +119,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 FontAwesomeIcons.language,
                 color: primary01,
               ),
-              onPressed: () => _showLang(),
+              onPressed: () => _showLang(context),
               text: 'Change Language',
             ),
             kSizedBoxVerticalXL,
