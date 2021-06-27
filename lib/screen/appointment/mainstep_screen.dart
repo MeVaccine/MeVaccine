@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/screen/landing_screen.dart';
 import 'package:mevaccine/widget/button/secondaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
@@ -121,59 +122,59 @@ class _MainstepState extends State<Mainstep> {
     };
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: false,
         body: Column(
-      children: [
-        LayoutAppointment(
-          text: dataList[_currentTab]!['text'].toString(),
-          description: dataList[_currentTab]!['description'].toString(),
-          step: '${dataList[_currentTab]!['value']} of 4',
-          value: int.parse(dataList[_currentTab]!['value'].toString()) / 4,
-        ),
-        screen[_currentTab]!,
-        Container(
-            margin: EdgeInsets.symmetric(horizontal: kSizeS),
-            child: Row(
-              mainAxisAlignment: _currentTab == Step1.routeName
-                  ? MainAxisAlignment.end
-                  : MainAxisAlignment.spaceBetween,
-              children: [
-                if (_currentTab != Step1.routeName)
-                  SmallButton(
-                    onPressed: () {
-                      if (_currentTab == Step2.routeName) {
-                        setState(() => {_currentTab = Step1.routeName});
-                      } else if (_currentTab == Step3.routeName) {
-                        setState(() => {_currentTab = Step2.routeName});
-                      } else if (_currentTab == Step4.routeName) {
-                        setState(() => {_currentTab = Step3.routeName});
-                      }
-                    },
-                    text: Languages.of(context)!.previousButtonLabel,
-                    color: accent02,
-                    width: 120,
-                  ),
-                SmallButton(
-                  onPressed: () {
-                    if (_currentTab == Step1.routeName) {
-                      setState(() => {_currentTab = Step2.routeName});
-                    } else if (_currentTab == Step2.routeName) {
-                      setState(() => {_currentTab = Step3.routeName});
-                    } else if (_currentTab == Step3.routeName) {
-                      setState(() => {_currentTab = Step4.routeName});
-                    } else if (_currentTab == Step4.routeName) {
-                      _showDialog();
-                    }
-                  },
-                  text: _currentTab == Step4.routeName
-                      ? Languages.of(context)!.submitButtonLabel
-                      : Languages.of(context)!.nextButtonLabel,
-                  color: accent02,
-                  width: 120,
-                ),
-              ],
-            ))
-      ],
-    ));
+          children: [
+            LayoutAppointment(
+              text: dataList[_currentTab]!['text'].toString(),
+              description: dataList[_currentTab]!['description'].toString(),
+              step: '${dataList[_currentTab]!['value']} of 4',
+              value: int.parse(dataList[_currentTab]!['value'].toString()) / 4,
+            ),
+            screen[_currentTab]!,
+            Container(
+                margin: EdgeInsets.symmetric(horizontal: kSizeS),
+                child: Row(
+                  mainAxisAlignment: _currentTab == Step1.routeName
+                      ? MainAxisAlignment.end
+                      : MainAxisAlignment.spaceBetween,
+                  children: [
+                    if (_currentTab != Step1.routeName)
+                      SmallButton(
+                        onPressed: () {
+                          if (_currentTab == Step2.routeName) {
+                            setState(() => {_currentTab = Step1.routeName});
+                          } else if (_currentTab == Step3.routeName) {
+                            setState(() => {_currentTab = Step2.routeName});
+                          } else if (_currentTab == Step4.routeName) {
+                            setState(() => {_currentTab = Step3.routeName});
+                          }
+                        },
+                        text: Languages.of(context)!.previousButtonLabel,
+                        color: accent02,
+                        width: 120,
+                      ),
+                    SmallButton(
+                      onPressed: () {
+                        if (_currentTab == Step1.routeName) {
+                          setState(() => {_currentTab = Step2.routeName});
+                        } else if (_currentTab == Step2.routeName) {
+                          setState(() => {_currentTab = Step3.routeName});
+                        } else if (_currentTab == Step3.routeName) {
+                          setState(() => {_currentTab = Step4.routeName});
+                        } else if (_currentTab == Step4.routeName) {
+                          _showDialog();
+                        }
+                      },
+                      text: _currentTab == Step4.routeName
+                          ? Languages.of(context)!.submitButtonLabel
+                          : Languages.of(context)!.nextButtonLabel,
+                      color: accent02,
+                      width: 120,
+                    ),
+                  ],
+                ))
+          ],
+        ));
   }
 }

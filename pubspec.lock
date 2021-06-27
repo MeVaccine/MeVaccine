@@ -77,7 +77,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.1"
+    version: "6.1.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -108,7 +108,7 @@ packages:
       name: flutter_multi_formatter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.4"
+    version: "2.2.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -125,7 +125,7 @@ packages:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.0.0"
+    version: "9.1.0"
   http_parser:
     dependency: transitive
     description:
@@ -326,7 +326,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.1"
   typed_data:
     dependency: transitive
     description:
@@ -347,7 +347,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.5"
+    version: "2.2.4"
   xdg_directories:
     dependency: transitive
     description:

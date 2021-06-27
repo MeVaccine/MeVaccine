@@ -33,9 +33,9 @@ class HospitalSettingScreen extends StatelessWidget {
             children: [
               LogoHospital(),
               kSizedBoxVerticalS,
-              MainText('Change Hospital', text_type.bold, kFontSizeHeadline4,
+              MainText(Languages.of(context)!.changeLocationHeading,
+                  text_type.bold, kFontSizeHeadline4, primary01),
               HospitalSetting()
-                  primary01),
             ],
           ),
         ),
