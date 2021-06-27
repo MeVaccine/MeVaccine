@@ -91,9 +91,18 @@ class NewAppointmentProvider with ChangeNotifier {
     province_th: '',
   );
 
+  String selectedProvince = "";
+
   List<String> get provinces => [...this._dataprovince];
 
   void setSelectedLocation(Location location) {
     selectedLocation = location;
+    selectedProvince = location.province_en;
+    notifyListeners();
+  }
+
+  void setSelectedProvince(String province) {
+    selectedProvince = province;
+    notifyListeners();
   }
 }
