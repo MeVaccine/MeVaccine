@@ -38,7 +38,6 @@ class LocationProvider with ChangeNotifier {
             avaliable: data[i]['avaliable']));
       }
       _vaccine = tempVaccine;
-
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 401) {
