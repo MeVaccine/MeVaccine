@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
@@ -13,8 +14,7 @@ class LandingScreen extends StatelessWidget {
   static const routeName = '/landing-screen';
   @override
   Widget build(BuildContext context) {
-    Provider.of<AuthenicateProvider>(context, listen: false)
-            .getName();
+    Provider.of<AuthenicateProvider>(context, listen: false).getName();
     return Consumer<AuthenicateProvider>(
       builder: (ctx, authen, child) => Scaffold(
         body: Container(
@@ -29,8 +29,8 @@ class LandingScreen extends StatelessWidget {
                 name: authen.userInfo.firstname_en,
               ),
               kSizedBoxXS,
-              MainText(
-                  'Schedule', text_type.regular, kFontSizeHeadline4, primary01),
+              MainText(Languages.of(context)!.scheduleHeading,
+                  text_type.regular, kFontSizeHeadline4, primary01),
               Container(
                 height: 190,
                 child: YourAppointment(

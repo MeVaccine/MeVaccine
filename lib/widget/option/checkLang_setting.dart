@@ -1,5 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
+import 'package:mevaccine/provider/changeLanguageProvider.dart';
+import 'package:provider/provider.dart';
 
 class CheckLang extends StatefulWidget {
   @override
@@ -27,11 +31,13 @@ class _CheckLangState extends State<CheckLang> {
                 Checkbox(
                     checkColor: primary01,
                     activeColor: primary01,
-                    value: valueEng,
-                    onChanged: (bool? value) => setState(() {
-                          valueEng = value!;
-                          valueThai = false;
-                        }))
+                    value: Provider.of<ChangeLanguageProvider>(context)
+                        .isEngSelected,
+                    onChanged: (bool? value) {
+                      Provider.of<ChangeLanguageProvider>(context,
+                              listen: false)
+                          .selectEngish();
+                    })
               ],
             ),
           ),
@@ -51,11 +57,14 @@ class _CheckLangState extends State<CheckLang> {
                 Checkbox(
                     checkColor: primary01,
                     activeColor: primary01,
-                    value: valueThai,
-                    onChanged: (bool? value) => setState(() {
-                          valueThai = value!;
-                          valueEng = false;
-                        }))
+                    value: Provider.of<ChangeLanguageProvider>(context)
+                        .isThaiSelected,
+                    onChanged: (bool? value) {
+                      Provider.of<ChangeLanguageProvider>(
+                        context,
+                        listen: false,
+                      ).selectThai();
+                    })
               ],
             ),
           ),

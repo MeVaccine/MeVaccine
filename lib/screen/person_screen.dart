@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart';
 import 'package:provider/provider.dart';
@@ -58,8 +59,8 @@ class _PersonScreenState extends State<PersonScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Your Person ',
+                          Text(
+                            Languages.of(context)!.yourPersonHeading,
                             style: TextStyle(
                                 color: primary01, fontSize: kFontSizeHeadline4),
                           ),

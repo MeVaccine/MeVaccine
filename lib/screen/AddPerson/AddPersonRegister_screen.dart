@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/authType.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/model/textType.dart';
@@ -68,13 +69,13 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
                           iconTheme: const IconThemeData(color: Colors.black),
                         ),
                         // ข้างล่างนี้กห็ ฟอร์ม ต่างๆ
-                        MainText('Register', text_type.bold, kFontSizeHeadline4,
-                            primary01),
+                        MainText(Languages.of(context)!.registerHeadingLabel,
+                            text_type.bold, kFontSizeHeadline4, primary01),
                         kSizedBoxVerticalS,
                         LogoMedkit(),
                         kSizedBoxVerticalS,
-                        MainText('Personal Information', text_type.regular,
-                            kFontSizeHeadline4, primary01),
+                        MainText(Languages.of(context)!.personalInfoHeading,
+                            text_type.regular, kFontSizeHeadline4, primary01),
                         RegisterTextForm(
                           label: authen.personal.en.prefix,
                           type: RegsiterTextFormType.nothing,
@@ -107,7 +108,7 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
                         ),
                         RegisterTextForm(
                             textEditingController: _phoneNumber,
-                            label: 'Phone Number',
+                            label: Languages.of(context)!.phoneNumberInputLabel,
                             type: RegsiterTextFormType.phoneNumber,
                             active: RegisterActiveType.enable),
                         kSizedBoxVerticalM,
@@ -122,7 +123,7 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
                             // Navigator.of(context)
                             //     .pushNamed(VerificationScreen.routeName);
                           },
-                          text: 'Done',
+                          text: Languages.of(context)!.doneButtonLabel,
                         ),
                       ],
                     ),
