@@ -30,33 +30,32 @@ class _Step2State extends State<Step2> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Provider.of<AuthenicateProvider>(context, listen: false)
+        future: Provider.of<NewAppointmentProvider>(context, listen: false)
             .getPreferedLocation(),
         builder: (ctx, snapshort) {
           if (snapshort.connectionState == ConnectionState.done) {
             // Set inital prefered location
-            Provider.of<NewAppointmentProvider>(ctx, listen: false)
-                .initSelectLocation(snapshort.data as Location);
             return Container(
               height: 490,
               child: Column(
                 children: [
                   kSizedBoxVerticalS,
                   ListVaccine(
-                    locationID: Provider.of<NewAppointmentProvider>(context)
+                    locationID: Provider.of<NewAppointmentProvider>(ctx)
                         .selectedLocation
                         .id,
                   ),
                   kSizedBoxVerticalM,
                   Container(
-                      margin: EdgeInsets.only(right: 200),
+                      margin: const EdgeInsets.only(right: 200),
                       child: MainText('Location', text_type.regular,
                           kFontSizeHeadline3, primary01)),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: kSizeM, vertical: kSizeXXS),
                     child: SearchableDropdown.single(
-                      items: Provider.of<NewAppointmentProvider>(context)
+                      items: Provider.of<NewAppointmentProvider>(ctx,
+                              listen: false)
                           .provinces
                           .map((e) {
                         return DropdownMenuItem<dynamic>(
@@ -67,15 +66,14 @@ class _Step2State extends State<Step2> {
                       hint: 'Province',
                       isCaseSensitiveSearch: true,
                       searchHint: const Text('Select your province'),
-                      value: Provider.of<NewAppointmentProvider>(context)
-                          .selectedLocation
-                          .province_en,
+                      value: Provider.of<NewAppointmentProvider>(ctx)
+                          .selectedProvince,
                       onChanged: (value) async {
-                        Provider.of<NewAppointmentProvider>(context,
-                                listen: false)
+                        Provider.of<NewAppointmentProvider>(ctx, listen: false)
                             .setSelectedProvince(value);
-                        await Provider.of<LocationProvider>(ctx, listen: false)
-                            .getLocationByProvince(value);
+                        await Provider.of<NewAppointmentProvider>(ctx,
+                                listen: false)
+                            .getLocationByProvince();
                       },
                       isExpanded: true,
                     ),
@@ -84,33 +82,34 @@ class _Step2State extends State<Step2> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: kSizeM, vertical: kSizeXXS),
                     child: FutureBuilder(
-                      future: Provider.of<LocationProvider>(ctx)
-                          .getLocationByProvince(
-                              Provider.of<NewAppointmentProvider>(context,
-                                      listen: false)
-                                  .selectedProvince),
-                      builder: (ctx, snapshort) => SearchableDropdown.single(
-                        items: Provider.of<LocationProvider>(ctx)
-                            .hospitals
-                            .map((e) {
-                          return DropdownMenuItem<dynamic>(
-                            child: Text(e.name_en),
-                            value: e.id,
-                          );
-                        }).toList(),
-                        hint: Provider.of<NewAppointmentProvider>(context)
-                            .selectedLocation
-                            .name_en,
-                        isCaseSensitiveSearch: true,
-                        searchHint: const Text('Select your hospital'),
-                        value: Provider.of<NewAppointmentProvider>(context)
-                            .selectedLocation
-                            .id,
-                        onChanged: (value) {
-                          print(value);
-                        },
-                        isExpanded: true,
-                      ),
+                      future: Provider.of<NewAppointmentProvider>(ctx,
+                              listen: false)
+                          .getLocationByProvince(),
+                      builder: (ctx, snapshort) => snapshort.connectionState ==
+                              ConnectionState.done
+                          ? SearchableDropdown.single(
+                              items: Provider.of<NewAppointmentProvider>(ctx)
+                                  .hospitals
+                                  .map((e) {
+                                return DropdownMenuItem<dynamic>(
+                                  child: Text(e.name_en),
+                                  value: e.id,
+                                );
+                              }).toList(),
+                              hint: Provider.of<NewAppointmentProvider>(ctx)
+                                  .selectedLocation
+                                  .name_en,
+                              isCaseSensitiveSearch: true,
+                              searchHint: const Text('Select your hospital'),
+                              value: Provider.of<NewAppointmentProvider>(ctx)
+                                  .selectedLocation
+                                  .id,
+                              onChanged: (value) {
+                                print(value);
+                              },
+                              isExpanded: true,
+                            )
+                          : CircularProgressIndicator(),
                     ),
                   ),
                   Row(

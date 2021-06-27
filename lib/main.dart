@@ -106,7 +106,11 @@ class _MyAppState extends State<MyApp> {
                 )),
         ChangeNotifierProvider(create: (ctx) => AddPersonProvider()),
         ChangeNotifierProvider(create: (ctx) => ChangeLanguageProvider()),
-        ChangeNotifierProvider(create: (ctx) => NewAppointmentProvider()),
+        ChangeNotifierProxyProvider<AuthenicateProvider,
+            NewAppointmentProvider>(
+          create: (ctx) => NewAppointmentProvider(''),
+          update: (ctx, auth, prev) => NewAppointmentProvider(auth.token),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -52,31 +52,4 @@ class LocationProvider with ChangeNotifier {
       }
     }
   }
-
-  Future<void> getLocationByProvince(String province) async {
-    try {
-      final response = await Dio().get(apiEndpoint + '/location',
-          queryParameters: {'province': province},
-          options: Options(headers: {"Authorization": "Bearer " + token}));
-      final data = response.data.toList();
-      List<Hospital> hospitals = [];
-      for (var hospital in data) {
-        hospitals.add(Hospital(
-          id: hospital['_id'],
-          name_en: hospital['name_en'],
-          name_th: hospital['name_th'],
-          priority: hospital['priority'],
-          province_en: hospital['province_en'],
-          province_th: hospital['province_th'],
-          vaccine: [],
-        ));
-      }
-      _hospitals = hospitals;
-      notifyListeners();
-    } on DioError catch (error) {
-      if (error.response!.statusCode == 401) {
-        throw HttpException(jwtException);
-      }
-    }
-  }
 }
