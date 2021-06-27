@@ -151,7 +151,9 @@ class _MainstepState extends State<Mainstep> {
                           }
                         },
                         text: Languages.of(context)!.previousButtonLabel,
-                        color: accent02,
+                        color: white,
+                        colorBorder: accent02,
+                        colorFont: accent02,
                         width: 120,
                       ),
                     SmallButton(
