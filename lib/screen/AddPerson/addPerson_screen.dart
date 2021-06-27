@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/widget/Logo/logo_register.dart';
 import 'package:mevaccine/widget/auth/register-Form.dart';
 import '../../model/authType.dart';
@@ -31,7 +32,10 @@ class AddPerson extends StatelessWidget {
             child: Column(
               children: [
                 LogoRegister(),
-                RegisterForm('Add a Person',RegisterType.addPerson),
+                RegisterForm(
+                  Languages.of(context)!.addPersonHeading,
+                  RegisterType.addPerson,
+                ),
               ],
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/widget/Logo/Logo_LoginScreen.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
@@ -71,8 +72,8 @@ class _NumberSettingScreenState extends State<NumberSettingScreen> {
                 child: Column(
                   children: [
                     LogoImage(),
-                    MainText('Change Number', text_type.bold,
-                        kFontSizeHeadline4, primary01),
+                    MainText(Languages.of(context)!.changePhoneNumberHeading,
+                        text_type.bold, kFontSizeHeadline4, primary01),
                     kSizedBoxM,
                     TextFormField(
                       validator: (val) {
@@ -84,7 +85,7 @@ class _NumberSettingScreenState extends State<NumberSettingScreen> {
                       controller: _phoneNumber,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        hintText: 'Phone Number',
+                        hintText: Languages.of(context)!.phoneNumberInputLabel,
                         hintStyle: const TextStyle(color: netural01),
                         prefixIcon: Icon(
                           Icons.phone,
@@ -100,7 +101,7 @@ class _NumberSettingScreenState extends State<NumberSettingScreen> {
                           changeNumber();
                         }
                       },
-                      text: 'Update',
+                      text: Languages.of(context)!.updateButtonLabel,
                       color: primary01,
                     ),
                   ],

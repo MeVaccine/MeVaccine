@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
 import './symptomCard.dart';
 
@@ -28,34 +29,34 @@ class _SymptomFormDetailState extends State<SymptomFormDetail> {
           children: [
             kSizedBoxS,
             SymptomCard(
-              text: 'Headache',
+              text: Languages.of(context)!.isHeadacheQuestion,
               value: valueHeadache,
             ),
             kSizedBoxS,
             SymptomCard(
-              text: 'Nausea',
+              text: Languages.of(context)!.isNauseaQuestion,
               value: valueNausea,
             ),
             kSizedBoxS,
             SymptomCard(
-              text: 'Fatigue',
+              text: Languages.of(context)!.isFatigueQuestion,
               value: valueFatigue,
             ),
             SymptomCard(
-              text: 'Chills',
+              text: Languages.of(context)!.isChillsQuestion,
               value: valueChills,
             ),
             SymptomCard(text: 'Muscle Pain', value: valueMusclePain),
             SymptomCard(
-              text: 'Tiderness',
+              text: Languages.of(context)!.isTirednessQuestion,
               value: valueTiderness,
             ),
             SymptomCard(
-              text: 'Other',
+              text: Languages.of(context)!.isOtherQuestion,
               value: valueOther,
             ),
             PrimaryButton(
-              text: 'Submit',
+              text: Languages.of(context)!.submitButtonLabel,
               onPressed: () {},
               color: primary01,
             )

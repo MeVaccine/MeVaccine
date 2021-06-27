@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart';
 import 'package:mevaccine/widget/Logo/logo_hospital.dart';
@@ -32,8 +33,8 @@ class HospitalSettingScreen extends StatelessWidget {
             children: [
               LogoHospital(),
               kSizedBoxVerticalS,
-              MainText('Change Hospital', text_type.bold, kFontSizeHeadline4,
-                  primary01),
+              MainText(Languages.of(context)!.changeLocationHeading,
+                  text_type.bold, kFontSizeHeadline4, primary01),
               HospitalSetting()
             ],
           ),

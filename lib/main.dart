@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mevaccine/provider/addPerson.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mevaccine/localization/localizations_delegate.dart';
+import 'package:mevaccine/provider/changeLanguageProvider.dart';
 import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -28,15 +31,54 @@ import './provider/personProvider.dart';
 import './provider/userProvider.dart';
 import './screen/Setting/verification_changeNumber.dart';
 import './provider/locationProvider.dart';
+import './localization/locale_constant.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
-  runApp(MyApp());
+  runApp(MyMainApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyMainApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MyApp();
+  }
+}
+
+class MyApp extends StatefulWidget {
+  static void setLocale(BuildContext context, Locale newLocale) {
+    var state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale _locale = Locale('th');
+
+  void setLocale(Locale locale) {
+    print(this._locale);
+    setState(() {
+      _locale = locale;
+    });
+    print('hi');
+    print(this._locale);
+  }
+
+  @override
+  void didChangeDependencies() async {
+    getLocale().then((locale) {
+      setState(() {
+        _locale = locale;
+      });
+    });
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -61,7 +103,8 @@ class MyApp extends StatelessWidget {
             update: (ctx, auth, prev) => LocationProvider(
                   token: auth.token,
                 )),
-        ChangeNotifierProvider(create: (ctx) => AddPersonProvider())
+        ChangeNotifierProvider(create: (ctx) => AddPersonProvider()),
+        ChangeNotifierProvider(create: (ctx) => ChangeLanguageProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -94,6 +137,23 @@ class MyApp extends StatelessWidget {
           Step3.routeName: (ctx) => Step3(),
           Step4.routeName: (ctx) => Step4(),
         },
+        supportedLocales: [Locale('th'), Locale('en')],
+        locale: _locale,
+        localizationsDelegates: [
+          AppLocalizationsDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        // localeResolutionCallback: (locale, supportedLocales) {
+        //   for (var supportedLocale in supportedLocales) {
+        //     if (supportedLocale.languageCode == locale?.languageCode &&
+        //         supportedLocale.countryCode == locale?.countryCode) {
+        //       return supportedLocale;
+        //     }
+        //   }
+        //   return supportedLocales.first;
+        // },
       ),
     );
   }
