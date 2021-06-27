@@ -179,7 +179,7 @@ class LanguageEN extends Languages {
   @override
   String get settingsHeading => "Settings";
   @override
-  String get changeLocationButtonLabel => "Chnage prefered location";
+  String get changeLocationButtonLabel => "Change prefered location";
   @override
   String get changePhoneNumberButtonLabel => "Change Phone Number";
   @override
