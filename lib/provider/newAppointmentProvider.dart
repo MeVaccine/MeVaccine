@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/foundation.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 
@@ -94,6 +96,11 @@ class NewAppointmentProvider with ChangeNotifier {
   String selectedProvince = "";
 
   List<String> get provinces => [...this._dataprovince];
+
+  void initSelectLocation(Location location) {
+    selectedLocation = location;
+    selectedProvince = location.province_en;
+  }
 
   void setSelectedLocation(Location location) {
     selectedLocation = location;
