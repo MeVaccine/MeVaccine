@@ -99,7 +99,8 @@ class _Step2State extends State<Step2> {
                           .selectedLocation
                           .id,
                       onChanged: (value) {
-                        print(value);
+                        Provider.of<NewAppointmentProvider>(ctx, listen: false)
+                            .selectLocation(value);
                       },
                       isExpanded: true,
                     ),

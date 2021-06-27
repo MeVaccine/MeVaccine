@@ -115,6 +115,14 @@ class NewAppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void selectLocation(String locationId) {
+    var locationIndex = locations.indexWhere((ele) => ele.id == locationId);
+    if (locationIndex != -1) {
+      selectedLocation = locations[locationIndex];
+      notifyListeners();
+    }
+  }
+
   Future<void> getLocationByProvince(bool notify) async {
     try {
       final response = await Dio().get(apiEndpoint + '/location',
