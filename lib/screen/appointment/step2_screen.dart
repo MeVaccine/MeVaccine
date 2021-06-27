@@ -83,7 +83,7 @@ class _Step2State extends State<Step2> {
                         horizontal: kSizeM, vertical: kSizeXXS),
                     child: SearchableDropdown.single(
                       items: Provider.of<NewAppointmentProvider>(ctx)
-                          .hospitals
+                          .locations
                           .map((e) {
                         return DropdownMenuItem<dynamic>(
                           child: Text(e.name_en),
