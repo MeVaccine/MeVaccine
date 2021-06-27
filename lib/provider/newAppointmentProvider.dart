@@ -160,9 +160,8 @@ class NewAppointmentProvider with ChangeNotifier {
         province_th: response.data['province_th'],
       );
       selectedProvince = response.data['province_en'];
-      print(selectedProvince);
+      getLocationByProvince();
       notifyListeners();
-      // return location;
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
         throw HttpException(incorrectAuthException);

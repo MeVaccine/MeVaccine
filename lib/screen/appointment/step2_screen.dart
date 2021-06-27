@@ -81,35 +81,27 @@ class _Step2State extends State<Step2> {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: kSizeM, vertical: kSizeXXS),
-                    child: FutureBuilder(
-                      future: Provider.of<NewAppointmentProvider>(ctx,
-                              listen: false)
-                          .getLocationByProvince(),
-                      builder: (ctx, snapshort) => snapshort.connectionState ==
-                              ConnectionState.done
-                          ? SearchableDropdown.single(
-                              items: Provider.of<NewAppointmentProvider>(ctx)
-                                  .hospitals
-                                  .map((e) {
-                                return DropdownMenuItem<dynamic>(
-                                  child: Text(e.name_en),
-                                  value: e.id,
-                                );
-                              }).toList(),
-                              hint: Provider.of<NewAppointmentProvider>(ctx)
-                                  .selectedLocation
-                                  .name_en,
-                              isCaseSensitiveSearch: true,
-                              searchHint: const Text('Select your hospital'),
-                              value: Provider.of<NewAppointmentProvider>(ctx)
-                                  .selectedLocation
-                                  .id,
-                              onChanged: (value) {
-                                print(value);
-                              },
-                              isExpanded: true,
-                            )
-                          : CircularProgressIndicator(),
+                    child: SearchableDropdown.single(
+                      items: Provider.of<NewAppointmentProvider>(ctx)
+                          .hospitals
+                          .map((e) {
+                        return DropdownMenuItem<dynamic>(
+                          child: Text(e.name_en),
+                          value: e.id,
+                        );
+                      }).toList(),
+                      hint: Provider.of<NewAppointmentProvider>(ctx)
+                          .selectedLocation
+                          .name_en,
+                      isCaseSensitiveSearch: true,
+                      searchHint: const Text('Select your hospital'),
+                      value: Provider.of<NewAppointmentProvider>(ctx)
+                          .selectedLocation
+                          .id,
+                      onChanged: (value) {
+                        print(value);
+                      },
+                      isExpanded: true,
                     ),
                   ),
                   Row(
