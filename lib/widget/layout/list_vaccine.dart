@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
+import 'package:mevaccine/provider/locationProvider.dart';
 import 'package:mevaccine/widget/layout/vaccine.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:provider/provider.dart';
 
 class ListVaccine extends StatelessWidget {
-  const ListVaccine({Key? key}) : super(key: key);
+  String locationID;
+  ListVaccine({Key? key, required this.locationID}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Provider.of<LocationProvider>(context, listen: false)
+        .getVaccine(locationID);
+    return Consumer<LocationProvider>(
+      builder: (context, authen, child) => Container(
         decoration: BoxDecoration(
             color: white,
             borderRadius: kBorderRadiusS,
@@ -19,20 +25,24 @@ class ListVaccine extends StatelessWidget {
                   offset: const Offset(0, 16),
                   color: const Color(0xFF7090B0).withOpacity(0.2))
             ]),
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         // color: primary02,
         height: 170,
-        width: 330,
+        width: 365,
         child: GridView.count(
           childAspectRatio: 4,
           crossAxisCount: 2,
+          padding: const EdgeInsets.symmetric(vertical: 10),
           children: [
-            Vaccine(text: 'Sinovac'),
-            Vaccine(text: 'AstraZeneca'),
-            Vaccine(text: 'Moderna'),
-            Vaccine(text: 'Sinopharm'),
-            Vaccine(text: 'Pfizer'),
+            ...authen.vaccine.map(
+              (e) => Vaccine(
+                text: e.name,
+                number: e.avaliable,
+              ),
+            )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

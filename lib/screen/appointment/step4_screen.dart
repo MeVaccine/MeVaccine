@@ -27,7 +27,7 @@ class Step4 extends StatelessWidget {
                 color: primary01,
               ),
             ),
-            ListDropdownperson()
+            ListDropdownperson(),
           ],
         ));
   }

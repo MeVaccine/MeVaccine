@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import '../../config/color.dart';
 import '../../config/constants.dart';
 import '../text/mainText.dart';
@@ -26,8 +27,8 @@ class Profile extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              MainText('Good Morning!', text_type.regular,
-                  kFontSizeHeadline4 * 0.8, primary01),
+              MainText(Languages.of(context)!.greetingMessage,
+                  text_type.regular, kFontSizeHeadline4 * 0.8, primary01),
               ProfileText(name, accent02, kFontSizeHeadline2),
             ]),
           ),

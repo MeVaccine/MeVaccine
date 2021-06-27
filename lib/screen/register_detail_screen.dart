@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/authType.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/model/textType.dart';
@@ -22,85 +23,6 @@ class RegisterDetailScreen extends StatefulWidget {
 }
 
 class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
-  List<String> dataprovince = [
-    'Bangkok',
-    'Samut Prakan',
-    'Nonthaburi',
-    'Pathum Thani',
-    'Phra Nakhon Si Ayutthaya',
-    'Ang Thong',
-    'Loburi',
-    'Sing Buri',
-    'Chai Nat',
-    'Saraburi',
-    'Chon Buri',
-    'Rayong',
-    'Chanthaburi',
-    'Trat',
-    'Chachoengsao',
-    'Prachin Buri',
-    'Nakhon Nayok',
-    'Sa Kaeo',
-    'Nakhon Ratchasima',
-    'Buri Ram',
-    'Surin',
-    'Si Sa Ket',
-    'Ubon Ratchathani',
-    'Yasothon',
-    'Chaiyaphum',
-    'Amnat Charoen',
-    'Nong Bua Lam Phu',
-    'Khon Kaen',
-    'Udon Thani',
-    'Loei',
-    'Nong Khai',
-    'Maha Sarakham',
-    'Roi Et',
-    'Kalasin',
-    'Sakon Nakhon',
-    'Nakhon Phanom',
-    'Mukdahan',
-    'Chiang Mai',
-    'Lamphun',
-    'Lampang',
-    'Uttaradit',
-    'Phrae',
-    'Nan',
-    'Phayao',
-    'Chiang Rai',
-    'Mae Hong Son',
-    'Nakhon Sawan',
-    'Uthai Thani',
-    'Kamphaeng Phet',
-    'Tak',
-    'Sukhothai',
-    'Phitsanulok',
-    'Phichit',
-    'Phetchabun',
-    'Ratchaburi',
-    'Kanchanaburi',
-    'Suphan Buri',
-    'Nakhon Pathom',
-    'Samut Sakhon',
-    'Samut Songkhram',
-    'Phetchaburi',
-    'Prachuap Khiri Khan',
-    'Nakhon Si Thammarat',
-    'Krabi',
-    'Phangnga',
-    'Phuket',
-    'Surat Thani',
-    'Ranong',
-    'Chumphon',
-    'Songkhla',
-    'Satun',
-    'Trang',
-    'Phatthalung',
-    'Pattani',
-    'Yala',
-    'Narathiwat',
-    'buogkan'
-  ];
   bool _isLoading = false;
   String nationID = "";
   String laserID = "";
@@ -160,13 +82,13 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                           iconTheme: const IconThemeData(color: Colors.black),
                         ),
                         // ข้างล่างนี้กห็ ฟอร์ม ต่างๆ
-                        MainText('Register', text_type.bold, kFontSizeHeadline4,
-                            primary01),
+                        MainText(Languages.of(context)!.registerHeadingLabel,
+                            text_type.bold, kFontSizeHeadline4, primary01),
                         kSizedBoxVerticalS,
                         LogoMedkit(),
                         kSizedBoxVerticalS,
-                        MainText('Personal Information', text_type.regular,
-                            kFontSizeHeadline4, primary01),
+                        MainText(Languages.of(context)!.personalInfoHeading,
+                            text_type.regular, kFontSizeHeadline4, primary01),
                         RegisterTextForm(
                           label: authen.personal.en.prefix,
                           type: RegsiterTextFormType.nothing,
@@ -199,24 +121,24 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                         ),
                         RegisterTextForm(
                             textEditingController: _phoneNumber,
-                            label: 'Phone Number',
+                            label: Languages.of(context)!.phoneNumberInputLabel,
                             type: RegsiterTextFormType.phoneNumber,
                             active: RegisterActiveType.enable),
                         kSizedBoxVerticalM,
-                        MainText('Address', text_type.bold, kFontSizeHeadline4,
-                            primary01),
+                        MainText(Languages.of(context)!.registerLocationHeading,
+                            text_type.bold, kFontSizeHeadline4, primary01),
 
                         Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: kSizeS, vertical: kSizeS),
                             child: SearchableDropdown.single(
-                              items: dataprovince.map((e) {
+                              items: authen.dataprovince.map((e) {
                                 return DropdownMenuItem<dynamic>(
                                   child: Text(e),
                                   value: e,
                                 );
                               }).toList(),
-                              hint: 'Province',
+                              hint: Languages.of(context)!.provinceInputLabel,
                               isCaseSensitiveSearch: true,
                               searchHint: const Text('Select your province'),
                               onChanged: (value) {
@@ -241,9 +163,11 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                                 value: e.name_en,
                               );
                             }).toList(),
-                            hint: 'Selected',
+                            hint:
+                                Text(Languages.of(context)!.locationInputLabel),
                             isCaseSensitiveSearch: true,
-                            searchHint: const Text('Select your hospital'),
+                            searchHint:
+                                Text(Languages.of(context)!.locationInputLabel),
                             onChanged: (value) {
                               setState(() {
                                 selectedHospital = value;
@@ -272,7 +196,7 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                             // Navigator.of(context)
                             //     .pushNamed(VerificationScreen.routeName);
                           },
-                          text: 'Done',
+                          text: Languages.of(context)!.doneButtonLabel,
                         ),
                       ],
                     ),

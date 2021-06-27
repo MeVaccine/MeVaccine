@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
@@ -65,24 +66,25 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 children: [
                   LogoVerification(),
                   kSizedBoxL,
-                  MainText('Verification Code', text_type.regular,
-                      kFontSizeHeadline4, primary01),
+                  MainText(Languages.of(context)!.verificationCodeHeadingLabel,
+                      text_type.regular, kFontSizeHeadline4, primary01),
                   kSizedBoxM,
                   VerificationTextFormField(
-                    label: 'Code',
+                    label: Languages.of(context)!.verificationCodeInputLabel,
                     textEditingController: _code,
                   ),
                   kSizedBoxS,
-                  const Text('Enter the code we sent to your number at'),
+                  Text(Languages.of(context)!.verificationCodeTextMessage),
                   Container(
                       padding:
                           const EdgeInsets.symmetric(horizontal: kSizeS * 1.3),
                       alignment: Alignment.centerLeft,
-                      child: Text(
-                          "${authen.numberUser} refCode OTP is :${authen.refCode}")),
+                      child: Text(Languages.of(context)!
+                          .verificationCodePhoneMessage(
+                              authen.numberUser, authen.refCode))),
                   kSizedBoxM,
                   PrimaryButton(
-                    text: 'Done',
+                    text: Languages.of(context)!.doneButtonLabel,
                     onPressed: () {
                       verification();
                     },

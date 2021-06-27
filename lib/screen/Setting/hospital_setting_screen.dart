@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart';
 import 'package:mevaccine/widget/Logo/logo_hospital.dart';
+import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:provider/provider.dart';
 import '../../config/constants.dart';
 import '../../widget/option/hospital_setting.dart';
+import '../../model/textType.dart';
 
 class HospitalSettingScreen extends StatelessWidget {
   static const routeName = '/hospital-setting';
@@ -30,7 +33,9 @@ class HospitalSettingScreen extends StatelessWidget {
             children: [
               LogoHospital(),
               kSizedBoxVerticalS,
-              HospitalSetting('Change Hospital')
+              MainText(Languages.of(context)!.changeLocationHeading,
+                  text_type.bold, kFontSizeHeadline4, primary01),
+              HospitalSetting()
             ],
           ),
         ),
