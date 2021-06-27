@@ -90,7 +90,7 @@ class NewAppointmentProvider with ChangeNotifier {
 
   String _token;
   String selectedProvince = "";
-  List<Hospital> hospitals = [];
+  List<Location> locations = [];
   Location selectedLocation = Location(
     id: '',
     name_en: '',
@@ -121,19 +121,18 @@ class NewAppointmentProvider with ChangeNotifier {
           queryParameters: {'province': selectedProvince},
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
-      List<Hospital> hospitalsList = [];
-      for (var hospital in data) {
-        hospitalsList.add(Hospital(
-          id: hospital['_id'],
-          name_en: hospital['name_en'],
-          name_th: hospital['name_th'],
-          priority: hospital['priority'],
-          province_en: hospital['province_en'],
-          province_th: hospital['province_th'],
-          vaccine: [],
+      List<Location> locationLists = [];
+      for (var location in data) {
+        locationLists.add(Location(
+          id: location['_id'],
+          name_en: location['name_en'],
+          name_th: location['name_th'],
+          priority: location['priority'],
+          province_en: location['province_en'],
+          province_th: location['province_th'],
         ));
       }
-      hospitals = hospitalsList;
+      locations = locationLists;
       if (notify) notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 401) {
@@ -155,7 +154,7 @@ class NewAppointmentProvider with ChangeNotifier {
         province_th: response.data['province_th'],
       );
       selectedProvince = response.data['province_en'];
-      getLocationByProvince(false);
+      await getLocationByProvince(false);
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
