@@ -104,11 +104,6 @@ class NewAppointmentProvider with ChangeNotifier {
 
   List<String> get provinces => [..._dataprovince];
 
-  void initSelectLocation(Location location) {
-    selectedLocation = location;
-    selectedProvince = location.province_en;
-  }
-
   void setSelectedLocation(Location location) {
     selectedLocation = location;
     selectedProvince = location.province_en;
@@ -120,7 +115,7 @@ class NewAppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getLocationByProvince() async {
+  Future<void> getLocationByProvince(bool notify) async {
     try {
       final response = await Dio().get(apiEndpoint + '/location',
           queryParameters: {'province': selectedProvince},
@@ -139,7 +134,7 @@ class NewAppointmentProvider with ChangeNotifier {
         ));
       }
       hospitals = hospitalsList;
-      notifyListeners();
+      if (notify) notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 401) {
         throw HttpException(jwtException);
@@ -160,7 +155,7 @@ class NewAppointmentProvider with ChangeNotifier {
         province_th: response.data['province_th'],
       );
       selectedProvince = response.data['province_en'];
-      getLocationByProvince();
+      getLocationByProvince(false);
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {

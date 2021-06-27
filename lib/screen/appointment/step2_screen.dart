@@ -73,7 +73,7 @@ class _Step2State extends State<Step2> {
                             .setSelectedProvince(value);
                         await Provider.of<NewAppointmentProvider>(ctx,
                                 listen: false)
-                            .getLocationByProvince();
+                            .getLocationByProvince(false);
                       },
                       isExpanded: true,
                     ),
