@@ -105,6 +105,7 @@ class NewAppointmentProvider with ChangeNotifier {
 
   String _token;
   String selectedProvince = "";
+  int selectedDateTimeIndex = -1;
   List<Location> locations = [];
   List<PersonProvider.Person> selectedPerson = [];
   List<LocationDateTime> locationDateime = [];
@@ -235,5 +236,10 @@ class NewAppointmentProvider with ChangeNotifier {
       }
       throw HttpException(error.response!.data);
     }
+  }
+
+  void selectDateTime(int index) {
+    selectedDateTimeIndex = index;
+    notifyListeners();
   }
 }

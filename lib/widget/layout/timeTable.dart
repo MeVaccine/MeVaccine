@@ -5,11 +5,13 @@ import 'package:mevaccine/config/constants.dart';
 class TimeTable extends StatefulWidget {
   final int index;
   final String time;
+  final int seat;
   final bool isSelected;
   final Function changeSelectedIndex;
   TimeTable({
     required this.index,
     required this.time,
+    required this.seat,
     required this.isSelected,
     required this.changeSelectedIndex,
   });
@@ -35,7 +37,7 @@ class _TimeTableState extends State<TimeTable> {
             ]),
         alignment: Alignment.center,
         child: Text(
-          widget.time,
+          '${widget.time} (${widget.seat})',
           style: TextStyle(
               color: widget.isSelected ? white : primary01, fontSize: 16),
         ),
