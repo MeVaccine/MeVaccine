@@ -7,13 +7,27 @@ import 'package:flutter/foundation.dart';
 import '../model/httpException.dart';
 
 class UserInfo {
-  String firstname_th;
+  String id;
+  String prefix_en;
   String firstname_en;
+  String lastname_en;
+  String gender_en;
+  String prefix_th;
+  String firstname_th;
+  String lastname_th;
+  String gender_th;
   Appointment? appointment;
   VaccineUser? vaccineUser;
   UserInfo(
-      {required this.firstname_th,
+      {required this.id,
       required this.firstname_en,
+      required this.gender_en,
+      required this.lastname_en,
+      required this.prefix_en,
+      required this.firstname_th,
+      required this.gender_th,
+      required this.lastname_th,
+      required this.prefix_th,
       required this.appointment,
       required this.vaccineUser});
 }
@@ -175,6 +189,13 @@ class AuthenicateProvider with ChangeNotifier {
   UserInfo _userInfo = UserInfo(
     firstname_en: "",
     firstname_th: "",
+    gender_en: "",
+    gender_th: "",
+    lastname_en: "",
+    lastname_th: "",
+    prefix_en: "",
+    prefix_th: "",
+    id: "",
     appointment: Appointment(
         date: DateTime.now(),
         doesNumber: 0,
@@ -421,45 +442,46 @@ class AuthenicateProvider with ChangeNotifier {
     }
   }
 
-  Future<void> getLocationAppointment(
-      String nameHospital, String locationID, String province) async {
+  Future<Location> getPreferedLocation() async {
     try {
-      if (locationAppointment == '') {
-        final response = await Dio().get(apiEndpoint + '/location/prefered',
-            options: Options(headers: {"Authorization": "Bearer " + token}));
-        location = Location(
-            id: response.data['_id'],
-            name_en: response.data['name_en'],
-            name_th: response.data['name_th'],
-            priority: response.data['priority'],
-            province_en: response.data['province_en'],
-            province_th: response.data['province_th']);
-        locationAppointment = response.data['name_en'];
-        locationAppointmentID = response.data['_id'];
-        nameProvinceAppointment = response.data['province_en'];
-      } else {
-        if (nameHospital == "") {
-          locationAppointment = tempName;
-        } else {
-          tempName = nameHospital;
-        }
-        if (locationID == "") {
-          locationAppointmentID = tempID;
-        } else {
-          tempID = locationID;
-        }
-        if (province == "") {
-          nameProvinceAppointment = tempProvince;
-        } else {
-          tempProvince = province;
-        }
-      }
-
+      // if (locationAppointment == '') {
+      final response = await Dio().get(apiEndpoint + '/location/prefered',
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+      location = Location(
+        id: response.data['_id'],
+        name_en: response.data['name_en'],
+        name_th: response.data['name_th'],
+        priority: response.data['priority'],
+        province_en: response.data['province_en'],
+        province_th: response.data['province_th'],
+      );
+      // locationAppointment = response.data['name_en'];
+      // locationAppointmentID = response.data['_id'];
+      // nameProvinceAppointment = response.data['province_en'];
+      // } else {
+      //   if (nameHospital == "") {
+      //     locationAppointment = tempName;
+      //   } else {
+      //     tempName = nameHospital;
+      //   }
+      //   if (locationID == "") {
+      //     locationAppointmentID = tempID;
+      //   } else {
+      //     tempID = locationID;
+      //   }
+      //   if (province == "") {
+      //     nameProvinceAppointment = tempProvince;
+      //   } else {
+      //     tempProvince = province;
+      //   }
+      // }
       notifyListeners();
+      return location;
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
         throw HttpException(incorrectAuthException);
       }
+      throw HttpException('Failed to get data');
     }
   }
 
@@ -515,6 +537,13 @@ class AuthenicateProvider with ChangeNotifier {
       _userInfo = UserInfo(
           firstname_en: response.data['firstname_en'],
           firstname_th: response.data['firstname_th'],
+          gender_en: response.data['gender_en'],
+          gender_th: response.data['gender_th'],
+          lastname_en: response.data['lastname_en'],
+          lastname_th: response.data['lastname_th'],
+          prefix_en: response.data['prefix_en'],
+          prefix_th: response.data['prefix_th'],
+          id: response.data['id'],
           appointment: response.data['appointment']['_id'] == null
               ? null
               : Appointment(

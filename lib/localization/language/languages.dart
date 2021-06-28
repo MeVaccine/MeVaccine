@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
 abstract class Languages {
   static Languages? of(BuildContext context) {
     return Localizations.of<Languages>(context, Languages);
   }
 
-  // String get appName;
+  String fullNamePerson(PersonProvider.Person person);
 
   // Common Button Label
   String get doneButtonLabel;
@@ -22,6 +24,8 @@ abstract class Languages {
   // Common Input Label
   String get nationalIDInputLabel;
   String get phoneNumberInputLabel;
+  String provinceDropdownItem(Map<String, String> province);
+  String locationNameItem(Location location);
 
   // Login Screen
   String get loginHeadingLabel;

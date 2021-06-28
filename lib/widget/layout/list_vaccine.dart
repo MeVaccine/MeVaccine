@@ -39,10 +39,28 @@ class ListVaccine extends StatelessWidget {
                 text: e.name,
                 number: e.avaliable,
               ),
-            )
-          ],
-        ),
-      ),
-    );
+              // color: primary02,
+              height: 170,
+              width: 350,
+              child: snapshort.connectionState == ConnectionState.done
+                  ? GridView.count(
+                      childAspectRatio: 4,
+                      crossAxisCount: 2,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      children: [
+                        ...authen.vaccine.map(
+                          (e) => Vaccine(
+                            text: e.name,
+                            number: e.avaliable,
+                          ),
+                        )
+                      ],
+                    )
+                  : Center(child: CircularProgressIndicator()),
+            ),
+          );
+        });
+
+    // return
   }
 }

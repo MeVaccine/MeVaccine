@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
-import 'package:mevaccine/provider/personProvider.dart';
-import 'package:mevaccine/widget/Logo/empty_person.dart';
-import 'package:mevaccine/widget/button/smallButton.dart';
-import 'package:provider/provider.dart';
 import '../../widget/layout/profile_card.dart';
-import '../../widget/layout/layout_appointment.dart';
-import '../appointment/step2_screen.dart';
 import '../../widget/layout/list_person.dart';
 
 class Step1 extends StatelessWidget {

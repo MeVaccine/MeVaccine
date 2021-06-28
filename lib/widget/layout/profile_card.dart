@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/newAppointmentProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
+import 'package:provider/provider.dart';
 import '../../config/color.dart';
 import '../../config/constants.dart';
 import '../text/mainText.dart';
@@ -17,6 +22,19 @@ class _ProfileCardState extends State<ProfileCard> {
   bool _checked = false;
   @override
   Widget build(BuildContext context) {
+    final personalInfo =
+        Provider.of<AuthenicateProvider>(context, listen: false).userInfo;
+    final person = PersonProvider.Person(
+      id: personalInfo.id,
+      firstname_en: personalInfo.firstname_en,
+      lastname_en: personalInfo.lastname_en,
+      firstname_th: personalInfo.firstname_th,
+      lastname_th: personalInfo.lastname_th,
+      gender_en: personalInfo.gender_en,
+      gender_th: personalInfo.gender_th,
+      prefix_en: personalInfo.prefix_en,
+      prefix_th: personalInfo.prefix_th,
+    );
     return Container(
       decoration:
           BoxDecoration(color: white, borderRadius: kBorderRadiusS, boxShadow: [
@@ -40,7 +58,7 @@ class _ProfileCardState extends State<ProfileCard> {
             ),
             kSizedBoxHorizontalXS,
             Text(
-              widget.text,
+              Languages.of(context)!.fullNamePerson(person),
               style: const TextStyle(color: primary01),
             ),
           ],
@@ -50,7 +68,13 @@ class _ProfileCardState extends State<ProfileCard> {
         onChanged: (bool? value) {
           setState(() {
             _checked = value!;
-            print(_checked);
+            if (_checked) {
+              Provider.of<NewAppointmentProvider>(context, listen: false)
+                  .selectPerson(person);
+            } else {
+              Provider.of<NewAppointmentProvider>(context, listen: false)
+                  .removePerson(person);
+            }
           });
         },
       ),

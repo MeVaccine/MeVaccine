@@ -1,8 +1,13 @@
 // ignore_for_file: file_names
 
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
 class LanguageTH extends Languages {
+  String fullNamePerson(PersonProvider.Person person) =>
+      '${person.firstname_th} ${person.lastname_th}';
+
   // Common Button Label
   @override
   String get doneButtonLabel => "ยืนยัน";
@@ -31,6 +36,11 @@ class LanguageTH extends Languages {
   String get nationalIDInputLabel => "เลขประจำตัวประชาชน";
   @override
   String get phoneNumberInputLabel => "เบอร์โทรศัพท์";
+  @override
+  String provinceDropdownItem(Map<String, String> province) =>
+      province['TH'] as String;
+  @override
+  String locationNameItem(Location location) => location.name_th;
 
   // Login Screen
   @override
