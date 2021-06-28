@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
@@ -33,8 +34,8 @@ class Step2 extends StatelessWidget {
                   kSizedBoxVerticalM,
                   Container(
                       margin: const EdgeInsets.only(right: 200),
-                      child: MainText('Location', text_type.regular,
-                          kFontSizeHeadline3, primary01)),
+                      child: MainText(Languages.of(ctx)!.locationHeading,
+                          text_type.regular, kFontSizeHeadline3, primary01)),
                   // Province Dropdown
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -104,11 +105,10 @@ class Step2 extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('If you want to change the location.',
+                              Text(Languages.of(ctx)!.changingLocationMessage1,
                                   style: TextStyle(
                                       color: primary01, fontSize: 10)),
-                              Text(
-                                  'You can be select text form that you want to go.',
+                              Text(Languages.of(ctx)!.changingLocationMessage2,
                                   style: TextStyle(
                                       color: primary01, fontSize: 10)),
                             ],
