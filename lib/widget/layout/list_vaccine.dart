@@ -30,8 +30,8 @@ class ListVaccine extends StatelessWidget {
         height: 170,
         width: 365,
         child: GridView.count(
-          childAspectRatio: 4,
-          crossAxisCount: 2,
+          childAspectRatio: 10,
+          crossAxisCount: 1,
           padding: const EdgeInsets.symmetric(vertical: 10),
           children: [
             ...authen.vaccine.map(

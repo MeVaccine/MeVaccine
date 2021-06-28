@@ -15,19 +15,18 @@ class Vaccine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.topCenter,
-        height: 25,
-        width: 300,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
                 VaccineIcon(),
-                MainText(text, text_type.regular, 12, primary01),
+                MainText(text, text_type.regular, 16, primary01),
               ],
             ),
-            MainText(
-                '(' + number.toString() + ')', text_type.regular, 12, primary01),
+            MainText(number.toString(), text_type.regular, 16,
+                number <= 5000 ? error : primary01),
           ],
         ));
   }
