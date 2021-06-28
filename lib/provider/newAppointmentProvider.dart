@@ -209,18 +209,20 @@ class NewAppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getDateTimeOfLocation() async {
+  Future<void> getDateTimeOfLocation(String date) async {
     try {
       final response = await Dio().get(
           apiEndpoint + '/location/dateTime/${selectedLocation.id}',
+          queryParameters: {'date': date},
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
       List<LocationDateTime> tempDateTime = [];
       for (var dateTime in data) {
         tempDateTime.add(
           LocationDateTime(
-              startDateTime: dateTime['startDateTime'],
-              endDateTime: dateTime['endDateTime'],
+              startDateTime:
+                  DateTime.parse(dateTime['startDateTime']).toLocal(),
+              endDateTime: DateTime.parse(dateTime['endDateTime']).toLocal(),
               capacity: dateTime['capacity'],
               avaliable: dateTime['avaliable']),
         );
@@ -231,7 +233,7 @@ class NewAppointmentProvider with ChangeNotifier {
       if (error.response!.statusCode == 400) {
         throw HttpException(incorrectAuthException);
       }
-      throw HttpException('Failed to get data');
+      throw HttpException(error.response!.data);
     }
   }
 }
