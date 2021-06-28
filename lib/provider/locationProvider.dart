@@ -1,4 +1,8 @@
+// ignore_for_file: file_names
+
 import 'dart:async';
+import 'package:mevaccine/provider/authenicateProvider.dart';
+
 import '../config/string.dart';
 import 'package:dio/dio.dart';
 import 'package:mevaccine/config/api.dart';
@@ -18,10 +22,13 @@ class LocationProvider with ChangeNotifier {
   LocationProvider({required this.token});
   List<Vaccines> _vaccine = [];
   String checkVaccine = '';
+  List<Hospital> _hospitals = [];
 
   List<Vaccines> get vaccine {
     return _vaccine;
   }
+
+  List<Hospital> get hospitals => [..._hospitals];
 
   Future<void> getVaccine(String locationID) async {
     try {
@@ -38,7 +45,6 @@ class LocationProvider with ChangeNotifier {
             avaliable: data[i]['avaliable']));
       }
       _vaccine = tempVaccine;
-
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 401) {
