@@ -31,7 +31,10 @@ class CalendarTextfield extends StatelessWidget {
             if (dateTime != null) {
               final selectDateTimeISO = dateTime.toIso8601String();
               controller.text = DateFormat('dd/MM/yyyy').format(dateTime);
-              await Provider.of<NewAppointmentProvider>(context, listen: false)
+              final newAppointmentProvider =
+                  Provider.of<NewAppointmentProvider>(context, listen: false);
+              newAppointmentProvider.selectDateTime(-1);
+              await newAppointmentProvider
                   .getDateTimeOfLocation(selectDateTimeISO);
             }
           });
