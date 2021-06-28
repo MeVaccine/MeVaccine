@@ -13,20 +13,9 @@ import '../../widget/layout/list_vaccine.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:mevaccine/model/textType.dart';
 
-class Step2 extends StatefulWidget {
+class Step2 extends StatelessWidget {
   static const routeName = '/step2';
 
-  @override
-  _Step2State createState() => _Step2State();
-}
-
-class _Step2State extends State<Step2> {
-  bool isProvinceChange = false;
-  bool isHospitalChange = false;
-  bool noChange = true;
-  String selectedValue = "";
-  String selectedHospital = "";
-  String updateLocation = '';
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -50,6 +39,7 @@ class _Step2State extends State<Step2> {
                       margin: const EdgeInsets.only(right: 200),
                       child: MainText('Location', text_type.regular,
                           kFontSizeHeadline3, primary01)),
+                  // Province Dropdown
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: kSizeM, vertical: kSizeXXS),
@@ -76,6 +66,7 @@ class _Step2State extends State<Step2> {
                       isExpanded: true,
                     ),
                   ),
+                  // Location Dropdown
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: kSizeM, vertical: kSizeXXS),
