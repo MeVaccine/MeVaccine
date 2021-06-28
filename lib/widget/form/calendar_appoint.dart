@@ -5,8 +5,14 @@ import 'package:intl/intl.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:provider/provider.dart';
 
-class CalendarTextfield extends StatelessWidget {
+class CalendarTextfield extends StatefulWidget {
+  @override
+  State<CalendarTextfield> createState() => _CalendarTextfieldState();
+}
+
+class _CalendarTextfieldState extends State<CalendarTextfield> {
   TextEditingController controller = TextEditingController();
+  DateTime selectedDatetime = DateTime(2021, 7, 1);
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +30,23 @@ class CalendarTextfield extends StatelessWidget {
         onTap: () async {
           await showDatePicker(
                   context: context,
-                  initialDate: DateTime(2021, 7, 1),
+                  initialDate: selectedDatetime,
                   firstDate: DateTime(2021, 7, 1),
                   lastDate: DateTime(2021, 12, 31))
               .then((dateTime) async {
             if (dateTime != null) {
-              final selectDateTimeISO = dateTime.toIso8601String();
+              // Set text in controller
               controller.text = DateFormat('dd/MM/yyyy').format(dateTime);
+              // Reset selectDateTimeIndex and getDateTimeOfLocation of that date
               final newAppointmentProvider =
                   Provider.of<NewAppointmentProvider>(context, listen: false);
               newAppointmentProvider.selectDateTime(-1);
               await newAppointmentProvider
-                  .getDateTimeOfLocation(selectDateTimeISO);
+                  .getDateTimeOfLocation(dateTime.toIso8601String());
+              // Update selectedDatetime
+              setState(() {
+                selectedDatetime = dateTime;
+              });
             }
           });
         },
