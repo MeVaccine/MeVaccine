@@ -14,7 +14,7 @@ class ListDropdownperson extends StatelessWidget {
     final persons = personProvider.person;
     return Container(
       height: 300,
-      width: 370,
+      width: 350,
       child: ListView(
         children: persons.map((e) {
           if (e.check) {

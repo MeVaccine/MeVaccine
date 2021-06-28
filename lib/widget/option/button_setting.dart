@@ -50,7 +50,7 @@ class ButtonSetting extends StatelessWidget {
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Icon(FontAwesomeIcons.angleRight,
                         color: primary01, size: kSizeS * 1.2),
                   )

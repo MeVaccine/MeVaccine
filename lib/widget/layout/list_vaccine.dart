@@ -11,9 +11,6 @@ class ListVaccine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<LocationProvider>(context, listen: false)
-        .getVaccine(locationID);
-
     return FutureBuilder(
         future: Provider.of<LocationProvider>(context, listen: false)
             .getVaccine(locationID),
