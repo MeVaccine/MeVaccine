@@ -23,7 +23,7 @@ class LocationDateTime {
 }
 
 class NewAppointmentProvider with ChangeNotifier {
-  List<Map<String, String>> _dataProvince = [
+  final List<Map<String, String>> _dataProvince = [
     {"TH": "กรุงเทพมหานคร", "EN": "Bangkok"},
     {"TH": "สมุทรปราการ", "EN": "Samut Prakan"},
     {"TH": "นนทบุรี", "EN": "Nonthaburi"},
