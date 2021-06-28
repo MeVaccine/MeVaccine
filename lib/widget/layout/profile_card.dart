@@ -22,17 +22,17 @@ class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     final personalInfo =
-        Provider.of<AuthenicateProvider>(context, listen: false).personal;
+        Provider.of<AuthenicateProvider>(context, listen: false).userInfo;
     final person = PersonProvider.Person(
       id: personalInfo.id,
-      firstname_en: personalInfo.en.firstName,
-      lastname_en: personalInfo.en.lastName,
-      firstname_th: personalInfo.th.firstName,
-      lastname_th: personalInfo.th.lastName,
-      gender_en: personalInfo.en.gender,
-      gender_th: personalInfo.th.gender,
-      prefix_en: personalInfo.en.prefix,
-      prefix_th: personalInfo.th.prefix,
+      firstname_en: personalInfo.firstname_en,
+      lastname_en: personalInfo.lastname_en,
+      firstname_th: personalInfo.firstname_th,
+      lastname_th: personalInfo.lastname_th,
+      gender_en: personalInfo.gender_en,
+      gender_th: personalInfo.gender_th,
+      prefix_en: personalInfo.prefix_en,
+      prefix_th: personalInfo.prefix_th,
     );
     return Container(
       decoration:
@@ -68,9 +68,11 @@ class _ProfileCardState extends State<ProfileCard> {
           setState(() {
             _checked = value!;
             if (_checked) {
-              Provider.of<NewAppointmentProvider>(context).selectPerson(person);
+              Provider.of<NewAppointmentProvider>(context, listen: false)
+                  .selectPerson(person);
             } else {
-              Provider.of<NewAppointmentProvider>(context).removePerson(person);
+              Provider.of<NewAppointmentProvider>(context, listen: false)
+                  .removePerson(person);
             }
           });
         },
