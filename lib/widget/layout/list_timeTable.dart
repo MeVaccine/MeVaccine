@@ -48,11 +48,14 @@ class _ListTimeTableState extends State<ListTimeTable> {
                   seat: el.seat,
                   isSelected: times.indexOf(el) == selectedIndex,
                   changeSelectedIndex: (int index) {
-                    Provider.of<NewAppointmentProvider>(context, listen: false)
-                        .selectDateTime(index);
-                    setState(() {
-                      selectedIndex = index;
-                    });
+                    if (el.seat != 0) {
+                      Provider.of<NewAppointmentProvider>(context,
+                              listen: false)
+                          .selectDateTime(index);
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    }
                   }),
             )
             .toList(),

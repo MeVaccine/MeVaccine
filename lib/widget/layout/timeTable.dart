@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
@@ -19,6 +21,7 @@ class TimeTable extends StatefulWidget {
   _TimeTableState createState() => _TimeTableState();
 }
 
+// TODO: If seat == 0 -> It should grey out the text
 class _TimeTableState extends State<TimeTable> {
   @override
   Widget build(BuildContext context) {
