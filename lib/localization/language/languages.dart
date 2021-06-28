@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
 abstract class Languages {
   static Languages? of(BuildContext context) {
     return Localizations.of<Languages>(context, Languages);
   }
 
-  // String get appName;
+  String fullNamePerson(PersonProvider.Person person);
 
   // Common Button Label
   String get doneButtonLabel;

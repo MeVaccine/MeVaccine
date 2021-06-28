@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
@@ -57,7 +58,7 @@ class _ProfileCardState extends State<ProfileCard> {
             ),
             kSizedBoxHorizontalXS,
             Text(
-              '${person.firstname_en} ${person.lastname_en}',
+              Languages.of(context)!.fullNamePerson(person),
               style: const TextStyle(color: primary01),
             ),
           ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart';
 import 'package:provider/provider.dart';
@@ -21,17 +22,17 @@ class ListPerson extends StatelessWidget {
                 ? ListView(
                     children: personProvider.person
                         .map(
-                          (el) => CardPersonAppoint(
-                            text: '${el.firstname_en} ${el.lastname_en}',
-                            id: el.id,
+                          (person) => CardPersonAppoint(
+                            text: Languages.of(ctx)!.fullNamePerson(person),
+                            id: person.id,
                             onChanged: (isSelected) {
                               final newAppointmentProvider =
                                   Provider.of<NewAppointmentProvider>(ctx,
                                       listen: false);
                               if (isSelected) {
-                                newAppointmentProvider.selectPerson(el);
+                                newAppointmentProvider.selectPerson(person);
                               } else {
-                                newAppointmentProvider.removePerson(el);
+                                newAppointmentProvider.removePerson(person);
                               }
                             },
                           ),
