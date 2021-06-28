@@ -50,7 +50,7 @@ class ListVaccine extends StatelessWidget {
                         )
                       ],
                     )
-                  : CircularProgressIndicator(),
+                  : Center(child: CircularProgressIndicator()),
             ),
           );
         });
