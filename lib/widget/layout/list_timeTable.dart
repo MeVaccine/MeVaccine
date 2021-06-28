@@ -8,22 +8,14 @@ import './timeTable.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 
-class ListTimeTable extends StatefulWidget {
-  ListTimeTable({Key? key}) : super(key: key);
-
-  @override
-  _ListTimeTableState createState() => _ListTimeTableState();
-}
-
 class MyTimeTable {
   final String time;
   final int seat;
   MyTimeTable({required this.time, required this.seat});
 }
 
-class _ListTimeTableState extends State<ListTimeTable> {
-  int selectedIndex = -1;
-
+class ListTimeTable extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     List<MyTimeTable> times = Provider.of<NewAppointmentProvider>(context)
         .locationDateime
@@ -46,15 +38,14 @@ class _ListTimeTableState extends State<ListTimeTable> {
                   index: times.indexOf(el),
                   time: el.time,
                   seat: el.seat,
-                  isSelected: times.indexOf(el) == selectedIndex,
+                  isSelected: times.indexOf(el) ==
+                      Provider.of<NewAppointmentProvider>(context)
+                          .selectedDateTimeIndex,
                   changeSelectedIndex: (int index) {
                     if (el.seat != 0) {
                       Provider.of<NewAppointmentProvider>(context,
                               listen: false)
                           .selectDateTime(index);
-                      setState(() {
-                        selectedIndex = index;
-                      });
                     }
                   }),
             )
