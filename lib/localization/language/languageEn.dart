@@ -31,6 +31,9 @@ class LanguageEN extends Languages {
   String get nationalIDInputLabel => "National ID";
   @override
   String get phoneNumberInputLabel => "Phone Number";
+  @override
+  String provinceDropdownItem(Map<String, String> province) =>
+      province['EN'] as String;
 
   // Login Screen
   @override

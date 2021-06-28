@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
@@ -46,8 +48,9 @@ class Step2 extends StatelessWidget {
                           .provinces
                           .map((e) {
                         return DropdownMenuItem<dynamic>(
-                          child: Text(e),
-                          value: e,
+                          child:
+                              Text(Languages.of(ctx)!.provinceDropdownItem(e)),
+                          value: e['EN'],
                         );
                       }).toList(),
                       hint: 'Province',

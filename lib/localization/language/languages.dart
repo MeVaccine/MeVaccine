@@ -22,6 +22,7 @@ abstract class Languages {
   // Common Input Label
   String get nationalIDInputLabel;
   String get phoneNumberInputLabel;
+  String provinceDropdownItem(Map<String, String> province);
 
   // Login Screen
   String get loginHeadingLabel;

@@ -31,6 +31,9 @@ class LanguageTH extends Languages {
   String get nationalIDInputLabel => "เลขประจำตัวประชาชน";
   @override
   String get phoneNumberInputLabel => "เบอร์โทรศัพท์";
+  @override
+  String provinceDropdownItem(Map<String, String> province) =>
+      province['TH'] as String;
 
   // Login Screen
   @override
