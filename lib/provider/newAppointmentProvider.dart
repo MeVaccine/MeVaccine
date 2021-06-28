@@ -8,6 +8,20 @@ import '../config/string.dart';
 import 'package:dio/dio.dart';
 import 'package:mevaccine/config/api.dart';
 
+class LocationDateTime {
+  DateTime startDateTime;
+  DateTime endDateTime;
+  int capacity;
+  int avaliable;
+
+  LocationDateTime({
+    required this.startDateTime,
+    required this.endDateTime,
+    required this.capacity,
+    required this.avaliable,
+  });
+}
+
 class NewAppointmentProvider with ChangeNotifier {
   List<Map<String, String>> _dataProvince = [
     {"TH": "กรุงเทพมหานคร", "EN": "Bangkok"},
@@ -93,6 +107,7 @@ class NewAppointmentProvider with ChangeNotifier {
   String selectedProvince = "";
   List<Location> locations = [];
   List<PersonProvider.Person> selectedPerson = [];
+  List<LocationDateTime> locationDateime = [];
   Location selectedLocation = Location(
     id: '',
     name_en: '',
@@ -192,5 +207,31 @@ class NewAppointmentProvider with ChangeNotifier {
       print(per.firstname_en);
     }
     notifyListeners();
+  }
+
+  Future<void> getDateTimeOfLocation() async {
+    try {
+      final response = await Dio().get(
+          apiEndpoint + '/location/dateTime/${selectedLocation.id}',
+          options: Options(headers: {"Authorization": "Bearer " + _token}));
+      final data = response.data.toList();
+      List<LocationDateTime> tempDateTime = [];
+      for (var dateTime in data) {
+        tempDateTime.add(
+          LocationDateTime(
+              startDateTime: dateTime['startDateTime'],
+              endDateTime: dateTime['endDateTime'],
+              capacity: dateTime['capacity'],
+              avaliable: dateTime['avaliable']),
+        );
+      }
+      locationDateime = tempDateTime;
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+      throw HttpException('Failed to get data');
+    }
   }
 }
