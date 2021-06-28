@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 import '../config/string.dart';
 import 'package:dio/dio.dart';
 import 'package:mevaccine/config/api.dart';
@@ -91,6 +92,7 @@ class NewAppointmentProvider with ChangeNotifier {
   String _token;
   String selectedProvince = "";
   List<Location> locations = [];
+  List<PersonProvider.Person> selectedPerson = [];
   Location selectedLocation = Location(
     id: '',
     name_en: '',
@@ -172,5 +174,23 @@ class NewAppointmentProvider with ChangeNotifier {
       }
       throw HttpException('Failed to get data');
     }
+  }
+
+  selectPerson(PersonProvider.Person person) {
+    selectedPerson.add(person);
+    print('ADD');
+    for (var per in selectedPerson) {
+      print(per.firstname_en);
+    }
+    notifyListeners();
+  }
+
+  removePerson(PersonProvider.Person person) {
+    selectedPerson.removeWhere((ele) => ele.id == person.id);
+    print('REMOVE');
+    for (var per in selectedPerson) {
+      print(per.firstname_en);
+    }
+    notifyListeners();
   }
 }
