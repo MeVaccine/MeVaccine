@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 class CardPersonAppoint extends StatefulWidget {
   final String text;
-  final int id;
+  final String id;
   final Function onChanged;
   CardPersonAppoint(
       {required this.text, required this.id, required this.onChanged});
@@ -20,7 +20,7 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
   bool _checked = false;
   @override
   Widget build(BuildContext context) {
-    final persons = Provider.of<AddPersonProvider>(context).person;
+    // final persons = Provider.of<AddPersonProvider>(context).person;
     return Container(
         decoration: BoxDecoration(
             color: white,
@@ -45,7 +45,7 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
           onChanged: (bool? value) {
             setState(() {
               _checked = value!;
-              widget.onChanged();
+              widget.onChanged(_checked);
             });
           },
         ));
