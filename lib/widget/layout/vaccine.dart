@@ -25,8 +25,7 @@ class Vaccine extends StatelessWidget {
                 MainText(text, text_type.regular, 16, primary01),
               ],
             ),
-            MainText(number.toString(), text_type.regular, 16,
-                number <= 5000 ? error : primary01),
+            MainText(number.toString(), text_type.regular, 16, primary01),
           ],
         ));
   }
