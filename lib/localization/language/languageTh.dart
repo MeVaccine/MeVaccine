@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/provider/authenicateProvider.dart';
 
 class LanguageTH extends Languages {
   // Common Button Label
@@ -34,6 +35,8 @@ class LanguageTH extends Languages {
   @override
   String provinceDropdownItem(Map<String, String> province) =>
       province['TH'] as String;
+  @override
+  String locationNameItem(Location location) => location.name_th;
 
   // Login Screen
   @override

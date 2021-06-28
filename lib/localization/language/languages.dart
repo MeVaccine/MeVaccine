@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mevaccine/provider/authenicateProvider.dart';
 
 abstract class Languages {
   static Languages? of(BuildContext context) {
@@ -23,6 +24,7 @@ abstract class Languages {
   String get nationalIDInputLabel;
   String get phoneNumberInputLabel;
   String provinceDropdownItem(Map<String, String> province);
+  String locationNameItem(Location location);
 
   // Login Screen
   String get loginHeadingLabel;

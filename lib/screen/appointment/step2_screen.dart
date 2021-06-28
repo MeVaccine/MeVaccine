@@ -75,13 +75,13 @@ class Step2 extends StatelessWidget {
                           .locations
                           .map((e) {
                         return DropdownMenuItem<dynamic>(
-                          child: Text(e.name_en),
+                          child: Text(Languages.of(ctx)!.locationNameItem(e)),
                           value: e.id,
                         );
                       }).toList(),
-                      hint: Provider.of<NewAppointmentProvider>(ctx)
-                          .selectedLocation
-                          .name_en,
+                      hint: Languages.of(ctx)!.locationNameItem(
+                          Provider.of<NewAppointmentProvider>(ctx)
+                              .selectedLocation),
                       isCaseSensitiveSearch: true,
                       searchHint: const Text('Select your hospital'),
                       value: Provider.of<NewAppointmentProvider>(ctx)
