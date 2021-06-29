@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/localization/language/languages.dart';
-import 'package:mevaccine/provider/addPerson.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
-import 'package:mevaccine/provider/personProvider.dart';
 import 'package:mevaccine/widget/person/card_dropdown_person.dart';
 import 'package:provider/provider.dart';
 
