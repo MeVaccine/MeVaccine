@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:intl/intl.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +40,7 @@ class _CalendarTextfieldState extends State<CalendarTextfield> {
                   FeatherIcons.calendar,
                   color: primary01,
                 ),
-                labelText: 'Select the Date',
+                labelText: Languages.of(context)!.dateInputLabel,
               ),
               onTap: () async {
                 await showDatePicker(
