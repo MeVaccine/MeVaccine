@@ -195,19 +195,11 @@ class NewAppointmentProvider with ChangeNotifier {
 
   selectPerson(PersonProvider.Person person) {
     selectedPerson.add(person);
-    print('ADD');
-    for (var per in selectedPerson) {
-      print(per.firstname_en);
-    }
     notifyListeners();
   }
 
   removePerson(PersonProvider.Person person) {
     selectedPerson.removeWhere((ele) => ele.id == person.id);
-    print('REMOVE');
-    for (var per in selectedPerson) {
-      print(per.firstname_en);
-    }
     notifyListeners();
   }
 

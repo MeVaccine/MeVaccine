@@ -55,11 +55,9 @@ class PersonProvider with ChangeNotifier {
     try {
       final response = await Dio().get(apiEndpoint + '/person/lists',
           options: Options(headers: {"Authorization": "Bearer " + token}));
-      print(response.data);
       final data = response.data.toList();
       List<Person> tempPerson = [];
       for (int i = 0; i < data.length; i++) {
-        print(data[i]['firstname_en']);
         tempPerson.add(Person(
             firstname_en: data[i]['firstname_en'],
             firstname_th: data[i]['firstname_th'],
