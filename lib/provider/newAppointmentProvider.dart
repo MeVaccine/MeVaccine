@@ -22,6 +22,12 @@ class LocationDateTime {
   });
 }
 
+class VaccinableVaccine {
+  String id;
+  String name;
+  VaccinableVaccine({required this.id, required this.name});
+}
+
 class NewAppointmentProvider with ChangeNotifier {
   final List<Map<String, String>> _dataProvince = [
     {"TH": "กรุงเทพมหานคร", "EN": "Bangkok"},
@@ -109,6 +115,7 @@ class NewAppointmentProvider with ChangeNotifier {
   DateTime selectedDate = DateTime(2021, 7, 1);
   List<Location> locations = [];
   List<PersonProvider.Person> selectedPerson = [];
+  List<List<VaccinableVaccine>> vaccinableVaccine = [];
   List<LocationDateTime> locationDateime = [];
   Location selectedLocation = Location(
     id: '',
@@ -268,5 +275,33 @@ class NewAppointmentProvider with ChangeNotifier {
   void setSelectedDate(DateTime date) {
     selectedDate = date;
     notifyListeners();
+  }
+
+  Future<void> getVaccineForSelectedPerson() async {
+    try {
+      List<String> selectedPersonIds = selectedPerson.map((e) => e.id).toList();
+
+      final response = await Dio().put(apiEndpoint + '/appointment/vaccine',
+          data: selectedPersonIds,
+          options: Options(headers: {"Authorization": "Bearer " + _token}));
+      final data = response.data.toList();
+      List<List<VaccinableVaccine>> tempVaccinableVaccine = [];
+      for (var vaccinesOfPerson in data) {
+        final vaccinesData = vaccinesOfPerson.toList();
+        List<VaccinableVaccine> tempVaccineOfPerson = [];
+        for (var vaccine in vaccinesData) {
+          tempVaccineOfPerson
+              .add(VaccinableVaccine(id: vaccine['id'], name: vaccine['name']));
+        }
+        tempVaccinableVaccine.add(tempVaccineOfPerson);
+      }
+      vaccinableVaccine = tempVaccinableVaccine;
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+      throw HttpException(error.response!.data);
+    }
   }
 }

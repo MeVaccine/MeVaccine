@@ -10,15 +10,24 @@ class ListDropdownperson extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      width: 350,
-      child: ListView(
-        children: Provider.of<NewAppointmentProvider>(context)
-            .selectedPerson
-            .map((e) => CardDropdownPerson(
-                text: Languages.of(context)!.fullNamePerson(e)))
-            .toList(),
+    final selectedPerson =
+        Provider.of<NewAppointmentProvider>(context, listen: false)
+            .selectedPerson;
+    return FutureBuilder(
+      future: Provider.of<NewAppointmentProvider>(context, listen: false)
+          .getVaccineForSelectedPerson(),
+      builder: (ctx, snapshort) => Container(
+        height: 300,
+        width: 350,
+        child: ListView(
+          children: selectedPerson
+              .map((e) => CardDropdownPerson(
+                    text: Languages.of(context)!.fullNamePerson(e),
+                    index: selectedPerson
+                        .indexWhere((element) => element.id == e.id),
+                  ))
+              .toList(),
+        ),
       ),
     );
   }
