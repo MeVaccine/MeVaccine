@@ -116,6 +116,7 @@ class NewAppointmentProvider with ChangeNotifier {
   List<Location> locations = [];
   List<PersonProvider.Person> selectedPerson = [];
   List<List<VaccinableVaccine>> vaccinableVaccine = [];
+  List<String> selectedVaccine = [];
   List<LocationDateTime> locationDateime = [];
   Location selectedLocation = Location(
     id: '',
@@ -290,10 +291,11 @@ class NewAppointmentProvider with ChangeNotifier {
         final vaccinesData = vaccinesOfPerson.toList();
         List<VaccinableVaccine> tempVaccineOfPerson = [];
         for (var vaccine in vaccinesData) {
-          tempVaccineOfPerson
-              .add(VaccinableVaccine(id: vaccine['id'], name: vaccine['name']));
+          tempVaccineOfPerson.add(
+              VaccinableVaccine(id: vaccine['_id'], name: vaccine['name']));
         }
         tempVaccinableVaccine.add(tempVaccineOfPerson);
+        selectedVaccine.add(tempVaccineOfPerson[0].name);
       }
       vaccinableVaccine = tempVaccinableVaccine;
       notifyListeners();
@@ -303,5 +305,10 @@ class NewAppointmentProvider with ChangeNotifier {
       }
       throw HttpException(error.response!.data);
     }
+  }
+
+  void selectVaccine(int index, String vaccineName) {
+    selectedVaccine[index] = vaccineName;
+    notifyListeners();
   }
 }

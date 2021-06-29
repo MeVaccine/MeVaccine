@@ -3,13 +3,15 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/provider/addPerson.dart';
+import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/widget/Logo/icon_vaccine.dart';
 import 'package:mevaccine/widget/layout/list_person.dart';
 import 'package:provider/provider.dart';
 
 class CardDropdownPerson extends StatefulWidget {
   final String text;
-  CardDropdownPerson({required this.text});
+  final int index;
+  CardDropdownPerson({required this.text, required this.index});
   List<String> vaccines = [
     'Sinovac',
     'AstraZeneca',
@@ -22,9 +24,11 @@ class CardDropdownPerson extends StatefulWidget {
 }
 
 class _CardDropdownPersonState extends State<CardDropdownPerson> {
-  String dropdownVaccine = 'Sinovac';
   @override
   Widget build(BuildContext context) {
+    final vaccines = Provider.of<NewAppointmentProvider>(context)
+        .vaccinableVaccine[widget.index];
+
     return Container(
       decoration:
           BoxDecoration(color: white, borderRadius: kBorderRadiusS, boxShadow: [
@@ -48,18 +52,13 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
             underline: Container(
               color: white,
             ),
-            value: dropdownVaccine,
+            value: Provider.of<NewAppointmentProvider>(context)
+                .selectedVaccine[widget.index],
             style: TextStyle(color: accent02, fontFamily: 'prompt'),
-            items: <String>[
-              'Sinovac',
-              'Oxford-AstraZeneca',
-              'Moderna',
-              'Sinopharm ',
-              'Pfizer-BioNTech'
-            ].map<DropdownMenuItem<String>>((String value) {
+            items: vaccines.map<DropdownMenuItem<String>>((vaccine) {
               return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
+                value: vaccine.name,
+                child: Text(vaccine.name),
               );
             }).toList(),
             icon: Icon(
@@ -67,10 +66,8 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
               color: accent02,
             ),
             onChanged: (String? value) {
-              setState(() {
-                dropdownVaccine = value!;
-                print(dropdownVaccine);
-              });
+              Provider.of<NewAppointmentProvider>(context, listen: false)
+                  .selectVaccine(widget.index, value!);
             },
           ),
         ],

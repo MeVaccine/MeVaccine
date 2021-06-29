@@ -16,19 +16,22 @@ class ListDropdownperson extends StatelessWidget {
     return FutureBuilder(
       future: Provider.of<NewAppointmentProvider>(context, listen: false)
           .getVaccineForSelectedPerson(),
-      builder: (ctx, snapshort) => Container(
-        height: 300,
-        width: 350,
-        child: ListView(
-          children: selectedPerson
-              .map((e) => CardDropdownPerson(
-                    text: Languages.of(context)!.fullNamePerson(e),
-                    index: selectedPerson
-                        .indexWhere((element) => element.id == e.id),
-                  ))
-              .toList(),
-        ),
-      ),
+      builder: (ctx, snapshort) =>
+          snapshort.connectionState == ConnectionState.done
+              ? Container(
+                  height: 300,
+                  width: 350,
+                  child: ListView(
+                    children: selectedPerson
+                        .map((e) => CardDropdownPerson(
+                              text: Languages.of(context)!.fullNamePerson(e),
+                              index: selectedPerson
+                                  .indexWhere((element) => element.id == e.id),
+                            ))
+                        .toList(),
+                  ),
+                )
+              : CircularProgressIndicator(),
     );
   }
 }
