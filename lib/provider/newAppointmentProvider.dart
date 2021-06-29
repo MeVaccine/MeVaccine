@@ -282,7 +282,8 @@ class NewAppointmentProvider with ChangeNotifier {
     try {
       List<String> selectedPersonIds = selectedPerson.map((e) => e.id).toList();
 
-      final response = await Dio().put(apiEndpoint + '/appointment/vaccine',
+      final response = await Dio().put(
+          apiEndpoint + '/appointment/vaccine/${selectedLocation.id}',
           data: selectedPersonIds,
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
