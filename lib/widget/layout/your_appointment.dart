@@ -11,9 +11,15 @@ import '../text/mainText.dart';
 import 'iconWithText.dart';
 
 class YourAppointment extends StatelessWidget {
+  DateTime appointmentDateTime;
+  String locationName;
   final String checkColor;
   final Color color;
-  YourAppointment({required this.checkColor, required this.color});
+  YourAppointment(
+      {required this.checkColor,
+      required this.color,
+      required this.appointmentDateTime,
+      required this.locationName});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,9 +54,6 @@ class YourAppointment extends StatelessWidget {
                 ]),
       child: Consumer<NewAppointmentProvider>(
         builder: (ctx, newAppointmentProvider, _) {
-          DateTime selectedDateTime = newAppointmentProvider
-              .locationDateime[newAppointmentProvider.selectedDateTimeIndex]
-              .startDateTime;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -67,22 +70,19 @@ class YourAppointment extends StatelessWidget {
                   IconWithText(
                     color: color,
                     icon: FeatherIcons.calendar,
-                    text: DateFormat.yMd().format(selectedDateTime),
+                    text: DateFormat.yMd().format(appointmentDateTime),
                   ),
                   kSizedBoxHorizontalM,
                   IconWithText(
                     color: color,
                     icon: FeatherIcons.clock,
-                    text: DateFormat.Hm().format(selectedDateTime),
+                    text: DateFormat.Hm().format(appointmentDateTime),
                   ),
                 ],
               ),
               kSizedBoxVerticalXS,
               IconWithText(
-                  color: color,
-                  text: Languages.of(ctx)!.locationNameItem(
-                      newAppointmentProvider.selectedLocation),
-                  icon: FeatherIcons.mapPin)
+                  color: color, text: locationName, icon: FeatherIcons.mapPin)
             ],
           );
         },

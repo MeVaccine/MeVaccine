@@ -36,6 +36,8 @@ class LandingScreen extends StatelessWidget {
                 child: YourAppointment(
                   checkColor: '1',
                   color: white,
+                  appointmentDateTime: DateTime(2021, 7, 1),
+                  locationName: 'Mockup location',
                 ),
               ),
               Menu()

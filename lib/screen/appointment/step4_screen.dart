@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/addPerson.dart';
+import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/screen/appointment/step3_screen.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
 import 'package:mevaccine/widget/layout/list_dropdownperson.dart';
@@ -19,14 +21,23 @@ class Step4 extends StatelessWidget {
         height: 500,
         child: Column(
           children: [
-            Container(
-              width: 330,
-              height: 180,
-              child: YourAppointment(
-                checkColor: '0',
-                color: primary01,
-              ),
-            ),
+            Consumer<NewAppointmentProvider>(
+                builder: (ctx, newAppointmentProvider, _) {
+              DateTime selectedDateTime = newAppointmentProvider
+                  .locationDateime[newAppointmentProvider.selectedDateTimeIndex]
+                  .startDateTime;
+              return Container(
+                width: 330,
+                height: 180,
+                child: YourAppointment(
+                  checkColor: '0',
+                  color: primary01,
+                  appointmentDateTime: selectedDateTime,
+                  locationName: Languages.of(ctx)!.locationNameItem(
+                      newAppointmentProvider.selectedLocation),
+                ),
+              );
+            }),
             ListDropdownperson(),
           ],
         ));
