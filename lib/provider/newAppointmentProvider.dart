@@ -8,8 +8,22 @@ import '../config/string.dart';
 import 'package:dio/dio.dart';
 import 'package:mevaccine/config/api.dart';
 
+class LocationDateTime {
+  DateTime startDateTime;
+  DateTime endDateTime;
+  int capacity;
+  int avaliable;
+
+  LocationDateTime({
+    required this.startDateTime,
+    required this.endDateTime,
+    required this.capacity,
+    required this.avaliable,
+  });
+}
+
 class NewAppointmentProvider with ChangeNotifier {
-  List<Map<String, String>> _dataProvince = [
+  final List<Map<String, String>> _dataProvince = [
     {"TH": "กรุงเทพมหานคร", "EN": "Bangkok"},
     {"TH": "สมุทรปราการ", "EN": "Samut Prakan"},
     {"TH": "นนทบุรี", "EN": "Nonthaburi"},
@@ -91,8 +105,11 @@ class NewAppointmentProvider with ChangeNotifier {
 
   String _token;
   String selectedProvince = "";
+  int selectedDateTimeIndex = -1;
+  DateTime selectedDate = DateTime(2021, 7, 1);
   List<Location> locations = [];
   List<PersonProvider.Person> selectedPerson = [];
+  List<LocationDateTime> locationDateime = [];
   Location selectedLocation = Location(
     id: '',
     name_en: '',
@@ -191,6 +208,73 @@ class NewAppointmentProvider with ChangeNotifier {
     for (var per in selectedPerson) {
       print(per.firstname_en);
     }
+    notifyListeners();
+  }
+
+  Future<void> getDateTimeOfLocation(String date) async {
+    try {
+      final response = await Dio().get(
+          apiEndpoint + '/location/dateTime/${selectedLocation.id}',
+          queryParameters: {'date': date},
+          options: Options(headers: {"Authorization": "Bearer " + _token}));
+      final data = response.data.toList();
+      List<LocationDateTime> tempDateTime = [];
+      for (var dateTime in data) {
+        tempDateTime.add(
+          LocationDateTime(
+              startDateTime:
+                  DateTime.parse(dateTime['startDateTime']).toLocal(),
+              endDateTime: DateTime.parse(dateTime['endDateTime']).toLocal(),
+              capacity: dateTime['capacity'],
+              avaliable: dateTime['avaliable']),
+        );
+      }
+      locationDateime = tempDateTime;
+      notifyListeners();
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+      throw HttpException(error.response!.data);
+    }
+  }
+
+  Future<DateTime> getEarliestDateTimeOfLocation() async {
+    try {
+      final response = await Dio().get(
+          apiEndpoint + '/location/dateTime/earliest/${selectedLocation.id}',
+          options: Options(headers: {"Authorization": "Bearer " + _token}));
+      final data = response.data.toList();
+      List<LocationDateTime> tempDateTime = [];
+      for (var dateTime in data) {
+        tempDateTime.add(
+          LocationDateTime(
+              startDateTime:
+                  DateTime.parse(dateTime['startDateTime']).toLocal(),
+              endDateTime: DateTime.parse(dateTime['endDateTime']).toLocal(),
+              capacity: dateTime['capacity'],
+              avaliable: dateTime['avaliable']),
+        );
+      }
+      locationDateime = tempDateTime;
+      selectedDate = locationDateime[0].startDateTime;
+      notifyListeners();
+      return locationDateime[0].startDateTime;
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+      throw HttpException(error.response!.data);
+    }
+  }
+
+  void selectDateTime(int index) {
+    selectedDateTimeIndex = index;
+    notifyListeners();
+  }
+
+  void setSelectedDate(DateTime date) {
+    selectedDate = date;
     notifyListeners();
   }
 }
