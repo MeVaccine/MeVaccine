@@ -358,6 +358,11 @@ class NewAppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void resetSelectedDateTimeIndex() {
+    selectedDateTimeIndex = -1;
+    notifyListeners();
+  }
+
   void resetData() {
     print('Invoke Reset Data');
     String selectedProvince = "";
