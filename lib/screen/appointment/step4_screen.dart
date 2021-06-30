@@ -30,6 +30,7 @@ class Step4 extends StatelessWidget {
               width: 330,
               height: 180,
               child: YourAppointment(
+                checkAppointment: true,
                 checkColor: '0',
                 color: primary01,
                 appointmentDateTime: selectedDateTime,

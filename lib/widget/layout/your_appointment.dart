@@ -14,12 +14,14 @@ class YourAppointment extends StatelessWidget {
   DateTime appointmentDateTime;
   String locationName;
   final String checkColor;
+  final bool checkAppointment;
   final Color color;
   YourAppointment(
       {required this.checkColor,
       required this.color,
       required this.appointmentDateTime,
-      required this.locationName});
+      required this.locationName,
+      required this.checkAppointment});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,37 +56,61 @@ class YourAppointment extends StatelessWidget {
                 ]),
       child: Consumer<NewAppointmentProvider>(
         builder: (ctx, newAppointmentProvider, _) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                Languages.of(context)!.yourAppointmentHeading,
-                style: TextStyle(
-                    color: checkColor == '1' ? white : primary01,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600),
-              ),
-              kSizedBoxS,
-              Row(
-                children: [
-                  IconWithText(
-                    color: color,
-                    icon: FeatherIcons.calendar,
-                    text: DateFormat.yMd().format(appointmentDateTime),
-                  ),
-                  kSizedBoxHorizontalM,
-                  IconWithText(
-                    color: color,
-                    icon: FeatherIcons.clock,
-                    text: DateFormat.Hm().format(appointmentDateTime),
-                  ),
-                ],
-              ),
-              kSizedBoxVerticalXS,
-              IconWithText(
-                  color: color, text: locationName, icon: FeatherIcons.mapPin)
-            ],
-          );
+          return checkAppointment == true
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      Languages.of(context)!.yourAppointmentHeading,
+                      style: TextStyle(
+                          color: checkColor == '1' ? white : primary01,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    kSizedBoxS,
+                    Row(
+                      children: [
+                        IconWithText(
+                          color: color,
+                          icon: FeatherIcons.calendar,
+                          text: DateFormat.yMd().format(appointmentDateTime),
+                        ),
+                        kSizedBoxHorizontalM,
+                        IconWithText(
+                          color: color,
+                          icon: FeatherIcons.clock,
+                          text: DateFormat.Hm().format(appointmentDateTime),
+                        ),
+                      ],
+                    ),
+                    kSizedBoxVerticalXS,
+                    IconWithText(
+                        color: color,
+                        text: locationName,
+                        icon: FeatherIcons.mapPin)
+                  ],
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      Languages.of(context)!.yourAppointmentHeading,
+                      style: TextStyle(
+                          color: primary01,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    kSizedBoxS,
+                    Text(
+                      Languages.of(context)!.noNextAppointmentMessage,
+                      style: TextStyle(
+                          color: primary03,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    kSizedBoxS,
+                  ],
+                );
         },
       ),
     );
