@@ -16,34 +16,40 @@ class LandingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<NewAppointmentProvider>(context, listen: false).resetData();
-    Provider.of<AuthenicateProvider>(context, listen: false).getName();
-    return Consumer<AuthenicateProvider>(
-      builder: (ctx, authen, child) => Scaffold(
-        body: Container(
-          padding: const EdgeInsets.symmetric(
-              horizontal: kSizeS * 1.5, vertical: kSizeL),
-          height: double.infinity,
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Profile(
-                name: authen.userInfo.firstname_en,
-              ),
-              kSizedBoxXS,
-              MainText(Languages.of(context)!.scheduleHeading,
-                  text_type.regular, kFontSizeHeadline4, primary01),
-              Container(
-                height: 190,
-                child: YourAppointment(
-                  checkColor: '1',
-                  color: white,
-                  appointmentDateTime: DateTime(2021, 7, 1),
-                  locationName: 'Mockup location',
+    ;
+    return FutureBuilder(
+      future:
+          Provider.of<AuthenicateProvider>(context, listen: false).getName(),
+      builder: (ctx, snapshort) => Consumer<AuthenicateProvider>(
+        builder: (ctx, authen, child) => Scaffold(
+          body: Container(
+            padding: const EdgeInsets.symmetric(
+                horizontal: kSizeS * 1.5, vertical: kSizeL),
+            height: double.infinity,
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Profile(
+                  name: Languages.of(context)!.firstnameString(
+                      authen.userInfo.firstname_en,
+                      authen.userInfo.firstname_th),
                 ),
-              ),
-              Menu()
-            ],
+                kSizedBoxXS,
+                MainText(Languages.of(context)!.scheduleHeading,
+                    text_type.regular, kFontSizeHeadline4, primary01),
+                Container(
+                  height: 190,
+                  child: YourAppointment(
+                    checkColor: '1',
+                    color: white,
+                    appointmentDateTime: DateTime(2021, 7, 1),
+                    locationName: 'Mockup location',
+                  ),
+                ),
+                Menu()
+              ],
+            ),
           ),
         ),
       ),

@@ -8,6 +8,7 @@ abstract class Languages {
   }
 
   String fullNamePerson(PersonProvider.Person person);
+  String firstnameString(String enName, String thName);
 
   // Common Button Label
   String get doneButtonLabel;

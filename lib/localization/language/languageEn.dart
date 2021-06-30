@@ -7,7 +7,7 @@ import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 class LanguageEN extends Languages {
   String fullNamePerson(PersonProvider.Person person) =>
       '${person.firstname_en} ${person.lastname_en}';
-
+  String firstnameString(String enName, String thName) => enName;
   // Common Button Label
   @override
   String get doneButtonLabel => "Done";
