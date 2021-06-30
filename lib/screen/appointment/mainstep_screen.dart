@@ -144,11 +144,11 @@ class _MainstepState extends State<Mainstep> {
                       ),
                     SmallButton(
                       onPressed: () {
+                        final newAppointmentProvider =
+                            Provider.of<NewAppointmentProvider>(context,
+                                listen: false);
                         if (_currentTab == Step1.routeName) {
-                          if (Provider.of<NewAppointmentProvider>(context,
-                                  listen: false)
-                              .selectedPerson
-                              .isEmpty) {
+                          if (newAppointmentProvider.selectedPerson.isEmpty) {
                             // Show error dialog
                           } else {
                             setState(() => {_currentTab = Step2.routeName});
@@ -156,16 +156,19 @@ class _MainstepState extends State<Mainstep> {
                         } else if (_currentTab == Step2.routeName) {
                           setState(() => {_currentTab = Step3.routeName});
                         } else if (_currentTab == Step3.routeName) {
-                          if (Provider.of<NewAppointmentProvider>(context,
-                                      listen: false)
-                                  .selectedDateTimeIndex ==
+                          if (newAppointmentProvider.selectedDateTimeIndex ==
                               -1) {
                             // Show error dialog
                           } else {
                             setState(() => {_currentTab = Step4.routeName});
                           }
                         } else if (_currentTab == Step4.routeName) {
-                          _showDialog();
+                          if (newAppointmentProvider.selectedVaccine
+                              .contains(null)) {
+                            // Show error dialog
+                          } else {
+                            _showDialog();
+                          }
                         }
                       },
                       text: _currentTab == Step4.routeName
