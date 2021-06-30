@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/addPerson.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/widget/Logo/icon_vaccine.dart';
@@ -29,6 +30,9 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
     final vaccines = Provider.of<NewAppointmentProvider>(context)
         .vaccinableVaccine[widget.index];
 
+    final selectedVaccine = Provider.of<NewAppointmentProvider>(context)
+        .selectedVaccine[widget.index];
+
     return Container(
       decoration:
           BoxDecoration(color: white, borderRadius: kBorderRadiusS, boxShadow: [
@@ -52,19 +56,25 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
             underline: Container(
               color: white,
             ),
-            value: Provider.of<NewAppointmentProvider>(context)
-                .selectedVaccine[widget.index],
+            disabledHint:
+                Text(Languages.of(context)!.noVaccineAvaliableMessage),
+            iconDisabledColor: Colors.grey,
+            value: selectedVaccine,
             style: TextStyle(color: accent02, fontFamily: 'prompt'),
-            items: vaccines.map<DropdownMenuItem<String>>((vaccine) {
-              return DropdownMenuItem<String>(
-                value: vaccine.name,
-                child: Text(vaccine.name),
-              );
-            }).toList(),
-            icon: Icon(
-              FeatherIcons.chevronDown,
-              color: accent02,
-            ),
+            items: selectedVaccine != null
+                ? vaccines.map<DropdownMenuItem<String>>((vaccine) {
+                    return DropdownMenuItem<String>(
+                      value: vaccine.name,
+                      child: Text(vaccine.name),
+                    );
+                  }).toList()
+                : null,
+            icon: selectedVaccine != null
+                ? const Icon(
+                    FeatherIcons.chevronDown,
+                    color: accent02,
+                  )
+                : null,
             onChanged: (String? value) {
               Provider.of<NewAppointmentProvider>(context, listen: false)
                   .selectVaccine(widget.index, value!);

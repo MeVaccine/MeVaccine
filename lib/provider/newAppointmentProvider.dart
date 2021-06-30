@@ -118,7 +118,7 @@ class NewAppointmentProvider with ChangeNotifier {
   List<Location> locations = [];
   List<PersonProvider.Person> selectedPerson = [];
   List<List<VaccinableVaccine>> vaccinableVaccine = [];
-  List<String> selectedVaccine = [];
+  List<String?> selectedVaccine = [];
   List<LocationDateTime> locationDateime = [];
   Location? selectedLocation = null;
 
@@ -298,7 +298,11 @@ class NewAppointmentProvider with ChangeNotifier {
               VaccinableVaccine(id: vaccine['_id'], name: vaccine['name']));
         }
         tempVaccinableVaccine.add(tempVaccineOfPerson);
-        selectedVaccine.add(tempVaccineOfPerson[0].name);
+        if (tempVaccineOfPerson.isEmpty) {
+          selectedVaccine.add(null);
+        } else {
+          selectedVaccine.add(tempVaccineOfPerson[0].name);
+        }
       }
       vaccinableVaccine = tempVaccinableVaccine;
       notifyListeners();
