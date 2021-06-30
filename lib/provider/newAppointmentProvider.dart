@@ -289,6 +289,7 @@ class NewAppointmentProvider with ChangeNotifier {
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
       List<List<VaccinableVaccine>> tempVaccinableVaccine = [];
+      resetSelectedVaccine();
       for (var vaccinesOfPerson in data) {
         final vaccinesData = vaccinesOfPerson.toList();
         List<VaccinableVaccine> tempVaccineOfPerson = [];
