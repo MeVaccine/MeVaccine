@@ -120,14 +120,7 @@ class NewAppointmentProvider with ChangeNotifier {
   List<List<VaccinableVaccine>> vaccinableVaccine = [];
   List<String> selectedVaccine = [];
   List<LocationDateTime> locationDateime = [];
-  Location selectedLocation = Location(
-    id: '',
-    name_en: '',
-    name_th: '',
-    priority: 0,
-    province_en: '',
-    province_th: '',
-  );
+  Location? selectedLocation = null;
 
   NewAppointmentProvider(this._token);
 
@@ -222,7 +215,7 @@ class NewAppointmentProvider with ChangeNotifier {
   Future<void> getDateTimeOfLocation(String date) async {
     try {
       final response = await Dio().get(
-          apiEndpoint + '/location/dateTime/${selectedLocation.id}',
+          apiEndpoint + '/location/dateTime/${selectedLocation!.id}',
           queryParameters: {'date': date},
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
@@ -250,7 +243,7 @@ class NewAppointmentProvider with ChangeNotifier {
   Future<DateTime> getEarliestDateTimeOfLocation() async {
     try {
       final response = await Dio().get(
-          apiEndpoint + '/location/dateTime/earliest/${selectedLocation.id}',
+          apiEndpoint + '/location/dateTime/earliest/${selectedLocation!.id}',
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
       List<LocationDateTime> tempDateTime = [];
@@ -291,7 +284,7 @@ class NewAppointmentProvider with ChangeNotifier {
       List<String> selectedPersonIds = selectedPerson.map((e) => e.id).toList();
 
       final response = await Dio().put(
-          apiEndpoint + '/appointment/vaccine/${selectedLocation.id}',
+          apiEndpoint + '/appointment/vaccine/${selectedLocation!.id}',
           data: selectedPersonIds,
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
@@ -319,7 +312,7 @@ class NewAppointmentProvider with ChangeNotifier {
   Future<void> createNewAppointment() async {
     try {
       print({
-        'locationId': selectedLocation.id,
+        'locationId': selectedLocation!.id,
         'dateTime': locationDateime[selectedDateTimeIndex]
             .startDateTime
             .toUtc()
@@ -335,7 +328,7 @@ class NewAppointmentProvider with ChangeNotifier {
       final response = await Dio().post(apiEndpoint + '/appointment/new',
           options: Options(headers: {"Authorization": "Bearer " + _token}),
           data: {
-            'locationId': selectedLocation.id,
+            'locationId': selectedLocation!.id,
             'dateTime': locationDateime[selectedDateTimeIndex]
                 .startDateTime
                 .toUtc()
@@ -366,6 +359,7 @@ class NewAppointmentProvider with ChangeNotifier {
   }
 
   void resetData() {
+    print('Invoke Reset Data');
     String selectedProvince = "";
     int selectedDateTimeIndex = -1;
     DateTime selectedDate = DateTime(2021, 7, 1);
