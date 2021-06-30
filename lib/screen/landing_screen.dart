@@ -40,9 +40,17 @@ class LandingScreen extends StatelessWidget {
                     kFontSizeHeadline4, primary01),
                 Container(
                     height: 190,
+                    width: 350,
                     child: authen.userInfo.appointment == null
-                        ? Text(Languages.of(ctx)!.noNextAppointmentMessage)
+                        ? YourAppointment(
+                            checkColor: '0',
+                            color: primary01,
+                            appointmentDateTime: DateTime.now(),
+                            locationName:
+                                Languages.of(ctx)!.noNextAppointmentMessage,
+                            checkAppointment: false)
                         : YourAppointment(
+                            checkAppointment: true,
                             checkColor: '1',
                             color: white,
                             appointmentDateTime:
