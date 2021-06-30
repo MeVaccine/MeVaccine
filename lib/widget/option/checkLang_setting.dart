@@ -51,7 +51,7 @@ class _CheckLangState extends State<CheckLang> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Thai',
+                  'ภาษาไทย',
                   style: TextStyle(color: primary01),
                 ),
                 Checkbox(
