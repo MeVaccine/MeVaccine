@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
@@ -301,6 +303,49 @@ class NewAppointmentProvider with ChangeNotifier {
       vaccinableVaccine = tempVaccinableVaccine;
       notifyListeners();
     } on DioError catch (error) {
+      if (error.response!.statusCode == 400) {
+        throw HttpException(incorrectAuthException);
+      }
+      throw HttpException(error.response!.data);
+    }
+  }
+
+  Future<void> createNewAppointment() async {
+    try {
+      print({
+        'locationId': selectedLocation.id,
+        'dateTime': locationDateime[selectedDateTimeIndex]
+            .startDateTime
+            .toUtc()
+            .toIso8601String(),
+        'person': selectedPerson
+            .map((person) => {
+                  'id': person.id,
+                  'vaccine': selectedVaccine[
+                      selectedPerson.indexWhere((el) => el.id == person.id)]
+                })
+            .toList()
+      });
+      final response = await Dio().post(apiEndpoint + '/appointment/new',
+          options: Options(headers: {"Authorization": "Bearer " + _token}),
+          data: {
+            'locationId': selectedLocation.id,
+            'dateTime': locationDateime[selectedDateTimeIndex]
+                .startDateTime
+                .toUtc()
+                .toIso8601String(),
+            'person': selectedPerson
+                .map((person) => {
+                      'id': person.id,
+                      'vaccine': selectedVaccine[
+                          selectedPerson.indexWhere((el) => el.id == person.id)]
+                    })
+                .toList()
+          });
+      print(response.data);
+      notifyListeners();
+    } on DioError catch (error) {
+      print(error.response!.data);
       if (error.response!.statusCode == 400) {
         throw HttpException(incorrectAuthException);
       }
