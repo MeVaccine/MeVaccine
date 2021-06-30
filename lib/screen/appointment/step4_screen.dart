@@ -17,27 +17,26 @@ class Step4 extends StatelessWidget {
   static const routeName = '/step4';
   @override
   Widget build(BuildContext context) {
+    final newAppointmentProvider =
+        Provider.of<NewAppointmentProvider>(context, listen: false);
+    DateTime selectedDateTime = newAppointmentProvider
+        .locationDateime[newAppointmentProvider.selectedDateTimeIndex]
+        .startDateTime;
     return Container(
         height: 500,
         child: Column(
           children: [
-            Consumer<NewAppointmentProvider>(
-                builder: (ctx, newAppointmentProvider, _) {
-              DateTime selectedDateTime = newAppointmentProvider
-                  .locationDateime[newAppointmentProvider.selectedDateTimeIndex]
-                  .startDateTime;
-              return Container(
-                width: 330,
-                height: 180,
-                child: YourAppointment(
-                  checkColor: '0',
-                  color: primary01,
-                  appointmentDateTime: selectedDateTime,
-                  locationName: Languages.of(ctx)!.locationNameItem(
-                      newAppointmentProvider.selectedLocation),
-                ),
-              );
-            }),
+            Container(
+              width: 330,
+              height: 180,
+              child: YourAppointment(
+                checkColor: '0',
+                color: primary01,
+                appointmentDateTime: selectedDateTime,
+                locationName: Languages.of(context)!
+                    .locationNameItem(newAppointmentProvider.selectedLocation),
+              ),
+            ),
             ListDropdownperson(),
           ],
         ));
