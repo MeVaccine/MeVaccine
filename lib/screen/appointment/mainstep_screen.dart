@@ -44,14 +44,14 @@ class _MainstepState extends State<Mainstep> {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "Do you confirm schedule this appointment ? ",
+                        Languages.of(ctx)!.confirmScheduleMessage,
                         textAlign: TextAlign.center,
                       )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SmallButton(
-                        text: 'Cancel',
+                        text: Languages.of(ctx)!.cancelButtonLabel,
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
@@ -61,7 +61,7 @@ class _MainstepState extends State<Mainstep> {
                         colorBorder: primary03,
                       ),
                       SmallButton(
-                        text: 'Confirm',
+                        text: Languages.of(ctx)!.confirmButtonLabel,
                         onPressed: () async {
                           await Provider.of<NewAppointmentProvider>(context,
                                   listen: false)
