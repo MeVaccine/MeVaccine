@@ -31,22 +31,25 @@ class LandingScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Profile(
-                  name: Languages.of(context)!.firstnameString(
+                  name: Languages.of(ctx)!.firstnameString(
                       authen.userInfo.firstname_en,
                       authen.userInfo.firstname_th),
                 ),
                 kSizedBoxXS,
-                MainText(Languages.of(context)!.scheduleHeading,
-                    text_type.regular, kFontSizeHeadline4, primary01),
+                MainText(Languages.of(ctx)!.scheduleHeading, text_type.regular,
+                    kFontSizeHeadline4, primary01),
                 Container(
-                  height: 190,
-                  child: YourAppointment(
-                    checkColor: '1',
-                    color: white,
-                    appointmentDateTime: DateTime(2021, 7, 1),
-                    locationName: 'Mockup location',
-                  ),
-                ),
+                    height: 190,
+                    child: authen.userInfo.appointment == null
+                        ? Text('Nothing here')
+                        : YourAppointment(
+                            checkColor: '1',
+                            color: white,
+                            appointmentDateTime:
+                                authen.userInfo.appointment!.date,
+                            locationName: Languages.of(ctx)!.locationNameItem(
+                                authen.userInfo.appointment!.location),
+                          )),
                 Menu()
               ],
             ),
