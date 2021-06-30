@@ -17,6 +17,7 @@ class ProfileCard extends StatefulWidget {
 
 class _ProfileCardState extends State<ProfileCard> {
   bool _checked = false;
+
   @override
   Widget build(BuildContext context) {
     final personalInfo =
@@ -32,6 +33,9 @@ class _ProfileCardState extends State<ProfileCard> {
       prefix_en: personalInfo.prefix_en,
       prefix_th: personalInfo.prefix_th,
     );
+    _checked = Provider.of<NewAppointmentProvider>(context, listen: false)
+        .isPersonSelected(person);
+
     return Container(
       decoration:
           BoxDecoration(color: white, borderRadius: kBorderRadiusS, boxShadow: [

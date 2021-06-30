@@ -213,6 +213,12 @@ class NewAppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  bool isPersonSelected(PersonProvider.Person person) {
+    return selectedPerson.indexWhere((ele) => ele.id == person.id) != -1
+        ? true
+        : false;
+  }
+
   Future<void> getDateTimeOfLocation(String date) async {
     try {
       final response = await Dio().get(
