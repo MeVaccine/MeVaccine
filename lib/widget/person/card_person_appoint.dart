@@ -51,6 +51,7 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
             setState(() {
               _checked = value!;
             });
+            newAppointmentProvider.resetSelectedVaccine();
             if (_checked) {
               newAppointmentProvider.selectPerson(widget.person);
             } else {

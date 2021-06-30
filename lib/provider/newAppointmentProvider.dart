@@ -363,6 +363,10 @@ class NewAppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void resetSelectedVaccine() {
+    selectedVaccine = [];
+  }
+
   void resetData() {
     print('Invoke Reset Data');
     String selectedProvince = "";

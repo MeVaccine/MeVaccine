@@ -67,14 +67,15 @@ class _ProfileCardState extends State<ProfileCard> {
         value: _checked,
         activeColor: primary01,
         onChanged: (bool? value) {
+          final newAppointmentProvider =
+              Provider.of<NewAppointmentProvider>(context, listen: false);
+          newAppointmentProvider.resetSelectedVaccine();
           setState(() {
             _checked = value!;
             if (_checked) {
-              Provider.of<NewAppointmentProvider>(context, listen: false)
-                  .selectPerson(person);
+              newAppointmentProvider.selectPerson(person);
             } else {
-              Provider.of<NewAppointmentProvider>(context, listen: false)
-                  .removePerson(person);
+              newAppointmentProvider.removePerson(person);
             }
           });
         },
