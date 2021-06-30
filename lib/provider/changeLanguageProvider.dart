@@ -16,6 +16,14 @@ class ChangeLanguageProvider with ChangeNotifier {
     });
   }
 
+  Future<void> initSelectedLang() async {
+    final locale = await getLocale();
+    if (locale.toLanguageTag() == 'en')
+      isEngSelected = true;
+    else
+      isThaiSelected = true;
+  }
+
   void selectEngish() {
     isEngSelected = true;
     isThaiSelected = false;

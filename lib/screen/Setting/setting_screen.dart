@@ -119,7 +119,12 @@ class _SettingScreenState extends State<SettingScreen> {
                 FontAwesomeIcons.language,
                 color: primary01,
               ),
-              onPressed: () => _showLang(context),
+              onPressed: () async {
+                await Provider.of<ChangeLanguageProvider>(context,
+                        listen: false)
+                    .initSelectedLang();
+                _showLang(context);
+              },
               text: Languages.of(context)!.changeLanguageButtonLabel,
             ),
             kSizedBoxVerticalXL,
