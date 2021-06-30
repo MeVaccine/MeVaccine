@@ -46,12 +46,14 @@ class _AuthTextFormState extends State<AuthTextForm> {
         return null;
       },
       controller: widget.textEditingController,
+      textInputAction: isNation() ? TextInputAction.next : TextInputAction.done,
       inputFormatters: [
         if (isNation()) MaskedInputFormatter('#-####-#####-##-#'),
         if (isPhoneNumber()) MaskedInputFormatter('###-###-####'),
-        if(isLaser()) LengthLimitingTextInputFormatter(12),
+        if (isLaser()) LengthLimitingTextInputFormatter(12),
       ],
       keyboardType: isLaser() ? TextInputType.text : TextInputType.number,
+      // textInputAction: TextinputOptio,
       decoration: InputDecoration(
           hintText: widget.label,
           hintStyle: const TextStyle(color: netural01),
