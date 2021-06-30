@@ -156,7 +156,14 @@ class _MainstepState extends State<Mainstep> {
                         } else if (_currentTab == Step2.routeName) {
                           setState(() => {_currentTab = Step3.routeName});
                         } else if (_currentTab == Step3.routeName) {
-                          setState(() => {_currentTab = Step4.routeName});
+                          if (Provider.of<NewAppointmentProvider>(context,
+                                      listen: false)
+                                  .selectedDateTimeIndex ==
+                              -1) {
+                            // Show error dialog
+                          } else {
+                            setState(() => {_currentTab = Step4.routeName});
+                          }
                         } else if (_currentTab == Step4.routeName) {
                           _showDialog();
                         }
