@@ -30,28 +30,6 @@ class _MainstepState extends State<Mainstep> {
     Step3.routeName: Step3(),
     Step4.routeName: Step4(),
   };
-  final dataList = {
-    Step1.routeName: {
-      'text': 'Select Person',
-      'description': 'who goes to vacinate together',
-      'value': 1,
-    },
-    Step2.routeName: {
-      'text': 'Select vaccine location',
-      'description': 'which you want to go.',
-      'value': 2,
-    },
-    Step3.routeName: {
-      'text': 'Select Date and time',
-      'description': 'which you want to.',
-      'value': 3,
-    },
-    Step4.routeName: {
-      'text': 'Select vaccine',
-      'description': 'for each of person including you.',
-      'value': 4,
-    }
-  };
   void _showDialog() {
     showDialog(
         context: context,
