@@ -7,6 +7,15 @@ class ChangeLanguageProvider with ChangeNotifier {
   bool isEngSelected = false;
   bool isThaiSelected = false;
 
+  ChangeLanguageProvider() {
+    getLocale().then((Locale locale) {
+      if (locale.toLanguageTag() == 'en')
+        isEngSelected = true;
+      else
+        isThaiSelected = true;
+    });
+  }
+
   void selectEngish() {
     isEngSelected = true;
     isThaiSelected = false;
