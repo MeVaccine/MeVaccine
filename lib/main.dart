@@ -62,12 +62,9 @@ class _MyAppState extends State<MyApp> {
   Locale _locale = Locale('th');
 
   void setLocale(Locale locale) {
-    print(this._locale);
     setState(() {
       _locale = locale;
     });
-    print('hi');
-    print(this._locale);
   }
 
   @override
