@@ -52,12 +52,15 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
             style: const TextStyle(
                 color: primary01, fontSize: 16, fontWeight: FontWeight.w500),
           ),
+          // TODO: Decorate the error message
           DropdownButton(
             underline: Container(
               color: white,
             ),
-            disabledHint:
-                Text(Languages.of(context)!.noVaccineAvaliableMessage),
+            disabledHint: Text(
+              Languages.of(context)!.noVaccineAvaliableMessage,
+              style: TextStyle(color: Colors.red),
+            ),
             iconDisabledColor: Colors.grey,
             value: selectedVaccine,
             style: TextStyle(color: accent02, fontFamily: 'prompt'),
@@ -74,7 +77,10 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
                     FeatherIcons.chevronDown,
                     color: accent02,
                   )
-                : null,
+                : const Icon(
+                    FeatherIcons.chevronDown,
+                    color: Colors.grey,
+                  ),
             onChanged: (String? value) {
               Provider.of<NewAppointmentProvider>(context, listen: false)
                   .selectVaccine(widget.index, value!);
