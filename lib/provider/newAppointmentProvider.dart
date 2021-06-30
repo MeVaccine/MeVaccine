@@ -373,22 +373,15 @@ class NewAppointmentProvider with ChangeNotifier {
   }
 
   void resetData() {
-    print('Invoke Reset Data');
-    String selectedProvince = "";
-    int selectedDateTimeIndex = -1;
-    DateTime selectedDate = DateTime(2021, 7, 1);
-    List<Location> locations = [];
-    List<PersonProvider.Person> selectedPerson = [];
-    List<List<VaccinableVaccine>> vaccinableVaccine = [];
-    List<String> selectedVaccine = [];
-    List<LocationDateTime> locationDateime = [];
-    Location selectedLocation = Location(
-      id: '',
-      name_en: '',
-      name_th: '',
-      priority: 0,
-      province_en: '',
-      province_th: '',
-    );
+    selectedProvince = "";
+    selectedDateTimeIndex = -1;
+    selectedDate = DateTime(2021, 7, 1);
+    locations = [];
+    selectedPerson = [];
+    vaccinableVaccine = [];
+    selectedVaccine = [];
+    locationDateime = [];
+    selectedLocation = null;
+    notifyListeners();
   }
 }
