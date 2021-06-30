@@ -84,9 +84,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
                               authen.numberUser, authen.refCode))),
                   kSizedBoxM,
                   PrimaryButton(
+                    isLoading: _isLoading,
                     text: Languages.of(context)!.doneButtonLabel,
-                    onPressed: () {
-                      verification();
+                    onPressed: () async {
+                      await verification();
                     },
                   ),
                 ],
