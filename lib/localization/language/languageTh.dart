@@ -86,6 +86,8 @@ class LanguageTH extends Languages {
   @override
   String get yourAppointmentHeading => "นัดหมายของคุณ";
   @override
+  String get noNextAppointmentMessage => 'คุณยังไม่มีการนัดหมายเข้ารับวัคซีน';
+  @override
   String get menuHeading => "เมนู";
   @override
   String get newAppointmentMenuLebel => "จองนัดหมายฉีดวัคซีน";

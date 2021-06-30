@@ -51,6 +51,7 @@ abstract class Languages {
   String get greetingMessage;
   String get scheduleHeading;
   String get yourAppointmentHeading;
+  String get noNextAppointmentMessage;
   String get menuHeading;
   String get newAppointmentMenuLebel;
   String get myAppointmentMenuLebel;

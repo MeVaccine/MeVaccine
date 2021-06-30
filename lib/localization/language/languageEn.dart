@@ -90,6 +90,8 @@ class LanguageEN extends Languages {
   @override
   String get yourAppointmentHeading => "Your Appointment";
   @override
+  String get noNextAppointmentMessage => 'You don’t have any appointment';
+  @override
   String get menuHeading => "Menus";
   @override
   String get newAppointmentMenuLebel => "New Appointment ";
