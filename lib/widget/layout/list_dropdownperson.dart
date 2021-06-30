@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mevaccine/provider/addPerson.dart';
+import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/widget/person/card_dropdown_person.dart';
 import 'package:provider/provider.dart';
 
@@ -9,22 +10,28 @@ class ListDropdownperson extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final personProvider =
-        Provider.of<AddPersonProvider>(context, listen: false);
-    final persons = personProvider.person;
-    return Container(
-      height: 300,
-      width: 350,
-      child: ListView(
-        children: persons.map((e) {
-          if (e.check) {
-            return CardDropdownPerson(
-              text: e.fistname + " " + e.lastname,
-            );
-          }
-          return SizedBox();
-        }).toList(),
-      ),
+    final selectedPerson =
+        Provider.of<NewAppointmentProvider>(context, listen: false)
+            .selectedPerson;
+    return FutureBuilder(
+      future: Provider.of<NewAppointmentProvider>(context, listen: false)
+          .getVaccineForSelectedPerson(),
+      builder: (ctx, snapshort) =>
+          snapshort.connectionState == ConnectionState.done
+              ? Container(
+                  height: 300,
+                  width: 350,
+                  child: ListView(
+                    children: selectedPerson
+                        .map((e) => CardDropdownPerson(
+                              text: Languages.of(context)!.fullNamePerson(e),
+                              index: selectedPerson
+                                  .indexWhere((element) => element.id == e.id),
+                            ))
+                        .toList(),
+                  ),
+                )
+              : CircularProgressIndicator(),
     );
   }
 }

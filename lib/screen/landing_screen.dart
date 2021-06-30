@@ -3,6 +3,7 @@ import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:provider/provider.dart';
 import '../config/constants.dart';
@@ -14,6 +15,7 @@ class LandingScreen extends StatelessWidget {
   static const routeName = '/landing-screen';
   @override
   Widget build(BuildContext context) {
+    Provider.of<NewAppointmentProvider>(context, listen: false).resetData();
     Provider.of<AuthenicateProvider>(context, listen: false).getName();
     return Consumer<AuthenicateProvider>(
       builder: (ctx, authen, child) => Scaffold(
@@ -36,6 +38,8 @@ class LandingScreen extends StatelessWidget {
                 child: YourAppointment(
                   checkColor: '1',
                   color: white,
+                  appointmentDateTime: DateTime(2021, 7, 1),
+                  locationName: 'Mockup location',
                 ),
               ),
               Menu()
