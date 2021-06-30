@@ -11,9 +11,6 @@ import '../text/mainText.dart';
 import '../../model/textType.dart';
 
 class ProfileCard extends StatefulWidget {
-  final String text;
-  ProfileCard({required this.text});
-
   @override
   _ProfileCardState createState() => _ProfileCardState();
 }
