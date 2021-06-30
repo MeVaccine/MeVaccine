@@ -142,7 +142,14 @@ class _MainstepState extends State<Mainstep> {
                     SmallButton(
                       onPressed: () {
                         if (_currentTab == Step1.routeName) {
-                          setState(() => {_currentTab = Step2.routeName});
+                          if (Provider.of<NewAppointmentProvider>(context,
+                                  listen: false)
+                              .selectedPerson
+                              .isEmpty) {
+                            // Show error dialog
+                          } else {
+                            setState(() => {_currentTab = Step2.routeName});
+                          }
                         } else if (_currentTab == Step2.routeName) {
                           setState(() => {_currentTab = Step3.routeName});
                         } else if (_currentTab == Step3.routeName) {
