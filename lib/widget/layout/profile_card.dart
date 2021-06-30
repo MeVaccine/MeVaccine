@@ -11,15 +11,13 @@ import '../text/mainText.dart';
 import '../../model/textType.dart';
 
 class ProfileCard extends StatefulWidget {
-  final String text;
-  ProfileCard({required this.text});
-
   @override
   _ProfileCardState createState() => _ProfileCardState();
 }
 
 class _ProfileCardState extends State<ProfileCard> {
   bool _checked = false;
+
   @override
   Widget build(BuildContext context) {
     final personalInfo =
@@ -35,6 +33,9 @@ class _ProfileCardState extends State<ProfileCard> {
       prefix_en: personalInfo.prefix_en,
       prefix_th: personalInfo.prefix_th,
     );
+    _checked = Provider.of<NewAppointmentProvider>(context, listen: false)
+        .isPersonSelected(person);
+
     return Container(
       decoration:
           BoxDecoration(color: white, borderRadius: kBorderRadiusS, boxShadow: [
@@ -66,14 +67,15 @@ class _ProfileCardState extends State<ProfileCard> {
         value: _checked,
         activeColor: primary01,
         onChanged: (bool? value) {
+          final newAppointmentProvider =
+              Provider.of<NewAppointmentProvider>(context, listen: false);
+          newAppointmentProvider.resetSelectedVaccine();
           setState(() {
             _checked = value!;
             if (_checked) {
-              Provider.of<NewAppointmentProvider>(context, listen: false)
-                  .selectPerson(person);
+              newAppointmentProvider.selectPerson(person);
             } else {
-              Provider.of<NewAppointmentProvider>(context, listen: false)
-                  .removePerson(person);
+              newAppointmentProvider.removePerson(person);
             }
           });
         },

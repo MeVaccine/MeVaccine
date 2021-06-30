@@ -179,6 +179,9 @@ class LanguageTH extends Languages {
   @override
   String get selectVaccineMessage => "เลือกวัคซีนที่คุณมั่นใจ";
   @override
+  String get noVaccineAvaliableMessage =>
+      'สถานที่ที่คุณเลือก\nไม่มีวัคซีนที่สามารถฉีดให้กับบุลคลนี้ได้';
+  @override
   String get confirmScheduleMessage =>
       "คุณต้องการที่จะนัดหมายการฉีดวัคซีน ตามวันและเวลาที่ท่านได้เลือกไว้";
   @override

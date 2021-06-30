@@ -101,6 +101,7 @@ abstract class Languages {
   // New Appointment Step 4 Screen
   String get selectVaccineHeading;
   String get selectVaccineMessage;
+  String get noVaccineAvaliableMessage;
   String get confirmScheduleMessage;
   String numberOfPeople(int numberOfPeople);
 

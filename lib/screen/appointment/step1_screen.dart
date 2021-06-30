@@ -13,9 +13,7 @@ class Step1 extends StatelessWidget {
       child: Column(
         children: [
           kSizedBoxVerticalS,
-          ProfileCard(
-            text: 'Kavisara Srisuwatcharee',
-          ),
+          ProfileCard(),
           ListPerson(),
         ],
       ),

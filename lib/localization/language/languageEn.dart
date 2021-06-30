@@ -183,6 +183,9 @@ class LanguageEN extends Languages {
   @override
   String get selectVaccineMessage => "Which vaccine do you want";
   @override
+  String get noVaccineAvaliableMessage =>
+      'Your selected location does not have\nsuitable vaccine for this person';
+  @override
   String get confirmScheduleMessage =>
       "Do you confirm schedule this appointment ?";
   @override

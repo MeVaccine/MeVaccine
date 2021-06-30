@@ -15,8 +15,6 @@ class LandingScreen extends StatelessWidget {
   static const routeName = '/landing-screen';
   @override
   Widget build(BuildContext context) {
-    Provider.of<NewAppointmentProvider>(context, listen: false).resetData();
-    ;
     return FutureBuilder(
       future:
           Provider.of<AuthenicateProvider>(context, listen: false).getName(),

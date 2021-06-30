@@ -118,16 +118,9 @@ class NewAppointmentProvider with ChangeNotifier {
   List<Location> locations = [];
   List<PersonProvider.Person> selectedPerson = [];
   List<List<VaccinableVaccine>> vaccinableVaccine = [];
-  List<String> selectedVaccine = [];
+  List<String?> selectedVaccine = [];
   List<LocationDateTime> locationDateime = [];
-  Location selectedLocation = Location(
-    id: '',
-    name_en: '',
-    name_th: '',
-    priority: 0,
-    province_en: '',
-    province_th: '',
-  );
+  Location? selectedLocation = null;
 
   NewAppointmentProvider(this._token);
 
@@ -213,10 +206,16 @@ class NewAppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  bool isPersonSelected(PersonProvider.Person person) {
+    return selectedPerson.indexWhere((ele) => ele.id == person.id) != -1
+        ? true
+        : false;
+  }
+
   Future<void> getDateTimeOfLocation(String date) async {
     try {
       final response = await Dio().get(
-          apiEndpoint + '/location/dateTime/${selectedLocation.id}',
+          apiEndpoint + '/location/dateTime/${selectedLocation!.id}',
           queryParameters: {'date': date},
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
@@ -244,7 +243,7 @@ class NewAppointmentProvider with ChangeNotifier {
   Future<DateTime> getEarliestDateTimeOfLocation() async {
     try {
       final response = await Dio().get(
-          apiEndpoint + '/location/dateTime/earliest/${selectedLocation.id}',
+          apiEndpoint + '/location/dateTime/earliest/${selectedLocation!.id}',
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
       List<LocationDateTime> tempDateTime = [];
@@ -285,11 +284,12 @@ class NewAppointmentProvider with ChangeNotifier {
       List<String> selectedPersonIds = selectedPerson.map((e) => e.id).toList();
 
       final response = await Dio().put(
-          apiEndpoint + '/appointment/vaccine/${selectedLocation.id}',
+          apiEndpoint + '/appointment/vaccine/${selectedLocation!.id}',
           data: selectedPersonIds,
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
       List<List<VaccinableVaccine>> tempVaccinableVaccine = [];
+      resetSelectedVaccine();
       for (var vaccinesOfPerson in data) {
         final vaccinesData = vaccinesOfPerson.toList();
         List<VaccinableVaccine> tempVaccineOfPerson = [];
@@ -298,7 +298,11 @@ class NewAppointmentProvider with ChangeNotifier {
               VaccinableVaccine(id: vaccine['_id'], name: vaccine['name']));
         }
         tempVaccinableVaccine.add(tempVaccineOfPerson);
-        selectedVaccine.add(tempVaccineOfPerson[0].name);
+        if (tempVaccineOfPerson.isEmpty) {
+          selectedVaccine.add(null);
+        } else {
+          selectedVaccine.add(tempVaccineOfPerson[0].name);
+        }
       }
       vaccinableVaccine = tempVaccinableVaccine;
       notifyListeners();
@@ -313,7 +317,7 @@ class NewAppointmentProvider with ChangeNotifier {
   Future<void> createNewAppointment() async {
     try {
       print({
-        'locationId': selectedLocation.id,
+        'locationId': selectedLocation!.id,
         'dateTime': locationDateime[selectedDateTimeIndex]
             .startDateTime
             .toUtc()
@@ -329,7 +333,7 @@ class NewAppointmentProvider with ChangeNotifier {
       final response = await Dio().post(apiEndpoint + '/appointment/new',
           options: Options(headers: {"Authorization": "Bearer " + _token}),
           data: {
-            'locationId': selectedLocation.id,
+            'locationId': selectedLocation!.id,
             'dateTime': locationDateime[selectedDateTimeIndex]
                 .startDateTime
                 .toUtc()
@@ -359,22 +363,25 @@ class NewAppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void resetSelectedDateTimeIndex() {
+    selectedDateTimeIndex = -1;
+    notifyListeners();
+  }
+
+  void resetSelectedVaccine() {
+    selectedVaccine = [];
+  }
+
   void resetData() {
-    String selectedProvince = "";
-    int selectedDateTimeIndex = -1;
-    DateTime selectedDate = DateTime(2021, 7, 1);
-    List<Location> locations = [];
-    List<PersonProvider.Person> selectedPerson = [];
-    List<List<VaccinableVaccine>> vaccinableVaccine = [];
-    List<String> selectedVaccine = [];
-    List<LocationDateTime> locationDateime = [];
-    Location selectedLocation = Location(
-      id: '',
-      name_en: '',
-      name_th: '',
-      priority: 0,
-      province_en: '',
-      province_th: '',
-    );
+    selectedProvince = "";
+    selectedDateTimeIndex = -1;
+    selectedDate = DateTime(2021, 7, 1);
+    locations = [];
+    selectedPerson = [];
+    vaccinableVaccine = [];
+    selectedVaccine = [];
+    locationDateime = [];
+    selectedLocation = null;
+    notifyListeners();
   }
 }

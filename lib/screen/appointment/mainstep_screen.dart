@@ -30,28 +30,6 @@ class _MainstepState extends State<Mainstep> {
     Step3.routeName: Step3(),
     Step4.routeName: Step4(),
   };
-  final dataList = {
-    Step1.routeName: {
-      'text': 'Select Person',
-      'description': 'who goes to vacinate together',
-      'value': 1,
-    },
-    Step2.routeName: {
-      'text': 'Select vaccine location',
-      'description': 'which you want to go.',
-      'value': 2,
-    },
-    Step3.routeName: {
-      'text': 'Select Date and time',
-      'description': 'which you want to.',
-      'value': 3,
-    },
-    Step4.routeName: {
-      'text': 'Select vaccine',
-      'description': 'for each of person including you.',
-      'value': 4,
-    }
-  };
   void _showDialog() {
     showDialog(
         context: context,
@@ -66,14 +44,14 @@ class _MainstepState extends State<Mainstep> {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "Do you confirm schedule this appointment ? ",
+                        Languages.of(ctx)!.confirmScheduleMessage,
                         textAlign: TextAlign.center,
                       )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SmallButton(
-                        text: 'Cancel',
+                        text: Languages.of(ctx)!.cancelButtonLabel,
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
@@ -83,7 +61,7 @@ class _MainstepState extends State<Mainstep> {
                         colorBorder: primary03,
                       ),
                       SmallButton(
-                        text: 'Confirm',
+                        text: Languages.of(ctx)!.confirmButtonLabel,
                         onPressed: () async {
                           await Provider.of<NewAppointmentProvider>(context,
                                   listen: false)
@@ -150,6 +128,9 @@ class _MainstepState extends State<Mainstep> {
                           if (_currentTab == Step2.routeName) {
                             setState(() => {_currentTab = Step1.routeName});
                           } else if (_currentTab == Step3.routeName) {
+                            Provider.of<NewAppointmentProvider>(context,
+                                    listen: false)
+                                .resetSelectedDateTimeIndex();
                             setState(() => {_currentTab = Step2.routeName});
                           } else if (_currentTab == Step4.routeName) {
                             setState(() => {_currentTab = Step3.routeName});
@@ -163,14 +144,31 @@ class _MainstepState extends State<Mainstep> {
                       ),
                     SmallButton(
                       onPressed: () {
+                        final newAppointmentProvider =
+                            Provider.of<NewAppointmentProvider>(context,
+                                listen: false);
                         if (_currentTab == Step1.routeName) {
-                          setState(() => {_currentTab = Step2.routeName});
+                          if (newAppointmentProvider.selectedPerson.isEmpty) {
+                            // Show error dialog
+                          } else {
+                            setState(() => {_currentTab = Step2.routeName});
+                          }
                         } else if (_currentTab == Step2.routeName) {
                           setState(() => {_currentTab = Step3.routeName});
                         } else if (_currentTab == Step3.routeName) {
-                          setState(() => {_currentTab = Step4.routeName});
+                          if (newAppointmentProvider.selectedDateTimeIndex ==
+                              -1) {
+                            // Show error dialog
+                          } else {
+                            setState(() => {_currentTab = Step4.routeName});
+                          }
                         } else if (_currentTab == Step4.routeName) {
-                          _showDialog();
+                          if (newAppointmentProvider.selectedVaccine
+                              .contains(null)) {
+                            // Show error dialog
+                          } else {
+                            _showDialog();
+                          }
                         }
                       },
                       text: _currentTab == Step4.routeName

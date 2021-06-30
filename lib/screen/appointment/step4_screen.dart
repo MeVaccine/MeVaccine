@@ -35,7 +35,7 @@ class Step4 extends StatelessWidget {
                 color: primary01,
                 appointmentDateTime: selectedDateTime,
                 locationName: Languages.of(context)!
-                    .locationNameItem(newAppointmentProvider.selectedLocation),
+                    .locationNameItem(newAppointmentProvider.selectedLocation!),
               ),
             ),
             ListDropdownperson(),
