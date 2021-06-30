@@ -23,18 +23,7 @@ class ListPerson extends StatelessWidget {
                     children: personProvider.person
                         .map(
                           (person) => CardPersonAppoint(
-                            text: Languages.of(ctx)!.fullNamePerson(person),
-                            id: person.id,
-                            onChanged: (isSelected) {
-                              final newAppointmentProvider =
-                                  Provider.of<NewAppointmentProvider>(ctx,
-                                      listen: false);
-                              if (isSelected) {
-                                newAppointmentProvider.selectPerson(person);
-                              } else {
-                                newAppointmentProvider.removePerson(person);
-                              }
-                            },
+                            person: person,
                           ),
                         )
                         .toList(),
