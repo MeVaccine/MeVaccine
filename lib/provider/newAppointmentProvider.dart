@@ -343,7 +343,8 @@ class NewAppointmentProvider with ChangeNotifier {
                 .toList()
           });
       print(response.data);
-      notifyListeners();
+      resetData();
+      // notifyListeners();
     } on DioError catch (error) {
       print(error.response!.data);
       if (error.response!.statusCode == 400) {
@@ -356,5 +357,24 @@ class NewAppointmentProvider with ChangeNotifier {
   void selectVaccine(int index, String vaccineName) {
     selectedVaccine[index] = vaccineName;
     notifyListeners();
+  }
+
+  void resetData() {
+    String selectedProvince = "";
+    int selectedDateTimeIndex = -1;
+    DateTime selectedDate = DateTime(2021, 7, 1);
+    List<Location> locations = [];
+    List<PersonProvider.Person> selectedPerson = [];
+    List<List<VaccinableVaccine>> vaccinableVaccine = [];
+    List<String> selectedVaccine = [];
+    List<LocationDateTime> locationDateime = [];
+    Location selectedLocation = Location(
+      id: '',
+      name_en: '',
+      name_th: '',
+      priority: 0,
+      province_en: '',
+      province_th: '',
+    );
   }
 }
