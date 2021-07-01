@@ -7,9 +7,11 @@ import 'package:mevaccine/widget/text/mainText.dart';
 class SymptomCard extends StatefulWidget {
   final String text;
   bool value;
+  Function onChange;
   SymptomCard({
     required this.text,
     required this.value,
+    required this.onChange,
   });
   @override
   State<SymptomCard> createState() => _SymptomCardState();
@@ -32,9 +34,7 @@ class _SymptomCardState extends State<SymptomCard> {
                 activeColor: primary01,
                 value: widget.value,
                 onChanged: (bool? value) {
-                  setState(() {
-                    widget.value = value!;
-                  });
+                  widget.onChange();
                 },
               )
             ],
