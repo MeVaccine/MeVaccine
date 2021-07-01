@@ -68,6 +68,8 @@ abstract class Languages {
   String get myAppointmentHeading;
 
   // Person Screen
+  String get personScreenGreetingMessage;
+  String get personScreenHowToMessage;
   String get yourPersonHeading;
   String get noPersonDescription;
   String get personAppointmentsButtonLabel;

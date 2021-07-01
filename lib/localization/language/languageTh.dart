@@ -126,6 +126,11 @@ class LanguageTH extends Languages {
 
   // Person Screen
   @override
+  String get personScreenGreetingMessage => "สวัสดี";
+  @override
+  String get personScreenHowToMessage =>
+      "คุณสามารถเพิ่มผู้คน เพื่อที่จะเข้ารับวัคซีน\nพร้อมกันได้";
+  @override
   String get yourPersonHeading => "ผู้คนของคุณ";
   @override
   String get noPersonDescription =>

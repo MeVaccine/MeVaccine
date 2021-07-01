@@ -130,6 +130,11 @@ class LanguageEN extends Languages {
 
   // Person Screen
   @override
+  String get personScreenGreetingMessage => "Hello";
+  @override
+  String get personScreenHowToMessage =>
+      "You can add person who you would like to get vaccine together.";
+  @override
   String get yourPersonHeading => "Your Person";
   @override
   String get noPersonDescription =>

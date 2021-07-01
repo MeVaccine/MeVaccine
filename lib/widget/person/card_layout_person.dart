@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 
 class CardPersonLayout extends StatelessWidget {
   String name;
-  CardPersonLayout({required this.name });
+  CardPersonLayout({required this.name});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,8 +13,8 @@ class CardPersonLayout extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Long Time No See !',
+          Text(
+            Languages.of(context)!.personScreenGreetingMessage,
             style:
                 TextStyle(color: primary01, fontSize: kFontSizeHeadline4 * 0.7),
           ),
@@ -21,14 +22,11 @@ class CardPersonLayout extends StatelessWidget {
             name,
             style: TextStyle(color: accent02, fontSize: kFontSizeHeadline2),
           ),
-          const Text(
-            'Let\`s add another person and go vacinate',
+          Text(
+            Languages.of(context)!.personScreenHowToMessage,
             style:
                 TextStyle(color: accent02, fontSize: kFontSizeHeadline4 * 0.65),
           ),
-          const Text('together .',
-              style: TextStyle(
-                  color: accent02, fontSize: kFontSizeHeadline4 * 0.65))
         ],
       ),
     );
