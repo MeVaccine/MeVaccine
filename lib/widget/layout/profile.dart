@@ -25,12 +25,15 @@ class Profile extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.all(10),
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              MainText(Languages.of(context)!.landingGreetingMessage,
-                  text_type.regular, kFontSizeHeadline4 * 0.8, primary01),
-              ProfileText(name, accent02, kFontSizeHeadline2),
-            ]),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MainText(Languages.of(context)!.landingGreetingMessage,
+                    text_type.regular, kFontSizeHeadline4 * 0.8, primary01),
+                ProfileText(name, accent02, kFontSizeHeadline2),
+              ],
+            ),
           ),
         ]),
         IconButton(
