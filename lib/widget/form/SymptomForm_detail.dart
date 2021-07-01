@@ -46,7 +46,9 @@ class _SymptomFormDetailState extends State<SymptomFormDetail> {
               text: Languages.of(context)!.isChillsQuestion,
               value: valueChills,
             ),
-            SymptomCard(text: 'Muscle Pain', value: valueMusclePain),
+            SymptomCard(
+                text: Languages.of(context)!.isMusclePainQuestion,
+                value: valueMusclePain),
             SymptomCard(
               text: Languages.of(context)!.isTirednessQuestion,
               value: valueTiderness,
