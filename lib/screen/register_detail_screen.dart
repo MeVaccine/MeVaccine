@@ -142,11 +142,14 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                               hint: Languages.of(context)!.provinceInputLabel,
                               isCaseSensitiveSearch: true,
                               searchHint: const Text('Select your province'),
-                              onChanged: (value) {
+                              onChanged: (value) async {
                                 setState(() {
                                   selectedValue = value;
                                 });
-                                getHospital();
+                                await getHospital();
+                                setState(() {
+                                  selectedHospital = authen.hospital[0].name_en;
+                                });
                               },
                               isExpanded: true,
                             )),
@@ -164,6 +167,10 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                                 value: e.name_en,
                               );
                             }).toList(),
+                            value: selectedHospital == null ||
+                                    selectedHospital.isEmpty
+                                ? null
+                                : selectedHospital,
                             hint:
                                 Text(Languages.of(context)!.locationInputLabel),
                             isCaseSensitiveSearch: true,
