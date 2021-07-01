@@ -102,7 +102,6 @@ class LanguageEN extends Languages {
   String get personMenuLebel => "Person";
   @override
   String get symptomFormMenuLebel => "Symptom asessment form";
-
   // My Appointments Screen
   @override
   String get noAppointmentMessage => "You don’t have any appointment";
