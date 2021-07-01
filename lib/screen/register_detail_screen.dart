@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/authType.dart';
 import 'package:mevaccine/model/httpException.dart';
@@ -90,31 +91,36 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                         MainText(Languages.of(context)!.personalInfoHeading,
                             text_type.regular, kFontSizeHeadline4, primary01),
                         RegisterTextForm(
-                          label: authen.personal.en.prefix,
+                          label: Languages.of(context)!
+                              .personalPrefix(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.firstName,
+                          label: Languages.of(context)!
+                              .personalFirstname(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.lastName,
+                          label: Languages.of(context)!
+                              .personalLastname(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.gender,
+                          label: Languages.of(context)!
+                              .personalGender(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.date_of_birth.toString(),
+                          label: DateFormat.yMd()
+                              .format(authen.personal.en.date_of_birth),
                           type: RegsiterTextFormType.calendar,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
@@ -132,20 +138,28 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: kSizeS, vertical: kSizeS),
                             child: SearchableDropdown.single(
-                              items: authen.dataprovince.map((e) {
+                              items: authen.dataProvince.map((e) {
                                 return DropdownMenuItem<dynamic>(
-                                  child: Text(e),
-                                  value: e,
+                                  child: Text(Languages.of(context)!
+                                      .provinceDropdownItem(e)),
+                                  value: e['EN'],
                                 );
                               }).toList(),
                               hint: Languages.of(context)!.provinceInputLabel,
                               isCaseSensitiveSearch: true,
-                              searchHint: const Text('Select your province'),
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedValue = value;
-                                });
-                                getHospital();
+                              searchHint: Text(
+                                  Languages.of(context)!.provinceInputLabel),
+                              onChanged: (value) async {
+                                if (value != null) {
+                                  setState(() {
+                                    selectedValue = value;
+                                  });
+                                  await getHospital();
+                                  setState(() {
+                                    selectedHospital =
+                                        authen.hospital[0].name_en;
+                                  });
+                                }
                               },
                               isExpanded: true,
                             )),
@@ -158,20 +172,26 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                             items: authen.hospital.map((e) {
                               return DropdownMenuItem<dynamic>(
                                 child: Text(
-                                  e.name_en,
+                                  Languages.of(context)!.hospitalNameItem(e),
                                 ),
                                 value: e.name_en,
                               );
                             }).toList(),
+                            value: selectedHospital == null ||
+                                    selectedHospital.isEmpty
+                                ? null
+                                : selectedHospital,
                             hint:
                                 Text(Languages.of(context)!.locationInputLabel),
                             isCaseSensitiveSearch: true,
                             searchHint:
                                 Text(Languages.of(context)!.locationInputLabel),
                             onChanged: (value) {
-                              setState(() {
-                                selectedHospital = value;
-                              });
+                              if (value != null) {
+                                setState(() {
+                                  selectedHospital = value;
+                                });
+                              }
                             },
                             isExpanded: true,
                           ),

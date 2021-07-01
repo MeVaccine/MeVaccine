@@ -27,6 +27,7 @@ abstract class Languages {
   String get phoneNumberInputLabel;
   String provinceDropdownItem(Map<String, String> province);
   String locationNameItem(Location location);
+  String hospitalNameItem(Hospital hospital);
 
   // Login Screen
   String get loginHeadingLabel;
@@ -46,6 +47,10 @@ abstract class Languages {
   String get registerLocationHeading;
   String get provinceInputLabel;
   String get locationInputLabel;
+  String personalPrefix(Personal person);
+  String personalFirstname(Personal person);
+  String personalLastname(Personal person);
+  String personalGender(Personal person);
 
   // Landing Screen
   String get landingGreetingMessage;
@@ -63,6 +68,8 @@ abstract class Languages {
   String get myAppointmentHeading;
 
   // Person Screen
+  String get personScreenGreetingMessage;
+  String get personScreenHowToMessage;
   String get yourPersonHeading;
   String get noPersonDescription;
   String get personAppointmentsButtonLabel;

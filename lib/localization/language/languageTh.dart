@@ -41,6 +41,8 @@ class LanguageTH extends Languages {
       province['TH'] as String;
   @override
   String locationNameItem(Location location) => location.name_th;
+  @override
+  String hospitalNameItem(Hospital hospital) => hospital.name_th;
 
   // Login Screen
   @override
@@ -77,6 +79,14 @@ class LanguageTH extends Languages {
   String get provinceInputLabel => "จังหวัด";
   @override
   String get locationInputLabel => "เลือกสถานที่";
+  @override
+  String personalPrefix(Personal person) => person.th.prefix;
+  @override
+  String personalFirstname(Personal person) => person.th.firstName;
+  @override
+  String personalLastname(Personal person) => person.th.lastName;
+  @override
+  String personalGender(Personal person) => person.th.gender;
 
   // Landing Screen
   @override
@@ -116,6 +126,11 @@ class LanguageTH extends Languages {
 
   // Person Screen
   @override
+  String get personScreenGreetingMessage => "สวัสดี";
+  @override
+  String get personScreenHowToMessage =>
+      "คุณสามารถเพิ่มผู้คน เพื่อที่จะเข้ารับวัคซีน\nพร้อมกันได้";
+  @override
   String get yourPersonHeading => "ผู้คนของคุณ";
   @override
   String get noPersonDescription =>
@@ -125,7 +140,7 @@ class LanguageTH extends Languages {
   @override
   String get personSymptomFormButtonLabel => "แบบประเมินอาการหลังการฉีดวัคซีน ";
   @override
-  String get addPersonHeading => "เพิ่งผู้คน";
+  String get addPersonHeading => "เพิ่มผู้คน";
   @override
   String get deletePersonConfirmMessage => "";
 

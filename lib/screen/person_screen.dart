@@ -47,7 +47,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                     const Color(0xFF7090B0).withOpacity(0.2)),
                           ]),
                       child: CardPersonLayout(
-                        name: authen.name_en,
+                        name: Languages.of(ctx)!
+                            .firstnameString(authen.name_en, authen.name_th),
                       ),
                     ),
                   ),
@@ -73,8 +74,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                 children: [
                                   ...authen.person.map(
                                     (e) => CardEachPerson(
-                                      firstname: e.firstname_en,
-                                      lastname: e.lastname_en,
+                                      fullName: Languages.of(context)!
+                                          .fullNamePerson(e),
                                     ),
                                   ),
                                 ],

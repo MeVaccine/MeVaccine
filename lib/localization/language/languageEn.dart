@@ -41,6 +41,8 @@ class LanguageEN extends Languages {
       province['EN'] as String;
   @override
   String locationNameItem(Location location) => location.name_en;
+  @override
+  String hospitalNameItem(Hospital hospital) => hospital.name_en;
 
   // Login Screen
   @override
@@ -81,6 +83,14 @@ class LanguageEN extends Languages {
   String get provinceInputLabel => "Province";
   @override
   String get locationInputLabel => "Location";
+  @override
+  String personalPrefix(Personal person) => person.en.prefix;
+  @override
+  String personalFirstname(Personal person) => person.en.firstName;
+  @override
+  String personalLastname(Personal person) => person.en.lastName;
+  @override
+  String personalGender(Personal person) => person.en.gender;
 
   // Landing Screen
   @override
@@ -119,6 +129,11 @@ class LanguageEN extends Languages {
   String get myAppointmentHeading => "Your Appointment";
 
   // Person Screen
+  @override
+  String get personScreenGreetingMessage => "Hello";
+  @override
+  String get personScreenHowToMessage =>
+      "You can add person who you would like to get vaccine together.";
   @override
   String get yourPersonHeading => "Your Person";
   @override
