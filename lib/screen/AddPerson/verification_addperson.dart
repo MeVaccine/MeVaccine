@@ -5,6 +5,7 @@ import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/screen/person_screen.dart';
 import 'package:mevaccine/widget/Logo/logo_verification.dart';
 import 'package:mevaccine/widget/auth/verificationTextFormField.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
@@ -40,7 +41,7 @@ class _VerificationAddPersonState extends State<VerificationAddPerson> {
           _isLoading = false;
         });
         Navigator.of(context)
-            .popUntil(ModalRoute.withName(LandingScreen.routeName));
+            .popUntil(ModalRoute.withName(PersonScreen.routeName));
       } on HttpException catch (error) {
         setState(() => _isLoading = false);
         showErrorDialog(context: context, text: error.message);
