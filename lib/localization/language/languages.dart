@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
@@ -111,6 +112,7 @@ abstract class Languages {
   String get noVaccineAvaliableMessage;
   String get confirmScheduleMessage;
   String numberOfPeople(int numberOfPeople);
+  String newAppointmentErrorMessage(HttpException e);
 
   // Settings Screen
   String get settingsHeading;

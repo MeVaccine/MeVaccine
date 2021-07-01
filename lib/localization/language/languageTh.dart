@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
@@ -210,6 +211,8 @@ class LanguageTH extends Languages {
       "คุณต้องการที่จะนัดหมายการฉีดวัคซีน ตามวันและเวลาที่ท่านได้เลือกไว้";
   @override
   String numberOfPeople(int numberOfPeople) => "$numberOfPeople ท่าน";
+  @override
+  String newAppointmentErrorMessage(HttpException e) => e.messageTH;
 
   // Settings Screen
   @override

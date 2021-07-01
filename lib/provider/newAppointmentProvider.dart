@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
@@ -350,11 +351,10 @@ class NewAppointmentProvider with ChangeNotifier {
       resetData();
       // notifyListeners();
     } on DioError catch (error) {
-      print(error.response!.data);
       if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+        throw HttpException(error.response!.data['message_en'],
+            error.response!.data['message_th']);
       }
-      throw HttpException(error.response!.data);
     }
   }
 

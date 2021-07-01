@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
@@ -214,6 +215,8 @@ class LanguageEN extends Languages {
       "Do you confirm schedule this appointment ?";
   @override
   String numberOfPeople(int numberOfPeople) => "$numberOfPeople people";
+  @override
+  String newAppointmentErrorMessage(HttpException e) => e.messageEN;
 
   // Settings Screen
   @override
