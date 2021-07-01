@@ -47,7 +47,9 @@ class _NumberSettingScreenState extends State<NumberSettingScreen> {
         Navigator.of(context).pushNamed(VerificationChangeNumber.routeName);
       } on HttpException catch (error) {
         setState(() => _isLoading = false);
-        showErrorDialog(context: context, text: error.message);
+        showErrorDialog(
+            context: context,
+            text: Languages.of(context)!.httpExceptionErrorMessage(error));
       }
     }
 

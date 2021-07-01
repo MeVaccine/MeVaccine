@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
@@ -44,7 +45,9 @@ class _VerificationChangeNumberState extends State<VerificationChangeNumber> {
             .popUntil(ModalRoute.withName(SettingScreen.routeName));
       } on HttpException catch (error) {
         setState(() => _isLoading = false);
-        showErrorDialog(context: context, text: error.message);
+        showErrorDialog(
+            context: context,
+            text: Languages.of(context)!.httpExceptionErrorMessage(error));
       }
     }
 

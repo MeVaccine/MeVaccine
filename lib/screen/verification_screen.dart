@@ -39,7 +39,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
         Navigator.of(context).pushReplacementNamed(LandingScreen.routeName);
       } on HttpException catch (error) {
         setState(() => _isLoading = false);
-        showErrorDialog(context: context, text: error.message);
+        showErrorDialog(
+            context: context,
+            text: Languages.of(context)!.httpExceptionErrorMessage(error));
       }
     }
 
