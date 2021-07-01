@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/authType.dart';
 import 'package:mevaccine/model/httpException.dart';
@@ -90,31 +91,36 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                         MainText(Languages.of(context)!.personalInfoHeading,
                             text_type.regular, kFontSizeHeadline4, primary01),
                         RegisterTextForm(
-                          label: authen.personal.en.prefix,
+                          label: Languages.of(context)!
+                              .personalPrefix(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.firstName,
+                          label: Languages.of(context)!
+                              .personalFirstname(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.lastName,
+                          label: Languages.of(context)!
+                              .personalLastname(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.gender,
+                          label: Languages.of(context)!
+                              .personalGender(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.date_of_birth.toString(),
+                          label: DateFormat.yMd()
+                              .format(authen.personal.en.date_of_birth),
                           type: RegsiterTextFormType.calendar,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,

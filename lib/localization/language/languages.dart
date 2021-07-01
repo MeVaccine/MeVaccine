@@ -47,6 +47,10 @@ abstract class Languages {
   String get registerLocationHeading;
   String get provinceInputLabel;
   String get locationInputLabel;
+  String personalPrefix(Personal person);
+  String personalFirstname(Personal person);
+  String personalLastname(Personal person);
+  String personalGender(Personal person);
 
   // Landing Screen
   String get landingGreetingMessage;

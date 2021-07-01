@@ -79,6 +79,14 @@ class LanguageTH extends Languages {
   String get provinceInputLabel => "จังหวัด";
   @override
   String get locationInputLabel => "เลือกสถานที่";
+  @override
+  String personalPrefix(Personal person) => person.th.prefix;
+  @override
+  String personalFirstname(Personal person) => person.th.firstName;
+  @override
+  String personalLastname(Personal person) => person.th.lastName;
+  @override
+  String personalGender(Personal person) => person.th.gender;
 
   // Landing Screen
   @override

@@ -83,6 +83,14 @@ class LanguageEN extends Languages {
   String get provinceInputLabel => "Province";
   @override
   String get locationInputLabel => "Location";
+  @override
+  String personalPrefix(Personal person) => person.en.prefix;
+  @override
+  String personalFirstname(Personal person) => person.en.firstName;
+  @override
+  String personalLastname(Personal person) => person.en.lastName;
+  @override
+  String personalGender(Personal person) => person.en.gender;
 
   // Landing Screen
   @override
