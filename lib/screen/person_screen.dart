@@ -74,8 +74,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                 children: [
                                   ...authen.person.map(
                                     (e) => CardEachPerson(
-                                      firstname: e.firstname_en,
-                                      lastname: e.lastname_en,
+                                      fullName: Languages.of(context)!
+                                          .fullNamePerson(e),
                                     ),
                                   ),
                                 ],
