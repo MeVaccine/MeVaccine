@@ -317,20 +317,6 @@ class NewAppointmentProvider with ChangeNotifier {
 
   Future<void> createNewAppointment() async {
     try {
-      print({
-        'locationId': selectedLocation!.id,
-        'dateTime': locationDateime[selectedDateTimeIndex]
-            .startDateTime
-            .toUtc()
-            .toIso8601String(),
-        'person': selectedPerson
-            .map((person) => {
-                  'id': person.id,
-                  'vaccine': selectedVaccine[
-                      selectedPerson.indexWhere((el) => el.id == person.id)]
-                })
-            .toList()
-      });
       final response = await Dio().post(apiEndpoint + '/appointment/new',
           options: Options(headers: {"Authorization": "Bearer " + _token}),
           data: {
@@ -347,7 +333,6 @@ class NewAppointmentProvider with ChangeNotifier {
                     })
                 .toList()
           });
-      print(response.data);
       resetData();
       // notifyListeners();
     } on DioError catch (error) {
