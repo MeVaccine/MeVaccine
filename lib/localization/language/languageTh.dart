@@ -80,7 +80,16 @@ class LanguageTH extends Languages {
 
   // Landing Screen
   @override
-  String get greetingMessage => "สวัสดีตอนเช้า";
+  String get landingGreetingMessage {
+    final hours = DateTime.now().hour;
+    if (hours < 13)
+      return "สวัสดีตอนเช้า";
+    else if (hours < 19)
+      return "สวัสดีตอนบ่าย";
+    else
+      return "สวัสดีตอนเย็น";
+  }
+
   @override
   String get scheduleHeading => "นัดหมาย";
   @override

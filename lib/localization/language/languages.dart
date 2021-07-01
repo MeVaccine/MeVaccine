@@ -48,7 +48,7 @@ abstract class Languages {
   String get locationInputLabel;
 
   // Landing Screen
-  String get greetingMessage;
+  String get landingGreetingMessage;
   String get scheduleHeading;
   String get yourAppointmentHeading;
   String get noNextAppointmentMessage;

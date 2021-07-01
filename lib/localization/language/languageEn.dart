@@ -84,7 +84,16 @@ class LanguageEN extends Languages {
 
   // Landing Screen
   @override
-  String get greetingMessage => "Good Morning!";
+  String get landingGreetingMessage {
+    final hours = DateTime.now().hour;
+    if (hours < 13)
+      return "Good Morning!";
+    else if (hours < 19)
+      return "Good Afternoon!";
+    else
+      return "Good Evening!";
+  }
+
   @override
   String get scheduleHeading => "Schedule";
   @override
