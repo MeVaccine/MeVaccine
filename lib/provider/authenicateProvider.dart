@@ -364,10 +364,10 @@ class AuthenicateProvider with ChangeNotifier {
                 date_of_birth:
                     DateTime.parse(response.data['th']['date_of_birth']),
                 firstName: response.data['th']['firstname'],
-                gender: response.data['th']['firstname'],
-                lastName: response.data['th']['firstname'],
-                prefix: response.data['th']['firstname'],
-                province: response.data['th']['firstname']));
+                gender: response.data['th']['gender'],
+                lastName: response.data['th']['lastname'],
+                prefix: response.data['th']['prefix'],
+                province: response.data['th']['province']));
       }
       notifyListeners();
     } on DioError catch (error) {
@@ -633,10 +633,10 @@ class AuthenicateProvider with ChangeNotifier {
               date_of_birth:
                   DateTime.parse(response.data['th']['date_of_birth']),
               firstName: response.data['th']['firstname'],
-              gender: response.data['th']['firstname'],
-              lastName: response.data['th']['firstname'],
-              prefix: response.data['th']['firstname'],
-              province: response.data['th']['firstname']));
+              gender: response.data['th']['gender'],
+              lastName: response.data['th']['lastname'],
+              prefix: response.data['th']['prefix'],
+              province: response.data['th']['province']));
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
