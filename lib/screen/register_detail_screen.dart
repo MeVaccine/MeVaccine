@@ -158,7 +158,7 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                             items: authen.hospital.map((e) {
                               return DropdownMenuItem<dynamic>(
                                 child: Text(
-                                  e.name_en,
+                                  Languages.of(context)!.hospitalNameItem(e),
                                 ),
                                 value: e.name_en,
                               );

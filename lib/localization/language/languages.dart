@@ -27,6 +27,7 @@ abstract class Languages {
   String get phoneNumberInputLabel;
   String provinceDropdownItem(Map<String, String> province);
   String locationNameItem(Location location);
+  String hospitalNameItem(Hospital hospital);
 
   // Login Screen
   String get loginHeadingLabel;

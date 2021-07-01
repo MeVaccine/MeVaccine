@@ -41,6 +41,8 @@ class LanguageEN extends Languages {
       province['EN'] as String;
   @override
   String locationNameItem(Location location) => location.name_en;
+  @override
+  String hospitalNameItem(Hospital hospital) => hospital.name_en;
 
   // Login Screen
   @override
