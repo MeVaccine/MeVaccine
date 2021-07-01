@@ -132,10 +132,11 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: kSizeS, vertical: kSizeS),
                             child: SearchableDropdown.single(
-                              items: authen.dataprovince.map((e) {
+                              items: authen.dataProvince.map((e) {
                                 return DropdownMenuItem<dynamic>(
-                                  child: Text(e),
-                                  value: e,
+                                  child: Text(Languages.of(context)!
+                                      .provinceDropdownItem(e)),
+                                  value: e['EN'],
                                 );
                               }).toList(),
                               hint: Languages.of(context)!.provinceInputLabel,
