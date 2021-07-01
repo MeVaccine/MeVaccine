@@ -135,7 +135,7 @@ class LanguageTH extends Languages {
   @override
   String get personSymptomFormButtonLabel => "แบบประเมินอาการหลังการฉีดวัคซีน ";
   @override
-  String get addPersonHeading => "เพิ่งผู้คน";
+  String get addPersonHeading => "เพิ่มผู้คน";
   @override
   String get deletePersonConfirmMessage => "";
 
