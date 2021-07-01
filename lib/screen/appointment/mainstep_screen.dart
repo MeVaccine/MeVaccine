@@ -75,7 +75,7 @@ class _MainstepState extends State<Mainstep> {
                             showErrorDialog(
                                 context: ctx,
                                 text: Languages.of(context)!
-                                    .newAppointmentErrorMessage(error));
+                                    .httpExceptionErrorMessage(error));
                           }
                         },
                         color: primary03,
