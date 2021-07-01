@@ -123,7 +123,10 @@ class Step2 extends StatelessWidget {
                 // Set inital prefered location
                 return render(ctx);
               }
-              return CircularProgressIndicator();
+              return Container(
+                child: Center(child: CircularProgressIndicator()),
+                height: 490,
+              );
             });
   }
 }
