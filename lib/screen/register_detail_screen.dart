@@ -141,15 +141,19 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                               }).toList(),
                               hint: Languages.of(context)!.provinceInputLabel,
                               isCaseSensitiveSearch: true,
-                              searchHint: const Text('Select your province'),
+                              searchHint: Text(
+                                  Languages.of(context)!.provinceInputLabel),
                               onChanged: (value) async {
-                                setState(() {
-                                  selectedValue = value;
-                                });
-                                await getHospital();
-                                setState(() {
-                                  selectedHospital = authen.hospital[0].name_en;
-                                });
+                                if (value != null) {
+                                  setState(() {
+                                    selectedValue = value;
+                                  });
+                                  await getHospital();
+                                  setState(() {
+                                    selectedHospital =
+                                        authen.hospital[0].name_en;
+                                  });
+                                }
                               },
                               isExpanded: true,
                             )),
@@ -177,9 +181,11 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                             searchHint:
                                 Text(Languages.of(context)!.locationInputLabel),
                             onChanged: (value) {
-                              setState(() {
-                                selectedHospital = value;
-                              });
+                              if (value != null) {
+                                setState(() {
+                                  selectedHospital = value;
+                                });
+                              }
                             },
                             isExpanded: true,
                           ),

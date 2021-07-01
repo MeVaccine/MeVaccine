@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import '../config/constants.dart';
 import '../widget/Logo/logo_register.dart';
 import '../widget/auth/register-Form.dart';
@@ -31,7 +32,8 @@ class RegisterScreen extends StatelessWidget {
             child: Column(
               children: [
                 LogoRegister(),
-                RegisterForm('Register',RegisterType.register),
+                RegisterForm(Languages.of(context)!.registerHeadingLabel,
+                    RegisterType.register),
               ],
             ),
           ),
