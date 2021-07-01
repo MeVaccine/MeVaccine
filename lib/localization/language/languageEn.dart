@@ -215,8 +215,6 @@ class LanguageEN extends Languages {
       "Do you confirm schedule this appointment ?";
   @override
   String numberOfPeople(int numberOfPeople) => "$numberOfPeople people";
-  @override
-  String newAppointmentErrorMessage(HttpException e) => e.messageEN;
 
   // Settings Screen
   @override
@@ -239,4 +237,10 @@ class LanguageEN extends Languages {
   @override
   String get invalidPhoneNumberErrorMessage =>
       "Please enter a valid phone number";
+
+  // Error
+  @override
+  String httpExceptionErrorMessage(HttpException e) => e.messageEN;
+  @override
+  String get errorDialogHeading => "Error Occurred!";
 }

@@ -112,7 +112,6 @@ abstract class Languages {
   String get noVaccineAvaliableMessage;
   String get confirmScheduleMessage;
   String numberOfPeople(int numberOfPeople);
-  String newAppointmentErrorMessage(HttpException e);
 
   // Settings Screen
   String get settingsHeading;
@@ -124,4 +123,8 @@ abstract class Languages {
   String get invalidProvinceOrLocationErrorMessage;
   String get changePhoneNumberHeading;
   String get invalidPhoneNumberErrorMessage;
+
+  // Error
+  String httpExceptionErrorMessage(HttpException e);
+  String get errorDialogHeading;
 }

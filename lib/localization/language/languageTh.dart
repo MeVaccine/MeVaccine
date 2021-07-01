@@ -211,8 +211,6 @@ class LanguageTH extends Languages {
       "คุณต้องการที่จะนัดหมายการฉีดวัคซีน ตามวันและเวลาที่ท่านได้เลือกไว้";
   @override
   String numberOfPeople(int numberOfPeople) => "$numberOfPeople ท่าน";
-  @override
-  String newAppointmentErrorMessage(HttpException e) => e.messageTH;
 
   // Settings Screen
   @override
@@ -233,4 +231,10 @@ class LanguageTH extends Languages {
   String get changePhoneNumberHeading => "เปลี่ยนเบอร์โทรศัพท์";
   @override
   String get invalidPhoneNumberErrorMessage => "โปรดใส่เบอร์โทรศัพท์ที่ถูกต้อง";
+
+  // Error
+  @override
+  String httpExceptionErrorMessage(HttpException e) => e.messageTH;
+  @override
+  String get errorDialogHeading => "ข้อผิดพลาด";
 }
