@@ -76,6 +76,7 @@ class PersonProvider with ChangeNotifier {
       if (error.response!.statusCode == 401) {
         throw HttpException(jwtException);
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 }

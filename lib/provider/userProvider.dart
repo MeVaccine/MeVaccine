@@ -31,6 +31,7 @@ class UserProvider with ChangeNotifier {
       } else if (error.response!.statusCode == 400) {
         throw HttpException(otpException);
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -47,6 +48,7 @@ class UserProvider with ChangeNotifier {
       if (error.response!.statusCode == 401) {
         throw HttpException(jwtException);
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 }

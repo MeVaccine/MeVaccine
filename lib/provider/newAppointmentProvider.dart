@@ -171,6 +171,7 @@ class NewAppointmentProvider with ChangeNotifier {
       if (error.response!.statusCode == 401) {
         throw HttpException(jwtException);
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -193,7 +194,7 @@ class NewAppointmentProvider with ChangeNotifier {
       if (error.response!.statusCode == 400) {
         throw HttpException(incorrectAuthException);
       }
-      throw HttpException('Failed to get data');
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -237,7 +238,7 @@ class NewAppointmentProvider with ChangeNotifier {
       if (error.response!.statusCode == 400) {
         throw HttpException(incorrectAuthException);
       }
-      throw HttpException(error.response!.data);
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -266,7 +267,7 @@ class NewAppointmentProvider with ChangeNotifier {
       if (error.response!.statusCode == 400) {
         throw HttpException(incorrectAuthException);
       }
-      throw HttpException(error.response!.data);
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -311,7 +312,7 @@ class NewAppointmentProvider with ChangeNotifier {
       if (error.response!.statusCode == 400) {
         throw HttpException(incorrectAuthException);
       }
-      throw HttpException(error.response!.data);
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -340,6 +341,7 @@ class NewAppointmentProvider with ChangeNotifier {
         throw HttpException(error.response!.data['message_en'],
             error.response!.data['message_th']);
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
