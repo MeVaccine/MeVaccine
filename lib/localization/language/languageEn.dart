@@ -107,6 +107,8 @@ class LanguageEN extends Languages {
   String get noAppointmentMessage => "You don’t have any appointment";
   @override
   String get myAppointmentHeading => "Your Appointment";
+  @override
+  String get vaccineDoseHeading => "1 st Dose";
 
   // Person Screen
   @override

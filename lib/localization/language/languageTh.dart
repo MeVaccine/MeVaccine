@@ -104,6 +104,8 @@ class LanguageTH extends Languages {
       "คุณยังไม่มีการนัดหมายเข้ารับวัคซีน คุณสามารถเพิ่มนัดหมายได้จากหน้าแรก";
   @override
   String get myAppointmentHeading => "นัดหมายของคุณ";
+  @override
+  String get vaccineDoseHeading => "วัคซีนโควิด 19 เข็มที่1";
 
   // Person Screen
   @override
