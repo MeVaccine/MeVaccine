@@ -72,6 +72,7 @@ class _MainstepState extends State<Mainstep> {
                             Navigator.of(context)
                                 .pushReplacementNamed(LandingScreen.routeName);
                           } on HttpException catch (error) {
+                            Navigator.of(context).pop();
                             showErrorDialog(
                                 context: ctx,
                                 text: Languages.of(context)!
