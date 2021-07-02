@@ -78,6 +78,7 @@ flutter:
     - assets/images/logo-history.png
     - assets/images/logo-hospital.png
     - assets/images/vaccine.png
+    - assets/images/vaccineWhite.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
