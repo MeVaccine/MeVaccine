@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
@@ -122,4 +123,8 @@ abstract class Languages {
   String get invalidProvinceOrLocationErrorMessage;
   String get changePhoneNumberHeading;
   String get invalidPhoneNumberErrorMessage;
+
+  // Error
+  String httpExceptionErrorMessage(HttpException e);
+  String get errorDialogHeading;
 }

@@ -45,7 +45,9 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
       Navigator.of(context).pushNamed(VerificationAddPerson.routeName);
     } on HttpException catch (error) {
       setState(() => _isLoading = false);
-      showErrorDialog(context: context, text: error.message);
+      showErrorDialog(
+          context: context,
+          text: Languages.of(context)!.httpExceptionErrorMessage(error));
     }
   }
 

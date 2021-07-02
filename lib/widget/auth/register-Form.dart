@@ -65,7 +65,9 @@ class _RegisterFormState extends State<RegisterForm> {
         }
       } on HttpException catch (error) {
         setState(() => _isLoading = false);
-        showErrorDialog(context: context, text: error.message);
+        showErrorDialog(
+            context: context,
+            text: Languages.of(context)!.httpExceptionErrorMessage(error));
       }
     }
   }
@@ -88,7 +90,9 @@ class _RegisterFormState extends State<RegisterForm> {
         Navigator.of(context).pushNamed(RegisterDetailScreen.routeName);
       } on HttpException catch (error) {
         setState(() => _isLoading = false);
-        showErrorDialog(context: context, text: error.message);
+        showErrorDialog(
+            context: context,
+            text: Languages.of(context)!.httpExceptionErrorMessage(error));
       }
     }
   }

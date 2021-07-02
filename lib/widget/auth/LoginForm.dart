@@ -38,7 +38,9 @@ class _LoginFormState extends State<LoginForm> {
       Navigator.of(context).pushNamed(VerificationScreen.routeName);
     } on HttpException catch (error) {
       setState(() => _isLoading = false);
-      showErrorDialog(context: context, text: error.message);
+      showErrorDialog(
+          context: context,
+          text: Languages.of(context)!.httpExceptionErrorMessage(error));
     }
   }
 

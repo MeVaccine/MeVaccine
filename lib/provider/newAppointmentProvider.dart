@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
@@ -134,8 +135,12 @@ class NewAppointmentProvider with ChangeNotifier {
 
   Future<void> setSelectedProvince(String province) async {
     selectedProvince = province;
-    await getLocationByProvince(false);
-    notifyListeners();
+    try {
+      await getLocationByProvince(false);
+      notifyListeners();
+    } catch (e) {
+      throw e;
+    }
   }
 
   void selectLocation(String locationId) {
@@ -164,12 +169,13 @@ class NewAppointmentProvider with ChangeNotifier {
         ));
       }
       locations = locationLists;
-      selectedLocation = locations[0];
+      selectedLocation = locations.isEmpty ? null : locations[0];
       if (notify) notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 401) {
         throw HttpException(jwtException);
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -189,10 +195,10 @@ class NewAppointmentProvider with ChangeNotifier {
       await getLocationByProvince(false);
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
-      }
-      throw HttpException('Failed to get data');
+      // if (error.response!.statusCode == 401) {
+      //   throw HttpException(incorrectAuthException);
+      // }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -234,9 +240,10 @@ class NewAppointmentProvider with ChangeNotifier {
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+        throw HttpException('Your selected location is invalid',
+            'สถานที่ที่คุณเลือกไม่ถูกต้อง');
       }
-      throw HttpException(error.response!.data);
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -263,9 +270,10 @@ class NewAppointmentProvider with ChangeNotifier {
       return locationDateime[0].startDateTime;
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+        throw HttpException('Your selected location is invalid',
+            'สถานที่ที่คุณเลือกไม่ถูกต้อง');
       }
-      throw HttpException(error.response!.data);
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -307,29 +315,15 @@ class NewAppointmentProvider with ChangeNotifier {
       vaccinableVaccine = tempVaccinableVaccine;
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
-      }
-      throw HttpException(error.response!.data);
+      // if (error.response!.statusCode == 400) {
+      //   throw HttpException(incorrectAuthException);
+      // }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
   Future<void> createNewAppointment() async {
     try {
-      print({
-        'locationId': selectedLocation!.id,
-        'dateTime': locationDateime[selectedDateTimeIndex]
-            .startDateTime
-            .toUtc()
-            .toIso8601String(),
-        'person': selectedPerson
-            .map((person) => {
-                  'id': person.id,
-                  'vaccine': selectedVaccine[
-                      selectedPerson.indexWhere((el) => el.id == person.id)]
-                })
-            .toList()
-      });
       final response = await Dio().post(apiEndpoint + '/appointment/new',
           options: Options(headers: {"Authorization": "Bearer " + _token}),
           data: {
@@ -346,15 +340,14 @@ class NewAppointmentProvider with ChangeNotifier {
                     })
                 .toList()
           });
-      print(response.data);
       resetData();
       // notifyListeners();
     } on DioError catch (error) {
-      print(error.response!.data);
       if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+        throw HttpException(error.response!.data['message_en'],
+            error.response!.data['message_th']);
       }
-      throw HttpException(error.response!.data);
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 

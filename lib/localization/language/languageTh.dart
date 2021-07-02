@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
@@ -230,4 +231,10 @@ class LanguageTH extends Languages {
   String get changePhoneNumberHeading => "เปลี่ยนเบอร์โทรศัพท์";
   @override
   String get invalidPhoneNumberErrorMessage => "โปรดใส่เบอร์โทรศัพท์ที่ถูกต้อง";
+
+  // Error
+  @override
+  String httpExceptionErrorMessage(HttpException e) => e.messageTH;
+  @override
+  String get errorDialogHeading => "ข้อผิดพลาด";
 }

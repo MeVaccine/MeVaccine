@@ -47,9 +47,11 @@ class LocationProvider with ChangeNotifier {
       _vaccine = tempVaccine;
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 401) {
-        throw HttpException(jwtException);
+      if (error.response!.statusCode == 400) {
+        throw HttpException('Your selected location is invalid',
+            'สถานที่ที่คุณเลือกไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 }

@@ -26,11 +26,14 @@ class UserProvider with ChangeNotifier {
           options: Options(headers: {"Authorization": "Bearer " + token}));
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 401) {
-        throw HttpException(jwtException);
-      } else if (error.response!.statusCode == 400) {
-        throw HttpException(otpException);
+      // if (error.response!.statusCode == 401) {
+      //   throw HttpException(jwtException);
+      // } else
+      if (error.response!.statusCode == 400) {
+        throw HttpException('OTP code is expired or not correct',
+            'รหัส OTP หมดอายุหรือไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -44,9 +47,10 @@ class UserProvider with ChangeNotifier {
 
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 401) {
-        throw HttpException(jwtException);
-      }
+      // if (error.response!.statusCode == 401) {
+      //   throw HttpException(jwtException);
+      // }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 }

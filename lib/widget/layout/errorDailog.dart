@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import '../../config/color.dart';
 import '../../config/constants.dart';
 
@@ -12,7 +13,7 @@ class ErrorDialog extends StatelessWidget {
     return AlertDialog(
       title: RichText(
         text: TextSpan(
-            text: 'An error occur',
+            text: Languages.of(context)!.errorDialogHeading,
             style: TextStyle(color: error, fontSize: 30)),
       ),
       content: Container(

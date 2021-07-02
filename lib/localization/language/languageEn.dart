@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
@@ -236,4 +237,10 @@ class LanguageEN extends Languages {
   @override
   String get invalidPhoneNumberErrorMessage =>
       "Please enter a valid phone number";
+
+  // Error
+  @override
+  String httpExceptionErrorMessage(HttpException e) => e.messageEN;
+  @override
+  String get errorDialogHeading => "Error Occurred!";
 }
