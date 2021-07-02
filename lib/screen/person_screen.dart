@@ -22,7 +22,9 @@ class PersonScreen extends StatefulWidget {
 class _PersonScreenState extends State<PersonScreen> {
   @override
   Widget build(BuildContext context) {
-    Provider.of<PersonProvider>(context, listen: false).getPerson();
+    Provider.of<PersonProvider>(
+      context,
+    ).getPerson();
     return Consumer<PersonProvider>(
         builder: (ctx, authen, child) => Scaffold(
               body: Stack(
@@ -66,17 +68,37 @@ class _PersonScreenState extends State<PersonScreen> {
                                 color: primary01, fontSize: kFontSizeHeadline4),
                           ),
                           kSizedBoxS,
-                          if (authen.isPersonEmpty)
+                          if (authen.person.isEmpty)
                             EmptyPerson()
                           else
                             SingleChildScrollView(
                               child: Column(
                                 children: [
                                   ...authen.person.map(
-                                    (e) => CardEachPerson(
-                                      fullName: Languages.of(context)!
-                                          .fullNamePerson(e),
-                                    ),
+                                    (e) => Dismissible(
+                                        key: ValueKey(e.id),
+                                        background: Container(
+                                          color: Colors.red,
+                                          child: Icon(
+                                            Icons.delete,
+                                            color: white,
+                                            size: 40,
+                                          ),
+                                          alignment: Alignment.centerRight,
+                                          padding: EdgeInsets.only(right: 20),
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 15),
+                                        ),
+                                        direction: DismissDirection.endToStart,
+                                        onDismissed: (direction) {
+                                          Provider.of<PersonProvider>(
+                                            context,listen: false
+                                          ).deletePerson(e.id);
+                                        },
+                                        child: CardEachPerson(
+                                          fullName: Languages.of(context)!
+                                              .fullNamePerson(e),
+                                        )),
                                   ),
                                 ],
                               ),
