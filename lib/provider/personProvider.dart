@@ -73,9 +73,9 @@ class PersonProvider with ChangeNotifier {
 
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 401) {
-        throw HttpException(jwtException);
-      }
+      // if (error.response!.statusCode == 401) {
+      //   throw HttpException(jwtException);
+      // }
       throw HttpException(generalException, generalExceptionTH);
     }
   }

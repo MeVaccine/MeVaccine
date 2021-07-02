@@ -169,7 +169,7 @@ class NewAppointmentProvider with ChangeNotifier {
         ));
       }
       locations = locationLists;
-      selectedLocation = locations[0];
+      selectedLocation = locations.isEmpty ? null : locations[0];
       if (notify) notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 401) {
@@ -195,9 +195,9 @@ class NewAppointmentProvider with ChangeNotifier {
       await getLocationByProvince(false);
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
-      }
+      // if (error.response!.statusCode == 401) {
+      //   throw HttpException(incorrectAuthException);
+      // }
       throw HttpException(generalException, generalExceptionTH);
     }
   }
@@ -240,7 +240,8 @@ class NewAppointmentProvider with ChangeNotifier {
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+        throw HttpException('Your selected location is invalid',
+            'สถานที่ที่คุณเลือกไม่ถูกต้อง');
       }
       throw HttpException(generalException, generalExceptionTH);
     }
@@ -269,7 +270,8 @@ class NewAppointmentProvider with ChangeNotifier {
       return locationDateime[0].startDateTime;
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+        throw HttpException('Your selected location is invalid',
+            'สถานที่ที่คุณเลือกไม่ถูกต้อง');
       }
       throw HttpException(generalException, generalExceptionTH);
     }
@@ -313,9 +315,9 @@ class NewAppointmentProvider with ChangeNotifier {
       vaccinableVaccine = tempVaccinableVaccine;
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
-      }
+      // if (error.response!.statusCode == 400) {
+      //   throw HttpException(incorrectAuthException);
+      // }
       throw HttpException(generalException, generalExceptionTH);
     }
   }
