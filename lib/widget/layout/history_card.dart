@@ -4,6 +4,7 @@ import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/widget/Logo/icon_vaccine.dart';
+import 'package:mevaccine/widget/Logo/icon_vaccine_white.dart';
 import 'package:mevaccine/widget/layout/iconWithText.dart';
 import 'package:mevaccine/widget/layout/vaccine.dart';
 
@@ -57,7 +58,7 @@ class CardHistory extends StatelessWidget {
           kSizedBoxVerticalXXS,
           Row(
             children: [
-              VaccineIcon(width: 20, height: 20),
+              VaccineIconWhite(width: 19, height: 19),
               kSizedBoxHorizontalXS,
               Text(
                 'Sinovac Life Sciences',
