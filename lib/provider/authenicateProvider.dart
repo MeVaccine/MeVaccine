@@ -418,7 +418,8 @@ class AuthenicateProvider with ChangeNotifier {
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+        throw HttpException('National ID or phone number is not correct',
+            'เลขประจำตัวประชาชนหรือเบอร์โทรศัพท์ไม่ถูกต้อง');
       }
     }
   }
@@ -639,11 +640,8 @@ class AuthenicateProvider with ChangeNotifier {
               province: response.data['th']['province']));
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 400) {
-        throw HttpException(notFoundException);
-      } else {
-        throw HttpException(wrongFormat);
-      }
+      throw HttpException('National ID or Laser ID is not correct',
+          'เลขประจำตัวประชาชนหรือรหัสหลังบัตรประชาชนไม่ถูกต้อง');
     }
   }
 
@@ -661,9 +659,11 @@ class AuthenicateProvider with ChangeNotifier {
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(wrongFormat);
+        throw HttpException('Phone number or selected location is not correct',
+            'เบอร์โทรศัพท์หรือสถานที่ที่เลือกไม่ถูกต้อง');
       } else if (error.response!.statusCode == 404) {
-        throw HttpException(notFoundNational);
+        throw HttpException('National ID or Laser ID is not correct',
+            'เลขประจำตัวประชาชนหรือรหัสหลังบัตรประชาชนไม่ถูกต้อง');
       }
     }
   }
@@ -682,7 +682,8 @@ class AuthenicateProvider with ChangeNotifier {
     } on DioError catch (error) {
       prefs.clear();
       if (error.response!.statusCode == 400) {
-        throw HttpException(otpException);
+        throw HttpException('OTP code is expired or not correct',
+            'รหัส OTP หมดอายุหรือไม่ถูกต้อง');
       }
     }
   }
