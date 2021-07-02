@@ -1,11 +1,12 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
+import 'package:mevaccine/widget/layout/errorDailog.dart';
 import 'package:provider/provider.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 import '../../widget/layout/list_vaccine.dart';
@@ -51,8 +52,16 @@ class Step2 extends StatelessWidget {
                 value:
                     Provider.of<NewAppointmentProvider>(ctx).selectedProvince,
                 onChanged: (value) async {
-                  await Provider.of<NewAppointmentProvider>(ctx, listen: false)
-                      .setSelectedProvince(value);
+                  try {
+                    await Provider.of<NewAppointmentProvider>(ctx,
+                            listen: false)
+                        .setSelectedProvince(value);
+                  } on HttpException catch (error) {
+                    showErrorDialog(
+                        context: context,
+                        text: Languages.of(context)!
+                            .httpExceptionErrorMessage(error));
+                  }
                 },
                 isExpanded: true,
               ),

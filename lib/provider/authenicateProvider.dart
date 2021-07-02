@@ -371,9 +371,12 @@ class AuthenicateProvider with ChangeNotifier {
       }
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 401) {
-        throw HttpException(incorrectAuthException);
+      if (error.response!.statusCode == 400 ||
+          error.response!.statusCode == 404) {
+        throw HttpException('National ID or Laser ID is not correct',
+            'เลขประจำตัวประชาชนหรือรหัสหลังบัตรประชาชนไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -402,10 +405,10 @@ class AuthenicateProvider with ChangeNotifier {
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(otpException);
-      } else if (error.response!.statusCode == 401) {
-        throw HttpException(jwtException);
+        throw HttpException('OTP code is expired or not correct',
+            'รหัส OTP หมดอายุหรือไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -418,8 +421,10 @@ class AuthenicateProvider with ChangeNotifier {
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+        throw HttpException('National ID or phone number is not correct',
+            'เลขประจำตัวประชาชนหรือเบอร์โทรศัพท์ไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -436,15 +441,15 @@ class AuthenicateProvider with ChangeNotifier {
           province_th: response.data['province_th']);
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
-      }
+      // if (error.response!.statusCode == 400) {
+      //   throw HttpException(incorrectAuthException);
+      // }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
   Future<Location> getPreferedLocation() async {
     try {
-      // if (locationAppointment == '') {
       final response = await Dio().get(apiEndpoint + '/location/prefered',
           options: Options(headers: {"Authorization": "Bearer " + token}));
       location = Location(
@@ -455,33 +460,13 @@ class AuthenicateProvider with ChangeNotifier {
         province_en: response.data['province_en'],
         province_th: response.data['province_th'],
       );
-      // locationAppointment = response.data['name_en'];
-      // locationAppointmentID = response.data['_id'];
-      // nameProvinceAppointment = response.data['province_en'];
-      // } else {
-      //   if (nameHospital == "") {
-      //     locationAppointment = tempName;
-      //   } else {
-      //     tempName = nameHospital;
-      //   }
-      //   if (locationID == "") {
-      //     locationAppointmentID = tempID;
-      //   } else {
-      //     tempID = locationID;
-      //   }
-      //   if (province == "") {
-      //     nameProvinceAppointment = tempProvince;
-      //   } else {
-      //     tempProvince = province;
-      //   }
-      // }
       notifyListeners();
       return location;
     } on DioError catch (error) {
-      if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
-      }
-      throw HttpException('Failed to get data');
+      // if (error.response!.statusCode == 400) {
+      //   throw HttpException(incorrectAuthException);
+      // }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -500,9 +485,12 @@ class AuthenicateProvider with ChangeNotifier {
 
       notifyListeners();
     } on DioError catch (error) {
-      if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+      if (error.response!.statusCode == 404 ||
+          error.response!.statusCode == 400) {
+        throw HttpException('Your selected location is invalid',
+            'สถานที่ที่คุณเลือกไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -522,8 +510,10 @@ class AuthenicateProvider with ChangeNotifier {
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(incorrectAuthException);
+        throw HttpException(
+            'Phone number is invalid', 'เบอร์โทรศัพท์ไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -574,7 +564,7 @@ class AuthenicateProvider with ChangeNotifier {
 
       notifyListeners();
     } on DioError catch (error) {
-      throw HttpException(getUserException);
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -610,7 +600,7 @@ class AuthenicateProvider with ChangeNotifier {
       _hospital = tempHospital;
       notifyListeners();
     } on DioError catch (error) {
-      throw HttpException(generalException);
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -640,10 +630,10 @@ class AuthenicateProvider with ChangeNotifier {
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(notFoundException);
-      } else {
-        throw HttpException(wrongFormat);
+        throw HttpException('National ID or Laser ID is not correct',
+            'เลขประจำตัวประชาชนหรือรหัสหลังบัตรประชาชนไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -661,10 +651,13 @@ class AuthenicateProvider with ChangeNotifier {
       notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {
-        throw HttpException(wrongFormat);
+        throw HttpException('Phone number or selected location is not correct',
+            'เบอร์โทรศัพท์หรือสถานที่ที่เลือกไม่ถูกต้อง');
       } else if (error.response!.statusCode == 404) {
-        throw HttpException(notFoundNational);
+        throw HttpException('National ID or Laser ID is not correct',
+            'เลขประจำตัวประชาชนหรือรหัสหลังบัตรประชาชนไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -682,8 +675,10 @@ class AuthenicateProvider with ChangeNotifier {
     } on DioError catch (error) {
       prefs.clear();
       if (error.response!.statusCode == 400) {
-        throw HttpException(otpException);
+        throw HttpException('OTP code is expired or not correct',
+            'รหัส OTP หมดอายุหรือไม่ถูกต้อง');
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
@@ -692,9 +687,9 @@ class AuthenicateProvider with ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       await prefs.clear();
       this._token = "";
-    } catch (error) {
+    } on DioError catch (error) {
       // For future error handling
-      print(error);
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 }

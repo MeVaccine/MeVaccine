@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/screen/landing_screen.dart';
 import 'package:mevaccine/widget/button/secondaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
+import 'package:mevaccine/widget/layout/errorDailog.dart';
 import 'package:mevaccine/widget/layout/layout_appointment.dart';
 import 'package:provider/provider.dart';
 import './step1_screen.dart';
@@ -63,11 +65,19 @@ class _MainstepState extends State<Mainstep> {
                       SmallButton(
                         text: Languages.of(ctx)!.confirmButtonLabel,
                         onPressed: () async {
-                          await Provider.of<NewAppointmentProvider>(context,
-                                  listen: false)
-                              .createNewAppointment();
-                          Navigator.of(context)
-                              .pushReplacementNamed(LandingScreen.routeName);
+                          try {
+                            await Provider.of<NewAppointmentProvider>(context,
+                                    listen: false)
+                                .createNewAppointment();
+                            Navigator.of(context)
+                                .pushReplacementNamed(LandingScreen.routeName);
+                          } on HttpException catch (error) {
+                            Navigator.of(context).pop();
+                            showErrorDialog(
+                                context: ctx,
+                                text: Languages.of(context)!
+                                    .httpExceptionErrorMessage(error));
+                          }
                         },
                         color: primary03,
                         width: 100,
