@@ -2,7 +2,6 @@ import 'dart:async';
 import '../config/string.dart';
 import 'package:dio/dio.dart';
 import 'package:mevaccine/config/api.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import '../model/httpException.dart';
 
@@ -55,11 +54,39 @@ class PersonProvider with ChangeNotifier {
     try {
       final response = await Dio().get(apiEndpoint + '/person/lists',
           options: Options(headers: {"Authorization": "Bearer " + token}));
-      print(response.data);
       final data = response.data.toList();
       List<Person> tempPerson = [];
       for (int i = 0; i < data.length; i++) {
-        print(data[i]['firstname_en']);
+        tempPerson.add(Person(
+            firstname_en: data[i]['firstname_en'],
+            firstname_th: data[i]['firstname_th'],
+            gender_en: data[i]['gender_en'],
+            gender_th: data[i]['gender_th'],
+            id: data[i]['_id'],
+            lastname_en: data[i]['lastname_en'],
+            lastname_th: data[i]['lastname_th'],
+            prefix_en: data[i]['prefix_en'],
+            prefix_th: data[i]['prefix_th']));
+      }
+      _person = tempPerson;
+
+      notifyListeners();
+    } on DioError catch (error) {
+      // if (error.response!.statusCode == 401) {
+      //   throw HttpException(jwtException);
+      // }
+      throw HttpException(generalException, generalExceptionTH);
+    }
+  }
+
+  Future<void> deletePerson(String id) async {
+    print(id);
+    try {
+      final response = await Dio().delete(apiEndpoint + '/person/${id}',
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+      final data = response.data.toList();
+      List<Person> tempPerson = [];
+      for (int i = 0; i < data.length; i++) {
         tempPerson.add(Person(
             firstname_en: data[i]['firstname_en'],
             firstname_th: data[i]['firstname_th'],
@@ -80,4 +107,6 @@ class PersonProvider with ChangeNotifier {
       }
     }
   }
+
+
 }

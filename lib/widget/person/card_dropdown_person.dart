@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/addPerson.dart';
+import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/widget/Logo/icon_vaccine.dart';
 import 'package:mevaccine/widget/layout/list_person.dart';
 import 'package:provider/provider.dart';
 
 class CardDropdownPerson extends StatefulWidget {
   final String text;
-  CardDropdownPerson({required this.text});
+  final int index;
+  CardDropdownPerson({required this.text, required this.index});
   List<String> vaccines = [
     'Sinovac',
     'AstraZeneca',
@@ -22,9 +25,14 @@ class CardDropdownPerson extends StatefulWidget {
 }
 
 class _CardDropdownPersonState extends State<CardDropdownPerson> {
-  String dropdownVaccine = 'Sinovac';
   @override
   Widget build(BuildContext context) {
+    final vaccines = Provider.of<NewAppointmentProvider>(context)
+        .vaccinableVaccine[widget.index];
+
+    final selectedVaccine = Provider.of<NewAppointmentProvider>(context)
+        .selectedVaccine[widget.index];
+
     return Container(
       decoration:
           BoxDecoration(color: white, borderRadius: kBorderRadiusS, boxShadow: [
@@ -44,33 +52,38 @@ class _CardDropdownPersonState extends State<CardDropdownPerson> {
             style: const TextStyle(
                 color: primary01, fontSize: 16, fontWeight: FontWeight.w500),
           ),
+          // TODO: Decorate the error message
           DropdownButton(
             underline: Container(
               color: white,
             ),
-            value: dropdownVaccine,
-            style: TextStyle(color: accent02, fontFamily: 'prompt'),
-            items: <String>[
-              'Sinovac',
-              'Oxford-AstraZeneca',
-              'Moderna',
-              'Sinopharm ',
-              'Pfizer-BioNTech'
-            ].map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            icon: Icon(
-              FeatherIcons.chevronDown,
-              color: accent02,
+            disabledHint: Text(
+              Languages.of(context)!.noVaccineAvaliableMessage,
+              style: TextStyle(color: Colors.red),
             ),
+            iconDisabledColor: Colors.grey,
+            value: selectedVaccine,
+            style: TextStyle(color: accent02, fontFamily: 'prompt'),
+            items: selectedVaccine != null
+                ? vaccines.map<DropdownMenuItem<String>>((vaccine) {
+                    return DropdownMenuItem<String>(
+                      value: vaccine.name,
+                      child: Text(vaccine.name),
+                    );
+                  }).toList()
+                : null,
+            icon: selectedVaccine != null
+                ? const Icon(
+                    FeatherIcons.chevronDown,
+                    color: accent02,
+                  )
+                : const Icon(
+                    FeatherIcons.chevronDown,
+                    color: Colors.grey,
+                  ),
             onChanged: (String? value) {
-              setState(() {
-                dropdownVaccine = value!;
-                print(dropdownVaccine);
-              });
+              Provider.of<NewAppointmentProvider>(context, listen: false)
+                  .selectVaccine(widget.index, value!);
             },
           ),
         ],

@@ -38,7 +38,9 @@ class _LoginFormState extends State<LoginForm> {
       Navigator.of(context).pushNamed(VerificationScreen.routeName);
     } on HttpException catch (error) {
       setState(() => _isLoading = false);
-      showErrorDialog(context: context, text: error.message);
+      showErrorDialog(
+          context: context,
+          text: Languages.of(context)!.httpExceptionErrorMessage(error));
     }
   }
 
@@ -75,11 +77,11 @@ class _LoginFormState extends State<LoginForm> {
             PrimaryButton(
               isLoading: _isLoading,
               text: Languages.of(context)!.loginButtonLabel,
-              onPressed: () {
+              onPressed: () async {
                 //พอเราเพิ่ม if validate เข้าไปมันก็จะเช็คว่า Form นี้ถูกตามที่ต้องการหรือยัง ตอนนี้มีแค้เช็ค User พิมยัง หรือยังไม่พิม
                 if (validate()) {
                   //เราใช้ pushNmaed เพราะว่าต่องการกลับไปหน้าก่อนได้
-                  login();
+                  await login();
                 }
               },
             ),

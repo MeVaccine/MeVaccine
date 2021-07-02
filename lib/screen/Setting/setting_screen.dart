@@ -41,7 +41,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SmallButton(
-                        text: 'Cancel',
+                        text: Languages.of(ctx)!.cancelButtonLabel,
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
@@ -51,7 +51,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         colorBorder: primary03,
                       ),
                       SmallButton(
-                        text: 'Update',
+                        text: Languages.of(ctx)!.updateButtonLabel,
                         onPressed: () {
                           var isSelectEng = Provider.of<ChangeLanguageProvider>(
                             ctx,
@@ -119,8 +119,13 @@ class _SettingScreenState extends State<SettingScreen> {
                 FontAwesomeIcons.language,
                 color: primary01,
               ),
-              onPressed: () => _showLang(context),
-              text: 'Change Language',
+              onPressed: () async {
+                await Provider.of<ChangeLanguageProvider>(context,
+                        listen: false)
+                    .initSelectedLang();
+                _showLang(context);
+              },
+              text: Languages.of(context)!.changeLanguageButtonLabel,
             ),
             kSizedBoxVerticalXL,
             PrimaryButton(

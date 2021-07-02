@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mevaccine/model/httpException.dart';
+import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
 abstract class Languages {
   static Languages? of(BuildContext context) {
     return Localizations.of<Languages>(context, Languages);
   }
 
-  // String get appName;
+  String fullNamePerson(PersonProvider.Person person);
+  String firstnameString(String enName, String thName);
 
   // Common Button Label
   String get doneButtonLabel;
@@ -22,6 +26,9 @@ abstract class Languages {
   // Common Input Label
   String get nationalIDInputLabel;
   String get phoneNumberInputLabel;
+  String provinceDropdownItem(Map<String, String> province);
+  String locationNameItem(Location location);
+  String hospitalNameItem(Hospital hospital);
 
   // Login Screen
   String get loginHeadingLabel;
@@ -41,11 +48,16 @@ abstract class Languages {
   String get registerLocationHeading;
   String get provinceInputLabel;
   String get locationInputLabel;
+  String personalPrefix(Personal person);
+  String personalFirstname(Personal person);
+  String personalLastname(Personal person);
+  String personalGender(Personal person);
 
   // Landing Screen
-  String get greetingMessage;
+  String get landingGreetingMessage;
   String get scheduleHeading;
   String get yourAppointmentHeading;
+  String get noNextAppointmentMessage;
   String get menuHeading;
   String get newAppointmentMenuLebel;
   String get myAppointmentMenuLebel;
@@ -57,6 +69,8 @@ abstract class Languages {
   String get myAppointmentHeading;
 
   // Person Screen
+  String get personScreenGreetingMessage;
+  String get personScreenHowToMessage;
   String get yourPersonHeading;
   String get noPersonDescription;
   String get personAppointmentsButtonLabel;
@@ -95,6 +109,7 @@ abstract class Languages {
   // New Appointment Step 4 Screen
   String get selectVaccineHeading;
   String get selectVaccineMessage;
+  String get noVaccineAvaliableMessage;
   String get confirmScheduleMessage;
   String numberOfPeople(int numberOfPeople);
 
@@ -108,4 +123,8 @@ abstract class Languages {
   String get invalidProvinceOrLocationErrorMessage;
   String get changePhoneNumberHeading;
   String get invalidPhoneNumberErrorMessage;
+
+  // Error
+  String httpExceptionErrorMessage(HttpException e);
+  String get errorDialogHeading;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
@@ -60,9 +61,10 @@ class _HospitalSettingState extends State<HospitalSetting> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: kSizeS, vertical: kSizeS),
                       child: SearchableDropdown.single(
-                        items: authen.dataprovince.map((e) {
+                        items: authen.dataProvince.map((e) {
                           return DropdownMenuItem<dynamic>(
-                            child: Text(e),
+                            child: Text(
+                                Languages.of(context)!.provinceDropdownItem(e)),
                             value: e,
                           );
                         }).toList(),

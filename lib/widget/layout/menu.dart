@@ -3,7 +3,9 @@ import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/textType.dart';
+import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
+import 'package:provider/provider.dart';
 import '../button/menus_navigator.dart';
 import '../../screen/appointment/step1_screen.dart';
 import '../../screen/person_screen.dart';
@@ -28,6 +30,8 @@ class Menu extends StatelessWidget {
               MenuNavigator(
                 text: Languages.of(context)!.newAppointmentMenuLebel,
                 onPressed: () {
+                  Provider.of<NewAppointmentProvider>(context, listen: false)
+                      .resetData();
                   Navigator.of(context).pushNamed(Step1.routeName);
                 },
               ),

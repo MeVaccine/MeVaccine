@@ -1,8 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/model/httpException.dart';
+import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
 class LanguageEN extends Languages {
+  String fullNamePerson(PersonProvider.Person person) =>
+      '${person.firstname_en} ${person.lastname_en}';
+  String firstnameString(String enName, String thName) => enName;
   // Common Button Label
   @override
   String get doneButtonLabel => "Done";
@@ -31,6 +37,13 @@ class LanguageEN extends Languages {
   String get nationalIDInputLabel => "National ID";
   @override
   String get phoneNumberInputLabel => "Phone Number";
+  @override
+  String provinceDropdownItem(Map<String, String> province) =>
+      province['EN'] as String;
+  @override
+  String locationNameItem(Location location) => location.name_en;
+  @override
+  String hospitalNameItem(Hospital hospital) => hospital.name_en;
 
   // Login Screen
   @override
@@ -71,14 +84,34 @@ class LanguageEN extends Languages {
   String get provinceInputLabel => "Province";
   @override
   String get locationInputLabel => "Location";
+  @override
+  String personalPrefix(Personal person) => person.en.prefix;
+  @override
+  String personalFirstname(Personal person) => person.en.firstName;
+  @override
+  String personalLastname(Personal person) => person.en.lastName;
+  @override
+  String personalGender(Personal person) => person.en.gender;
 
   // Landing Screen
   @override
-  String get greetingMessage => "Good Morning!";
+  String get landingGreetingMessage {
+    final hours = DateTime.now().hour;
+    if (hours < 13)
+      return "Good Morning!";
+    else if (hours < 19)
+      return "Good Afternoon!";
+    else
+      return "Good Evening!";
+  }
+
   @override
   String get scheduleHeading => "Schedule";
   @override
   String get yourAppointmentHeading => "Your Appointment";
+  @override
+  String get noNextAppointmentMessage =>
+      'You don’t have any appointment yet.\nPress the button appointment for new schedule.';
   @override
   String get menuHeading => "Menus";
   @override
@@ -97,6 +130,11 @@ class LanguageEN extends Languages {
   String get myAppointmentHeading => "Your Appointment";
 
   // Person Screen
+  @override
+  String get personScreenGreetingMessage => "Hello";
+  @override
+  String get personScreenHowToMessage =>
+      "You can add person who you would like to get vaccine together.";
   @override
   String get yourPersonHeading => "Your Person";
   @override
@@ -170,6 +208,9 @@ class LanguageEN extends Languages {
   @override
   String get selectVaccineMessage => "Which vaccine do you want";
   @override
+  String get noVaccineAvaliableMessage =>
+      'Your selected location does not have\nsuitable vaccine for this person';
+  @override
   String get confirmScheduleMessage =>
       "Do you confirm schedule this appointment ?";
   @override
@@ -196,4 +237,10 @@ class LanguageEN extends Languages {
   @override
   String get invalidPhoneNumberErrorMessage =>
       "Please enter a valid phone number";
+
+  // Error
+  @override
+  String httpExceptionErrorMessage(HttpException e) => e.messageEN;
+  @override
+  String get errorDialogHeading => "Error Occurred!";
 }

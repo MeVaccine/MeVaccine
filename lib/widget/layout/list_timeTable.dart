@@ -1,14 +1,12 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:mevaccine/provider/newAppointmentProvider.dart';
+import 'package:provider/provider.dart';
 import './timeTable.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
-
-class ListTimeTable extends StatefulWidget {
-  ListTimeTable({Key? key}) : super(key: key);
-
-  @override
-  _ListTimeTableState createState() => _ListTimeTableState();
-}
 
 class MyTimeTable {
   final String time;
@@ -16,26 +14,16 @@ class MyTimeTable {
   MyTimeTable({required this.time, required this.seat});
 }
 
-class _ListTimeTableState extends State<ListTimeTable> {
+class ListTimeTable extends StatelessWidget {
   @override
-  List<MyTimeTable> times = [
-    MyTimeTable(time: '9:00', seat: 10),
-    MyTimeTable(time: '10:00', seat: 10),
-    MyTimeTable(time: '11:00', seat: 10),
-    MyTimeTable(time: '13:00', seat: 10),
-    MyTimeTable(time: '14:00', seat: 10),
-    MyTimeTable(time: '15:00', seat: 10),
-    MyTimeTable(time: '16:00', seat: 10),
-    MyTimeTable(time: '17:00', seat: 10),
-  ];
-  int selectedIndex = -1;
-  void changeSelectedIndex(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
-
   Widget build(BuildContext context) {
+    List<MyTimeTable> times = Provider.of<NewAppointmentProvider>(context)
+        .locationDateime
+        .map((dateTime) => MyTimeTable(
+            time: DateFormat.Hm().format(dateTime.startDateTime),
+            seat: dateTime.avaliable))
+        .toList();
+
     return Container(
       height: 380,
       width: 330,
@@ -49,8 +37,17 @@ class _ListTimeTableState extends State<ListTimeTable> {
               (el) => TimeTable(
                   index: times.indexOf(el),
                   time: el.time,
-                  isSelected: times.indexOf(el) == selectedIndex,
-                  changeSelectedIndex: changeSelectedIndex),
+                  seat: el.seat,
+                  isSelected: times.indexOf(el) ==
+                      Provider.of<NewAppointmentProvider>(context)
+                          .selectedDateTimeIndex,
+                  changeSelectedIndex: (int index) {
+                    if (el.seat != 0) {
+                      Provider.of<NewAppointmentProvider>(context,
+                              listen: false)
+                          .selectDateTime(index);
+                    }
+                  }),
             )
             .toList(),
       ),

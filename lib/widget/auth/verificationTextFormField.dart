@@ -14,6 +14,7 @@ class VerificationTextFormField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kSizeS),
       child: TextFormField(
         controller: textEditingController,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
             hintText: label,
             prefixIcon: const Icon(

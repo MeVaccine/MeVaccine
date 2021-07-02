@@ -1,8 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/model/httpException.dart';
+import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart' as PersonProvider;
 
 class LanguageTH extends Languages {
+  String fullNamePerson(PersonProvider.Person person) =>
+      '${person.firstname_th} ${person.lastname_th}';
+  String firstnameString(String enName, String thName) => thName;
   // Common Button Label
   @override
   String get doneButtonLabel => "ยืนยัน";
@@ -31,6 +37,13 @@ class LanguageTH extends Languages {
   String get nationalIDInputLabel => "เลขประจำตัวประชาชน";
   @override
   String get phoneNumberInputLabel => "เบอร์โทรศัพท์";
+  @override
+  String provinceDropdownItem(Map<String, String> province) =>
+      province['TH'] as String;
+  @override
+  String locationNameItem(Location location) => location.name_th;
+  @override
+  String hospitalNameItem(Hospital hospital) => hospital.name_th;
 
   // Login Screen
   @override
@@ -67,14 +80,33 @@ class LanguageTH extends Languages {
   String get provinceInputLabel => "จังหวัด";
   @override
   String get locationInputLabel => "เลือกสถานที่";
+  @override
+  String personalPrefix(Personal person) => person.th.prefix;
+  @override
+  String personalFirstname(Personal person) => person.th.firstName;
+  @override
+  String personalLastname(Personal person) => person.th.lastName;
+  @override
+  String personalGender(Personal person) => person.th.gender;
 
   // Landing Screen
   @override
-  String get greetingMessage => "สวัสดีตอนเช้า";
+  String get landingGreetingMessage {
+    final hours = DateTime.now().hour;
+    if (hours < 13)
+      return "สวัสดีตอนเช้า";
+    else if (hours < 19)
+      return "สวัสดีตอนบ่าย";
+    else
+      return "สวัสดีตอนเย็น";
+  }
+
   @override
   String get scheduleHeading => "นัดหมาย";
   @override
   String get yourAppointmentHeading => "นัดหมายของคุณ";
+  @override
+  String get noNextAppointmentMessage => 'คุณยังไม่มีการนัดหมายเข้ารับวัคซีน';
   @override
   String get menuHeading => "เมนู";
   @override
@@ -95,6 +127,11 @@ class LanguageTH extends Languages {
 
   // Person Screen
   @override
+  String get personScreenGreetingMessage => "สวัสดี";
+  @override
+  String get personScreenHowToMessage =>
+      "คุณสามารถเพิ่มผู้คน เพื่อที่จะเข้ารับวัคซีน\nพร้อมกันได้";
+  @override
   String get yourPersonHeading => "ผู้คนของคุณ";
   @override
   String get noPersonDescription =>
@@ -104,7 +141,7 @@ class LanguageTH extends Languages {
   @override
   String get personSymptomFormButtonLabel => "แบบประเมินอาการหลังการฉีดวัคซีน ";
   @override
-  String get addPersonHeading => "เพิ่งผู้คน";
+  String get addPersonHeading => "เพิ่มผู้คน";
   @override
   String get deletePersonConfirmMessage => "";
 
@@ -167,6 +204,9 @@ class LanguageTH extends Languages {
   @override
   String get selectVaccineMessage => "เลือกวัคซีนที่คุณมั่นใจ";
   @override
+  String get noVaccineAvaliableMessage =>
+      'สถานที่ที่คุณเลือก\nไม่มีวัคซีนที่สามารถฉีดให้กับบุลคลนี้ได้';
+  @override
   String get confirmScheduleMessage =>
       "คุณต้องการที่จะนัดหมายการฉีดวัคซีน ตามวันและเวลาที่ท่านได้เลือกไว้";
   @override
@@ -191,4 +231,10 @@ class LanguageTH extends Languages {
   String get changePhoneNumberHeading => "เปลี่ยนเบอร์โทรศัพท์";
   @override
   String get invalidPhoneNumberErrorMessage => "โปรดใส่เบอร์โทรศัพท์ที่ถูกต้อง";
+
+  // Error
+  @override
+  String httpExceptionErrorMessage(HttpException e) => e.messageTH;
+  @override
+  String get errorDialogHeading => "ข้อผิดพลาด";
 }

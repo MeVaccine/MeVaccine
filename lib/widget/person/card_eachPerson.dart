@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
+import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import '../../model/textType.dart';
+import '../../widget/person/buttonEachPerson.dart';
 
 class CardEachPerson extends StatelessWidget {
-  String firstname;
-  String lastname;
-  CardEachPerson({required this.firstname, required this.lastname});
+  String fullName;
+  CardEachPerson({required this.fullName});
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 15),
-      height: kSizeXL,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      height: kSizeXL * 1.25,
       width: double.infinity,
       decoration:
           BoxDecoration(color: white, borderRadius: kBorderRadiusS, boxShadow: [
@@ -32,9 +33,16 @@ class CardEachPerson extends StatelessWidget {
               radius: kSizeS * 1.6,
             ),
             kSizedBoxHorizontalS,
-            MainText(firstname + " " + lastname, text_type.regular,
-                kFontSizeHeadline4 * 0.7, primary01),
+            MainText(fullName, text_type.regular, kFontSizeHeadline4 * 0.7,
+                primary01),
           ]),
+          ButtonEachPerson(
+            text: Languages.of(context)!.myAppointmentMenuLebel,
+          ),
+          kSizedBoxVerticalS,
+          ButtonEachPerson(
+            text: Languages.of(context)!.symptomFormMenuLebel,
+          ),
         ],
       ),
     );

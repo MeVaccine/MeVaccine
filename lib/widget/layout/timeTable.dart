@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
@@ -5,11 +7,13 @@ import 'package:mevaccine/config/constants.dart';
 class TimeTable extends StatefulWidget {
   final int index;
   final String time;
+  final int seat;
   final bool isSelected;
   final Function changeSelectedIndex;
   TimeTable({
     required this.index,
     required this.time,
+    required this.seat,
     required this.isSelected,
     required this.changeSelectedIndex,
   });
@@ -17,6 +21,7 @@ class TimeTable extends StatefulWidget {
   _TimeTableState createState() => _TimeTableState();
 }
 
+// TODO: If seat == 0 -> It should grey out the text
 class _TimeTableState extends State<TimeTable> {
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,7 @@ class _TimeTableState extends State<TimeTable> {
             ]),
         alignment: Alignment.center,
         child: Text(
-          widget.time,
+          '${widget.time} (${widget.seat})',
           style: TextStyle(
               color: widget.isSelected ? white : primary01, fontSize: 16),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/authType.dart';
 import 'package:mevaccine/model/httpException.dart';
@@ -44,7 +45,9 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
       Navigator.of(context).pushNamed(VerificationAddPerson.routeName);
     } on HttpException catch (error) {
       setState(() => _isLoading = false);
-      showErrorDialog(context: context, text: error.message);
+      showErrorDialog(
+          context: context,
+          text: Languages.of(context)!.httpExceptionErrorMessage(error));
     }
   }
 
@@ -69,7 +72,7 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
                           iconTheme: const IconThemeData(color: Colors.black),
                         ),
                         // ข้างล่างนี้กห็ ฟอร์ม ต่างๆ
-                        MainText(Languages.of(context)!.registerHeadingLabel,
+                        MainText(Languages.of(context)!.addPersonHeading,
                             text_type.bold, kFontSizeHeadline4, primary01),
                         kSizedBoxVerticalS,
                         LogoMedkit(),
@@ -77,31 +80,36 @@ class _AddPersonRegisterState extends State<AddPersonRegister> {
                         MainText(Languages.of(context)!.personalInfoHeading,
                             text_type.regular, kFontSizeHeadline4, primary01),
                         RegisterTextForm(
-                          label: authen.personal.en.prefix,
+                          label: Languages.of(context)!
+                              .personalPrefix(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.firstName,
+                          label: Languages.of(context)!
+                              .personalFirstname(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.lastName,
+                          label: Languages.of(context)!
+                              .personalLastname(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.gender,
+                          label: Languages.of(context)!
+                              .personalGender(authen.personal),
                           type: RegsiterTextFormType.nothing,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,
                         ),
                         RegisterTextForm(
-                          label: authen.personal.en.date_of_birth.toString(),
+                          label: DateFormat.yMd()
+                              .format(authen.personal.en.date_of_birth),
                           type: RegsiterTextFormType.calendar,
                           active: RegisterActiveType.disable,
                           textEditingController: _nothing,

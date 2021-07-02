@@ -4,9 +4,10 @@ import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
+import 'package:mevaccine/widget/form/symptomCard.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import '../../model/textType.dart';
-import './SymptomForm_detail.dart';
+// import './SymptomForm_detail.dart';
 
 class SymptomForm extends StatefulWidget {
   @override
@@ -20,6 +21,25 @@ class _SymptomFormState extends State<SymptomForm> {
 
   bool valueYes = false;
   bool valueNo = false;
+
+  bool valueHeadache = false;
+  bool valueNausea = false;
+  bool valueFatigue = false;
+  bool valueChills = false;
+  bool valueMusclePain = false;
+  bool valueTiderness = false;
+  bool valueOther = false;
+
+  void resetSymptomValue() {
+    valueHeadache = false;
+    valueNausea = false;
+    valueFatigue = false;
+    valueChills = false;
+    valueMusclePain = false;
+    valueTiderness = false;
+    valueOther = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,11 +84,92 @@ class _SymptomFormState extends State<SymptomForm> {
                 onChanged: (bool? value) => setState(() {
                       valueNo = value!;
                       valueYes = false;
+                      resetSymptomValue();
                     })),
           ],
         ),
         isYes()
-            ? SymptomFormDetail()
+            ? Container(
+                height: 300,
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      kSizedBoxS,
+                      SymptomCard(
+                        text: Languages.of(context)!.isHeadacheQuestion,
+                        value: valueHeadache,
+                        onChange: () {
+                          setState(() {
+                            this.valueHeadache = !this.valueHeadache;
+                          });
+                        },
+                      ),
+                      kSizedBoxS,
+                      SymptomCard(
+                        text: Languages.of(context)!.isNauseaQuestion,
+                        value: valueNausea,
+                        onChange: () {
+                          setState(() {
+                            this.valueNausea = !this.valueNausea;
+                          });
+                        },
+                      ),
+                      kSizedBoxS,
+                      SymptomCard(
+                        text: Languages.of(context)!.isFatigueQuestion,
+                        value: valueFatigue,
+                        onChange: () {
+                          setState(() {
+                            this.valueFatigue = !this.valueFatigue;
+                          });
+                        },
+                      ),
+                      SymptomCard(
+                        text: Languages.of(context)!.isChillsQuestion,
+                        value: valueChills,
+                        onChange: () {
+                          setState(() {
+                            this.valueChills = !this.valueChills;
+                          });
+                        },
+                      ),
+                      SymptomCard(
+                        text: Languages.of(context)!.isMusclePainQuestion,
+                        value: valueMusclePain,
+                        onChange: () {
+                          setState(() {
+                            this.valueMusclePain = !this.valueMusclePain;
+                          });
+                        },
+                      ),
+                      SymptomCard(
+                        text: Languages.of(context)!.isTirednessQuestion,
+                        value: valueTiderness,
+                        onChange: () {
+                          setState(() {
+                            this.valueTiderness = !this.valueTiderness;
+                          });
+                        },
+                      ),
+                      SymptomCard(
+                        text: Languages.of(context)!.isOtherQuestion,
+                        value: valueOther,
+                        onChange: () {
+                          setState(() {
+                            this.valueOther = !this.valueOther;
+                          });
+                        },
+                      ),
+                      PrimaryButton(
+                        text: Languages.of(context)!.submitButtonLabel,
+                        onPressed: () {},
+                        color: primary01,
+                      )
+                    ],
+                  ),
+                ),
+              )
             : Container(
                 height: 350,
                 padding: EdgeInsets.symmetric(horizontal: 20),
