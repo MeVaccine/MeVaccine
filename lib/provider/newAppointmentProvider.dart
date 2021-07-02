@@ -135,8 +135,12 @@ class NewAppointmentProvider with ChangeNotifier {
 
   Future<void> setSelectedProvince(String province) async {
     selectedProvince = province;
-    await getLocationByProvince(false);
-    notifyListeners();
+    try {
+      await getLocationByProvince(false);
+      notifyListeners();
+    } catch (e) {
+      throw e;
+    }
   }
 
   void selectLocation(String locationId) {
