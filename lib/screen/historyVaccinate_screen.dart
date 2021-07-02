@@ -29,7 +29,18 @@ class HistoryVaccinateScreen extends StatelessWidget {
                 style: TextStyle(color: accent02, fontSize: 18),
               ),
               kSizedBoxVerticalM,
-              CardHistory(),
+              Container(
+                height: 600,
+                child: ListView(
+                  children: [
+                    CardHistory(),
+                    kSizedBoxVerticalS,
+                    CardHistory(),
+                    kSizedBoxVerticalS,
+                    CardHistory(),
+                  ],
+                ),
+              )
             ],
           ),
         ));
