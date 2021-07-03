@@ -35,7 +35,7 @@ class AppointmentProvider with ChangeNotifier {
         tempAppointment.add(Appointment(
             status: appointment['status'],
             id: appointment['_id'],
-            dateTime: appointment['dateTime'],
+            dateTime: DateTime.parse(appointment['dateTime']).toLocal(),
             doseNumber: appointment['doseNumber'],
             location: Location(
                 name_en: appointment['location']['name_en'],

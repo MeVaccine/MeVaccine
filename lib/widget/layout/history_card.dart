@@ -11,8 +11,12 @@ class CardHistory extends StatelessWidget {
   final DateTime time;
   final String hospitalName;
   final String vaccine;
+  final int dose;
   CardHistory(
-      {required this.time, required this.hospitalName, required this.vaccine});
+      {required this.time,
+      required this.hospitalName,
+      required this.vaccine,
+      required this.dose});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class CardHistory extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            Languages.of(context)!.vaccineDoseHeading,
+            Languages.of(context)!.vaccineDoseHeading(dose),
             style: TextStyle(
                 color: white, fontSize: 14, fontWeight: FontWeight.w500),
           ),
