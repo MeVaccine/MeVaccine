@@ -29,6 +29,7 @@ abstract class Languages {
   String provinceDropdownItem(Map<String, String> province);
   String locationNameItem(Location location);
   String hospitalNameItem(Hospital hospital);
+  String get provinceSelectLabel;
 
   // Login Screen
   String get loginHeadingLabel;
