@@ -44,6 +44,8 @@ class LanguageEN extends Languages {
   String locationNameItem(Location location) => location.name_en;
   @override
   String hospitalNameItem(Hospital hospital) => hospital.name_en;
+  @override
+  String get provinceSelectLabel => "Select a province";
 
   // Login Screen
   @override
