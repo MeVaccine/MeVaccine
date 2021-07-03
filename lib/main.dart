@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:mevaccine/provider/addPerson.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mevaccine/localization/localizations_delegate.dart';
+import 'package:mevaccine/provider/appointmentProvider.dart';
 import 'package:mevaccine/provider/changeLanguageProvider.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
@@ -108,6 +109,9 @@ class _MyAppState extends State<MyApp> {
           create: (ctx) => NewAppointmentProvider(''),
           update: (ctx, auth, prev) => NewAppointmentProvider(auth.token),
         ),
+        ChangeNotifierProxyProvider<AuthenicateProvider, AppointmentProvider>(
+            create: (ctx) => AppointmentProvider(''),
+            update: (ctx, auth, prev) => AppointmentProvider(auth.token))
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -117,7 +121,7 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.light().copyWith(primary: primary01),
         ),
         //หน้าแรกสุด
-        home: LandingScreen(),
+        home: LoginScreen(),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
           VerificationChangeNumber.routeName: (ctx) =>

@@ -33,11 +33,24 @@ class HistoryVaccinateScreen extends StatelessWidget {
                 height: 600,
                 child: ListView(
                   children: [
-                    CardHistory(),
+                    CardHistory(
+                      hospitalName: 'Siriraj Piyamaharajkarun Hospital',
+                      time: DateTime.now(),
+                      vaccine: 'Sinovac Life Sciences',
+                    ),
                     kSizedBoxVerticalS,
-                    CardHistory(),
+                    CardHistory(
+                      hospitalName: 'Siriraj Piyamaharajkarun Hospital',
+                      time: DateTime.now(),
+                      vaccine: 'Sinovac Life Sciences',
+                    ),
                     kSizedBoxVerticalS,
-                    CardHistory(),
+                    CardHistory(
+                      hospitalName: 'Siriraj Piyamaharajkarun Hospital',
+                      time: DateTime.now(),
+                      vaccine: 'Sinovac Life Sciences',
+                    ),
+                    kSizedBoxVerticalS,
                   ],
                 ),
               )
