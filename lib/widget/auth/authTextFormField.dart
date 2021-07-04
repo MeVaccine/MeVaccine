@@ -50,7 +50,7 @@ class _AuthTextFormState extends State<AuthTextForm> {
       inputFormatters: [
         if (isNation()) MaskedInputFormatter('#-####-#####-##-#'),
         if (isPhoneNumber()) MaskedInputFormatter('###-###-####'),
-        if (isLaser()) LengthLimitingTextInputFormatter(12),
+        if (isLaser()) MaskedInputFormatter('###-#######-##'),
       ],
       keyboardType: isLaser() ? TextInputType.text : TextInputType.number,
       // textInputAction: TextinputOptio,

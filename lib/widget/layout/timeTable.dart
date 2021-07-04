@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 
-class TimeTable extends StatefulWidget {
+// TODO: If isSelectable == false -> It should grey out the text
+class TimeTable extends StatelessWidget {
   final int index;
   final String time;
   final int seat;
   final bool isSelected;
+  final bool isSelectable;
   final Function changeSelectedIndex;
   TimeTable({
     required this.index,
@@ -16,20 +18,16 @@ class TimeTable extends StatefulWidget {
     required this.seat,
     required this.isSelected,
     required this.changeSelectedIndex,
+    required this.isSelectable,
   });
-  @override
-  _TimeTableState createState() => _TimeTableState();
-}
 
-// TODO: If seat == 0 -> It should grey out the text
-class _TimeTableState extends State<TimeTable> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => widget.changeSelectedIndex(widget.index),
+      onTap: () => changeSelectedIndex(index),
       child: Container(
         decoration: BoxDecoration(
-            color: widget.isSelected ? primary01 : white,
+            color: isSelected ? primary01 : white,
             borderRadius: kBorderRadiusS,
             boxShadow: [
               BoxShadow(
@@ -40,9 +38,14 @@ class _TimeTableState extends State<TimeTable> {
             ]),
         alignment: Alignment.center,
         child: Text(
-          '${widget.time} (${widget.seat})',
+          '${time} (${seat})',
           style: TextStyle(
-              color: widget.isSelected ? white : primary01, fontSize: 16),
+              color: isSelectable
+                  ? isSelected
+                      ? white
+                      : accent01
+                  : Colors.grey.shade400,
+              fontSize: 16),
         ),
       ),
     );

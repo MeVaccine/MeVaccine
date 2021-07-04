@@ -218,6 +218,16 @@ class NewAppointmentProvider with ChangeNotifier {
         : false;
   }
 
+  Future<bool> isUserEligible() async {
+    try {
+      final response = await Dio().get(apiEndpoint + '/appointment/eligible',
+          options: Options(headers: {"Authorization": "Bearer " + _token}));
+      return response.data['isEligible'] == true;
+    } on DioError catch (error) {
+      throw HttpException(generalException, generalExceptionTH);
+    }
+  }
+
   Future<void> getDateTimeOfLocation(String date) async {
     try {
       final response = await Dio().get(

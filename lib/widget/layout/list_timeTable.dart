@@ -11,7 +11,9 @@ import 'package:mevaccine/config/constants.dart';
 class MyTimeTable {
   final String time;
   final int seat;
-  MyTimeTable({required this.time, required this.seat});
+  final bool isSelectable;
+  MyTimeTable(
+      {required this.time, required this.seat, required this.isSelectable});
 }
 
 class ListTimeTable extends StatelessWidget {
@@ -19,9 +21,14 @@ class ListTimeTable extends StatelessWidget {
   Widget build(BuildContext context) {
     List<MyTimeTable> times = Provider.of<NewAppointmentProvider>(context)
         .locationDateime
-        .map((dateTime) => MyTimeTable(
-            time: DateFormat.Hm().format(dateTime.startDateTime),
-            seat: dateTime.avaliable))
+        .map(
+          (dateTime) => MyTimeTable(
+              time: DateFormat.Hm().format(dateTime.startDateTime),
+              seat: dateTime.avaliable,
+              isSelectable:
+                  dateTime.startDateTime.isAfter(DateTime.now().toLocal()) ||
+                      dateTime.avaliable <= 0),
+        )
         .toList();
 
     return Container(
@@ -38,11 +45,12 @@ class ListTimeTable extends StatelessWidget {
                   index: times.indexOf(el),
                   time: el.time,
                   seat: el.seat,
+                  isSelectable: el.isSelectable,
                   isSelected: times.indexOf(el) ==
                       Provider.of<NewAppointmentProvider>(context)
                           .selectedDateTimeIndex,
                   changeSelectedIndex: (int index) {
-                    if (el.seat != 0) {
+                    if (el.isSelectable) {
                       Provider.of<NewAppointmentProvider>(context,
                               listen: false)
                           .selectDateTime(index);
