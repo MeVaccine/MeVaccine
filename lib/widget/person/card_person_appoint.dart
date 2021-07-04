@@ -56,7 +56,8 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
         child: CheckboxListTile(
           title: Text(
             Languages.of(context)!.fullNamePerson(widget.person),
-            style: const TextStyle(color: accent01),
+            style: TextStyle(
+                color: widget.person.isEligible ? accent01 : Colors.grey),
           ),
           value: _checked,
           activeColor: accent01,
