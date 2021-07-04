@@ -130,7 +130,7 @@ class LanguageEN extends Languages {
   @override
   String get myAppointmentHeading => "Your Appointment";
   @override
-  String get vaccineDoseHeading => "1 st Dose";
+  String vaccineDoseHeading(int dose) => "$dose st Dose";
 
   // Person Screen
   @override

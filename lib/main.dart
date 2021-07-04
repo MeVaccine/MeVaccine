@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:mevaccine/provider/addPerson.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mevaccine/localization/localizations_delegate.dart';
+import 'package:mevaccine/provider/appointmentProvider.dart';
 import 'package:mevaccine/provider/changeLanguageProvider.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/screen/appointment/mainstep_screen.dart';

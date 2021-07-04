@@ -123,11 +123,11 @@ class LanguageTH extends Languages {
   // My Appointments Screen
   @override
   String get noAppointmentMessage =>
-      "คุณยังไม่มีการนัดหมายเข้ารับวัคซีน คุณสามารถเพิ่มนัดหมายได้จากหน้าแรก";
+      "คุณยังไม่มีการนัดหมายเข้ารับวัคซีน \nคุณสามารถเพิ่มนัดหมายได้จากหน้าแรก";
   @override
   String get myAppointmentHeading => "นัดหมายของคุณ";
   @override
-  String get vaccineDoseHeading => "วัคซีนโควิด 19 เข็มที่1";
+  String vaccineDoseHeading(int dose) => "วัคซีนโควิด 19 เข็มที่ $dose";
 
   // Person Screen
   @override
