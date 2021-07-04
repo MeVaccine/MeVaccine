@@ -6,6 +6,7 @@ import 'package:mevaccine/localization/localizations_delegate.dart';
 import 'package:mevaccine/provider/changeLanguageProvider.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
+import 'package:mevaccine/screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
 import './screen/symptom_form_screen.dart';
@@ -117,9 +118,29 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.light().copyWith(primary: primary01),
         ),
         //หน้าแรกสุด
-        home: LoginScreen(),
+        home: HomeScreen(),
+        // home: FutureBuilder(
+        //     future: Provider.of<AuthenicateProvider>(context, listen: false)
+        //         .tryAutoLogin(),
+        //     builder: (ctx, AsyncSnapshot<bool> snapshort) {
+        //       if (snapshort.connectionState == ConnectionState.done) {
+        //         return snapshort.data! ? LandingScreen() : LoginScreen();
+        //       }
+        //       return CircularProgressIndicator();
+        //     }),
+        // home: Consumer<AuthenicateProvider>(
+        //   builder: (context, auth, _) => FutureBuilder(
+        //       future: auth.tryAutoLogin(),
+        //       builder: (context, AsyncSnapshot<bool> snapshort) {
+        //         if (snapshort.connectionState == ConnectionState.done) {
+        //           return snapshort.data! ? LandingScreen() : LoginScreen();
+        //         }
+        //         return CircularProgressIndicator();
+        //       }),
+        // ),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
+          LoginScreen.routeName: (ctx) => LoginScreen(),
           VerificationChangeNumber.routeName: (ctx) =>
               VerificationChangeNumber(),
           SymptomFormScreen.routeName: (ctx) => SymptomFormScreen(),

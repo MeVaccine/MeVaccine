@@ -692,4 +692,17 @@ class AuthenicateProvider with ChangeNotifier {
       throw HttpException(generalException, generalExceptionTH);
     }
   }
+
+  Future<bool> tryAutoLogin() async {
+    try {
+      if (_token.isNotEmpty) return true;
+      final prefs = await SharedPreferences.getInstance();
+      if (!prefs.containsKey('userToken')) return false;
+      final token = prefs.getString('userToken');
+      _token = token!;
+      return true;
+    } catch (error) {
+      throw HttpException(generalException, generalExceptionTH);
+    }
+  }
 }
