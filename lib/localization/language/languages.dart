@@ -93,6 +93,7 @@ abstract class Languages {
   String get yesMessageLabel;
   String get noMessageLabel;
   String get emptySymptomFormErrorMessage;
+  String get confirmSymptomForm;
 
   // New Appointment Step 1 Screen
   String get selectPersonHeading;
