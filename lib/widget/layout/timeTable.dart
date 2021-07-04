@@ -9,6 +9,7 @@ class TimeTable extends StatefulWidget {
   final String time;
   final int seat;
   final bool isSelected;
+  final bool isSelectable;
   final Function changeSelectedIndex;
   TimeTable({
     required this.index,
@@ -16,12 +17,13 @@ class TimeTable extends StatefulWidget {
     required this.seat,
     required this.isSelected,
     required this.changeSelectedIndex,
+    required this.isSelectable,
   });
   @override
   _TimeTableState createState() => _TimeTableState();
 }
 
-// TODO: If seat == 0 -> It should grey out the text
+// TODO: If isSelectable == false -> It should grey out the text
 class _TimeTableState extends State<TimeTable> {
   @override
   Widget build(BuildContext context) {

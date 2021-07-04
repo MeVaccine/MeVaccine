@@ -45,6 +45,7 @@ class ListTimeTable extends StatelessWidget {
                   index: times.indexOf(el),
                   time: el.time,
                   seat: el.seat,
+                  isSelectable: el.isSelectable,
                   isSelected: times.indexOf(el) ==
                       Provider.of<NewAppointmentProvider>(context)
                           .selectedDateTimeIndex,
