@@ -130,7 +130,16 @@ class LanguageEN extends Languages {
   @override
   String get myAppointmentHeading => "Your Appointment";
   @override
-  String vaccineDoseHeading(int dose) => "$dose st Dose";
+  String vaccineDoseHeading(int dose) {
+    if (dose == 1) {
+      return "$dose st Dose";
+    } else if (dose == 2) {
+      return "$dose nd Dose";
+    } else if (dose == 3) {
+      return "$dose rd Dose";
+    }
+    return "$dose th Dose";
+  }
 
   // Person Screen
   @override
