@@ -116,6 +116,11 @@ class _MyAppState extends State<MyApp> {
             update: (ctx, auth, prev) => SymptomfromProvider(
                   token: auth.token,
                 )),
+        ChangeNotifierProxyProvider<AuthenicateProvider, AppointmentProvider>(
+            create: (ctx) => AppointmentProvider(''),
+            update: (ctx, auth, prev) => AppointmentProvider(
+                  auth.token,
+                )),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -126,25 +131,6 @@ class _MyAppState extends State<MyApp> {
         ),
         //หน้าแรกสุด
         home: HomeScreen(),
-        // home: FutureBuilder(
-        //     future: Provider.of<AuthenicateProvider>(context, listen: false)
-        //         .tryAutoLogin(),
-        //     builder: (ctx, AsyncSnapshot<bool> snapshort) {
-        //       if (snapshort.connectionState == ConnectionState.done) {
-        //         return snapshort.data! ? LandingScreen() : LoginScreen();
-        //       }
-        //       return CircularProgressIndicator();
-        //     }),
-        // home: Consumer<AuthenicateProvider>(
-        //   builder: (context, auth, _) => FutureBuilder(
-        //       future: auth.tryAutoLogin(),
-        //       builder: (context, AsyncSnapshot<bool> snapshort) {
-        //         if (snapshort.connectionState == ConnectionState.done) {
-        //           return snapshort.data! ? LandingScreen() : LoginScreen();
-        //         }
-        //         return CircularProgressIndicator();
-        //       }),
-        // ),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
           LoginScreen.routeName: (ctx) => LoginScreen(),
