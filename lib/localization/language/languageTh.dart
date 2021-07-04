@@ -170,7 +170,7 @@ class LanguageTH extends Languages {
   @override
   String get noMessageLabel => "ไม่ใช่";
   @override
-  String get emptySymptomFormErrorMessage => "";
+  String get emptySymptomFormErrorMessage => "ต้องทำการฉีดวัคซีนก่อนถึงจะทำแบบสอบถามได้";
 
   // New Appointment Step 1 Screen
   @override

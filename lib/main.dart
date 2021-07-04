@@ -33,6 +33,7 @@ import './provider/userProvider.dart';
 import './screen/Setting/verification_changeNumber.dart';
 import './provider/locationProvider.dart';
 import './localization/locale_constant.dart';
+import './provider/symptomFormProvider.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -108,6 +109,11 @@ class _MyAppState extends State<MyApp> {
           create: (ctx) => NewAppointmentProvider(''),
           update: (ctx, auth, prev) => NewAppointmentProvider(auth.token),
         ),
+        ChangeNotifierProxyProvider<AuthenicateProvider, SymptomfromProvider>(
+            create: (ctx) => SymptomfromProvider(token: ''),
+            update: (ctx, auth, prev) => SymptomfromProvider(
+                  token: auth.token,
+                )),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
