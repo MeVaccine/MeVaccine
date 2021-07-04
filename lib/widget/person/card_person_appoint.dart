@@ -26,6 +26,19 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
     final newAppointmentProvider =
         Provider.of<NewAppointmentProvider>(context, listen: false);
     _checked = newAppointmentProvider.isPersonSelected(widget.person);
+
+    void onChange(bool? value) {
+      setState(() {
+        _checked = value!;
+      });
+      newAppointmentProvider.resetSelectedVaccine();
+      if (_checked) {
+        newAppointmentProvider.selectPerson(widget.person);
+      } else {
+        newAppointmentProvider.removePerson(widget.person);
+      }
+    }
+
     return Container(
         decoration: BoxDecoration(
             color: white,
@@ -47,17 +60,7 @@ class _CardPersonAppointState extends State<CardPersonAppoint> {
           ),
           value: _checked,
           activeColor: accent01,
-          onChanged: (bool? value) {
-            setState(() {
-              _checked = value!;
-            });
-            newAppointmentProvider.resetSelectedVaccine();
-            if (_checked) {
-              newAppointmentProvider.selectPerson(widget.person);
-            } else {
-              newAppointmentProvider.removePerson(widget.person);
-            }
-          },
+          onChanged: widget.person.isEligible ? onChange : null,
         ));
   }
 }

@@ -15,6 +15,7 @@ class Person {
   String firstname_th;
   String lastname_th;
   String gender_th;
+  bool isEligible;
   Person(
       {required this.id,
       required this.firstname_en,
@@ -24,7 +25,8 @@ class Person {
       required this.firstname_th,
       required this.gender_th,
       required this.lastname_th,
-      required this.prefix_th});
+      required this.prefix_th,
+      this.isEligible = false});
 }
 
 class PersonProvider with ChangeNotifier {
@@ -66,7 +68,8 @@ class PersonProvider with ChangeNotifier {
             lastname_en: data[i]['lastname_en'],
             lastname_th: data[i]['lastname_th'],
             prefix_en: data[i]['prefix_en'],
-            prefix_th: data[i]['prefix_th']));
+            prefix_th: data[i]['prefix_th'],
+            isEligible: data[i]['isEligible']));
       }
       _person = tempPerson;
 
@@ -107,6 +110,4 @@ class PersonProvider with ChangeNotifier {
       }
     }
   }
-
-
 }
