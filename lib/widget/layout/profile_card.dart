@@ -36,49 +36,59 @@ class _ProfileCardState extends State<ProfileCard> {
     _checked = Provider.of<NewAppointmentProvider>(context, listen: false)
         .isPersonSelected(person);
 
-    return Container(
-      decoration:
-          BoxDecoration(color: white, borderRadius: kBorderRadiusS, boxShadow: [
-        BoxShadow(
-            blurRadius: 40,
-            spreadRadius: 0,
-            offset: const Offset(0, 16),
-            color: const Color(0xFF7090B0).withOpacity(0.2))
-      ]),
-      margin: const EdgeInsets.all(20),
-      padding:
-          const EdgeInsets.symmetric(horizontal: kSizeXS, vertical: kSizeS * 2),
-      child: CheckboxListTile(
-        title: Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: AssetImage(
-                'assets/images/user-profile.png',
+    return FutureBuilder(
+      future: Provider.of<NewAppointmentProvider>(context, listen: false)
+          .isUserEligible(),
+      builder: (context, AsyncSnapshot<bool> snapshort) => Container(
+        decoration: BoxDecoration(
+            color: white,
+            borderRadius: kBorderRadiusS,
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 40,
+                  spreadRadius: 0,
+                  offset: const Offset(0, 16),
+                  color: const Color(0xFF7090B0).withOpacity(0.2))
+            ]),
+        margin: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(
+            horizontal: kSizeXS, vertical: kSizeS * 2),
+        child: CheckboxListTile(
+          title: Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage(
+                  'assets/images/user-profile.png',
+                ),
+                radius: kSizeS * 1.5,
               ),
-              radius: kSizeS * 1.5,
-            ),
-            kSizedBoxHorizontalXS,
-            Text(
-              Languages.of(context)!.fullNamePerson(person),
-              style: const TextStyle(color: primary01),
-            ),
-          ],
+              kSizedBoxHorizontalXS,
+              Text(
+                Languages.of(context)!.fullNamePerson(person),
+                style: const TextStyle(color: primary01),
+              ),
+            ],
+          ),
+          value: _checked,
+          activeColor: primary01,
+          onChanged: snapshort.connectionState == ConnectionState.done &&
+                  snapshort.data!
+              ? (bool? value) {
+                  final newAppointmentProvider =
+                      Provider.of<NewAppointmentProvider>(context,
+                          listen: false);
+                  newAppointmentProvider.resetSelectedVaccine();
+                  setState(() {
+                    _checked = value!;
+                    if (_checked) {
+                      newAppointmentProvider.selectPerson(person);
+                    } else {
+                      newAppointmentProvider.removePerson(person);
+                    }
+                  });
+                }
+              : null,
         ),
-        value: _checked,
-        activeColor: primary01,
-        onChanged: (bool? value) {
-          final newAppointmentProvider =
-              Provider.of<NewAppointmentProvider>(context, listen: false);
-          newAppointmentProvider.resetSelectedVaccine();
-          setState(() {
-            _checked = value!;
-            if (_checked) {
-              newAppointmentProvider.selectPerson(person);
-            } else {
-              newAppointmentProvider.removePerson(person);
-            }
-          });
-        },
       ),
     );
   }
