@@ -538,7 +538,7 @@ class AuthenicateProvider with ChangeNotifier {
               ? null
               : Appointment(
                   date:
-                      DateTime.parse(response.data['appointment']['dateTime']),
+                      DateTime.parse(response.data['appointment']['dateTime']).toLocal(),
                   doesNumber: response.data['appointment']['doesNumber'],
                   id: response.data['appointment']['_id'],
                   status: response.data['appointment']['status'],
