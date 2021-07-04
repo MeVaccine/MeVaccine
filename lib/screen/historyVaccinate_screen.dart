@@ -62,11 +62,12 @@ class HistoryVaccinateScreen extends StatelessWidget {
                                 dose: Provider.of<AppointmentProvider>(context)
                                     .appointments[index]
                                     .doseNumber,
-                                hospitalName:
-                                    Provider.of<AppointmentProvider>(context)
-                                        .appointments[index]
-                                        .location
-                                        .name_en,
+                                hospitalName: Languages.of(context)!
+                                    .locationNameItem(
+                                        Provider.of<AppointmentProvider>(
+                                                context)
+                                            .appointments[index]
+                                            .location),
                                 time: Provider.of<AppointmentProvider>(context)
                                     .appointments[index]
                                     .dateTime,
