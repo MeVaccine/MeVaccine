@@ -83,7 +83,6 @@ class PersonProvider with ChangeNotifier {
   }
 
   Future<void> deletePerson(String id) async {
-    print(id);
     try {
       final response = await Dio().delete(apiEndpoint + '/person/${id}',
           options: Options(headers: {"Authorization": "Bearer " + token}));

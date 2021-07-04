@@ -14,24 +14,30 @@ class ErrorDialog extends StatelessWidget {
       title: RichText(
         text: TextSpan(
             text: Languages.of(context)!.errorDialogHeading,
-            style: TextStyle(color: error, fontSize: 30)),
+            style: const TextStyle(color: primary03, fontSize: 30)),
       ),
       content: Container(
           width: MediaQuery.of(context).size.width * 0.5,
           child: Text(
             text,
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           )),
       actions: <Widget>[
-        TextButton(
-          onPressed: () {
-            isNetwork ? exit(0) : Navigator.of(context).pop();
-          },
-          child: Text('OK'),
+        Center(
+          child: TextButton(
+            style: TextButton.styleFrom(
+                primary: white,
+                backgroundColor: primary03,
+                padding: const EdgeInsets.symmetric(horizontal: 50)),
+            onPressed: () {
+              isNetwork ? exit(0) : Navigator.of(context).pop();
+            },
+            child: Text(Languages.of(context)!.okButtonLabel),
+          ),
         ),
       ],
       elevation: kSizeXXS,
-      shape: RoundedRectangleBorder(borderRadius: kBorderRadiusS),
+      shape: const RoundedRectangleBorder(borderRadius: kBorderRadiusS),
     );
   }
 }

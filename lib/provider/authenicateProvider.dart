@@ -555,7 +555,10 @@ class AuthenicateProvider with ChangeNotifier {
                       province_th: response.data['appointment']['location']
                           ['province_th'])),
           vaccineUser: response.data['vaccine'] == null
-              ? null
+              ? VaccineUser(id: '',
+                  maxAge: 0,
+                  minAge:0,
+                  name: '')
               : VaccineUser(
                   id: response.data['vaccine']['_id'],
                   maxAge: response.data['appointment']['maxAge'],
