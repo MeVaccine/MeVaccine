@@ -538,7 +538,7 @@ class AuthenicateProvider with ChangeNotifier {
               ? null
               : Appointment(
                   date:
-                      DateTime.parse(response.data['appointment']['dateTime']),
+                      DateTime.parse(response.data['appointment']['dateTime']).toLocal(),
                   doesNumber: response.data['appointment']['doesNumber'],
                   id: response.data['appointment']['_id'],
                   status: response.data['appointment']['status'],
@@ -692,6 +692,19 @@ class AuthenicateProvider with ChangeNotifier {
       this._token = "";
     } on DioError catch (error) {
       // For future error handling
+      throw HttpException(generalException, generalExceptionTH);
+    }
+  }
+
+  Future<bool> tryAutoLogin() async {
+    try {
+      if (_token.isNotEmpty) return true;
+      final prefs = await SharedPreferences.getInstance();
+      if (!prefs.containsKey('userToken')) return false;
+      final token = prefs.getString('userToken');
+      _token = token!;
+      return true;
+    } catch (error) {
       throw HttpException(generalException, generalExceptionTH);
     }
   }

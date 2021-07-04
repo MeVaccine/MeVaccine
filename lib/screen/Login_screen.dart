@@ -8,6 +8,7 @@ import '../config/constants.dart';
 import '../widget/text/mainText.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const routeName = '/login';
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -7,6 +7,7 @@ import 'package:mevaccine/localization/locale_constant.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/changeLanguageProvider.dart';
+import 'package:mevaccine/screen/Login_screen.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
 import 'package:mevaccine/widget/option/checkLang_setting.dart';
@@ -72,7 +73,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
   void _logout(BuildContext ctx) async {
     await Provider.of<AuthenicateProvider>(ctx, listen: false).logout();
-    Navigator.of(ctx).pushReplacementNamed('/');
+    Navigator.of(ctx).pushReplacementNamed(LoginScreen.routeName);
   }
 
   @override
