@@ -30,6 +30,30 @@ class LocationProvider with ChangeNotifier {
 
   List<Hospital> get hospitals => [..._hospitals];
 
+  Future<List<Location>> getLocationByProvince(String province) async {
+    try {
+      final response = await Dio().get(apiEndpoint + '/location',
+          queryParameters: {"province": province});
+
+      List<Location> tempHospital = [];
+      final data = response.data.toList();
+      for (int j = 0; j < data.length; j++) {
+        tempHospital.add(
+          Location(
+              id: data[j]['_id'],
+              name_en: data[j]['name_en'],
+              name_th: data[j]['name_th'],
+              priority: data[j]['priority'],
+              province_en: data[j]['province_en'],
+              province_th: data[j]['province_th']),
+        );
+      }
+      return tempHospital;
+    } on DioError catch (error) {
+      throw HttpException(generalException, generalExceptionTH);
+    }
+  }
+
   Future<void> getVaccine(String locationID) async {
     try {
       final response = await Dio().get(

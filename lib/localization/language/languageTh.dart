@@ -44,6 +44,8 @@ class LanguageTH extends Languages {
   String locationNameItem(Location location) => location.name_th;
   @override
   String hospitalNameItem(Hospital hospital) => hospital.name_th;
+  @override
+  String get provinceSelectLabel => "เลือกจังหวัด";
 
   // Login Screen
   @override
@@ -57,10 +59,10 @@ class LanguageTH extends Languages {
   String get verificationCodeInputLabel => "รหัส OTP 6 หลัก";
   @override
   String get verificationCodeTextMessage =>
-      "กรอกเลข OTP 6 หลัก ที่ท่านได้รับจากเบอร์โทรศัพท์";
+      "รหัส OTP 6 หลัก ที่ท่านได้รับจากเบอร์โทรศัพท์";
   @override
   String verificationCodePhoneMessage(String phoneNumber, String refCode) =>
-      "$phoneNumber RefCode: $refCode";
+      " $phoneNumber Reference: $refCode";
   @override
   String get emptyVerificationCodeErrorMessage => "";
   // Register Screen
@@ -124,6 +126,8 @@ class LanguageTH extends Languages {
       "คุณยังไม่มีการนัดหมายเข้ารับวัคซีน คุณสามารถเพิ่มนัดหมายได้จากหน้าแรก";
   @override
   String get myAppointmentHeading => "นัดหมายของคุณ";
+  @override
+  String get vaccineDoseHeading => "วัคซีนโควิด 19 เข็มที่1";
 
   // Person Screen
   @override
@@ -170,7 +174,7 @@ class LanguageTH extends Languages {
   @override
   String get noMessageLabel => "ไม่ใช่";
   @override
-  String get emptySymptomFormErrorMessage => "";
+  String get emptySymptomFormErrorMessage => "ต้องทำการฉีดวัคซีนก่อนถึงจะทำแบบสอบถามได้";
 
   // New Appointment Step 1 Screen
   @override

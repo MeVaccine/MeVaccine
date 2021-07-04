@@ -36,50 +36,63 @@ class _ProfileCardState extends State<ProfileCard> {
     _checked = Provider.of<NewAppointmentProvider>(context, listen: false)
         .isPersonSelected(person);
 
-    return Container(
-      decoration:
-          BoxDecoration(color: white, borderRadius: kBorderRadiusS, boxShadow: [
-        BoxShadow(
-            blurRadius: 40,
-            spreadRadius: 0,
-            offset: const Offset(0, 16),
-            color: const Color(0xFF7090B0).withOpacity(0.2))
-      ]),
-      margin: const EdgeInsets.all(20),
-      padding:
-          const EdgeInsets.symmetric(horizontal: kSizeXS, vertical: kSizeS * 2),
-      child: CheckboxListTile(
-        title: Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: AssetImage(
-                'assets/images/user-profile.png',
-              ),
-              radius: kSizeS * 1.5,
+    return FutureBuilder(
+      future: Provider.of<NewAppointmentProvider>(context, listen: false)
+          .isUserEligible(),
+      builder: (context, AsyncSnapshot<bool> snapshort) {
+        final isEligible = snapshort.connectionState == ConnectionState.done &&
+            snapshort.data!;
+        return Container(
+          decoration: BoxDecoration(
+              color: white,
+              borderRadius: kBorderRadiusS,
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 40,
+                    spreadRadius: 0,
+                    offset: const Offset(0, 16),
+                    color: const Color(0xFF7090B0).withOpacity(0.2))
+              ]),
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(
+              horizontal: kSizeXS, vertical: kSizeS * 2),
+          child: CheckboxListTile(
+            title: Row(
+              children: [
+                CircleAvatar(
+                  backgroundImage: AssetImage(
+                    'assets/images/user-profile.png',
+                  ),
+                  radius: kSizeS * 1.5,
+                ),
+                kSizedBoxHorizontalXS,
+                Text(
+                  Languages.of(context)!.fullNamePerson(person),
+                  style: TextStyle(color: isEligible ? primary01 : Colors.grey),
+                ),
+              ],
             ),
-            kSizedBoxHorizontalXS,
-            Text(
-              Languages.of(context)!.fullNamePerson(person),
-              style: const TextStyle(color: primary01),
-            ),
-          ],
-        ),
-        value: _checked,
-        activeColor: primary01,
-        onChanged: (bool? value) {
-          final newAppointmentProvider =
-              Provider.of<NewAppointmentProvider>(context, listen: false);
-          newAppointmentProvider.resetSelectedVaccine();
-          setState(() {
-            _checked = value!;
-            if (_checked) {
-              newAppointmentProvider.selectPerson(person);
-            } else {
-              newAppointmentProvider.removePerson(person);
-            }
-          });
-        },
-      ),
+            value: _checked,
+            activeColor: primary01,
+            onChanged: isEligible
+                ? (bool? value) {
+                    final newAppointmentProvider =
+                        Provider.of<NewAppointmentProvider>(context,
+                            listen: false);
+                    newAppointmentProvider.resetSelectedVaccine();
+                    setState(() {
+                      _checked = value!;
+                      if (_checked) {
+                        newAppointmentProvider.selectPerson(person);
+                      } else {
+                        newAppointmentProvider.removePerson(person);
+                      }
+                    });
+                  }
+                : null,
+          ),
+        );
+      },
     );
   }
 }

@@ -44,6 +44,8 @@ class LanguageEN extends Languages {
   String locationNameItem(Location location) => location.name_en;
   @override
   String hospitalNameItem(Hospital hospital) => hospital.name_en;
+  @override
+  String get provinceSelectLabel => "Select a province";
 
   // Login Screen
   @override
@@ -122,12 +124,13 @@ class LanguageEN extends Languages {
   String get personMenuLebel => "Person";
   @override
   String get symptomFormMenuLebel => "Symptom asessment form";
-
   // My Appointments Screen
   @override
   String get noAppointmentMessage => "You don’t have any appointment";
   @override
   String get myAppointmentHeading => "Your Appointment";
+  @override
+  String get vaccineDoseHeading => "1 st Dose";
 
   // Person Screen
   @override

@@ -21,7 +21,7 @@ class Vaccine extends StatelessWidget {
           children: [
             Row(
               children: [
-                VaccineIcon(),
+                VaccineIcon(width: 50, height: 16),
                 MainText(text, text_type.regular, 16, primary01),
               ],
             ),
