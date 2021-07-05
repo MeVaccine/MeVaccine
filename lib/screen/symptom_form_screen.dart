@@ -21,58 +21,66 @@ class SymptomFormScreen extends StatefulWidget {
 class _SymptomFormScreenState extends State<SymptomFormScreen> {
   @override
   Widget build(BuildContext context) {
-    Provider.of<SymptomfromProvider>(
-      context,
-    ).checkUser(
-        Provider.of<AuthenicateProvider>(context, listen: false).userInfo.id);
-    return Consumer<SymptomfromProvider>(
-        builder: (ctx, authen, child) => GestureDetector(
-            onTap: () {
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-            child: Scaffold(
-              body: Stack(children: [
-                Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                ),
-                BlackgroundColor(),
-                AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                ),
-                Positioned(
-                  top: 150,
-                  left: 23,
-                  child: Container(
-                      width: 330,
-                      height: 500,
-                      decoration: BoxDecoration(
-                          color: white,
-                          borderRadius: kBorderRadiusS,
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 40,
-                                offset: const Offset(0, 16),
-                                spreadRadius: 0,
-                                color:
-                                    const Color(0xFF7090B0).withOpacity(0.2)),
+    return FutureBuilder(
+        future: Provider.of<SymptomfromProvider>(
+          context,
+        ).checkUser(Provider.of<AuthenicateProvider>(context, listen: false)
+            .userInfo
+            .id),
+        builder: (context, snapshort) =>
+            snapshort.connectionState == ConnectionState.done
+                ? Consumer<SymptomfromProvider>(
+                    builder: (ctx, authen, child) => GestureDetector(
+                        onTap: () {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                        },
+                        child: Scaffold(
+                          body: Stack(children: [
+                            Container(
+                              width: double.infinity,
+                              height: double.infinity,
+                            ),
+                            BlackgroundColor(),
+                            AppBar(
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                            ),
+                            Positioned(
+                              top: 150,
+                              left: 23,
+                              child: Container(
+                                  width: 330,
+                                  height: 500,
+                                  decoration: BoxDecoration(
+                                      color: white,
+                                      borderRadius: kBorderRadiusS,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 40,
+                                            offset: const Offset(0, 16),
+                                            spreadRadius: 0,
+                                            color: const Color(0xFF7090B0)
+                                                .withOpacity(0.2)),
+                                      ]),
+                                  child: AbsorbPointer(
+                                    absorbing:
+                                        authen.errorStatusCode ? true : false,
+                                    child: SymptomForm(),
+                                  )),
+                            ),
+                            (authen.errorStatusCode)
+                                ? Positioned(
+                                    top: 250,
+                                    left: 12,
+                                    child: ErrorDialog(
+                                      text: Languages.of(context)!
+                                          .emptySymptomFormErrorMessage,
+                                    ))
+                                : Container()
                           ]),
-                      child: AbsorbPointer(
-                        absorbing: authen.errorStatusCode ? true : false,
-                        child: SymptomForm(),
-                      )),
-                ),
-                (authen.errorStatusCode)
-                    ? Positioned(
-                        top: 250,
-                        left: 12,
-                        child: ErrorDialog(
-                          text: Languages.of(context)!
-                              .emptySymptomFormErrorMessage,
-                        ))
-                    : Container()
-              ]),
-            )));
+                        )))
+                : Scaffold(
+                    body: Center(child: CircularProgressIndicator()),
+                  ));
   }
 }
