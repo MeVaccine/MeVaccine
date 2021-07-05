@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'dart:html';
+
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
@@ -245,4 +247,19 @@ class LanguageTH extends Languages {
   String httpExceptionErrorMessage(HttpException e) => e.messageTH;
   @override
   String get errorDialogHeading => "ข้อผิดพลาด";
+
+  //Dialog
+  @override
+  String get warnDialogNationalIDAndPhoneNumber =>
+      "กรุณากรอกบัตรประชาชนและเบอร์โทรศัพท์";
+  @override
+  String get warnDialogVerificationCode =>
+      "กรุณากรอกโค้ดยืนยันจากโทรศัพท์ของคุณ";
+  @override
+  String get warnDialogNationaIDAndLaser =>
+      "กรุณากรอกบัตรประชาชนและหลังบัตรประชาชน";
+  @override
+  String get warnDialogPhoneAndAddress => "กรุณากรอกเบอร์โทรศัพท์และที่อยู่";
+  @override
+  String get warnDialogSymptomForm => "กร";
 }
