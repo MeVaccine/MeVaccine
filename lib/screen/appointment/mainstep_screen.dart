@@ -7,6 +7,7 @@ import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/screen/landing_screen.dart';
 import 'package:mevaccine/widget/button/secondaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
+import 'package:mevaccine/widget/layout/warningDialog.dart';
 import 'package:mevaccine/widget/layout/errorDailog.dart';
 import 'package:mevaccine/widget/layout/layout_appointment.dart';
 import 'package:provider/provider.dart';
@@ -160,6 +161,10 @@ class _MainstepState extends State<Mainstep> {
                         if (_currentTab == Step1.routeName) {
                           if (newAppointmentProvider.selectedPerson.isEmpty) {
                             // Show error dialog
+                            dialog(
+                                context: context,
+                                text: Languages.of(context)!
+                                    .warnDialogSelectPerson);
                           } else {
                             setState(() => {_currentTab = Step2.routeName});
                           }
@@ -169,6 +174,10 @@ class _MainstepState extends State<Mainstep> {
                           if (newAppointmentProvider.selectedDateTimeIndex ==
                               -1) {
                             // Show error dialog
+                            dialog(
+                                context: context,
+                                text: Languages.of(context)!
+                                    .noDateTimeErrorMessage);
                           } else {
                             setState(() => {_currentTab = Step4.routeName});
                           }
@@ -176,6 +185,7 @@ class _MainstepState extends State<Mainstep> {
                           if (newAppointmentProvider.selectedVaccine
                               .contains(null)) {
                             // Show error dialog
+
                           } else {
                             _showDialog();
                           }

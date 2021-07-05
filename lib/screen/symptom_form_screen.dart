@@ -23,12 +23,11 @@ class SymptomFormScreen extends StatefulWidget {
 class _SymptomFormScreenState extends State<SymptomFormScreen> {
   @override
   Widget build(BuildContext context) {
+    final userId = ModalRoute.of(context)!.settings.arguments as String?;
     return FutureBuilder(
         future: Provider.of<SymptomfromProvider>(
           context,
-        ).checkUser(Provider.of<AuthenicateProvider>(context, listen: false)
-            .userInfo
-            .id),
+        ).checkUser(userId),
         builder: (context, snapshort) =>
             snapshort.connectionState == ConnectionState.done
                 ? Consumer<SymptomfromProvider>(
@@ -68,6 +67,7 @@ class _SymptomFormScreenState extends State<SymptomFormScreen> {
                                     absorbing:
                                         authen.errorStatusCode ? true : false,
                                     child: SymptomForm(
+                                      userId: userId,
                                       nameVaccine:
                                           authen.userInfo.vaccineUser!.name,
                                     ),
@@ -78,13 +78,14 @@ class _SymptomFormScreenState extends State<SymptomFormScreen> {
                                     top: 250,
                                     left: 12,
                                     child: ErrorDialog(
+                                      // TODO: Change error message
                                       text: Languages.of(context)!
-                                          .emptySymptomFormErrorMessage,
+                                          .warnDialogCannotDoForm,
                                     ))
                                 : Container()
                           ]),
                         )))
-                : Scaffold(
+                : const Scaffold(
                     body: Center(child: CircularProgressIndicator()),
                   ));
   }

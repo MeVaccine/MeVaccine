@@ -3,12 +3,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/symptomFormProvider.dart';
 import 'package:mevaccine/screen/landing_screen.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
 import 'package:mevaccine/widget/form/symptomCard.dart';
+import 'package:mevaccine/widget/layout/errorDailog.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:provider/provider.dart';
 import '../../model/textType.dart';
@@ -16,7 +18,8 @@ import '../../model/textType.dart';
 
 class SymptomForm extends StatefulWidget {
   String nameVaccine;
-  SymptomForm({required this.nameVaccine});
+  String? userId;
+  SymptomForm({required this.nameVaccine, this.userId});
   @override
   State<SymptomForm> createState() => _SymptomFormState();
 }
@@ -32,8 +35,8 @@ class _SymptomFormState extends State<SymptomForm> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 30),
                       alignment: Alignment.topCenter,
                       child: Text(
                         Languages.of(ctx)!.confirmSymptomForm,
@@ -102,10 +105,13 @@ class _SymptomFormState extends State<SymptomForm> {
           valueChills,
           valueMusclePain,
           valueTiderness,
-          _otherController.text);
+          _otherController.text,
+          widget.userId);
       _showDialog();
-    } catch (error) {
-      print(error);
+    } on HttpException catch (error) {
+      showErrorDialog(
+          context: context,
+          text: Languages.of(context)!.httpExceptionErrorMessage(error));
     }
   }
 
@@ -115,6 +121,16 @@ class _SymptomFormState extends State<SymptomForm> {
 
   bool cannotSubmit() {
     return (valueYes == false && valueNo == false);
+  }
+
+  bool notAnswer() {
+    return (valueHeadache == false &&
+        valueNausea == false &&
+        valueFatigue == false &&
+        valueChills == false &&
+        valueMusclePain == false &&
+        valueTiderness == false &&
+        valueOther == false);
   }
 
   final _otherController = TextEditingController();
@@ -288,7 +304,7 @@ class _SymptomFormState extends State<SymptomForm> {
                       kSizedBoxVerticalS,
                       PrimaryButton(
                         text: Languages.of(context)!.submitButtonLabel,
-                        onPressed: submitForm,
+                        onPressed: notAnswer() ? _showErrorDialog : submitForm,
                         color: primary01,
                       )
                     ],
@@ -297,7 +313,7 @@ class _SymptomFormState extends State<SymptomForm> {
               )
             : Container(
                 height: 330,
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
