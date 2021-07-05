@@ -5,6 +5,7 @@ import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/provider/personProvider.dart';
 import 'package:mevaccine/screen/person_screen.dart';
 import 'package:mevaccine/widget/Logo/logo_verification.dart';
 import 'package:mevaccine/widget/auth/verificationTextFormField.dart';
@@ -13,6 +14,7 @@ import 'package:mevaccine/widget/layout/errorDailog.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:provider/provider.dart';
 import '../landing_screen.dart';
+import 'addPerson_screen.dart';
 
 class VerificationAddPerson extends StatefulWidget {
   static const routeName = '/verificationAddPerson';
@@ -32,8 +34,6 @@ class _VerificationAddPersonState extends State<VerificationAddPerson> {
         _isLoading = true;
       });
       String otp = _code.text;
-      print('Screen');
-      print(otp);
       try {
         await Provider.of<AuthenicateProvider>(context, listen: false)
             .addPersonVerification(otp);
@@ -42,6 +42,7 @@ class _VerificationAddPersonState extends State<VerificationAddPerson> {
         });
         Navigator.of(context)
             .popUntil(ModalRoute.withName(PersonScreen.routeName));
+        Provider.of<PersonProvider>(context, listen: false).getPerson();
       } on HttpException catch (error) {
         setState(() => _isLoading = false);
         showErrorDialog(

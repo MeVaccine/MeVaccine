@@ -22,9 +22,7 @@ class PersonScreen extends StatefulWidget {
 class _PersonScreenState extends State<PersonScreen> {
   @override
   Widget build(BuildContext context) {
-    Provider.of<PersonProvider>(
-      context,
-    ).getPerson();
+    Provider.of<PersonProvider>(context, listen: false).getPerson();
     return Consumer<PersonProvider>(
         builder: (ctx, authen, child) => Scaffold(
               body: Stack(
@@ -91,9 +89,9 @@ class _PersonScreenState extends State<PersonScreen> {
                                         ),
                                         direction: DismissDirection.endToStart,
                                         onDismissed: (direction) {
-                                          Provider.of<PersonProvider>(
-                                            context,listen: false
-                                          ).deletePerson(e.id);
+                                          Provider.of<PersonProvider>(context,
+                                                  listen: false)
+                                              .deletePerson(e.id);
                                         },
                                         child: CardEachPerson(
                                           fullName: Languages.of(context)!
@@ -117,20 +115,6 @@ class _PersonScreenState extends State<PersonScreen> {
                   //   iconTheme: const IconThemeData(color: white),
                   // ),
                   Positioned(
-                    top: 50,
-                    left: 10,
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context, LandingScreen.routeName);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: white,
-                        size: kSizeM,
-                      ),
-                    ),
-                  ),
-                  Positioned(
                     top: 720,
                     left: 290,
                     child: FloatingActionButton(
@@ -141,6 +125,21 @@ class _PersonScreenState extends State<PersonScreen> {
                       child: Icon(
                         Icons.add,
                         color: white,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 50,
+                    left: 10,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context,
+                            ModalRoute.withName(LandingScreen.routeName));
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: white,
+                        size: kSizeM,
                       ),
                     ),
                   ),
