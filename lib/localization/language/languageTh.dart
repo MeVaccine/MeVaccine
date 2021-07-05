@@ -251,4 +251,6 @@ class LanguageTH extends Languages {
   @override
   String get warnDialogSelectPerson =>
       "กรุณาเลือกคนที่คุณ \nต้องการจะฉีดวัคซีน";
+  @override
+  String get warnDialogCannotDoForm => "ไม่สามารถทำแบบสอบถามได้";
 }

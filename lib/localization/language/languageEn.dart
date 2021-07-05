@@ -263,4 +263,6 @@ class LanguageEN extends Languages {
   //Dialog
   @override
   String get warnDialogSelectPerson => "Please select person";
+  @override
+  String get warnDialogCannotDoForm => "Cannot do symptom form";
 }

@@ -79,7 +79,7 @@ class _SymptomFormScreenState extends State<SymptomFormScreen> {
                                     left: 12,
                                     child: ErrorDialog(
                                       text: Languages.of(context)!
-                                          .emptySymptomFormErrorMessage,
+                                          .warnDialogCannotDoForm,
                                     ))
                                 : Container()
                           ]),

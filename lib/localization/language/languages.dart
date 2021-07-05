@@ -134,4 +134,5 @@ abstract class Languages {
 
   // Dialog
   String get warnDialogSelectPerson;
+  String get warnDialogCannotDoForm;
 }
