@@ -3,7 +3,8 @@ import 'package:mevaccine/config/color.dart';
 
 class ButtonEachPerson extends StatelessWidget {
   String text;
-  ButtonEachPerson({required this.text});
+  Function onTap;
+  ButtonEachPerson({required this.text, required this.onTap});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,7 +15,7 @@ class ButtonEachPerson extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             InkWell(
-                onTap: () {},
+                onTap: () => onTap(),
                 child: Card(
                   elevation: 10,
                   shadowColor: const Color(0xFF7090B0).withOpacity(0.2),

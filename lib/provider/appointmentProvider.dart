@@ -25,12 +25,13 @@ class AppointmentProvider with ChangeNotifier {
   String _token;
   AppointmentProvider(this._token);
   List<Appointment> appointments = [];
-  Future<void> getAppointment() async {
+  Future<void> getAppointment([String? userId]) async {
+    List<Appointment> tempAppointment = [];
     try {
       final response = await Dio().get(apiEndpoint + '/appointment',
+          queryParameters: {'id': userId},
           options: Options(headers: {"Authorization": "Bearer " + _token}));
       final data = response.data.toList();
-      List<Appointment> tempAppointment = [];
       for (var appointment in data) {
         tempAppointment.add(Appointment(
             status: appointment['status'],
@@ -53,10 +54,15 @@ class AppointmentProvider with ChangeNotifier {
       appointments = tempAppointment;
       notifyListeners();
     } on DioError catch (error) {
+      appointments = tempAppointment;
       if (error.response!.statusCode == 401) {
         throw HttpException(jwtException);
       }
     }
+  }
+
+  void resetData() {
+    this.appointments = [];
   }
 }
 

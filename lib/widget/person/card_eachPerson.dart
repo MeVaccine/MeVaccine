@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
+import 'package:mevaccine/screen/historyVaccinate_screen.dart';
+import 'package:mevaccine/screen/symptom_form_screen.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import '../../model/textType.dart';
 import '../../widget/person/buttonEachPerson.dart';
 
 class CardEachPerson extends StatelessWidget {
   String fullName;
-  CardEachPerson({required this.fullName});
+  String id;
+  CardEachPerson({required this.fullName, required this.id});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,10 +41,18 @@ class CardEachPerson extends StatelessWidget {
           ]),
           ButtonEachPerson(
             text: Languages.of(context)!.myAppointmentMenuLebel,
+            onTap: () {
+              Navigator.of(context)
+                  .pushNamed(HistoryVaccinateScreen.routeName, arguments: id);
+            },
           ),
           kSizedBoxVerticalS,
           ButtonEachPerson(
             text: Languages.of(context)!.symptomFormMenuLebel,
+            onTap: () {
+              Navigator.of(context)
+                  .pushNamed(SymptomFormScreen.routeName, arguments: id);
+            },
           ),
         ],
       ),

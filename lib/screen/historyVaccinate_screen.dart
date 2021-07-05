@@ -11,6 +11,7 @@ class HistoryVaccinateScreen extends StatelessWidget {
   static const routeName = '/history';
   @override
   Widget build(BuildContext context) {
+    final userId = ModalRoute.of(context)!.settings.arguments as String?;
     return Scaffold(
         appBar: AppBar(
           //สีตามพื้นหลัง
@@ -36,7 +37,7 @@ class HistoryVaccinateScreen extends StatelessWidget {
                 child: FutureBuilder(
                     future:
                         Provider.of<AppointmentProvider>(context, listen: false)
-                            .getAppointment(),
+                            .getAppointment(userId),
                     builder: (context, snapshort) {
                       if (snapshort.connectionState == ConnectionState.done) {
                         if (Provider.of<AppointmentProvider>(context)
