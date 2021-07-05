@@ -7,6 +7,7 @@ import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/symptomFormProvider.dart';
 import 'package:mevaccine/screen/landing_screen.dart';
+import 'package:mevaccine/screen/person_screen.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
 import 'package:mevaccine/widget/button/smallButton.dart';
 import 'package:mevaccine/widget/form/symptomCard.dart';
@@ -48,8 +49,13 @@ class _SymptomFormState extends State<SymptomForm> {
                       SmallButton(
                         text: Languages.of(ctx)!.okButtonLabel,
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed(LandingScreen.routeName);
+                          if (widget.userId == null) {
+                            Navigator.of(context)
+                                .pushReplacementNamed(LandingScreen.routeName);
+                          } else {
+                            Navigator.of(context).popUntil(
+                                ModalRoute.withName(PersonScreen.routeName));
+                          }
                         },
                         color: primary03,
                         width: 100,
