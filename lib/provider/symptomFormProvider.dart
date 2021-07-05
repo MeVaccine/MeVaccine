@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import '../config/string.dart';
 import 'package:dio/dio.dart';
 import 'package:mevaccine/config/api.dart';
@@ -86,9 +87,10 @@ class SymptomfromProvider with ChangeNotifier {
     return _userInfo;
   }
 
-  Future<void> checkUser(String id) async {
+  Future<void> checkUser([String? id]) async {
     try {
       final response = await Dio().get(apiEndpoint + '/symptom/eligible',
+          queryParameters: id == null ? null : {'userId': id},
           options: Options(headers: {"Authorization": "Bearer " + token}));
       _userInfo = UserInfo(
           firstname_en: response.data['firstname_en'],
@@ -119,21 +121,31 @@ class SymptomfromProvider with ChangeNotifier {
         errorStatusCode = true;
         print(error.response!.statusCode);
       }
+      throw HttpException(generalException, generalExceptionTH);
     }
   }
 
   Future<void> sumbitForm(bool headache, bool nausea, bool fatigue, bool chills,
       bool musclePain, bool tiredness, String others) async {
-    final response = await Dio().post(apiEndpoint + '/symptom/new',
-        data: {
-          'headache': headache,
-          'nausea': nausea,
-          'fatigue': fatigue,
-          'chills': chills,
-          'musclePain': musclePain,
-          'tiredness': tiredness,
-          'others': others
-        },
-        options: Options(headers: {"Authorization": "Bearer " + token}));
+    try {
+      final response = await Dio().post(apiEndpoint + '/symptom/new',
+          queryParameters:
+              _userInfo.id.isEmpty ? null : {'userId': _userInfo.id},
+          data: {
+            'headache': headache,
+            'nausea': nausea,
+            'fatigue': fatigue,
+            'chills': chills,
+            'musclePain': musclePain,
+            'tiredness': tiredness,
+            'others': others
+          },
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+    } on DioError catch (error) {
+      if (error.response!.statusCode == 409) {
+        errorStatusCode = true;
+      }
+      throw HttpException(generalException, generalExceptionTH);
+    }
   }
 }
