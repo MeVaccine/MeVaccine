@@ -259,4 +259,8 @@ class LanguageEN extends Languages {
   String httpExceptionErrorMessage(HttpException e) => e.messageEN;
   @override
   String get errorDialogHeading => "Error Occurred!";
+
+  //Dialog
+  @override
+  String get warnDialogSelectPerson => "กรุณาเลือกคนที่คุณต้องการจะฉีดวัคซีน";
 }

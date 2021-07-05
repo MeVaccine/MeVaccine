@@ -250,16 +250,5 @@ class LanguageTH extends Languages {
 
   //Dialog
   @override
-  String get warnDialogNationalIDAndPhoneNumber =>
-      "กรุณากรอกบัตรประชาชนและเบอร์โทรศัพท์";
-  @override
-  String get warnDialogVerificationCode =>
-      "กรุณากรอกโค้ดยืนยันจากโทรศัพท์ของคุณ";
-  @override
-  String get warnDialogNationaIDAndLaser =>
-      "กรุณากรอกบัตรประชาชนและหลังบัตรประชาชน";
-  @override
-  String get warnDialogPhoneAndAddress => "กรุณากรอกเบอร์โทรศัพท์และที่อยู่";
-  @override
-  String get warnDialogSymptomForm => "กร";
+  String get warnDialogSelectPerson => "กรุณาเลือกคนที่คุณต้องการจะฉีดวัคซีน";
 }
