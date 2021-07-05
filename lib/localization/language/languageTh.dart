@@ -1,4 +1,8 @@
 // ignore_for_file: file_names
+<<<<<<< HEAD
+=======
+
+>>>>>>> bb9e316f7ff3b90b529f30c69c7ff61d508ee432
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
@@ -72,9 +76,11 @@ class LanguageTH extends Languages {
   @override
   String get laserIDInputLabel => "รหัสหลังบัตรประชาชน";
   @override
-  String get invalidNationalOrLaserIDErrorMessage => "";
+  String get invalidNationalOrLaserIDErrorMessage =>
+      "กรุณาใส่เลขบัตรประชาชนและเลขหลังบัตรประชาชน";
   @override
-  String get invalidPhoneNumberOrAddressErrorMessage => "";
+  String get invalidPhoneNumberOrAddressErrorMessage =>
+      "กรุณาใส่เบอร์โทรศัพท์และที่อยู่ของคุณ";
   @override
   String get registerLocationHeading => "สถานที่รับวัคซีน";
   @override
@@ -204,7 +210,8 @@ class LanguageTH extends Languages {
   @override
   String get dateInputLabel => "เลือกวันที่";
   @override
-  String get noDateTimeErrorMessage => "";
+  String get noDateTimeErrorMessage =>
+      "กรุณาเลือกเวลาและวันที่ \nที่ต้องการจะฉีดวัคซีน";
   // New Appointment Step 4 Screen
   @override
   String get selectVaccineHeading => "เลือกวัคซีน";
@@ -247,16 +254,8 @@ class LanguageTH extends Languages {
 
   //Dialog
   @override
-  String get warnDialogNationalIDAndPhoneNumber =>
-      "กรุณากรอกบัตรประชาชนและเบอร์โทรศัพท์";
+  String get warnDialogSelectPerson =>
+      "กรุณาเลือกคนที่คุณ \nต้องการจะฉีดวัคซีน";
   @override
-  String get warnDialogVerificationCode =>
-      "กรุณากรอกโค้ดยืนยันจากโทรศัพท์ของคุณ";
-  @override
-  String get warnDialogNationaIDAndLaser =>
-      "กรุณากรอกบัตรประชาชนและหลังบัตรประชาชน";
-  @override
-  String get warnDialogPhoneAndAddress => "กรุณากรอกเบอร์โทรศัพท์และที่อยู่";
-  @override
-  String get warnDialogSymptomForm => "กร";
+  String get warnDialogCannotDoForm => "ไม่สามารถทำแบบสอบถามได้";
 }
