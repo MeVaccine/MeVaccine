@@ -196,18 +196,7 @@ class AuthenicateProvider with ChangeNotifier {
     prefix_en: "",
     prefix_th: "",
     id: "",
-    appointment: Appointment(
-        date: DateTime.now(),
-        doesNumber: 0,
-        id: "",
-        location: Location(
-            id: "",
-            name_en: "",
-            name_th: "",
-            priority: 0,
-            province_en: "",
-            province_th: ""),
-        status: ""),
+    appointment: null,
     vaccineUser: VaccineUser(id: "", maxAge: 0, minAge: 0, name: ""),
   );
   final List<Map<String, String>> dataProvince = [
@@ -337,6 +326,8 @@ class AuthenicateProvider with ChangeNotifier {
   }
 
   Future<void> check(String nationalID, String laserID) async {
+    print(nationalID);
+    print(laserID);
     try {
       final response = await Dio().post(apiEndpoint + '/person/add/check',
           data: {
@@ -534,11 +525,11 @@ class AuthenicateProvider with ChangeNotifier {
           prefix_en: response.data['prefix_en'],
           prefix_th: response.data['prefix_th'],
           id: response.data['id'],
-          appointment: response.data['appointment']['_id'] == null
+          appointment: response.data['appointment'] == null
               ? null
               : Appointment(
-                  date:
-                      DateTime.parse(response.data['appointment']['dateTime']),
+                  date: DateTime.parse(response.data['appointment']['dateTime'])
+                      .toLocal(),
                   doesNumber: response.data['appointment']['doesNumber'],
                   id: response.data['appointment']['_id'],
                   status: response.data['appointment']['status'],
@@ -555,16 +546,12 @@ class AuthenicateProvider with ChangeNotifier {
                       province_th: response.data['appointment']['location']
                           ['province_th'])),
           vaccineUser: response.data['vaccine'] == null
-              ? VaccineUser(id: '',
-                  maxAge: 0,
-                  minAge:0,
-                  name: '')
+              ? VaccineUser(id: '', maxAge: 0, minAge: 0, name: '')
               : VaccineUser(
                   id: response.data['vaccine']['_id'],
                   maxAge: response.data['appointment']['maxAge'],
                   minAge: response.data['appointment']['minAge'],
                   name: response.data['appointment']['name']));
-
       notifyListeners();
     } on DioError catch (error) {
       throw HttpException(generalException, generalExceptionTH);
@@ -692,6 +679,19 @@ class AuthenicateProvider with ChangeNotifier {
       this._token = "";
     } on DioError catch (error) {
       // For future error handling
+      throw HttpException(generalException, generalExceptionTH);
+    }
+  }
+
+  Future<bool> tryAutoLogin() async {
+    try {
+      if (_token.isNotEmpty) return true;
+      final prefs = await SharedPreferences.getInstance();
+      if (!prefs.containsKey('userToken')) return false;
+      final token = prefs.getString('userToken');
+      _token = token!;
+      return true;
+    } catch (error) {
       throw HttpException(generalException, generalExceptionTH);
     }
   }

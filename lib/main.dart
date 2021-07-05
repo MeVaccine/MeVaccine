@@ -3,9 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:mevaccine/provider/addPerson.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mevaccine/localization/localizations_delegate.dart';
+import 'package:mevaccine/provider/appointmentProvider.dart';
 import 'package:mevaccine/provider/changeLanguageProvider.dart';
 import 'package:mevaccine/provider/newAppointmentProvider.dart';
 import 'package:mevaccine/screen/appointment/mainstep_screen.dart';
+import 'package:mevaccine/screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
 import './screen/symptom_form_screen.dart';
@@ -114,6 +116,11 @@ class _MyAppState extends State<MyApp> {
             update: (ctx, auth, prev) => SymptomfromProvider(
                   token: auth.token,
                 )),
+        ChangeNotifierProxyProvider<AuthenicateProvider, AppointmentProvider>(
+            create: (ctx) => AppointmentProvider(''),
+            update: (ctx, auth, prev) => AppointmentProvider(
+                  auth.token,
+                )),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -123,9 +130,10 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.light().copyWith(primary: primary01),
         ),
         //หน้าแรกสุด
-        home: LoginScreen(),
+        home: HomeScreen(),
         // Routes เอาไว้ ตอนไปหน้าอื่นก็จะมา assign routeName เอ่ไว้ตรงนี้ เพื่อบอกว่า routeName นี้ไปไหน
         routes: {
+          LoginScreen.routeName: (ctx) => LoginScreen(),
           VerificationChangeNumber.routeName: (ctx) =>
               VerificationChangeNumber(),
           SymptomFormScreen.routeName: (ctx) => SymptomFormScreen(),

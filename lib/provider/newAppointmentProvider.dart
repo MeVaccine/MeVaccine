@@ -350,7 +350,6 @@ class NewAppointmentProvider with ChangeNotifier {
                     })
                 .toList()
           });
-      resetData();
       // notifyListeners();
     } on DioError catch (error) {
       if (error.response!.statusCode == 400) {

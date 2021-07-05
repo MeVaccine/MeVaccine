@@ -124,16 +124,23 @@ class SymptomfromProvider with ChangeNotifier {
 
   Future<void> sumbitForm(bool headache, bool nausea, bool fatigue, bool chills,
       bool musclePain, bool tiredness, String others) async {
-    final response = await Dio().post(apiEndpoint + '/symptom/new',
-        data: {
-          'headache': headache,
-          'nausea': nausea,
-          'fatigue': fatigue,
-          'chills': chills,
-          'musclePain': musclePain,
-          'tiredness': tiredness,
-          'others': others
-        },
-        options: Options(headers: {"Authorization": "Bearer " + token}));
+    print(headache);
+    print(nausea);
+    print(fatigue);
+    try {
+      final response = await Dio().post(apiEndpoint + '/symptom/new',
+          data: {
+            'headache': headache,
+            'nausea': nausea,
+            'fatigue': fatigue,
+            'chills': chills,
+            'musclePain': musclePain,
+            'tiredness': tiredness,
+            'others': others
+          },
+          options: Options(headers: {"Authorization": "Bearer " + token}));
+    } on DioError catch (error) {
+      print(error.response!.statusCode);
+    }
   }
 }

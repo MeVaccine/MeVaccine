@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:intl/intl.dart';
 import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
-import 'package:mevaccine/widget/Logo/icon_vaccine.dart';
 import 'package:mevaccine/widget/Logo/icon_vaccine_white.dart';
 import 'package:mevaccine/widget/layout/iconWithText.dart';
-import 'package:mevaccine/widget/layout/vaccine.dart';
 
 class CardHistory extends StatelessWidget {
-  const CardHistory({Key? key}) : super(key: key);
+  final DateTime time;
+  final String hospitalName;
+  final String vaccine;
+  final int dose;
+  CardHistory(
+      {required this.time,
+      required this.hospitalName,
+      required this.vaccine,
+      required this.dose});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +36,7 @@ class CardHistory extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            Languages.of(context)!.vaccineDoseHeading,
+            Languages.of(context)!.vaccineDoseHeading(dose),
             style: TextStyle(
                 color: white, fontSize: 14, fontWeight: FontWeight.w500),
           ),
@@ -39,13 +46,13 @@ class CardHistory extends StatelessWidget {
               IconWithText(
                 color: white,
                 icon: FeatherIcons.calendar,
-                text: '06-03-2021',
+                text: DateFormat('dd-MM-yyyy').format(time),
               ),
               kSizedBoxHorizontalM,
               IconWithText(
                 color: white,
                 icon: FeatherIcons.clock,
-                text: '9:00',
+                text: DateFormat.Hm().format(time),
               ),
             ],
           ),
@@ -53,7 +60,7 @@ class CardHistory extends StatelessWidget {
           IconWithText(
             color: white,
             icon: FeatherIcons.mapPin,
-            text: 'Siriraj Piyamaharajkarun Hospital',
+            text: hospitalName,
           ),
           kSizedBoxVerticalXXS,
           Row(
@@ -61,7 +68,7 @@ class CardHistory extends StatelessWidget {
               VaccineIconWhite(width: 19, height: 19),
               kSizedBoxHorizontalXS,
               Text(
-                'Sinovac Life Sciences',
+                vaccine,
                 style: TextStyle(color: white, fontSize: 14),
               )
             ],

@@ -130,7 +130,16 @@ class LanguageEN extends Languages {
   @override
   String get myAppointmentHeading => "Your Appointment";
   @override
-  String get vaccineDoseHeading => "1 st Dose";
+  String vaccineDoseHeading(int dose) {
+    if (dose == 1) {
+      return "$dose st Dose";
+    } else if (dose == 2) {
+      return "$dose nd Dose";
+    } else if (dose == 3) {
+      return "$dose rd Dose";
+    }
+    return "$dose th Dose";
+  }
 
   // Person Screen
   @override
@@ -151,6 +160,8 @@ class LanguageEN extends Languages {
   String get addPersonHeading => "Add a person";
   @override
   String get deletePersonConfirmMessage => "Do you want to delete the person?";
+  @override
+  String get personAppointmentsButtonLebel => "Appointments";
 
   // Symptom Assessment Form Screen
   @override
@@ -178,6 +189,8 @@ class LanguageEN extends Languages {
   @override
   String get emptySymptomFormErrorMessage =>
       "Please enter the symptom assesment form";
+  @override
+  String get confirmSymptomForm => "Thank your for doing form";
 
   // New Appointment Step 1 Screen
   @override

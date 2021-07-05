@@ -68,7 +68,7 @@ abstract class Languages {
   // My Appointments Screen
   String get noAppointmentMessage;
   String get myAppointmentHeading;
-  String get vaccineDoseHeading;
+  String vaccineDoseHeading(int dose);
 
   // Person Screen
   String get personScreenGreetingMessage;
@@ -79,6 +79,7 @@ abstract class Languages {
   String get personSymptomFormButtonLabel;
   String get addPersonHeading;
   String get deletePersonConfirmMessage;
+  String get personAppointmentsButtonLebel;
 
   // Symptom Assessment Form Screen
   String get symptomFormHeading;
@@ -93,6 +94,7 @@ abstract class Languages {
   String get yesMessageLabel;
   String get noMessageLabel;
   String get emptySymptomFormErrorMessage;
+  String get confirmSymptomForm;
 
   // New Appointment Step 1 Screen
   String get selectPersonHeading;
