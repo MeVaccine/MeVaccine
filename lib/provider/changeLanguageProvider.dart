@@ -18,10 +18,13 @@ class ChangeLanguageProvider with ChangeNotifier {
 
   Future<void> initSelectedLang() async {
     final locale = await getLocale();
-    if (locale.toLanguageTag() == 'en')
+    if (locale.toLanguageTag() == 'en') {
       isEngSelected = true;
-    else
+      isThaiSelected = false;
+    } else {
       isThaiSelected = true;
+      isEngSelected = false;
+    }
   }
 
   void selectEngish() {
