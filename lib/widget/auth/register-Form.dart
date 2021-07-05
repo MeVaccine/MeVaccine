@@ -45,7 +45,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   Future<void> addPerson() async {
     var nationalID = _nationID.text.replaceAll("-", "");
-    var laserID = _laserID.text;
+    var laserID = _laserID.text.replaceAll("-", "");
     if (validate()) {
       setState(() {
         _isLoading = true;
