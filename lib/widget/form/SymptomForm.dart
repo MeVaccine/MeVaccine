@@ -35,8 +35,8 @@ class _SymptomFormState extends State<SymptomForm> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 30),
                       alignment: Alignment.topCenter,
                       child: Text(
                         Languages.of(ctx)!.confirmSymptomForm,
@@ -121,6 +121,16 @@ class _SymptomFormState extends State<SymptomForm> {
 
   bool cannotSubmit() {
     return (valueYes == false && valueNo == false);
+  }
+
+  bool notAnswer() {
+    return (valueHeadache == false &&
+        valueNausea == false &&
+        valueFatigue == false &&
+        valueChills == false &&
+        valueMusclePain == false &&
+        valueTiderness == false &&
+        valueOther == false);
   }
 
   final _otherController = TextEditingController();
@@ -294,7 +304,7 @@ class _SymptomFormState extends State<SymptomForm> {
                       kSizedBoxVerticalS,
                       PrimaryButton(
                         text: Languages.of(context)!.submitButtonLabel,
-                        onPressed: submitForm,
+                        onPressed: notAnswer() ? _showErrorDialog : submitForm,
                         color: primary01,
                       )
                     ],
@@ -303,7 +313,7 @@ class _SymptomFormState extends State<SymptomForm> {
               )
             : Container(
                 height: 330,
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

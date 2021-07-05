@@ -15,6 +15,7 @@ class CardEachPerson extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       height: kSizeXL * 1.25,
       width: double.infinity,

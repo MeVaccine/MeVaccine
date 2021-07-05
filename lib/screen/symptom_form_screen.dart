@@ -85,7 +85,7 @@ class _SymptomFormScreenState extends State<SymptomFormScreen> {
                                 : Container()
                           ]),
                         )))
-                : Scaffold(
+                : const Scaffold(
                     body: Center(child: CircularProgressIndicator()),
                   ));
   }

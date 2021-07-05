@@ -1,7 +1,4 @@
 // ignore_for_file: file_names
-
-import 'dart:html';
-
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
