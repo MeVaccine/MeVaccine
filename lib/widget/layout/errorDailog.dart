@@ -38,7 +38,8 @@ class ErrorDialog extends StatelessWidget {
         ),
       ],
       elevation: kSizeXXS,
-      shape: const RoundedRectangleBorder(borderRadius: kBorderRadiusS),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
     );
   }
 }

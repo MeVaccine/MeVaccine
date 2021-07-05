@@ -10,6 +10,8 @@ class WarningDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         content: Container(
             height: 200,
             child: Column(
