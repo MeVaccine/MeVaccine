@@ -161,7 +161,10 @@ class _MainstepState extends State<Mainstep> {
                         if (_currentTab == Step1.routeName) {
                           if (newAppointmentProvider.selectedPerson.isEmpty) {
                             // Show error dialog
-                            dialog(context: context, text: 'hello');
+                            dialog(
+                                context: context,
+                                text: Languages.of(context)!
+                                    .warnDialogSelectPerson);
                           } else {
                             setState(() => {_currentTab = Step2.routeName});
                           }
@@ -171,7 +174,10 @@ class _MainstepState extends State<Mainstep> {
                           if (newAppointmentProvider.selectedDateTimeIndex ==
                               -1) {
                             // Show error dialog
-                            dialog(context: context, text: 'hello');
+                            dialog(
+                                context: context,
+                                text: Languages.of(context)!
+                                    .noDateTimeErrorMessage);
                           } else {
                             setState(() => {_currentTab = Step4.routeName});
                           }
@@ -179,7 +185,7 @@ class _MainstepState extends State<Mainstep> {
                           if (newAppointmentProvider.selectedVaccine
                               .contains(null)) {
                             // Show error dialog
-                            dialog(context: context, text: 'hello');
+
                           } else {
                             _showDialog();
                           }

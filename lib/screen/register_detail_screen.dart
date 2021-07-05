@@ -6,6 +6,7 @@ import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/model/textType.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/widget/layout/errorDailog.dart';
+import 'package:mevaccine/widget/layout/warningDialog.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 import '../config/color.dart';
@@ -50,9 +51,9 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
       Navigator.of(context).pushNamed(VerificationScreen.routeName);
     } on HttpException catch (error) {
       setState(() => _isLoading = false);
-      showErrorDialog(
+      dialog(
           context: context,
-          text: Languages.of(context)!.httpExceptionErrorMessage(error));
+          text: Languages.of(context)!.invalidPhoneNumberOrAddressErrorMessage);
     }
   }
 

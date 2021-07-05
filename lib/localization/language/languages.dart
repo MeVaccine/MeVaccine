@@ -133,11 +133,6 @@ abstract class Languages {
   String get errorDialogHeading;
 
   // Dialog
-  String get warnDialogNationalIDAndPhoneNumber;
-  String get warnDialogVerificationCode;
-  String get warnDialogNationaIDAndLaser;
-  String get warnDialogPhoneAndAddress;
-  String get warnDialogSymptomForm;
   String get warnDialogSelectPerson;
-  String get warnDialogSelectDateAndTime;
+  String get warnDialogCannotDoForm;
 }

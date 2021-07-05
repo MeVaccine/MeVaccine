@@ -259,4 +259,10 @@ class LanguageEN extends Languages {
   String httpExceptionErrorMessage(HttpException e) => e.messageEN;
   @override
   String get errorDialogHeading => "Error Occurred!";
+
+  //Dialog
+  @override
+  String get warnDialogSelectPerson => "Please select person";
+  @override
+  String get warnDialogCannotDoForm => "Cannot do symptom form";
 }
