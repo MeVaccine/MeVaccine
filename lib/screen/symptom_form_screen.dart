@@ -67,6 +67,7 @@ class _SymptomFormScreenState extends State<SymptomFormScreen> {
                                     absorbing:
                                         authen.errorStatusCode ? true : false,
                                     child: SymptomForm(
+                                      userId: userId,
                                       nameVaccine:
                                           authen.userInfo.vaccineUser!.name,
                                     ),

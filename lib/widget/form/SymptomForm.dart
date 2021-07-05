@@ -18,7 +18,8 @@ import '../../model/textType.dart';
 
 class SymptomForm extends StatefulWidget {
   String nameVaccine;
-  SymptomForm({required this.nameVaccine});
+  String? userId;
+  SymptomForm({required this.nameVaccine, this.userId});
   @override
   State<SymptomForm> createState() => _SymptomFormState();
 }
@@ -104,7 +105,8 @@ class _SymptomFormState extends State<SymptomForm> {
           valueChills,
           valueMusclePain,
           valueTiderness,
-          _otherController.text);
+          _otherController.text,
+          widget.userId);
       _showDialog();
     } on HttpException catch (error) {
       showErrorDialog(

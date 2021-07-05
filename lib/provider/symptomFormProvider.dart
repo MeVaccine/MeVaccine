@@ -128,11 +128,12 @@ class SymptomfromProvider with ChangeNotifier {
   }
 
   Future<void> sumbitForm(bool headache, bool nausea, bool fatigue, bool chills,
-      bool musclePain, bool tiredness, String others) async {
+      bool musclePain, bool tiredness, String others,
+      [String? id]) async {
     try {
+      print(id);
       final response = await Dio().post(apiEndpoint + '/symptom/new',
-          queryParameters:
-              _userInfo.id.isEmpty ? null : {'userId': _userInfo.id},
+          queryParameters: id == null ? null : {'userId': id},
           data: {
             'headache': headache,
             'nausea': nausea,
