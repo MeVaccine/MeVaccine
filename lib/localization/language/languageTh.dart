@@ -12,7 +12,7 @@ class LanguageTH extends Languages {
   @override
   String get doneButtonLabel => "ยืนยัน";
   @override
-  String get okButtonLabel => "โอเค";
+  String get okButtonLabel => "ตกลง";
   @override
   String get loginButtonLabel => "เข้าสู่ระบบ";
   @override
@@ -251,7 +251,8 @@ class LanguageTH extends Languages {
   //Dialog
   @override
   String get warnDialogSelectPerson =>
-      "กรุณาเลือกคนที่คุณ \nต้องการจะฉีดวัคซีน";
+      "กรุณาเลือกคนที่คุณ \nต้องการจะรับวัคซีน";
   @override
-  String get warnDialogCannotDoForm => "ไม่สามารถทำแบบสอบถามได้";
+  String get warnDialogCannotDoForm =>
+      "คุณยังไม่ได้รับวัคซีนหรือคุณได้ทำแบบสอบถามไปแล้วในวันนี้";
 }

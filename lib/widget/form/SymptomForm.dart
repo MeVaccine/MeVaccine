@@ -46,7 +46,7 @@ class _SymptomFormState extends State<SymptomForm> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SmallButton(
-                        text: Languages.of(ctx)!.confirmButtonLabel,
+                        text: Languages.of(ctx)!.okButtonLabel,
                         onPressed: () {
                           Navigator.of(context)
                               .pushReplacementNamed(LandingScreen.routeName);
@@ -82,7 +82,7 @@ class _SymptomFormState extends State<SymptomForm> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SmallButton(
-                        text: Languages.of(ctx)!.confirmButtonLabel,
+                        text: Languages.of(ctx)!.okButtonLabel,
                         onPressed: () {
                           Navigator.of(context).pop();
                         },

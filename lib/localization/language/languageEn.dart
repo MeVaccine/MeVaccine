@@ -262,7 +262,8 @@ class LanguageEN extends Languages {
 
   //Dialog
   @override
-  String get warnDialogSelectPerson => "Please select person";
+  String get warnDialogSelectPerson => "Please select at least 1 person";
   @override
-  String get warnDialogCannotDoForm => "Cannot do symptom form";
+  String get warnDialogCannotDoForm =>
+      "You already did the form today or havn't been vaccinated yet";
 }
