@@ -1,7 +1,5 @@
 // ignore_for_file: file_names
 
-import 'dart:html';
-
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
@@ -207,7 +205,8 @@ class LanguageTH extends Languages {
   @override
   String get dateInputLabel => "เลือกวันที่";
   @override
-  String get noDateTimeErrorMessage => "";
+  String get noDateTimeErrorMessage =>
+      "กรุณาเลือกเวลาและวันที่ \nที่ต้องการจะฉีดวัคซีน";
   // New Appointment Step 4 Screen
   @override
   String get selectVaccineHeading => "เลือกวัคซีน";
@@ -250,5 +249,6 @@ class LanguageTH extends Languages {
 
   //Dialog
   @override
-  String get warnDialogSelectPerson => "กรุณาเลือกคนที่คุณต้องการจะฉีดวัคซีน";
+  String get warnDialogSelectPerson =>
+      "กรุณาเลือกคนที่คุณ \nต้องการจะฉีดวัคซีน";
 }

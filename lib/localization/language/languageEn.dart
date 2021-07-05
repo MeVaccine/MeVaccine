@@ -262,5 +262,5 @@ class LanguageEN extends Languages {
 
   //Dialog
   @override
-  String get warnDialogSelectPerson => "กรุณาเลือกคนที่คุณต้องการจะฉีดวัคซีน";
+  String get warnDialogSelectPerson => "Please select person";
 }
