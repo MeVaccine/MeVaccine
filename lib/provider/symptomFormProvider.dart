@@ -88,6 +88,8 @@ class SymptomfromProvider with ChangeNotifier {
   }
 
   Future<void> checkUser([String? id]) async {
+    errorStatusCode = false;
+    _userInfo.vaccineUser!.name = '';
     try {
       final response = await Dio().get(apiEndpoint + '/symptom/eligible',
           queryParameters: id == null ? null : {'userId': id},
