@@ -103,6 +103,7 @@ class _PersonScreenState extends State<PersonScreen> {
                                         child: CardEachPerson(
                                           fullName: Languages.of(context)!
                                               .fullNamePerson(e),
+                                          id: e.id,
                                         )),
                                   ),
                                 ],

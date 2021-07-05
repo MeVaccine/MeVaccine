@@ -8,7 +8,8 @@ import '../../widget/person/buttonEachPerson.dart';
 
 class CardEachPerson extends StatelessWidget {
   String fullName;
-  CardEachPerson({required this.fullName});
+  String id;
+  CardEachPerson({required this.fullName, required this.id});
   @override
   Widget build(BuildContext context) {
     return Container(
