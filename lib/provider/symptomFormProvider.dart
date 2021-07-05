@@ -121,7 +121,6 @@ class SymptomfromProvider with ChangeNotifier {
     } on DioError catch (error) {
       if (error.response!.statusCode == 409) {
         errorStatusCode = true;
-        print(error.response!.statusCode);
       }
       throw HttpException(generalException, generalExceptionTH);
     }
@@ -131,7 +130,6 @@ class SymptomfromProvider with ChangeNotifier {
       bool musclePain, bool tiredness, String others,
       [String? id]) async {
     try {
-      print(id);
       final response = await Dio().post(apiEndpoint + '/symptom/new',
           queryParameters: id == null ? null : {'userId': id},
           data: {
