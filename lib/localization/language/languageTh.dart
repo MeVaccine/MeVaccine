@@ -73,9 +73,11 @@ class LanguageTH extends Languages {
   @override
   String get laserIDInputLabel => "รหัสหลังบัตรประชาชน";
   @override
-  String get invalidNationalOrLaserIDErrorMessage => "";
+  String get invalidNationalOrLaserIDErrorMessage =>
+      "กรุณาใส่เลขบัตรประชาชนและเลขหลังบัตรประชาชน";
   @override
-  String get invalidPhoneNumberOrAddressErrorMessage => "";
+  String get invalidPhoneNumberOrAddressErrorMessage =>
+      "กรุณาใส่เบอร์โทรศัพท์และที่อยู่ของคุณ";
   @override
   String get registerLocationHeading => "สถานที่รับวัคซีน";
   @override
