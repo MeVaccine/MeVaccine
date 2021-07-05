@@ -148,6 +148,8 @@ class LanguageTH extends Languages {
   String get addPersonHeading => "เพิ่มผู้คน";
   @override
   String get deletePersonConfirmMessage => "";
+  @override
+  String get personAppointmentsButtonLebel => "นัดหมายการรับวัคซีน";
 
   // Symptom Assessment Form Screen
   @override

@@ -160,6 +160,8 @@ class LanguageEN extends Languages {
   String get addPersonHeading => "Add a person";
   @override
   String get deletePersonConfirmMessage => "Do you want to delete the person?";
+  @override
+  String get personAppointmentsButtonLebel => "Appointments";
 
   // Symptom Assessment Form Screen
   @override

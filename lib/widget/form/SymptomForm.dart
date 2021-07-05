@@ -159,8 +159,14 @@ class _SymptomFormState extends State<SymptomForm> {
               color: accent02,
             ),
             kSizedBoxHorizontalXS,
-            MainText(widget.nameVaccine, text_type.regular,
-                kFontSizeHeadline4 * 0.8, accent02)
+            Consumer<SymptomfromProvider>(
+              builder: (ctx, symptom, child) => MainText(
+                symptom.userInfo.vaccineUser!.name,
+                text_type.regular,
+                kFontSizeHeadline4 * 0.8,
+                accent02,
+              ),
+            )
           ],
         ),
         Row(

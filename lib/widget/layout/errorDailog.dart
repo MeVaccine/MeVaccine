@@ -14,7 +14,8 @@ class ErrorDialog extends StatelessWidget {
       title: RichText(
         text: TextSpan(
             text: Languages.of(context)!.errorDialogHeading,
-            style: const TextStyle(color: primary03, fontSize: 30)),
+            style: const TextStyle(
+                color: primary03, fontSize: 30, fontFamily: 'Prompt')),
       ),
       content: Container(
           width: MediaQuery.of(context).size.width * 0.5,

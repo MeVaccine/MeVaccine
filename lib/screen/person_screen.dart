@@ -22,57 +22,64 @@ class PersonScreen extends StatefulWidget {
 class _PersonScreenState extends State<PersonScreen> {
   @override
   Widget build(BuildContext context) {
-    Provider.of<PersonProvider>(context, listen: false).getPerson();
-    return Consumer<PersonProvider>(
-        builder: (ctx, authen, child) => Scaffold(
-              body: Stack(
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(width: double.infinity, height: double.infinity),
+          BlackgroundColor(),
+          Positioned(
+            top: 150,
+            left: 22.5,
+            child: Container(
+              width: 330,
+              height: 150,
+              decoration: BoxDecoration(
+                  color: white,
+                  borderRadius: kBorderRadiusS,
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 40,
+                        offset: const Offset(0, 16),
+                        spreadRadius: 0,
+                        color: const Color(0xFF7090B0).withOpacity(0.2)),
+                  ]),
+              child: Consumer<PersonProvider>(
+                builder: (ctx, person, _) => CardPersonLayout(
+                  name: Languages.of(ctx)!
+                      .firstnameString(person.name_en, person.name_th),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 330,
+            left: 22.5,
+            child: Container(
+              width: 330,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(width: double.infinity, height: double.infinity),
-                  BlackgroundColor(),
-                  Positioned(
-                    top: 150,
-                    left: 22.5,
-                    child: Container(
-                      width: 330,
-                      height: 150,
-                      decoration: BoxDecoration(
-                          color: white,
-                          borderRadius: kBorderRadiusS,
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 40,
-                                offset: const Offset(0, 16),
-                                spreadRadius: 0,
-                                color:
-                                    const Color(0xFF7090B0).withOpacity(0.2)),
-                          ]),
-                      child: CardPersonLayout(
-                        name: Languages.of(ctx)!
-                            .firstnameString(authen.name_en, authen.name_th),
-                      ),
-                    ),
+                  Text(
+                    Languages.of(context)!.yourPersonHeading,
+                    style: TextStyle(
+                        color: primary01, fontSize: kFontSizeHeadline4),
                   ),
-                  Positioned(
-                    top: 330,
-                    left: 22.5,
-                    child: Container(
-                      width: 330,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            Languages.of(context)!.yourPersonHeading,
-                            style: TextStyle(
-                                color: primary01, fontSize: kFontSizeHeadline4),
-                          ),
-                          kSizedBoxS,
-                          if (authen.person.isEmpty)
-                            EmptyPerson()
+                  kSizedBoxS,
+                  FutureBuilder(
+                      future:
+                          Provider.of<PersonProvider>(context, listen: false)
+                              .getPerson(),
+                      builder: (ctx, snapshort) {
+                        if (snapshort.connectionState == ConnectionState.done) {
+                          final personProvider =
+                              Provider.of<PersonProvider>(ctx, listen: false);
+                          if (personProvider.person.isEmpty)
+                            return EmptyPerson();
                           else
-                            SingleChildScrollView(
+                            return SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  ...authen.person.map(
+                                  ...personProvider.person.map(
                                     (e) => Dismissible(
                                         key: ValueKey(e.id),
                                         background: Container(
@@ -96,55 +103,58 @@ class _PersonScreenState extends State<PersonScreen> {
                                         child: CardEachPerson(
                                           fullName: Languages.of(context)!
                                               .fullNamePerson(e),
+                                          id: e.id,
                                         )),
                                   ),
                                 ],
                               ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  // AppBar(
-                  //   //สีตามพื้นหลัง
-                  //   backgroundColor: Colors.transparent,
-                  //   // `ไม้มีเงา
-                  //   elevation: 0,
-                  //   // สี icon appbar
-
-                  //   iconTheme: const IconThemeData(color: white),
-                  // ),
-                  Positioned(
-                    top: 720,
-                    left: 290,
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(AddPerson.routeName);
-                      },
-                      backgroundColor: primary01,
-                      child: Icon(
-                        Icons.add,
-                        color: white,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 50,
-                    left: 10,
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context,
-                            ModalRoute.withName(LandingScreen.routeName));
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: white,
-                        size: kSizeM,
-                      ),
-                    ),
-                  ),
+                            );
+                        }
+                        return Center(child: CircularProgressIndicator());
+                      }),
                 ],
               ),
-            ));
+            ),
+          ),
+          // AppBar(
+          //   //สีตามพื้นหลัง
+          //   backgroundColor: Colors.transparent,
+          //   // `ไม้มีเงา
+          //   elevation: 0,
+          //   // สี icon appbar
+
+          //   iconTheme: const IconThemeData(color: white),
+          // ),
+          Positioned(
+            top: 50,
+            left: 10,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context, LandingScreen.routeName);
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: white,
+                size: kSizeM,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 720,
+            left: 290,
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(AddPerson.routeName);
+              },
+              backgroundColor: primary01,
+              child: Icon(
+                Icons.add,
+                color: white,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
