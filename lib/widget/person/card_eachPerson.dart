@@ -40,7 +40,7 @@ class CardEachPerson extends StatelessWidget {
                 primary01),
           ]),
           ButtonEachPerson(
-            text: Languages.of(context)!.myAppointmentMenuLebel,
+            text: Languages.of(context)!.personAppointmentsButtonLabel,
             onTap: () {
               Navigator.of(context)
                   .pushNamed(HistoryVaccinateScreen.routeName, arguments: id);

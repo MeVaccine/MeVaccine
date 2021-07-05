@@ -79,6 +79,7 @@ abstract class Languages {
   String get personSymptomFormButtonLabel;
   String get addPersonHeading;
   String get deletePersonConfirmMessage;
+  String get personAppointmentsButtonLebel;
 
   // Symptom Assessment Form Screen
   String get symptomFormHeading;

@@ -148,6 +148,8 @@ class LanguageTH extends Languages {
   String get addPersonHeading => "เพิ่มผู้คน";
   @override
   String get deletePersonConfirmMessage => "";
+  @override
+  String get personAppointmentsButtonLebel => "นัดหมายการรับวัคซีน";
 
   // Symptom Assessment Form Screen
   @override
@@ -174,7 +176,8 @@ class LanguageTH extends Languages {
   @override
   String get noMessageLabel => "ไม่ใช่";
   @override
-  String get emptySymptomFormErrorMessage => "ต้องทำการฉีดวัคซีนก่อนถึงจะทำแบบสอบถามได้";
+  String get emptySymptomFormErrorMessage =>
+      "ต้องทำการฉีดวัคซีนก่อนถึงจะทำแบบสอบถามได้";
 
   // New Appointment Step 1 Screen
   @override
