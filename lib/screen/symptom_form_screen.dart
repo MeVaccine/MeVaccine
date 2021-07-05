@@ -21,12 +21,11 @@ class SymptomFormScreen extends StatefulWidget {
 class _SymptomFormScreenState extends State<SymptomFormScreen> {
   @override
   Widget build(BuildContext context) {
+    final userId = ModalRoute.of(context)!.settings.arguments as String?;
     return FutureBuilder(
         future: Provider.of<SymptomfromProvider>(
           context,
-        ).checkUser(Provider.of<AuthenicateProvider>(context, listen: false)
-            .userInfo
-            .id),
+        ).checkUser(userId),
         builder: (context, snapshort) =>
             snapshort.connectionState == ConnectionState.done
                 ? Consumer<SymptomfromProvider>(
