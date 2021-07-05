@@ -189,6 +189,8 @@ class LanguageEN extends Languages {
   @override
   String get emptySymptomFormErrorMessage =>
       "Please enter the symptom assesment form";
+  @override
+  String get confirmSymptomForm => "Thank your for doing form";
 
   // New Appointment Step 1 Screen
   @override

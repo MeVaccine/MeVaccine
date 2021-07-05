@@ -6,7 +6,9 @@ import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/symptomFormProvider.dart';
+import 'package:mevaccine/screen/landing_screen.dart';
 import 'package:mevaccine/widget/button/primaryButton.dart';
+import 'package:mevaccine/widget/button/smallButton.dart';
 import 'package:mevaccine/widget/form/symptomCard.dart';
 import 'package:mevaccine/widget/layout/errorDailog.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
@@ -15,11 +17,84 @@ import '../../model/textType.dart';
 // import './SymptomForm_detail.dart';
 
 class SymptomForm extends StatefulWidget {
+  String nameVaccine;
+  SymptomForm({required this.nameVaccine});
   @override
   State<SymptomForm> createState() => _SymptomFormState();
 }
 
 class _SymptomFormState extends State<SymptomForm> {
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+                content: Container(
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        Languages.of(ctx)!.confirmSymptomForm,
+                        textAlign: TextAlign.center,
+                      )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SmallButton(
+                        text: Languages.of(ctx)!.confirmButtonLabel,
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed(LandingScreen.routeName);
+                        },
+                        color: primary03,
+                        width: 100,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )));
+  }
+
+  void _showErrorDialog() {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+                content: Container(
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        Languages.of(ctx)!.emptySymptomFormErrorMessage,
+                        textAlign: TextAlign.center,
+                      )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SmallButton(
+                        text: Languages.of(ctx)!.confirmButtonLabel,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        color: primary03,
+                        width: 100,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )));
+  }
+
   Future<void> submitForm() async {
     try {
       await Provider.of<SymptomfromProvider>(context, listen: false).sumbitForm(
@@ -30,6 +105,7 @@ class _SymptomFormState extends State<SymptomForm> {
           valueMusclePain,
           valueTiderness,
           _otherController.text);
+      _showDialog();
     } on HttpException catch (error) {
       showErrorDialog(
           context: context,
@@ -39,6 +115,10 @@ class _SymptomFormState extends State<SymptomForm> {
 
   bool isYes() {
     return (valueYes == true);
+  }
+
+  bool cannotSubmit() {
+    return (valueYes == false && valueNo == false);
   }
 
   final _otherController = TextEditingController();
@@ -212,7 +292,7 @@ class _SymptomFormState extends State<SymptomForm> {
                       kSizedBoxVerticalS,
                       PrimaryButton(
                         text: Languages.of(context)!.submitButtonLabel,
-                        onPressed: () {},
+                        onPressed: submitForm,
                         color: primary01,
                       )
                     ],
@@ -227,7 +307,7 @@ class _SymptomFormState extends State<SymptomForm> {
                   children: [
                     PrimaryButton(
                       text: Languages.of(context)!.submitButtonLabel,
-                      onPressed: submitForm,
+                      onPressed: cannotSubmit() ? _showErrorDialog : submitForm,
                       color: primary01,
                     ),
                   ],

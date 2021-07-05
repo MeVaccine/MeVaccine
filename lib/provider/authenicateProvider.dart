@@ -326,6 +326,8 @@ class AuthenicateProvider with ChangeNotifier {
   }
 
   Future<void> check(String nationalID, String laserID) async {
+    print(nationalID);
+    print(laserID);
     try {
       final response = await Dio().post(apiEndpoint + '/person/add/check',
           data: {

@@ -3,6 +3,7 @@ import 'package:mevaccine/config/color.dart';
 import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
+import 'package:mevaccine/widget/button/smallButton.dart';
 import 'package:mevaccine/widget/layout/background_color.dart';
 import 'package:mevaccine/widget/text/mainText.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,7 @@ import '../widget/layout/errorDailog.dart';
 import '../model/textType.dart';
 import '../provider/symptomFormProvider.dart';
 import '../widget/form/SymptomForm.dart';
+import 'landing_screen.dart';
 
 class SymptomFormScreen extends StatefulWidget {
   static const routeName = '/symptom-form';
@@ -64,7 +66,10 @@ class _SymptomFormScreenState extends State<SymptomFormScreen> {
                                   child: AbsorbPointer(
                                     absorbing:
                                         authen.errorStatusCode ? true : false,
-                                    child: SymptomForm(),
+                                    child: SymptomForm(
+                                      nameVaccine:
+                                          authen.userInfo.vaccineUser!.name,
+                                    ),
                                   )),
                             ),
                             (authen.errorStatusCode)
