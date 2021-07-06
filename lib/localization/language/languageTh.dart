@@ -129,6 +129,17 @@ class LanguageTH extends Languages {
   String get myAppointmentHeading => "นัดหมายของคุณ";
   @override
   String vaccineDoseHeading(int dose) => "วัคซีนโควิด 19 เข็มที่ $dose";
+  @override
+  String appointmentStatusMessage(String status) {
+    switch (status) {
+      case 'Vaccinated':
+        return 'ได้รับวัคซีนแล้ว';
+      case 'Canceled':
+        return 'ถูกยกเลิกแล้ว';
+      default:
+        return 'นัดหมายแล้ว';
+    }
+  }
 
   // Person Screen
   @override

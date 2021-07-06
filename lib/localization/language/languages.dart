@@ -69,6 +69,7 @@ abstract class Languages {
   String get noAppointmentMessage;
   String get myAppointmentHeading;
   String vaccineDoseHeading(int dose);
+  String appointmentStatusMessage(String status);
 
   // Person Screen
   String get personScreenGreetingMessage;

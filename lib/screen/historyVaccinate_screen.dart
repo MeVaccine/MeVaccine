@@ -77,10 +77,12 @@ class HistoryVaccinateScreen extends StatelessWidget {
                                         .appointments[index]
                                         .vaccine
                                         .name,
-                                status:
-                                    Provider.of<AppointmentProvider>(context)
-                                        .appointments[index]
-                                        .status,
+                                status: Languages.of(context)!
+                                    .appointmentStatusMessage(
+                                        Provider.of<AppointmentProvider>(
+                                                context)
+                                            .appointments[index]
+                                            .status),
                               ),
                               kSizedBoxVerticalS,
                             ],

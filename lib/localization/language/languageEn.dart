@@ -141,6 +141,18 @@ class LanguageEN extends Languages {
     return "${dose}th Dose";
   }
 
+  @override
+  String appointmentStatusMessage(String status) {
+    switch (status) {
+      case 'Vaccinated':
+        return 'Vaccinated';
+      case 'Canceled':
+        return 'Canceled';
+      default:
+        return 'Appointed';
+    }
+  }
+
   // Person Screen
   @override
   String get personScreenGreetingMessage => "Hello";
