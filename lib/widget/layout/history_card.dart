@@ -12,17 +12,19 @@ class CardHistory extends StatelessWidget {
   final String hospitalName;
   final String vaccine;
   final int dose;
+  final String status;
   CardHistory(
       {required this.time,
       required this.hospitalName,
       required this.vaccine,
-      required this.dose});
+      required this.dose,
+      required this.status});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 330,
-      height: 150,
+      height: 170,
       decoration: BoxDecoration(
         borderRadius: kBorderRadiusS,
         gradient: LinearGradient(
@@ -72,6 +74,12 @@ class CardHistory extends StatelessWidget {
                 style: TextStyle(color: white, fontSize: 14),
               )
             ],
+          ),
+          kSizedBoxVerticalXXS,
+          IconWithText(
+            color: white,
+            icon: FeatherIcons.activity,
+            text: status,
           ),
         ],
       ),
