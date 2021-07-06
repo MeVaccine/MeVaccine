@@ -132,13 +132,13 @@ class LanguageEN extends Languages {
   @override
   String vaccineDoseHeading(int dose) {
     if (dose == 1) {
-      return "$dose st Dose";
+      return "${dose}st Dose";
     } else if (dose == 2) {
-      return "$dose nd Dose";
+      return "${dose}nd Dose";
     } else if (dose == 3) {
-      return "$dose rd Dose";
+      return "${dose}rd Dose";
     }
-    return "$dose th Dose";
+    return "${dose}th Dose";
   }
 
   // Person Screen
