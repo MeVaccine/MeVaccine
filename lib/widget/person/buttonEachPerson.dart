@@ -9,7 +9,7 @@ class ButtonEachPerson extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.topRight,
-        width: 300,
+        width: 400,
         height: 35,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -20,8 +20,7 @@ class ButtonEachPerson extends StatelessWidget {
                 elevation: 10,
                 shadowColor: const Color(0xFF7090B0).withOpacity(0.2),
                 child: Container(
-                  alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                  alignment: Alignment.center,
                     width: 150,
                     child: Text(
                       text,
