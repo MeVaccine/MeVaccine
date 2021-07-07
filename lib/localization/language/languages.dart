@@ -30,6 +30,7 @@ abstract class Languages {
   String locationNameItem(Location location);
   String hospitalNameItem(Hospital hospital);
   String get provinceSelectLabel;
+  String get locationSelectLabel;
 
   // Login Screen
   String get loginHeadingLabel;
@@ -69,6 +70,7 @@ abstract class Languages {
   String get noAppointmentMessage;
   String get myAppointmentHeading;
   String vaccineDoseHeading(int dose);
+  String appointmentStatusMessage(String status);
 
   // Person Screen
   String get personScreenGreetingMessage;

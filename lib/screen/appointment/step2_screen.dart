@@ -48,7 +48,7 @@ class Step2 extends StatelessWidget {
                 }).toList(),
                 hint: 'Province',
                 isCaseSensitiveSearch: true,
-                searchHint: const Text('Select your province'),
+                searchHint: Text(Languages.of(context)!.provinceSelectLabel),
                 value:
                     Provider.of<NewAppointmentProvider>(ctx).selectedProvince,
                 onChanged: (value) async {
@@ -81,7 +81,7 @@ class Step2 extends StatelessWidget {
                 hint: Languages.of(ctx)!.locationNameItem(
                     Provider.of<NewAppointmentProvider>(ctx).selectedLocation!),
                 isCaseSensitiveSearch: true,
-                searchHint: const Text('Select your hospital'),
+                searchHint: Text(Languages.of(context)!.locationSelectLabel),
                 value: Provider.of<NewAppointmentProvider>(ctx)
                     .selectedLocation!
                     .id,
