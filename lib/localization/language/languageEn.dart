@@ -204,7 +204,7 @@ class LanguageEN extends Languages {
   String get emptySymptomFormErrorMessage =>
       "Please enter the symptom assesment form";
   @override
-  String get confirmSymptomForm => "Thank your for doing form";
+  String get confirmSymptomForm => "Thank you for doing the form";
 
   // New Appointment Step 1 Screen
   @override
@@ -279,5 +279,5 @@ class LanguageEN extends Languages {
   String get warnDialogSelectPerson => "Please select at least 1 person";
   @override
   String get warnDialogCannotDoForm =>
-      "You already did the form today or havn't been vaccinated yet";
+      "You already did the form today or haven't get vaccine yet";
 }
