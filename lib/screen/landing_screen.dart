@@ -21,8 +21,11 @@ class LandingScreen extends StatelessWidget {
       builder: (ctx, snapshort) => Consumer<AuthenicateProvider>(
         builder: (ctx, authen, child) => Scaffold(
           body: Container(
-            padding: const EdgeInsets.symmetric(
-                horizontal: kSizeS * 1.5, vertical: kSizeL),
+            padding: const EdgeInsets.only(
+                left: kSizeS * 1.5,
+                right: kSizeS * 1.5,
+                top: kSizeL,
+                bottom: kSizeXXS),
             height: double.infinity,
             width: double.infinity,
             child: Column(

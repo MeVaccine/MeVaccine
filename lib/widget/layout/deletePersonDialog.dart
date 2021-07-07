@@ -24,28 +24,28 @@ class DeletePersonDialog extends StatelessWidget {
                     )),
                 kSizedBoxVerticalM,
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                  SmallButton(
-                    text: 'No',
-                    onPressed: () {
-                      Navigator.of(context).pop(false);
-                    },
-                    color: white,
-                    width: 100,
-                    colorFont: error,
-                    colorBorder: error,
-                  ),
-                  SmallButton(
-                    text: 'Yes',
-                    onPressed: () {
-                      Navigator.of(context).pop(true);
-                    },
-                    color: error,
-                    width: 100,
-                    colorFont: white,
-                  ),
-                ]),
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SmallButton(
+                        text: Languages.of(context)!.cancelButtonLabel,
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        },
+                        color: white,
+                        width: 100,
+                        colorFont: error,
+                        colorBorder: error,
+                      ),
+                      SmallButton(
+                        text: Languages.of(context)!.confirmButtonLabel,
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        color: error,
+                        width: 100,
+                        colorFont: white,
+                      ),
+                    ]),
               ],
             )));
   }
