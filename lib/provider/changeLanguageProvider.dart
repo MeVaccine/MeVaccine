@@ -8,8 +8,8 @@ class ChangeLanguageProvider with ChangeNotifier {
   bool isThaiSelected = false;
 
   ChangeLanguageProvider() {
-    getLocale().then((Locale locale) {
-      if (locale.toLanguageTag() == 'en')
+    getLocale().then((Locale? locale) {
+      if (locale!.toLanguageTag() == 'en')
         isEngSelected = true;
       else
         isThaiSelected = true;
@@ -18,7 +18,7 @@ class ChangeLanguageProvider with ChangeNotifier {
 
   Future<void> initSelectedLang() async {
     final locale = await getLocale();
-    if (locale.toLanguageTag() == 'en') {
+    if (locale!.toLanguageTag() == 'en') {
       isEngSelected = true;
       isThaiSelected = false;
     } else {
