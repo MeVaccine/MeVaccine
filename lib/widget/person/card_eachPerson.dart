@@ -47,7 +47,7 @@ class CardEachPerson extends StatelessWidget {
                   .pushNamed(HistoryVaccinateScreen.routeName, arguments: id);
             },
           ),
-          kSizedBoxVerticalS,
+          kSizedBoxVerticalXS,
           ButtonEachPerson(
             text: Languages.of(context)!.symptomFormMenuLebel,
             onTap: () {
