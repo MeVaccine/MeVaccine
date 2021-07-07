@@ -1,8 +1,4 @@
 // ignore_for_file: file_names
-<<<<<<< HEAD
-=======
-
->>>>>>> bb9e316f7ff3b90b529f30c69c7ff61d508ee432
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/model/httpException.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
@@ -16,7 +12,7 @@ class LanguageTH extends Languages {
   @override
   String get doneButtonLabel => "ยืนยัน";
   @override
-  String get okButtonLabel => "โอเค";
+  String get okButtonLabel => "ตกลง";
   @override
   String get loginButtonLabel => "เข้าสู่ระบบ";
   @override
@@ -49,6 +45,8 @@ class LanguageTH extends Languages {
   String hospitalNameItem(Hospital hospital) => hospital.name_th;
   @override
   String get provinceSelectLabel => "เลือกจังหวัด";
+  @override
+  String get locationSelectLabel => "เลือกสถานที่";
 
   // Login Screen
   @override
@@ -86,7 +84,7 @@ class LanguageTH extends Languages {
   @override
   String get provinceInputLabel => "จังหวัด";
   @override
-  String get locationInputLabel => "เลือกสถานที่";
+  String get locationInputLabel => "สถานที่";
   @override
   String personalPrefix(Personal person) => person.th.prefix;
   @override
@@ -133,6 +131,17 @@ class LanguageTH extends Languages {
   String get myAppointmentHeading => "นัดหมายของคุณ";
   @override
   String vaccineDoseHeading(int dose) => "วัคซีนโควิด 19 เข็มที่ $dose";
+  @override
+  String appointmentStatusMessage(String status) {
+    switch (status) {
+      case 'Vaccinated':
+        return 'ได้รับวัคซีนแล้ว';
+      case 'Canceled':
+        return 'ถูกยกเลิกแล้ว';
+      default:
+        return 'นัดหมายแล้ว';
+    }
+  }
 
   // Person Screen
   @override
@@ -255,7 +264,8 @@ class LanguageTH extends Languages {
   //Dialog
   @override
   String get warnDialogSelectPerson =>
-      "กรุณาเลือกคนที่คุณ \nต้องการจะฉีดวัคซีน";
+      "กรุณาเลือกคนที่คุณ \nต้องการจะรับวัคซีน";
   @override
-  String get warnDialogCannotDoForm => "ไม่สามารถทำแบบสอบถามได้";
+  String get warnDialogCannotDoForm =>
+      "คุณยังไม่ได้รับวัคซีนหรือคุณได้ทำแบบสอบถามไปแล้วในวันนี้";
 }

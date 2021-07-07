@@ -144,6 +144,9 @@ class _MainstepState extends State<Mainstep> {
                                 .resetSelectedDateTimeIndex();
                             setState(() => {_currentTab = Step2.routeName});
                           } else if (_currentTab == Step4.routeName) {
+                            Provider.of<NewAppointmentProvider>(context,
+                                    listen: false)
+                                .resetSelectedDateTimeIndex();
                             setState(() => {_currentTab = Step3.routeName});
                           }
                         },

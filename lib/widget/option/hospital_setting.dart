@@ -107,7 +107,8 @@ class _HospitalSettingState extends State<HospitalSetting> {
                     }).toList(),
                     hint: 'Hospital',
                     isCaseSensitiveSearch: true,
-                    searchHint: const Text('Select your hospital'),
+                    searchHint:
+                        Text(Languages.of(context)!.locationSelectLabel),
                     value: selectedLocation!.id,
                     onChanged: (value) {
                       if (value != null) {}

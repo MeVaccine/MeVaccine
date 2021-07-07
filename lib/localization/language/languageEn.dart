@@ -46,6 +46,8 @@ class LanguageEN extends Languages {
   String hospitalNameItem(Hospital hospital) => hospital.name_en;
   @override
   String get provinceSelectLabel => "Select a province";
+  @override
+  String get locationSelectLabel => "Select a location";
 
   // Login Screen
   @override
@@ -132,13 +134,25 @@ class LanguageEN extends Languages {
   @override
   String vaccineDoseHeading(int dose) {
     if (dose == 1) {
-      return "$dose st Dose";
+      return "${dose}st Dose";
     } else if (dose == 2) {
-      return "$dose nd Dose";
+      return "${dose}nd Dose";
     } else if (dose == 3) {
-      return "$dose rd Dose";
+      return "${dose}rd Dose";
     }
-    return "$dose th Dose";
+    return "${dose}th Dose";
+  }
+
+  @override
+  String appointmentStatusMessage(String status) {
+    switch (status) {
+      case 'Vaccinated':
+        return 'Vaccinated';
+      case 'Canceled':
+        return 'Canceled';
+      default:
+        return 'Appointed';
+    }
   }
 
   // Person Screen
@@ -190,7 +204,7 @@ class LanguageEN extends Languages {
   String get emptySymptomFormErrorMessage =>
       "Please enter the symptom assesment form";
   @override
-  String get confirmSymptomForm => "Thank your for doing form";
+  String get confirmSymptomForm => "Thank you for doing the form";
 
   // New Appointment Step 1 Screen
   @override
@@ -262,7 +276,8 @@ class LanguageEN extends Languages {
 
   //Dialog
   @override
-  String get warnDialogSelectPerson => "Please select person";
+  String get warnDialogSelectPerson => "Please select at least 1 person";
   @override
-  String get warnDialogCannotDoForm => "Cannot do symptom form";
+  String get warnDialogCannotDoForm =>
+      "You already did the form today or haven't get vaccine yet";
 }

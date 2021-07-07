@@ -13,10 +13,10 @@ Future<Locale> setLocale(String languageCode) async {
   return _locale(languageCode);
 }
 
-Future<Locale> getLocale() async {
+Future<Locale?> getLocale() async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
-  String languageCode = _prefs.getString(prefSelectedLanguageCode) ?? "th";
-  return _locale(languageCode);
+  final languageCode = _prefs.getString(prefSelectedLanguageCode);
+  return languageCode == null ? null : _locale(languageCode);
 }
 
 Locale _locale(String languageCode) {
@@ -25,7 +25,10 @@ Locale _locale(String languageCode) {
       : Locale('th', '');
 }
 
-void changeLanguage(BuildContext context, String selectedLanguageCode) async {
+Future<void> changeLanguage(
+    BuildContext context, String selectedLanguageCode) async {
+  print('Change lang');
+  print(selectedLanguageCode);
   var _locale = await setLocale(selectedLanguageCode);
   MyApp.setLocale(context, _locale);
 }

@@ -155,7 +155,9 @@ class _PersonScreenState extends State<PersonScreen> {
             left: 290,
             child: FloatingActionButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(AddPerson.routeName);
+                Navigator.of(context).pushNamed(AddPerson.routeName).then((_) {
+                  setState(() {});
+                });
               },
               backgroundColor: primary01,
               child: Icon(

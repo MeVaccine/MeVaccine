@@ -62,7 +62,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = Locale('th');
+  Locale? _locale = null;
 
   void setLocale(Locale locale) {
     setState(() {
@@ -162,15 +162,17 @@ class _MyAppState extends State<MyApp> {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        // localeResolutionCallback: (locale, supportedLocales) {
-        //   for (var supportedLocale in supportedLocales) {
-        //     if (supportedLocale.languageCode == locale?.languageCode &&
-        //         supportedLocale.countryCode == locale?.countryCode) {
-        //       return supportedLocale;
-        //     }
-        //   }
-        //   return supportedLocales.first;
-        // },
+        localeResolutionCallback: (deviceLocale, supportedLocales) {
+          getLocale().then((Locale? locale) {
+            print(locale == null ? 'Null' : locale.languageCode);
+            if (locale == null) {
+              changeLanguage(context, deviceLocale!.languageCode);
+              return deviceLocale;
+            }
+            changeLanguage(context, locale.languageCode);
+            return locale;
+          });
+        },
       ),
     );
   }

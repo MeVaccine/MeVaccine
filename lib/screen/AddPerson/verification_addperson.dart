@@ -42,7 +42,6 @@ class _VerificationAddPersonState extends State<VerificationAddPerson> {
         });
         Navigator.of(context)
             .popUntil(ModalRoute.withName(PersonScreen.routeName));
-        Provider.of<PersonProvider>(context, listen: false).getPerson();
       } on HttpException catch (error) {
         setState(() => _isLoading = false);
         showErrorDialog(

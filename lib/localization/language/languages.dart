@@ -30,6 +30,7 @@ abstract class Languages {
   String locationNameItem(Location location);
   String hospitalNameItem(Hospital hospital);
   String get provinceSelectLabel;
+  String get locationSelectLabel;
 
   // Login Screen
   String get loginHeadingLabel;
@@ -69,6 +70,7 @@ abstract class Languages {
   String get noAppointmentMessage;
   String get myAppointmentHeading;
   String vaccineDoseHeading(int dose);
+  String appointmentStatusMessage(String status);
 
   // Person Screen
   String get personScreenGreetingMessage;
@@ -133,16 +135,6 @@ abstract class Languages {
   String get errorDialogHeading;
 
   // Dialog
-<<<<<<< HEAD
-  // String get warnDialogNationalIDAndPhoneNumber;
-  // String get warnDialogVerificationCode;
-  // String get warnDialogNationaIDAndLaser;
-  // String get warnDialogPhoneAndAddress;
-  // String get warnDialogSymptomForm;
-  // String get warnDialogSelectPerson;
-  // String get warnDialogSelectDateAndTime;
-=======
   String get warnDialogSelectPerson;
   String get warnDialogCannotDoForm;
->>>>>>> bb9e316f7ff3b90b529f30c69c7ff61d508ee432
 }
