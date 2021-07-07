@@ -525,7 +525,8 @@ class AuthenicateProvider with ChangeNotifier {
           prefix_en: response.data['prefix_en'],
           prefix_th: response.data['prefix_th'],
           id: response.data['id'],
-          appointment: response.data['appointment'] == null
+          appointment: response.data['appointment'] == null ||
+                  response.data['appointment']['_id'] == null
               ? null
               : Appointment(
                   date: DateTime.parse(response.data['appointment']['dateTime'])
@@ -547,11 +548,7 @@ class AuthenicateProvider with ChangeNotifier {
                           ['province_th'])),
           vaccineUser: response.data['vaccine'] == null
               ? VaccineUser(id: '', maxAge: 0, minAge: 0, name: '')
-              : VaccineUser(
-                  id: response.data['vaccine']['_id'],
-                  maxAge: response.data['appointment']['maxAge'],
-                  minAge: response.data['appointment']['minAge'],
-                  name: response.data['appointment']['name']));
+              : VaccineUser(id: response.data['vaccine']['_id'], maxAge: response.data['appointment']['maxAge'], minAge: response.data['appointment']['minAge'], name: response.data['appointment']['name']));
       notifyListeners();
     } on DioError catch (error) {
       throw HttpException(generalException, generalExceptionTH);
