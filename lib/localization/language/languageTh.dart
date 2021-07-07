@@ -161,7 +161,7 @@ class LanguageTH extends Languages {
   @override
   String get addPersonHeading => "เพิ่มผู้คน";
   @override
-  String get deletePersonConfirmMessage => "";
+  String get deletePersonConfirmMessage => "คุณต้องการลบคนนี้ใช่หรือไม่";
   @override
   String get personAppointmentsButtonLebel => "นัดหมายการรับวัคซีน";
 
