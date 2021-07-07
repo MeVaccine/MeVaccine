@@ -30,6 +30,7 @@ abstract class Languages {
   String locationNameItem(Location location);
   String hospitalNameItem(Hospital hospital);
   String get provinceSelectLabel;
+  String get locationSelectLabel;
 
   // Login Screen
   String get loginHeadingLabel;

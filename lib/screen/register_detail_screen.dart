@@ -151,7 +151,7 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                               hint: Languages.of(context)!.provinceInputLabel,
                               isCaseSensitiveSearch: true,
                               searchHint: Text(
-                                  Languages.of(context)!.provinceInputLabel),
+                                  Languages.of(context)!.provinceSelectLabel),
                               onChanged: (value) async {
                                 if (value != null) {
                                   setState(() {
@@ -187,8 +187,8 @@ class _RegisterDetailScreenState extends State<RegisterDetailScreen> {
                             hint:
                                 Text(Languages.of(context)!.locationInputLabel),
                             isCaseSensitiveSearch: true,
-                            searchHint:
-                                Text(Languages.of(context)!.locationInputLabel),
+                            searchHint: Text(
+                                Languages.of(context)!.locationSelectLabel),
                             onChanged: (value) {
                               if (value != null) {
                                 setState(() {

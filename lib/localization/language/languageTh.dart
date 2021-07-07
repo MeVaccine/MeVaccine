@@ -45,6 +45,8 @@ class LanguageTH extends Languages {
   String hospitalNameItem(Hospital hospital) => hospital.name_th;
   @override
   String get provinceSelectLabel => "เลือกจังหวัด";
+  @override
+  String get locationSelectLabel => "เลือกสถานที่";
 
   // Login Screen
   @override
@@ -82,7 +84,7 @@ class LanguageTH extends Languages {
   @override
   String get provinceInputLabel => "จังหวัด";
   @override
-  String get locationInputLabel => "เลือกสถานที่";
+  String get locationInputLabel => "สถานที่";
   @override
   String personalPrefix(Personal person) => person.th.prefix;
   @override
