@@ -140,7 +140,7 @@ class _PersonScreenState extends State<PersonScreen> {
             ),
           ),
           Positioned(
-            top: 720,
+            top: 680,
             left: 290,
             child: FloatingActionButton(
               onPressed: () {
