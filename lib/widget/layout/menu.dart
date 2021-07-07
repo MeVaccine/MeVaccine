@@ -23,7 +23,7 @@ class Menu extends StatelessWidget {
               kFontSizeHeadline4, primary01),
         ),
         Container(
-          height: kSizeXXL * 1.1,
+          height: kSizeXXL * 1.25,
           child: ListView(
             padding: EdgeInsetsDirectional.only(top: 10),
             children: [
