@@ -4,6 +4,7 @@ import 'package:mevaccine/config/constants.dart';
 import 'package:mevaccine/localization/language/languages.dart';
 import 'package:mevaccine/provider/authenicateProvider.dart';
 import 'package:mevaccine/provider/personProvider.dart';
+import 'package:mevaccine/widget/layout/deletePersonDialog.dart';
 import 'package:provider/provider.dart';
 import '../screen/AddPerson/addPerson_screen.dart';
 import '../widget/Logo/empty_person.dart';
@@ -95,6 +96,16 @@ class _PersonScreenState extends State<PersonScreen> {
                                               horizontal: 20, vertical: 15),
                                         ),
                                         direction: DismissDirection.endToStart,
+                                        confirmDismiss: (direction) {
+                                          return showDialog(
+                                              context: context,
+                                              builder: (ctx) =>
+                                                  DeletePersonDialog(
+                                                    onpressed: () {},
+                                                    text: Languages.of(context)!
+                                                        .deletePersonConfirmMessage,
+                                                  ));
+                                        },
                                         onDismissed: (direction) {
                                           Provider.of<PersonProvider>(context,
                                                   listen: false)
